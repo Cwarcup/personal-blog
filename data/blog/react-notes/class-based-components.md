@@ -61,7 +61,7 @@ ReactDOM.render(<App />, document.querySelector('#root'))
 
 ## Benefits of Class Components
 
-![](react-images/benefitsClass.png)
+![](/data/blog/react-notes/react-images/benefitsClass.png)
 
 [Notes on state here:](https://github.com/Cwarcup/notes/blob/ef513cb3e99be669cb19d69202fb465019fe6bbb/root/react/react-notes/state.md)
 

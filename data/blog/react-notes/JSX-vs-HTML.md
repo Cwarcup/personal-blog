@@ -18,7 +18,7 @@ summary: 'So many people have asked me about JSX vs HTML. I will try to answer t
 
 Adding custom styling to an element uses different **syntax**.
 
-In JSX, JavaScript expressions are written inside curly braces, and since JavaScript objects also use curly braces, the styling in the example above is written inside two sets of curly braces {{}}.
+In JSX, JavaScript expressions are written inside curly braces, and since JavaScript objects also use curly braces, the styling in the example above is written inside two sets of curly braces `{{}}`.
 
 ```js
 const App = () => {
@@ -129,7 +129,7 @@ const App = () => {
 
 Get an error: ` Objects are not valid as a React child (found: object with keys {text}). If you meant to render a collection of children, use an array instead.`
 
-Instead, we must reference it like so ` {buttonText.text}`
+Instead, we must reference it like so `{buttonText.text}`.
 
 We can use JS object as long as we are not trying to print them as text in our application.
 

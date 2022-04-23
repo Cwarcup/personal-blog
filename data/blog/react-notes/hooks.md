@@ -114,7 +114,7 @@ The **first** element in the array is something we want to keep track of, it wil
 
 The **second** element in the array, named as `setFirstVariableName`, is a **function** we call to **update our piece of state**. Anytime we call the **setter** function, it will cause our entire component to re-render.
 
-![hooks](react-images/hooks.png)
+![hooks](/data/blog/react-notes/react-images/hooks.png)
 
 > The named of the first and second elements are NOT special. They can be anything we want.
 
@@ -140,7 +140,7 @@ setTerm('Gilligan')
 ```
 
 Back in **class based components**, we can initialize states very easily, like so:
-`state = { activeIndex:0, term: '' }
+`state = { activeIndex:0, term: '' }`
 
 # Setter Function
 
