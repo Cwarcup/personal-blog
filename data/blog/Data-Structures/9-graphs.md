@@ -37,33 +37,22 @@ Weighted graph - has information about the connection between vertices.
 ## Adjacency Matrix
 
 Data we are going to represented.
-![graph](/images/graph2.png)
 
 Can use a table.
 0 = no connection
 1 = has connection
-![graph](/images/graph3.png)
 
 ## Adjacency List
-
-![graph](/images/graph4.png)
 
 Uses an array or list to store the **edges**. Can see there's a that `0` has an edge with `5` and `1`.
 
 What if our nodes are not numeric? What is they are string? We use a **hash table**
 
-![graph](/images/graphAdjacencyList.png)
-
----
-
-![graph](/images/graphDiff.png)
-![graph](/images/graphDiff2.png)
-
 Will be going forward using an **ADJACENCY LIST** because most real world data looks like this (larger and more sparse).
 
 # Graph Class for undirected graph
 
-```
+```js
 class Graph {
   constructor() {
     this.adjacencyList = {}
@@ -78,20 +67,20 @@ class Graph {
 
 ![vertex](/images/addVertex.png);
 
-```
+```js
 class Graph {
   constructor() {
-    this.adjacencyList = {};
+    this.adjacencyList = {}
   }
   addVertex(vertex) {
-    if (!this.adjacencyList[vertex]) this.adjacencyList[vertex] = [];
+    if (!this.adjacencyList[vertex]) this.adjacencyList[vertex] = []
   }
 }
 
-let g = new Graph();
-g.addVertex('Tokyo');
-g.addVertex('San Francisco');
-g.addVertex('New York');
+let g = new Graph()
+g.addVertex('Tokyo')
+g.addVertex('San Francisco')
+g.addVertex('New York')
 ```
 
 ## Adding an EDGE
@@ -104,7 +93,7 @@ g.addVertex('New York');
 - the function should find in the adjacency list the **key of vertex 1** and **push** **vertex2 **to the array.
 - The function should find in the adjacency list the key of vertex2 and push vertex1 to the array.
 
-```
+```js
 class Graph {
   constructor() {
     this.adjacencyList = {};
@@ -138,7 +127,7 @@ console.log(g);
 - The function should reassign the key of vertex1 to be an array that does not contain vertex2
 - The function should reassign the key of vertex2 to be an array that does not contain vertex1
 
-```
+```js
 class Graph {
   constructor() {
     this.adjacencyList = {};
@@ -194,7 +183,7 @@ console.log(g); // { Dallas: [], Tokyo: [], Aspen: [] }
 
 ![remove vertex](/images/graphRemoveVertex.png)
 
-```
+```js
     removeVertex(vertex){
         while(this.adjacencyList[vertex].length){
             const adjacentVertex = this.adjacencyList[vertex].pop();
@@ -234,45 +223,41 @@ console.log(g);
 
 ---
 
-```
+```js
 class Graph {
   constructor() {
-    this.adjacencyList = {};
+    this.adjacencyList = {}
   }
   addVertex(vertex) {
-    if (!this.adjacencyList[vertex]) this.adjacencyList[vertex] = [];
+    if (!this.adjacencyList[vertex]) this.adjacencyList[vertex] = []
   }
   addEdge(v1, v2) {
-    this.adjacencyList[v1].push(v2);
-    this.adjacencyList[v2].push(v1);
+    this.adjacencyList[v1].push(v2)
+    this.adjacencyList[v2].push(v1)
   }
   removeEdge(vertex1, vertex2) {
-    this.adjacencyList[vertex1] = this.adjacencyList[vertex1].filter(
-      (v) => v !== vertex2
-    );
-    this.adjacencyList[vertex2] = this.adjacencyList[vertex2].filter(
-      (v) => v !== vertex1
-    );
+    this.adjacencyList[vertex1] = this.adjacencyList[vertex1].filter((v) => v !== vertex2)
+    this.adjacencyList[vertex2] = this.adjacencyList[vertex2].filter((v) => v !== vertex1)
   }
   removeVertex(vertex) {
     while (this.adjacencyList[vertex].length) {
-      const adjacentVertex = this.adjacencyList[vertex].pop();
-      this.removeEdge(vertex, adjacentVertex);
+      const adjacentVertex = this.adjacencyList[vertex].pop()
+      this.removeEdge(vertex, adjacentVertex)
     }
-    delete this.adjacencyList[vertex];
+    delete this.adjacencyList[vertex]
   }
 }
 
-let g = new Graph();
-g.addVertex('Dallas');
-g.addVertex('Tokyo');
-g.addVertex('Aspen');
-g.addVertex('Los Angeles');
-g.addVertex('Hong Kong');
-g.addEdge('Dallas', 'Tokyo');
-g.addEdge('Dallas', 'Aspen');
-g.addEdge('Hong Kong', 'Tokyo');
-g.addEdge('Hong Kong', 'Dallas');
-g.addEdge('Los Angeles', 'Hong Kong');
-g.addEdge('Los Angeles', 'Aspen');
+let g = new Graph()
+g.addVertex('Dallas')
+g.addVertex('Tokyo')
+g.addVertex('Aspen')
+g.addVertex('Los Angeles')
+g.addVertex('Hong Kong')
+g.addEdge('Dallas', 'Tokyo')
+g.addEdge('Dallas', 'Aspen')
+g.addEdge('Hong Kong', 'Tokyo')
+g.addEdge('Hong Kong', 'Dallas')
+g.addEdge('Los Angeles', 'Hong Kong')
+g.addEdge('Los Angeles', 'Aspen')
 ```

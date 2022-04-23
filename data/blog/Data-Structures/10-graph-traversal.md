@@ -30,7 +30,7 @@ summary: Methods and implementation of a doubly linked list.
 
 ### Depth First Search Recursive
 
-```
+```js
  DFS(vertex):
     if vertex is empty // base case
         return (this is base case)
@@ -43,7 +43,7 @@ summary: Methods and implementation of a doubly linked list.
 
 Here is what we have:
 
-```
+```js
 class Graph {
   constructor() {
     this.adjList = {};
@@ -115,7 +115,7 @@ Graph { adjList:
 - Invoke the helper function with the starting vertex
 - Return the result array
 
-```
+```js
 // start...
   depthFirstRecursive(start) {
     const results = [];
@@ -159,7 +159,7 @@ Graph { adjList:
 
 ## DFS Iteratively
 
-```
+```js
 DFS-iterative(start):
     let S be a stack
     S.push(start)
@@ -184,7 +184,7 @@ DFS-iterative(start):
     - Add it to the result list
     - Push all of its neighbors into the stack
 
-```
+```js
  depthFirstIterative(start) {
     const stack = [start];
     const results = [];
@@ -256,7 +256,7 @@ console.log(g.depthFirstIterative('A'));
 - If it is not inside the object that stores nodes visited, mark it as visited and enqueue that vertex
 - Once you have finished looping, return the array of visited nodes
 
-```
+```js
   breadthFirst(start) {
     const queue = [start];
     const results = [];
@@ -311,103 +311,103 @@ console.log(g.breadthFirst('A'));
 
 **Full code**
 
-```
+```js
 class Graph {
   constructor() {
-    this.adjList = {};
+    this.adjList = {}
   }
   addVertex(vertex) {
-    if (!this.adjList[vertex]) this.adjList[vertex] = [];
+    if (!this.adjList[vertex]) this.adjList[vertex] = []
   }
   addEdge(v1, v2) {
-    this.adjList[v1].push(v2);
-    this.adjList[v2].push(v1);
+    this.adjList[v1].push(v2)
+    this.adjList[v2].push(v1)
   }
   removeEdge(vertex1, vertex2) {
-    this.adjList[vertex1] = this.adjList[vertex1].filter((v) => v !== vertex2);
-    this.adjList[vertex2] = this.adjList[vertex2].filter((v) => v !== vertex1);
+    this.adjList[vertex1] = this.adjList[vertex1].filter((v) => v !== vertex2)
+    this.adjList[vertex2] = this.adjList[vertex2].filter((v) => v !== vertex1)
   }
   removeVertex(vertex) {
     while (this.adjList[vertex].length) {
-      const adjacentVertex = this.adjList[vertex].pop();
-      this.removeEdge(vertex, adjacentVertex);
+      const adjacentVertex = this.adjList[vertex].pop()
+      this.removeEdge(vertex, adjacentVertex)
     }
-    delete this.adjList[vertex];
+    delete this.adjList[vertex]
   }
   depthFirstRecursive(start) {
-    const results = [];
-    const visited = {};
-    const adjList = this.adjList;
+    const results = []
+    const visited = {}
+    const adjList = this.adjList
     function dfs(vertex) {
-      if (!vertex) return null;
-      visited[vertex] = true;
-      results.push(vertex);
+      if (!vertex) return null
+      visited[vertex] = true
+      results.push(vertex)
       adjList[vertex].forEach((neighbor) => {
         if (!visited[neighbor]) {
-          return dfs(neighbor);
+          return dfs(neighbor)
         }
-      });
+      })
     }
-    dfs(start);
-    return results;
+    dfs(start)
+    return results
   }
   depthFirstIterative(start) {
-    const stack = [start];
-    const results = [];
-    const visited = {};
-    let currentVertex;
+    const stack = [start]
+    const results = []
+    const visited = {}
+    let currentVertex
 
-    visited[start] = true;
+    visited[start] = true
     while (stack.length) {
-      console.log(stack);
-      currentVertex = stack.pop();
-      results.push(currentVertex);
+      console.log(stack)
+      currentVertex = stack.pop()
+      results.push(currentVertex)
       // now need to access the neighbors of currentVertex
       this.adjList[currentVertex].forEach((neighbor) => {
         if (!visited[neighbor]) {
-          visited[neighbor] = true;
-          stack.push(neighbor);
+          visited[neighbor] = true
+          stack.push(neighbor)
         }
-      });
+      })
     }
-    return results;
+    return results
   }
   breadthFirst(start) {
-    const queue = [start];
-    const results = [];
-    const visited = {};
-    let currentVertex;
-    visited[start] = true;
+    const queue = [start]
+    const results = []
+    const visited = {}
+    let currentVertex
+    visited[start] = true
 
     while (queue.length) {
-      currentVertex = queue.shift();
-      results.push(currentVertex);
+      currentVertex = queue.shift()
+      results.push(currentVertex)
 
       this.adjList[currentVertex].forEach((neighbor) => {
         if (!visited[neighbor]) {
-          visited[neighbor] = true;
-          queue.push(neighbor);
+          visited[neighbor] = true
+          queue.push(neighbor)
         }
-      });
+      })
     }
-    return results;
+    return results
   }
 }
 
-let g = new Graph();
+let g = new Graph()
 
-g.addVertex('A');
-g.addVertex('B');
-g.addVertex('C');
-g.addVertex('D');
-g.addVertex('E');
-g.addVertex('F');
+g.addVertex('A')
+g.addVertex('B')
+g.addVertex('C')
+g.addVertex('D')
+g.addVertex('E')
+g.addVertex('F')
 
-g.addEdge('A', 'B');
-g.addEdge('A', 'C');
-g.addEdge('B', 'D');
-g.addEdge('C', 'E');
-g.addEdge('D', 'E');
-g.addEdge('D', 'F');
-g.addEdge('E', 'F');
+g.addEdge('A', 'B')
+g.addEdge('A', 'C')
+g.addEdge('B', 'D')
+g.addEdge('C', 'E')
+g.addEdge('D', 'E')
+g.addEdge('D', 'F')
+g.addEdge('E', 'F')
 ```

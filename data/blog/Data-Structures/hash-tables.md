@@ -12,7 +12,7 @@ Key is used as the index to find the value.
 
 Pros:
 
-- fast loopups
+- fast load ups
 - fast inserts
 - flexible keys
 
@@ -31,7 +31,7 @@ It is **idempotent**: given an input, the output will always be the same.
 ![hash](/images/hash.png)
 Because it is not ordered, we do not need to rearrange indexes.
 
-```
+```js
 let user = {
   age: 28,
   name: 'Curtis',
@@ -56,14 +56,13 @@ returns
 
 ## Hash Collisions
 
-![hash collisions](/images/hash-collisions.png)
 As soon as we hashed `Sandra dee` it became the same address space as `John Smith`. This ia **collision**. We need a way of storing both users in this address space. This can not be avoided. We have limited memory, and can have large amounts of data.
 
 There are multiple ways to handle collisions. Downside is, hashes could be slower O(n) if collisions occur.
 
 ## Implementing A Hash Table
 
-```
+```js
 class HashTable {
   constructor(size) {
     this.data = new Array(size);
@@ -107,7 +106,7 @@ myHashTable.set('apples', 9)
 
 Can add a `get()` method
 
-```
+```js
   get(key) {
     let address = this._hash(key); //where we want to go in our table
     const currentBucket = this.data[address];
@@ -115,34 +114,35 @@ Can add a `get()` method
 
   }
 myHashTable.get('apples') //[ 'apples', 9 ] but we just want to value (thats what get does)
-
 ```
 
 ## First Recurring Character
 
-```
+```js
 function firstRecurringCharacter(input) {
-  for (let i = 0; i < input.length; i++) { //grabs a single number
-    for (let j = i + 1; j < input.length; j++) { // loops through to compare to another number in the array
-      if(input[i] === input[j]) {
-        return input[i];
+  for (let i = 0; i < input.length; i++) {
+    //grabs a single number
+    for (let j = i + 1; j < input.length; j++) {
+      // loops through to compare to another number in the array
+      if (input[i] === input[j]) {
+        return input[i]
       }
     }
   }
   return undefined
 }
 
-console.log(firstRecurringCharacter([7,1,1,2,3,5,1,2,4])) // 1
+console.log(firstRecurringCharacter([7, 1, 1, 2, 3, 5, 1, 2, 4])) // 1
 ```
 
 Better approach:
 
-```
-
+```js
 function firstRecurringCharacter2(input) {
-  let map = {};
-  for (let i = 0; i <input.length; i++) {
-    if(map[input[i]] !== undefined) { //if our key exists in our hash table, stop looping and return the existing key
+  let map = {}
+  for (let i = 0; i < input.length; i++) {
+    if (map[input[i]] !== undefined) {
+      //if our key exists in our hash table, stop looping and return the existing key
       return input[i]
     } else {
       map[input[i]] = i
@@ -152,5 +152,5 @@ function firstRecurringCharacter2(input) {
   return undefined
 }
 
-console.log(firstRecurringCharacter2([2,5,1,2,3,5,1,2,4])) //2
+console.log(firstRecurringCharacter2([2, 5, 1, 2, 3, 5, 1, 2, 4])) //2
 ```
