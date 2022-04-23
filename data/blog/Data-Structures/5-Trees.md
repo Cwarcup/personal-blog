@@ -39,8 +39,6 @@ Trees are NOT linear. There are multiple paths you can take.
 - 0, 1, 2 children
 - are sorted in a particular way. Can be **compared**, sortable.
 
-![bst](/images/BST.png)
-
 - Every parent node has at most **two** children
 - Every node to the **left** of a parent node is always **less than the parent**
 - Every node to the **right** of a parent node is always **greater than the parent**
@@ -53,7 +51,7 @@ Trees are NOT linear. There are multiple paths you can take.
 
 ## BST Classes
 
-```
+```js
 class Node {
     constructor(value){
         this.value = value;
@@ -101,42 +99,42 @@ BinarySearchTree { root:
 - If there is, move to that node and repeat these steps
 - If there is not, add that node as the left property
 
-```
+```js
 class Node {
   constructor(value) {
-    this.value = value;
-    this.left = null;
-    this.right = null;
+    this.value = value
+    this.left = null
+    this.right = null
   }
 }
 
 class BinarySearchTree {
   constructor() {
-    this.root = null;
+    this.root = null
   }
   insert(value) {
-    let newNode = new Node(value);
+    let newNode = new Node(value)
     if (!this.root) {
-      this.root = newNode;
-      return this;
+      this.root = newNode
+      return this
     } else {
-      let current = this.root; // select the node
+      let current = this.root // select the node
       while (true) {
         if (value < current.value) {
-          if(value === current.value) return undefined; //do not do anything with duplicates
+          if (value === current.value) return undefined //do not do anything with duplicates
           if (current.left === null) {
             //if no left
-            current.left = newNode;
-            return this;
+            current.left = newNode
+            return this
           } else {
-            current = current.left;
+            current = current.left
           }
         } else if (value > current.value) {
           if (current.right === null) {
-            current.right = newNode;
-            return this;
+            current.right = newNode
+            return this
           } else {
-            current = current.right;
+            current = current.right
           }
         }
       }
@@ -145,18 +143,18 @@ class BinarySearchTree {
 }
 
 //setting up your basic tree
-let tree = new BinarySearchTree();
-tree.insert(10);
-tree.insert(5);
-tree.insert(2);
-tree.insert(13);
-tree.insert(11);
-tree.insert(16);
-tree.insert(7);
+let tree = new BinarySearchTree()
+tree.insert(10)
+tree.insert(5)
+tree.insert(2)
+tree.insert(13)
+tree.insert(11)
+tree.insert(16)
+tree.insert(7)
 
-    //       10
-    //   5        13
-    // 2   7    11   16
+//       10
+//   5        13
+// 2   7    11   16
 ```
 
 ## BST Find
@@ -177,7 +175,7 @@ Starting at the root
     - If there is, move to that node and repeat these steps
     - If there is not, we're done searching!
 
-```
+```js
   find(value) {
     if (this.root === null) return false;
     let current = this.root;
@@ -216,75 +214,75 @@ console.log(tree.find(211)); // false
 
 [big o](https://res.cloudinary.com/practicaldev/image/fetch/s--cCSlyRS8--/c_imagga_scale,f_auto,fl_progressive,h_900,q_auto,w_1600/https://dev-to-uploads.s3.amazonaws.com/i/d155tk2ttynxoehhz39k.jpeg)
 
-```
+```js
 class Node {
   constructor(value) {
-    this.value = value;
-    this.left = null;
-    this.right = null;
+    this.value = value
+    this.left = null
+    this.right = null
   }
 }
 
 class BinarySearchTree {
   constructor() {
-    this.root = null;
+    this.root = null
   }
   insert(value) {
-    let newNode = new Node(value);
+    let newNode = new Node(value)
     if (!this.root) {
-      this.root = newNode;
-      return this;
+      this.root = newNode
+      return this
     } else {
-      let current = this.root; // select the node
+      let current = this.root // select the node
       while (true) {
-        if (value === current.value) return undefined; //do not do anything with duplicates
+        if (value === current.value) return undefined //do not do anything with duplicates
         if (value < current.value) {
           if (current.left === null) {
             //if no left
-            current.left = newNode;
-            return this;
+            current.left = newNode
+            return this
           } else {
-            current = current.left;
+            current = current.left
           }
         } else if (value > current.value) {
           if (current.right === null) {
-            current.right = newNode;
-            return this;
+            current.right = newNode
+            return this
           } else {
-            current = current.right;
+            current = current.right
           }
         }
       }
     }
   }
   find(value) {
-    if (this.root === null) return false;
-    let current = this.root;
-    let found = false; // keeps track of if we found the item
+    if (this.root === null) return false
+    let current = this.root
+    let found = false // keeps track of if we found the item
     // run loop until found is not true, and we have something to loop over.
     while (!found && current) {
       if (value < current.value) {
         // know our value must be on the left
-        current = current.left;
+        current = current.left
       } else if (value > current.value) {
         // know our value must be on the right
-        current = current.right;
+        current = current.right
       } else {
-        found = true;
+        found = true
       }
     }
-    if (!found) return false;
-    return current;
+    if (!found) return false
+    return current
   }
 }
 
 //setting up your basic tree
-let tree = new BinarySearchTree();
-tree.insert(10);
-tree.insert(5);
-tree.insert(2);
-tree.insert(13);
-tree.insert(11);
-tree.insert(16);
-tree.insert(7);
+let tree = new BinarySearchTree()
+tree.insert(10)
+tree.insert(5)
+tree.insert(2)
+tree.insert(13)
+tree.insert(11)
+tree.insert(16)
+tree.insert(7)
 ```

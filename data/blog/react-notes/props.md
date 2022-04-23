@@ -37,8 +37,6 @@ const App = () => {
 Props are a system for passing data from a **parent** component to a **child**.
 The overall goal is to **customize or configure** a child component.
 
-![Props](/static/images/Props.png)
-
 There is no limit on the amount of information we can pass through props.
 
 # Passing Through Props
@@ -47,8 +45,6 @@ There is no limit on the amount of information we can pass through props.
   - generally about parent communicating to the child.
 
 ### Providing a prop to a child
-
-![](react-images/passing%20props.png)
 
 Can also reference some javascript variable.
 

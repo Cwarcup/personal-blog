@@ -12,8 +12,6 @@ summary: '"this" has always been confusing for many JavaScript developers, but t
 
 - Is used to refer back to the **instance** of a class.
 
-![](react-images/this.png)
-
 ### How is the value of 'this' determined?
 
 ```js

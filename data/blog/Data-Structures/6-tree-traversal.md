@@ -6,24 +6,6 @@ draft: true
 summary: Methods and implementation of a doubly linked list.
 ---
 
-- the idea that if we have a tree that is unordered, how do we search every node once?
-
-Two approaches to traversing a tree:
-
-1. Breadth-first Search
-   ![bfs](/images/bfs.png)
-
-Depth-first Search
-
-2. DFS-InOrder
-   ![dfs](/images/dfs.png)
-
-DFS-PostOrder
-
-![traversal](https://leetcode.com/articles/Figures/145_transverse.png)
-
----
-
 ## Breadth First Search - BFS
 
 ![bfs](https://camo.githubusercontent.com/73761db9068bf4c9de4a23209da587a29e8cc672558534d4ff40ac0480854047/68747470733a2f2f75706c6f61642e77696b696d656469612e6f72672f77696b6970656469612f636f6d6d6f6e732f352f35642f427265616474682d46697273742d5365617263682d416c676f726974686d2e676966)
@@ -40,98 +22,98 @@ Steps - Iteratively
 - If there is a right property on the node dequeued - add it to the queue
 - Return the variable that stores the values
 
-```
+```js
 class Node {
   constructor(value) {
-    this.value = value;
-    this.left = null;
-    this.right = null;
+    this.value = value
+    this.left = null
+    this.right = null
   }
 }
 
 class BinarySearchTree {
   constructor() {
-    this.root = null;
+    this.root = null
   }
   insert(value) {
-    var newNode = new Node(value);
+    var newNode = new Node(value)
     if (this.root === null) {
-      this.root = newNode;
-      return this;
+      this.root = newNode
+      return this
     }
-    var current = this.root;
+    var current = this.root
     while (true) {
-      if (value === current.value) return undefined;
+      if (value === current.value) return undefined
       if (value < current.value) {
         if (current.left === null) {
-          current.left = newNode;
-          return this;
+          current.left = newNode
+          return this
         }
-        current = current.left;
+        current = current.left
       } else {
         if (current.right === null) {
-          current.right = newNode;
-          return this;
+          current.right = newNode
+          return this
         }
-        current = current.right;
+        current = current.right
       }
     }
   }
   find(value) {
-    if (this.root === null) return false;
+    if (this.root === null) return false
     var current = this.root,
-      found = false;
+      found = false
     while (current && !found) {
       if (value < current.value) {
-        current = current.left;
+        current = current.left
       } else if (value > current.value) {
-        current = current.right;
+        current = current.right
       } else {
-        found = true;
+        found = true
       }
     }
-    if (!found) return undefined;
-    return current;
+    if (!found) return undefined
+    return current
   }
   contains(value) {
-    if (this.root === null) return false;
+    if (this.root === null) return false
     var current = this.root,
-      found = false;
+      found = false
     while (current && !found) {
       if (value < current.value) {
-        current = current.left;
+        current = current.left
       } else if (value > current.value) {
-        current = current.right;
+        current = current.right
       } else {
-        return true;
+        return true
       }
     }
-    return false;
+    return false
   }
   BFS() {
-    let queue = [];
-    let visited = [];
-    let node = this.root;
-    queue.push(node); // place root node in queue
+    let queue = []
+    let visited = []
+    let node = this.root
+    queue.push(node) // place root node in queue
     while (queue.length) {
       //as long as something in queue
-      node = queue.shift(); //takes from the beginning of the queue
-      visited.push(node.value); //adding node to the list we will return
-      if (node.left) queue.push(node.left); // check if theres a left value, push it to queue if so.
-      if (node.right) queue.push(node.right); // check if theres a right value
+      node = queue.shift() //takes from the beginning of the queue
+      visited.push(node.value) //adding node to the list we will return
+      if (node.left) queue.push(node.left) // check if theres a left value, push it to queue if so.
+      if (node.right) queue.push(node.right) // check if theres a right value
     }
-    return visited;
+    return visited
   }
 }
 
-var tree = new BinarySearchTree();
-tree.insert(10);
-tree.insert(6);
-tree.insert(15);
-tree.insert(3);
-tree.insert(8);
-tree.insert(20);
-console.log(tree.BFS());
+var tree = new BinarySearchTree()
+tree.insert(10)
+tree.insert(6)
+tree.insert(15)
+tree.insert(3)
+tree.insert(8)
+tree.insert(20)
+console.log(tree.BFS())
 
 // [ 10, 6, 15, 3, 8, 20 ]
 ```
@@ -157,7 +139,7 @@ Steps - Recursively
 - Invoke the helper function with the current variable
 - Return the array of values
 
-```
+```js
   DFSPreOrder() {
     let visited = [];
     function helper(node) {
@@ -181,8 +163,6 @@ console.log(tree.DFS());
 // [ 10, 6, 3, 8, 15, 20 ]
 ```
 
----
-
 **DFS - PostOrder**
 
 - root is the last thing visited.
@@ -197,7 +177,7 @@ console.log(tree.DFS());
 - Invoke the helper function with the current variable
 - Return the array of values
 
-```
+```js
   DFSPostOrder() {
     let visited = [];
     let current = this.root;
@@ -243,7 +223,7 @@ console.log(tree.DFSPostOrder());
 - Invoke the helper function with the current variable
 - Return the array of values
 
-```
+```js
   DFSInOrder(){
     var visited = [];
     function helper(node){
@@ -271,17 +251,13 @@ console.log(tree.DFSInOrder());
 
 ## First (BFS) vs Depth First (BFS)
 
-Depends on the tree. If you have **losts of nodes to keep track of**, i.e., your tree is very side...
+Depends on the tree. If you have **lots of nodes to keep track of**, i.e., your tree is very side...
 
 BFS will have to store a ton of data in memory.
 
 **DFS** is not storing all the nodes across a tree. Only keeping track of a given branch. Will therefore use **less space**
 
-![when to use DFS](/images/whentoDFS.png)
-
 If you have **few branches**, better to use **BFS**.
-
-![when to use BFS](/images/whentouseBFS.png)
 
 however, you do not see trees like this very often.
 

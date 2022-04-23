@@ -6,8 +6,6 @@ draft: true
 summary: Methods and implementation of a doubly linked list.
 ---
 
-[slides](https://cs.slides.com/colt_steele/graphs#/44)
-
 - Visiting/Updating/Checking each vertex in a graph.
 - Since we do not have a dedicated starting point, we need to define one.
 

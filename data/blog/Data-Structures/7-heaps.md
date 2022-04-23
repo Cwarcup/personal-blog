@@ -27,27 +27,11 @@ There is no order when comparing the left and right. They are just **SMALLER** t
 - In a **max** Binary Heap the **parent** is **greater** than the **children**, but there are no guarantees between sibling nodes.
 - A binary heap is as compact as possible. All the children of each node are as full as they can be and left children are filled out first
 
-![max binary heap](/images/maxBinaryHeap.png);
-
 Binary Heaps are used to implement **Priority Queues**, which are very commonly used data structures
 
 They are also used quite a bit, with **graph traversal algorithms**
 
 Left child is added first, then the right child.
-
-## Storing a heap
-
-![array](/images/storingBinaryHeaps1.png)
-Index 0 = parent
-index 1,2 = children
-
-![array](/images/storingBinaryHeaps2.png)
-index 1 = parent
-index 3,4 = children
-
-![array](/images/storingBinaryHeap3.png)
-index 2 = parent
-index 5,6 = children
 
 ---
 
@@ -66,7 +50,7 @@ Its **parent** is at index **(n-1)/2** **floored**, round down.
 
 ### Defining our class:
 
-```
+```js
 Class Name:
        MaxBinaryHeap
 
@@ -101,42 +85,43 @@ More detailed pseudocode
 - Swap the value of the values element at the parentIndex with the value of the element property at the child index
 - Set the index to be the parentIndex, and start over!
 
-```
+```js
 class MaxBinaryHeap {
   constructor() {
-    this.values = [];
+    this.values = []
   }
   insert(element) {
-    this.values.push(element);
-    this.bubbleUp();
+    this.values.push(element)
+    this.bubbleUp()
   }
   bubbleUp() {
-    let index = this.values.length - 1; // keeps track of where the newly added element is.
-    const element = this.values[index];
+    let index = this.values.length - 1 // keeps track of where the newly added element is.
+    const element = this.values[index]
     while (index > 0) {
-      let parentIndex = Math.floor((index - 1) / 2);
-      let parent = this.values[parentIndex];
-      if (element <= parent) break;
-      this.values[parentIndex] = element;
-      this.values[index] = parent;
-      index = parentIndex;
+      let parentIndex = Math.floor((index - 1) / 2)
+      let parent = this.values[parentIndex]
+      if (element <= parent) break
+      this.values[parentIndex] = element
+      this.values[index] = parent
+      index = parentIndex
     }
   }
 }
 
-let heap = new MaxBinaryHeap();
-heap.insert(41);
-heap.insert(39);
-heap.insert(33);
-heap.insert(18);
-heap.insert(27);
-heap.insert(12);
-heap.insert(55);
+let heap = new MaxBinaryHeap()
+heap.insert(41)
+heap.insert(39)
+heap.insert(33)
+heap.insert(18)
+heap.insert(27)
+heap.insert(12)
+heap.insert(55)
 
 console.log(heap)
 
-{ values: [ 55, 39, 41, 18, 27, 12, 33 ] }
-
+{
+  values: [55, 39, 41, 18, 27, 12, 33]
+}
 ```
 
 ## Removing max from a heap
@@ -171,87 +156,87 @@ The procedure for deleting the root from the heap (effectively extracting the ma
    6. Keep looping and swapping until neither child is larger than the element.
    7. Return the old root!
 
-```
+```js
 class MaxBinaryHeap {
   constructor() {
-    this.values = [];
+    this.values = []
   }
   insert(element) {
-    this.values.push(element);
-    this.bubbleUp();
+    this.values.push(element)
+    this.bubbleUp()
   }
   bubbleUp() {
-    let index = this.values.length - 1; // keeps track of where the newly added element is.
-    const element = this.values[index];
+    let index = this.values.length - 1 // keeps track of where the newly added element is.
+    const element = this.values[index]
     while (index > 0) {
-      let parentIndex = Math.floor((index - 1) / 2);
-      let parent = this.values[parentIndex];
-      if (element <= parent) break;
-      this.values[parentIndex] = element;
-      this.values[index] = parent;
-      index = parentIndex;
+      let parentIndex = Math.floor((index - 1) / 2)
+      let parent = this.values[parentIndex]
+      if (element <= parent) break
+      this.values[parentIndex] = element
+      this.values[index] = parent
+      index = parentIndex
     }
   }
   extractMax() {
-    const max = this.values[0]; //gives you first element
-    const end = this.values.pop();
+    const max = this.values[0] //gives you first element
+    const end = this.values.pop()
     if (this.values.length > 0) {
-      this.values[0] = end; // last element to root
+      this.values[0] = end // last element to root
       // sink down
-      this.sinkDown();
+      this.sinkDown()
     }
-    return max;
+    return max
   }
   //  0   1   2   3   4   5
   // [33, 39, 41, 18, 27, 12]
   sinkDown() {
-    let index = 0; // starts at beginning
-    const length = this.values.length;
-    const element = this.values[0];
+    let index = 0 // starts at beginning
+    const length = this.values.length
+    const element = this.values[0]
     while (true) {
-      let leftChildIndex = 2 * index + 1; // 1
-      let rightChildIndex = 2 * index + 2; // 2
-      let leftChild, rightChild;
-      let swap = null;
+      let leftChildIndex = 2 * index + 1 // 1
+      let rightChildIndex = 2 * index + 2 // 2
+      let leftChild, rightChild
+      let swap = null
 
       if (leftChildIndex < length) {
-        leftChild = this.values[leftChildIndex]; // 39
+        leftChild = this.values[leftChildIndex] // 39
         if (leftChild > element) {
-          swap = leftChildIndex;
+          swap = leftChildIndex
         }
       }
       if (rightChildIndex < length) {
-        rightChild = this.values[rightChildIndex]; //41
+        rightChild = this.values[rightChildIndex] //41
         if (
           (swap === null && rightChild > element) || // swap never set to left child
           (swap !== null && rightChild > leftChild) //
         ) {
-          swap = rightChildIndex;
+          swap = rightChildIndex
         }
       }
-      if (swap === null) break;
-      this.values[index] = this.values[swap]; // swapping with either the left or right child.
-      this.values[swap] = element;
-      index = swap;
+      if (swap === null) break
+      this.values[index] = this.values[swap] // swapping with either the left or right child.
+      this.values[swap] = element
+      index = swap
     }
   }
 }
 
-let heap = new MaxBinaryHeap();
-heap.insert(41);
-heap.insert(39);
-heap.insert(33);
-heap.insert(18);
-heap.insert(27);
-heap.insert(12);
+let heap = new MaxBinaryHeap()
+heap.insert(41)
+heap.insert(39)
+heap.insert(33)
+heap.insert(18)
+heap.insert(27)
+heap.insert(12)
 
-console.log(heap);
+console.log(heap)
 // [ 41, 39, 33, 18, 27, 12 ]
 
-console.log(heap.extractMax());
+console.log(heap.extractMax())
 // 41
 
-console.log(heap);
+console.log(heap)
 // [ 39, 27, 33, 18, 12 ]
 ```
 
@@ -276,7 +261,7 @@ The heap is constructed using **priority**
 
 Needed to add `priority` and change the `<` to `>` signs.
 
-```
+```js
 class Node {
   constructor(val, priority) {
     this.val = val;

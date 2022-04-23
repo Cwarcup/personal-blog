@@ -21,8 +21,6 @@ There is no parent node, starting place.
 - Weighted/Unweighted - values assigned to distances between vertices
 - Directed/Undirected - directions assigned to distances between vertices
 
-![graph](/images/graphs.png)
-
 ![direction](https://sites.google.com/a/cs.christuniversity.in/discrete-mathematics-lectures/_/rsrc/1409480658489/graphs/directed-and-undirected-graph/dir.png)
 
 Undirected = can go from A to B, or B to A.
@@ -65,8 +63,6 @@ class Graph {
 - write a method called addVertex, which accepts a name of a vertex.
 - it should add a key to the adjacency list with the name of the vertex and set its value to be an empty array.
 
-![vertex](/images/addVertex.png);
-
 ```js
 class Graph {
   constructor() {
@@ -86,9 +82,6 @@ g.addVertex('New York')
 ## Adding an EDGE
 
 - edge represents a connection between vertexes.
-
-![edge](/images/graphAddEdge.png)
-
 - should accept two vertices.
 - the function should find in the adjacency list the **key of vertex 1** and **push** **vertex2 **to the array.
 - The function should find in the adjacency list the key of vertex2 and push vertex1 to the array.
@@ -120,8 +113,6 @@ console.log(g);
 ```
 
 ## Removing an edge
-
-![edge](/images/graphRemoveEdge.png)
 
 - This function should accept two vertices, we'll call them vertex1 and vertex2
 - The function should reassign the key of vertex1 to be an array that does not contain vertex2
@@ -180,8 +171,6 @@ console.log(g); // { Dallas: [], Tokyo: [], Aspen: [] }
 - The function should loop as long as there are any other vertices in the adjacency list for that vertex
 - Inside of the loop, call our removeEdge function with the vertex we are removing and any values in the adjacency list for that vertex
 - delete the key in the adjacency list for that vertex
-
-![remove vertex](/images/graphRemoveVertex.png)
 
 ```js
     removeVertex(vertex){

@@ -86,8 +86,6 @@ Now the issue is we always have `error` displayed even when an error did not occ
 
 How do we only display an error message when an error has occurred?
 
-![](react-images/Error.png)
-
 Very simple method, but not the best:
 
 ```js

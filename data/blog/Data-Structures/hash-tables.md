@@ -28,7 +28,6 @@ Have many types of hash functions. You give it an input, and generates a value o
 It is **idempotent**: given an input, the output will always be the same.
 `Hello` --> MD5 Hash --> `8b1a9953c4611296a827abf8c47804d7`
 
-![hash](/images/hash.png)
 Because it is not ordered, we do not need to rearrange indexes.
 
 ```js

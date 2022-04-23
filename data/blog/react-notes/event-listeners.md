@@ -40,8 +40,6 @@ So now whenever a user types something into the input, our callback (onInputChan
 Over in the method `onInputChange(event)` we pass **one argument** to it. This is an object that contains a bunch of information about what occurred.
 We usually only care about the property **`event.target.value`**.
 
-![](react-images/Common-events.png)
-
 - is we use the `onClick` method, anytime a user makes a click event, the callback function passed through here will be called.
 
 For example, if a user clicks the input or types in the input, console will return the respective text when clicked or typed.
@@ -135,5 +133,3 @@ class SearchBar extends React.Component {
   }
 }
 ```
-
-![](react-images/controlledComp.png)

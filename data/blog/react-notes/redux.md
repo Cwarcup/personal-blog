@@ -25,8 +25,6 @@ npm install --save react-redux redux
 
 # How Redux Works
 
-![](react-images/ReduxCycle.png)
-
 - Anytime we want to **change state**, we need to **dispatch an [action](https://github.com/Cwarcup/notes/blob/main/root/react/react-notes/redux.md#action-creator-people-dropping-off-a-form)**.
   - uses **action creator**
 - Creates an **action**, which gets fed into the **[dispatch function](https://github.com/Cwarcup/notes/blob/main/root/react/react-notes/redux.md#dispatch-is-part-of-the-redux-library-itself-so-we-dont-need-to-write-it)**.

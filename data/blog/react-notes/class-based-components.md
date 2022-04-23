@@ -61,8 +61,6 @@ ReactDOM.render(<App />, document.querySelector('#root'))
 
 ## Benefits of Class Components
 
-![](/data/blog/react-notes/react-images/benefitsClass.png)
-
 [Notes on state here:](https://github.com/Cwarcup/notes/blob/ef513cb3e99be669cb19d69202fb465019fe6bbb/root/react/react-notes/state.md)
 
 **React.Component** allows you to pull a bunch of functionality into our app class.
@@ -170,5 +168,3 @@ ReactDOM.render(<App />, document.querySelector('#root'))
 # Component Lifecycle
 
 See detailed notes [here:](https://github.com/Cwarcup/notes/blob/cd89eddc41fda81e02639090527e6ad1ab045306/root/react/react-notes/lifecycle-component.md#L21)
-
-![Lifecycle](react-images/lifecycle2.png)

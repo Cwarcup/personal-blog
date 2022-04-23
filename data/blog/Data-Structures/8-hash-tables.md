@@ -27,7 +27,7 @@ Pretend these built in hash tables do not exist...
 #### What makes a good hash?
 
 1. Fast (constant time)
-2. Does NOT cluster outputs at specific indicies, but distributes uniformly
+2. Does NOT cluster outputs at specific indices, but distributes uniformly
 3. deterministic (same input results in same output)
 
 ### Writing your first hash function
@@ -107,8 +107,6 @@ console.log(hash('cyan', 13)); // 5
 
 - This allows us to store multiple key-value pairs at the same index.
 
-![separate chaining](/images/sepChaining.png)
-
 So if you were looking for `salmon`, you'd hash `salmon`, get 4. Then loop through the array or linked list at 4 to find the desired value.
 
 ## Linear Probing
@@ -116,8 +114,6 @@ So if you were looking for `salmon`, you'd hash `salmon`, get 4. Then loop throu
 - With linear probing, when we find a collision, we search through the array to find the next empty slot.
 
 - Unlike with separate chaining, this allows us to store a single key-value at each index.
-
-![linear probing](/images/linearProbing.png)
 
 ## Hash Table Class
 
@@ -365,8 +361,6 @@ ht.set('violet', '#C71585');
 - Insert: O(1)
 - Deletion: O(1)
 - Access: O(1)
-
-![big o](https://miro.medium.com/max/1200/1*5ZLc i3SuR0zM_QlZOADv8Q.jpeg)
 
 ---
 

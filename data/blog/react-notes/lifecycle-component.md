@@ -8,8 +8,6 @@ summary: 'Each component in React has a lifecycle that goes through three main p
 
 # Lifecycle Methods
 
-![](react-images/life%20cycle%20components.png)
-
 The `componentDidMount()` method runs after the component output has been rendered to the DOM.
 
 `componentDidUpdate()` is invoked immediately after updating occurs. This method is not called for the initial render.
@@ -17,8 +15,6 @@ The `componentDidMount()` method runs after the component output has been render
 `componentWillUnmount()` will be used if we need to 'cleanup' our page after something occurs.
 
 # Why we use lifecycle methods
-
-![](react-images/Lifecycle.png)
 
 **render()**
 

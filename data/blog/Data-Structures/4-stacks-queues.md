@@ -29,7 +29,7 @@ As you pile it up the last thing (or the topmost thing) is what gets removed fir
 
 - can use `push` and `pop`, or
 - `shift` and `unshift`.
-- however, it is more efficient to use `push` and `pop` because reindexing does not need to occur.
+- however, it is more efficient to use `push` and `pop` because re-indexing does not need to occur.
 
 ## Linked List implementation
 

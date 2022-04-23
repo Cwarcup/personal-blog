@@ -114,14 +114,11 @@ The **first** element in the array is something we want to keep track of, it wil
 
 The **second** element in the array, named as `setFirstVariableName`, is a **function** we call to **update our piece of state**. Anytime we call the **setter** function, it will cause our entire component to re-render.
 
-![hooks](/data/blog/react-notes/react-images/hooks.png)
-
 > The named of the first and second elements are NOT special. They can be anything we want.
 
 ## Initialize, reference and updating hooks
 
 Comparing class and function components:
-![class vs functional comp](react-images/classVsFunc.png)
 
 ## Multiple State Variables
 
@@ -189,8 +186,6 @@ const Search = () => {
     console.log('aasdf');
   }, [term]); // second term used to determine when to use effect
 ```
-
-![](react-images/useEffect.png)
 
 ## Async with useEffect
 
