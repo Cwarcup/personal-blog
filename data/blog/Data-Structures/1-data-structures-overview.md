@@ -1,9 +1,9 @@
 ---
-title: Getting Started with Data Structures
-date: '2022-02-25'
-tags: ['Data Structures', 'classes']
-draft: true
-summary: Basic of data structures. Covers the syntax, implementation of classes, hoisting, instance and class methods.
+title: Data Structures
+date: '2022-03-17'
+tags: ['react', 'context', 'redux']
+draft: false
+summary: 'Instead of "prop drilling" to pass around data, we can use react context API to pass around data'
 ---
 
 ## What do Data Structures Do?
