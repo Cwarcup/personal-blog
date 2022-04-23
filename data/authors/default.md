@@ -1,16 +1,15 @@
 ---
-name: Tails Azimuth
-avatar: /static/images/avatar.png
-occupation: Professor of Atmospheric Science
-company: Stanford University
-email: address@yoursite.com
-twitter: https://twitter.com/Twitter
-linkedin: https://www.linkedin.com
-github: https://github.com
+name: Curtis Warcup
+avatar: /static/images/headshot.jpg
+occupation: Aspiring Devloper
+company: University of British Columbia
+email: curtisgwarcup@gmail.com
+linkedin: https://www.linkedin.com/in/curtiswarcup/
+github: https://github.com/cwarcup
 ---
 
-Tails Azimuth is a professor of atmospheric sciences at the Stanford AI Lab. His research interests includes complexity modelling of tailwinds, headwinds and crosswinds.
+Curtis is currently a manager at a Apple retail store. He manages a team of over 100 employees and is responsible for the daily operations of the store, including developing and facilitating in-store training events, scheduling, driving store initiatives while maintaining a positive environment for employees and customers.
 
-He leads the clean energy group which develops 3D air pollution-climate models, writes differential equation solvers, and manufactures titanium plated air ballons. In his free time he bakes raspberry pi.
+Curtis began his journey coding as a side project, starting to learn code in the evening by following a road map provided by [Odin Project](https://www.theodinproject.com/). After completing the ritual of making a calculator app, Curtis was hooked for more. He found himself waking up before work to complete projects and learn more and more. 
 
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed neque elit, tristique placerat feugiat ac, facilisis vitae arcu. Proin eget egestas augue. Praesent ut sem nec arcu pellentesque aliquet. Duis dapibus diam vel metus tempus vulputate.
+After falling in love with this new found passion, he hopes to change careers and pursue a career in software development.
