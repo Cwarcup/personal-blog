@@ -39,8 +39,8 @@ class ArrayOfAnything<T> {
 }
 ```
 
-> Remember <T> can be called anything. By convention we usually refer to it as T.
-> Picture <T> as an argument. Anytime we reference this class, replace T with the type.
+> Remember `<T>` can be called anything. By convention we usually refer to it as T.
+> Picture `<T> `as an argument. Anytime we reference this class, replace T with the type.
 
 If we wanted an array of strings...
 
@@ -63,7 +63,7 @@ Now if you deleted `string` from `new ArrayOfAnything<string>(['a', 'b', 'c', 'd
 const arr = new ArrayOfAnything(['a', 'b', 'c', 'd'])
 ```
 
-> Hovering over `arr` shows "const arr: ArrayOfAnything<string>".
+> Hovering over `arr` shows `"const arr: ArrayOfAnything<string>"`.
 
 How does Typescript know that `arr` is type string? Because of **type inference.** Because we took in a string, TS is smart and thinks the type should be string, even though we didn't explicitly define it.
 
@@ -85,7 +85,7 @@ function printNumbers(arr: number[]): void {
 }
 ```
 
-> Lets make this function generic.
+Lets make this function generic.
 
 ```typescript
 function printAnything<T>(arr: T[]): void {

@@ -14,20 +14,12 @@ Previously, we have only used the **Props System.** This is where we pass data f
 
 With the **Context System**, data gets passed form a parent to **any** nested child component.
 
-<img src="react-images/propsSystem.png" alt="drawing" style="width:300px;"/>
-
 > Each white box are react components. The **header** is showing a **button** component.
 > If the **App** component wants to communicate to the **Button** component, it can do so by passing a prop to the **header**, then the **Header** communicates to the **Button** component.
 
-<img src="react-images/contextSystem.png" alt="drawing" style="width:300px;"/>
-
 > The **App** components (parent) can communicate to **any of the children**. Does not have to go through the **Header** component to get to the **Button**.
 
-<img src="react-images/contextObject.png" alt="drawing" style="width:300px;"/>
-
 Will create a **Context Object** which will contain some type of data.
-
-<img src="react-images/contextObject2.png" alt="drawing" style="width:500px;"/>
 
 ## Getting Information Inside the Context Object
 
