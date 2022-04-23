@@ -3,14 +3,14 @@ title: Design Patterns in TypeScript
 date: '2022-03-01'
 tags: ['typescript', 'design patterns', 'parcel', 'faker']
 draft: false
-summary: Here I create a small typescript application using Faker.js. Covers generating a TS project for the web. 
+summary: Here I create a small typescript application using Faker.js. Covers generating a TS project for the web.
 ---
 
 Install typescript
-`$ npm install typescript -g `  
- 
+`$ npm install typescript -g `
+
 Go to project's root folder
-`$ cd project_root` 
+`$ cd project_root`
 
 Create tsconfig.json in project's root folder
 `$ tsc --init`
@@ -23,11 +23,12 @@ Create tsconfig.json in project's root folder
 
 ## Create new TS file for Web
 
-- Install [Parcel](https://www.npmjs.com/package/parcel) 
+- Install [Parcel](https://www.npmjs.com/package/parcel)
   `npm install --save-dev parcel`
 - Create a new `index.html`.
   - create basic html doc with a script.
   - add `type="module"` to the script tag.
+
 ```html
 <html>
   <body>
@@ -43,10 +44,11 @@ Create tsconfig.json in project's root folder
 ---
 
 In the 'src' folder...
+
 - will create classes `Map.ts`, `User.ts` and `Company.ts`.
   - by convention, any **class** we are going to export will be **capitalized**
 - then get all these classes to communicate with our `index.ts` file by importing them.
-  - not capitalized because we are not exporting any classes. 
+  - not capitalized because we are not exporting any classes.
 
 ---
 
@@ -69,62 +71,68 @@ As of their v6 release, TS support is now native and **does not require installi
 [Faker-js API](https://github.com/faker-js/faker#api)
 
 **A community fork of Faker was made to save the project and they are actively working on some fixes and a fresh v6 release:**
- 
+
 `npm install faker@5.5.3`
 
 `npm install @types/faker@5.5.9`
 
-
 #### Type Definition Files
-- may get a warning "could not find a declaration file for module "___"."
-- act as an adapter between JS libraries and TypeScript code. 
-- some JS libraries includes a type definition file for us. 
+
+- may get a warning "could not find a declaration file for module "\_\_\_"."
+- act as an adapter between JS libraries and TypeScript code.
+- some JS libraries includes a type definition file for us.
   - if it is not included for us, we must manually add it.
 
 [Type Search](https://www.typescriptlang.org/dt/search?search=)
 
 ## Using Type Definitions
 
-You can hover over the package you included in your TS project, and while holding **command** and click on the package name, you still be able to view the type definitions file. 
+You can hover over the package you included in your TS project, and while holding **command** and click on the package name, you still be able to view the type definitions file.
 `import faker from '@faker-js/faker';`
+
 > hover and command-click "faker".
 
 ## Export Statements
+
 - In order to make a class available in another file (such as index.ts) you must **export it** by adding the `export` keyword in front of the class.
+
 ```typescript
 export class User {
-  name: string;
+  name: string
   location: {
-    lat: number;
-    lng: number;
-  };
+    lat: number
+    lng: number
+  }
 
   constructor() {
-    this.name = faker.name.firstName();
+    this.name = faker.name.firstName()
     this.location = {
       lat: parseFloat(faker.address.latitude()),
-      lng: parseFloat(faker.address.longitude())
+      lng: parseFloat(faker.address.longitude()),
     }
   }
 }
 ```
-- must also **import** this class into the desired document. 
+
+- must also **import** this class into the desired document.
   - in `{}` add the class name.
   - add the file path to this class.
 - We do this so we can safely export multiple classes from the file.
 - Can import multiple classes from the same file by adding the name in `{}`.
+
 ```typescript
-import { User, red } from './User';
+import { User, red } from './User'
 ```
 
-> can choose to also use the **default** keyword. But these default statements are not used often. 
+> can choose to also use the **default** keyword. But these default statements are not used often.
 > No `{}` needed.
+
 ```typescript
 // srv file
-export default 'red';
+export default 'red'
 
 //index.ts file
-import red from './User';
+import red from './User'
 ```
 
 ## Add Google Maps API Support
@@ -137,9 +145,9 @@ import red from './User';
    1. `<script
       type="module"
       src="https://maps.googleapis.com/maps/api/js?key= <API_KEY> "
-    ></script>`
+      > </script>`
 
-## Google Integration 
+## Google Integration
 
 Required Update for New @types Library:
 The @types/googlemaps library that is installed in the next video has been deprecated. Instead, we need to install a different library:
@@ -154,63 +162,63 @@ As the very first line in the index.ts file, you will need to add a triple slash
 
 `/// <reference types="@types/google.maps" />`
 
-
 You can read about this in the official docs [here](https://developers.google.com/maps/documentation/javascript/using-typescript#Module_Import).
 
 ---
 
-![things we can do in our index.ts file](/root/typescript/images/Section2/thingsDoInFile.png)
-
----
-
 #### Make CustomMap function Reusable
+
 - make a new TS file named 'CustomMap.ts'
 - add the following code:
+
 ```typescript
 export class CustomMap {
-  private googleMap: google.maps.Map;
+  private googleMap: google.maps.Map
 
   constructor() {
-    this.googleMap = new google.maps.Map(document.getElementById("map") as HTMLElement, {
+    this.googleMap = new google.maps.Map(document.getElementById('map') as HTMLElement, {
       center: { lat: -34.397, lng: 150.644 },
       zoom: 8,
-    });
+    })
   }
 }
 ```
+
 > Can make this more reusable by having the CustomMap() constructor take in an argument.
+
 ```typescript
 export class CustomMap {
-  private googleMap: google.maps.Map;
+  private googleMap: google.maps.Map
 
   constructor(divId: string) {
     this.googleMap = new google.maps.Map(document.getElementById(divId) as HTMLElement, {
       center: { lat: -34.397, lng: 150.644 },
       zoom: 8,
-    });
+    })
   }
 }
 ```
 
 ## Adding Markers
 
-See steps on Google [Docs](https://developers.google.com/maps/documentation/javascript/markers), however, course does not follow this. 
+See steps on Google [Docs](https://developers.google.com/maps/documentation/javascript/markers), however, course does not follow this.
 
-> Here is a bad way of implementing markers.  We have two different methods with a **ton of suplication between them**.
+> Here is a bad way of implementing markers. We have two different methods with a **ton of application between them**.
+
 ```typescript
 // in CustomMap.ts
-import { User } from './User';
-import { Company } from './Company';
+import { User } from './User'
+import { Company } from './Company'
 
 export class CustomMap {
   //mark as private so nobody else can use the instance of googleMap
-  private googleMap: google.maps.Map;
+  private googleMap: google.maps.Map
 
   constructor(divId: string) {
     this.googleMap = new google.maps.Map(document.getElementById(divId) as HTMLElement, {
       center: { lat: -34.397, lng: 150.644 },
       zoom: 1,
-    });
+    })
   }
 
   //adding a marker
@@ -220,8 +228,8 @@ export class CustomMap {
       map: this.googleMap,
       position: {
         lat: user.location.lat,
-        lng: user.location.lng
-      }
+        lng: user.location.lng,
+      },
     })
   }
   addCompanyMarker(company: Company): void {
@@ -229,46 +237,48 @@ export class CustomMap {
       map: this.googleMap,
       position: {
         lat: company.location.lat,
-        lng: company.location.lng
-      }
+        lng: company.location.lng,
+      },
     })
   }
 }
 // In index.ts
 /// <reference types="@types/google.maps" />
-import { User } from './User';
-import { Company } from './Company';
-import { CustomMap } from './CustomMap';
+import { User } from './User'
+import { Company } from './Company'
+import { CustomMap } from './CustomMap'
 
-const user = new User();
-const company = new Company();
+const user = new User()
+const company = new Company()
 
-const customMap = new CustomMap("map");
+const customMap = new CustomMap('map')
 
-customMap.addUserMarker(user);
-customMap.addCompanyMarker(company);
+customMap.addUserMarker(user)
+customMap.addCompanyMarker(company)
 ```
+
 > here is a **good** way of implementing markers using an interface.
+
 ```typescript
-import { User } from './User';
-import { Company } from './Company';
+import { User } from './User'
+import { Company } from './Company'
 
 // Instructions to every other class on how they can be an argument to 'addMarker'
 interface Mappable {
   location: {
-    lat: number;
-    lng: number;
+    lat: number
+    lng: number
   }
 }
 export class CustomMap {
   //mark as private so nobody else can use the instance of googleMap
-  private googleMap: google.maps.Map;
+  private googleMap: google.maps.Map
 
   constructor(divId: string) {
     this.googleMap = new google.maps.Map(document.getElementById(divId) as HTMLElement, {
       center: { lat: -34.397, lng: 150.644 },
       zoom: 1,
-    });
+    })
   }
   //adding a marker
   addMarker(mappable: Mappable): void {
@@ -276,25 +286,25 @@ export class CustomMap {
       map: this.googleMap,
       position: {
         lat: mappable.location.lat,
-        lng: mappable.location.lng
-      }
+        lng: mappable.location.lng,
+      },
     })
   }
 }
 
 // index.ts can now simply use 'addMarker()'
 /// <reference types="@types/google.maps" />
-import { User } from './User';
-import { Company } from './Company';
-import { CustomMap } from './CustomMap';
+import { User } from './User'
+import { Company } from './Company'
+import { CustomMap } from './CustomMap'
 
-const user = new User();
-const company = new Company();
+const user = new User()
+const company = new Company()
 
-const customMap = new CustomMap("map");
+const customMap = new CustomMap('map')
 
-customMap.addMarker(user);
-customMap.addMarker(company);
+customMap.addMarker(user)
+customMap.addMarker(company)
 ```
 
 ## Showing Popup Windows
@@ -302,34 +312,37 @@ customMap.addMarker(company);
 - [Info Windows docs](https://developers.google.com/maps/documentation/javascript/infowindows)
 
 Add a new function to the interface:
+
 ```typescript
 interface Mappable {
   location: {
-    lat: number;
-    lng: number;
-  };
-  markerContent(): string;
+    lat: number
+    lng: number
+  }
+  markerContent(): string
 }
 ```
+
 > Now anything we want to pass as 'Mappable' must contain the properties `markerContent`. Therefore, we must change our 'User.ts' and 'Company.ts'.
+
 ```typescript
 //company.ts
-import faker from '@faker-js/faker';
+import faker from '@faker-js/faker'
 
 export class Company {
-  companyName: string;
-  catchPhrase: string;
+  companyName: string
+  catchPhrase: string
   location: {
-    lat: number;
-    lng: number;
-  };
+    lat: number
+    lng: number
+  }
 
   constructor() {
-    this.companyName = faker.company.companyName();
-    this.catchPhrase = faker.company.catchPhrase();
+    this.companyName = faker.company.companyName()
+    this.catchPhrase = faker.company.catchPhrase()
     this.location = {
       lat: parseFloat(faker.address.latitude()),
-      lng: parseFloat(faker.address.longitude())
+      lng: parseFloat(faker.address.longitude()),
     }
   }
 
@@ -339,25 +352,25 @@ export class Company {
         <h1>Company Name: ${this.companyName}</h1>
         <h3>Catchphrase: ${this.catchPhrase}</h3>
       </div>
-    `;
+    `
   }
 }
 
 //user.ts
-import faker from '@faker-js/faker';
+import faker from '@faker-js/faker'
 
 export class User {
-  name: string;
+  name: string
   location: {
-    lat: number;
-    lng: number;
-  };
+    lat: number
+    lng: number
+  }
 
   constructor() {
-    this.name = faker.name.firstName();
+    this.name = faker.name.firstName()
     this.location = {
       lat: parseFloat(faker.address.latitude()),
-      lng: parseFloat(faker.address.longitude())
+      lng: parseFloat(faker.address.longitude()),
     }
   }
 
@@ -368,25 +381,26 @@ export class User {
 ```
 
 We can add an event listener to listen for a click event and set the contents to whatever is returned from `markerContent()`.
+
 ```typescript
 // in CustomMap.ts
 // Instructions to every other class on how they can be an argument to 'addMarker'
 interface Mappable {
   location: {
-    lat: number;
-    lng: number;
-  };
-  markerContent(): string;
+    lat: number
+    lng: number
+  }
+  markerContent(): string
 }
 export class CustomMap {
   //mark as private so nobody else can use the instance of googleMap
-  private googleMap: google.maps.Map;
+  private googleMap: google.maps.Map
 
   constructor(divId: string) {
     this.googleMap = new google.maps.Map(document.getElementById(divId) as HTMLElement, {
-      center: { lat: 0, lng: 0},
+      center: { lat: 0, lng: 0 },
       zoom: 1,
-    });
+    })
   }
   //adding a marker
   addMarker(mappable: Mappable): void {
@@ -394,14 +408,14 @@ export class CustomMap {
       map: this.googleMap,
       position: {
         lat: mappable.location.lat,
-        lng: mappable.location.lng
-      }
-    });
+        lng: mappable.location.lng,
+      },
+    })
 
     marker.addListener('click', () => {
       const infoWindow = new google.maps.InfoWindow({
-        content: mappable.markerContent()
-      });
+        content: mappable.markerContent(),
+      })
 
       infoWindow.open(this.googleMap, marker)
     })
@@ -411,18 +425,20 @@ export class CustomMap {
 
 ## Optional Implements Clauses
 
-Add in an `export` into the interface we created in CustomMap.ts. Now we can import this into other files. 
+Add in an `export` into the interface we created in CustomMap.ts. Now we can import this into other files.
+
 ```typescript
 export interface Mappable {
   location: {
-    lat: number;
-    lng: number;
-  };
-  markerContent(): string;
+    lat: number
+    lng: number
+  }
+  markerContent(): string
 }
 ```
 
 Then we go to our `Users.ts` file and import `Mappable`, as well as set `User` to **implement** `Mappable`
+
 ```typescript
 import { Mappable } from './CustomMap';
 
@@ -432,18 +448,19 @@ export class User implements Mappable {
 ```
 
 So if we had an error, TS gives us more information:
+
 > Argument of type 'Company' is not assignable to parameter of type 'Mappable'.
 > Property 'color' is missing in type 'Company' but required in type 'Mappable'.
 
-This is not required, but if we fail to implement an interface, TS can tell us where the error is. 
----
+## This is not required, but if we fail to implement an interface, TS can tell us where the error is.
+
 You can read about this in the official docs [here](https://developers.google.com/maps/documentation/javascript/using-typescript#Module_Import).
 
 ## Summary
 
-1. Wanted to restrict the amount of API function. Only allow specific things we allowed in our application. 
-   1. someone else can ONLY create a company and reference the company name and location. 
-   2. wanted to restrict access to `googleMap` by adding on the **private modifier**, meaning we can only access it inside the `customMap`. 
+1. Wanted to restrict the amount of API function. Only allow specific things we allowed in our application.
+   1. someone else can ONLY create a company and reference the company name and location.
+   2. wanted to restrict access to `googleMap` by adding on the **private modifier**, meaning we can only access it inside the `customMap`.
 2. Interface in `customMap`
    1. initial approad was to allow `addmarker` to accept different types (User.ts, Company.ts..)
       1. bad thing was this set up a dependancie between `CustomMap` and all the classes.
@@ -453,7 +470,5 @@ You can read about this in the official docs [here](https://developers.google.co
       3. wanted `CustomMap` to tell our classes what we want.
 
 ### Typical Typescript File:
-
-![typical typescript file](/root/typescript/images/Section2/typicalTSFile.png)
 
 We're going to have a number of **interface definitions**. And those **definitions** are going to describe what you have to do to work with the **class**. So our **class definition** will have a couple of methods, and if a given method has to receive some other object to work correctly, rather than specifying that other object type, we're going to instead **specify an interface**. So other objects inside of application can choose to implement that interface so they can work with this class definition.

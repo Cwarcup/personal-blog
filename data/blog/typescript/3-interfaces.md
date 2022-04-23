@@ -3,11 +3,12 @@ title: Interfaces in TypeScript
 date: '2022-02-28'
 tags: ['typescript', 'Interfaces']
 draft: false
-summary: How to create code reuse in TypeScript by using interfaces and classes. 
+summary: How to create code reuse in TypeScript by using interfaces and classes.
 ---
+
 # Interfaces
 
-We get very strong code reuse in TS when we use **interfaces and classes** together. 
+We get very strong code reuse in TS when we use **interfaces and classes** together.
 
 **Definition**: Creates a new **type**, describing the **property** **names** and **values** **type** of an object. Remember, an interface forces your class to have the same properties as the interface.
 
@@ -18,71 +19,72 @@ We get very strong code reuse in TS when we use **interfaces and classes** toget
 const oldCivic = {
   name: 'civic',
   year: 2000,
-  broken: true
+  broken: true,
 }
 
-//create function to take in this object and print out some properties of it. 
+//create function to take in this object and print out some properties of it.
 
-const printVehicle = (vehicle: { name: string, year: number, broken: boolean }): void => {
-  console.log(`Name: ${vehicle.name}`);
-  console.log(`Year: ${vehicle.year}`);
-  console.log(`Broken? ${vehicle.broken}`);
+const printVehicle = (vehicle: { name: string; year: number; broken: boolean }): void => {
+  console.log(`Name: ${vehicle.name}`)
+  console.log(`Year: ${vehicle.year}`)
+  console.log(`Broken? ${vehicle.broken}`)
 }
 
 printVehicle(oldCivic)
 // Name: civic
-// Year: 2000 
+// Year: 2000
 // Broken? true
 ```
 
-The *problem* is `{ name: string, year: number, broken: boolean }` is very long...which is not the best. 
+The _problem_ is `{ name: string, year: number, broken: boolean }` is very long...which is not the best.
 
 We can improve this file by using an **interface**.
 
 ## Fixing long type annotations with Interfaces
 
 ### creating an interface
+
 - at the top of the page, create an interface.
 - use keyword `interface`
 - capitalize the name of the interface (`Vehicle`)
 - use a **generic name**.
   - then list out the properties below.
 
-
 ```typescript
 interface Vehicle {
-  name: string;
-  year: number;
-  broken: boolean;
+  name: string
+  year: number
+  broken: boolean
 }
 ```
+
 > in order to be a Vehicle, you must have a name which is a string, year which is a number, and broken status that is a boolean.
 
-Now you can delete the LONG annotation `{ name: string, year: number, broken: boolean }` and replace it with the interface `Vehicle`. 
+Now you can delete the LONG annotation `{ name: string, year: number, broken: boolean }` and replace it with the interface `Vehicle`.
 
 ```typescript
 interface Vehicle {
-  name: string; 
-  year: number;
-  broken: boolean;
+  name: string
+  year: number
+  broken: boolean
 }
 
 const oldCivic = {
   name: 'civic',
   year: 2000,
-  broken: true
+  broken: true,
 }
 
 const printVehicle = (vehicle: Vehicle): void => {
-  console.log(`Name: ${vehicle.name}`);
-  console.log(`Year: ${vehicle.year}`);
-  console.log(`Broken? ${vehicle.broken}`);
+  console.log(`Name: ${vehicle.name}`)
+  console.log(`Year: ${vehicle.year}`)
+  console.log(`Broken? ${vehicle.broken}`)
 }
 
 printVehicle(oldCivic)
 ```
 
-Typescript took a look at the arg `oldCivic` and confirms it contains all the appropriate names and values for each. 
+Typescript took a look at the arg `oldCivic` and confirms it contains all the appropriate names and values for each.
 
 If you changed the value for broken, you would get an error. See example below:
 
@@ -90,10 +92,12 @@ If you changed the value for broken, you would get an error. See example below:
 const oldCivic = {
   name: 'civic',
   year: 2000,
-  broken: 1
+  broken: 1,
 }
 ```
-We get an error: 
+
+We get an error:
+
 ```
 const oldCivic: {
     name: string;
@@ -107,16 +111,17 @@ Argument of type '{ name: string; year: number; broken: number; }' is not assign
 
 ## Interface Syntax
 
-When we create an interface, must include the properties (`name`) and their expected values (`string`). But we are not limited to primitive values. 
+When we create an interface, must include the properties (`name`) and their expected values (`string`). But we are not limited to primitive values.
 
-We can express any type we want to. 
+We can express any type we want to.
 
 For example, what if we want to use an instance of a date?
+
 ```typescript
 interface Vehicle {
-  name: string;
-  year: Date; // chance the value here
-  broken: boolean;
+  name: string
+  year: Date // chance the value here
+  broken: boolean
 }
 
 const oldCivic = {
@@ -127,12 +132,13 @@ const oldCivic = {
 ```
 
 Can also use functions:
+
 ```typescript
 interface Vehicle {
-  name: string;
-  year: Date;
-  broken: boolean;
-  summary(): string; // add () and what you expect the function to return
+  name: string
+  year: Date
+  broken: boolean
+  summary(): string // add () and what you expect the function to return
 }
 
 const oldCivic = {
@@ -141,11 +147,11 @@ const oldCivic = {
   broken: true,
   summary(): string {
     return `Name is ${this.name}`
-  }
+  },
 }
 
 const printVehicle = (vehicle: Vehicle): void => {
-  console.log(vehicle.summary());
+  console.log(vehicle.summary())
 }
 
 printVehicle(oldCivic) // Name is civic
@@ -153,14 +159,15 @@ printVehicle(oldCivic) // Name is civic
 
 ---
 
-Now, our function is only accessing one property of the vehicle. We are not accessing the properties such as year, broken. Only the `summary()` function. 
+Now, our function is only accessing one property of the vehicle. We are not accessing the properties such as year, broken. Only the `summary()` function.
 So do we need to include them in the `Vehicle` interface?
+
 ```typescript
 interface Vehicle {
-  name: string;
-  year: Date;
-  broken: boolean;
-  summary(): string;
+  name: string
+  year: Date
+  broken: boolean
+  summary(): string
 }
 ```
 
@@ -169,7 +176,7 @@ interface Vehicle {
 ```typescript
 interface Vehicle {
   // this will still work
-  summary(): string;
+  summary(): string
 }
 
 const oldCivic = {
@@ -178,23 +185,23 @@ const oldCivic = {
   broken: true,
   summary(): string {
     return `Name is ${this.name}`
-  }
+  },
 }
 
 const printVehicle = (vehicle: Vehicle): void => {
-  console.log(vehicle.summary());
+  console.log(vehicle.summary())
 }
 
 printVehicle(oldCivic)
 ```
 
---- 
+---
 
-Now that our interface only has **one** property, does this name make sense? No. It should be more broad. 
+Now that our interface only has **one** property, does this name make sense? No. It should be more broad.
 
 ```typescript
 interface Reportable {
-  summary(): string;
+  summary(): string
 }
 
 const oldCivic = {
@@ -203,22 +210,23 @@ const oldCivic = {
   broken: true,
   summary(): string {
     return `Name is ${this.name}`
-  }
+  },
 }
 
 const printVehicle = (vehicle: Reportable): void => {
-  console.log(vehicle.summary());
+  console.log(vehicle.summary())
 }
 
 printVehicle(oldCivic)
 ```
-> we are saying that anything considered `Portable` can return a string with a `sumarry()`. This is much more **broad** and **reuseable**.
+
+> we are saying that anything considered `Portable` can return a string with a `summary()`. This is much more **broad** and **reuseable**.
 
 Now the only thing that the function `printVehicle` is doing is providing the name of the vehicle. Maybe we can make this more **generic**.
 
 ```typescript
 const printSummary = (item: Reportable): void => {
-  console.log(item.summary());
+  console.log(item.summary())
 }
 
 printSummary(oldCivic)
@@ -226,20 +234,20 @@ printSummary(oldCivic)
 
 ## Code Reuse with Interfaces
 
-By making the interface more generic, we can use this interface with a completely different object. 
+By making the interface more generic, we can use this interface with a completely different object.
 
 ```typescript
 interface Reportable {
-  summary(): string;
+  summary(): string
 }
 //new object
 const drink = {
-  color: 'brown', 
-  carbonated: true, 
+  color: 'brown',
+  carbonated: true,
   sugar: 40,
   summary(): string {
-    return `My drink has ${this.sugar} grams of sugar`;
-  }
+    return `My drink has ${this.sugar} grams of sugar`
+  },
 }
 
 const oldCivic = {
@@ -248,30 +256,28 @@ const oldCivic = {
   broken: true,
   summary(): string {
     return `Name is ${this.name}`
-  }
+  },
 }
 
 const printSummary = (item: Reportable): void => {
-  console.log(item.summary());
+  console.log(item.summary())
 }
 
 printSummary(oldCivic) // Name is civic
-printSummary(drink) // My drink has 40 grams of sugar 
-
+printSummary(drink) // My drink has 40 grams of sugar
 ```
 
-So both our `oldCivic` and `drink` both have a `summary()` function tied to them. Thses two object represent VERY different things. However, they both have a property called summary, that return a string, BOTH of them are **type reportable**. 
-> Because of this, we can call `printSummary()` on both of them and have them return **different things!**. 
+So both our `oldCivic` and `drink` both have a `summary()` function tied to them. These two object represent VERY different things. However, they both have a property called summary, that return a string, BOTH of them are **type reportable**.
+
+> Because of this, we can call `printSummary()` on both of them and have them return **different things!**.
 
 **We can use a single interface to describe the properties of very different objects.**
-> This encourages us to write generic functions. 
+
+> This encourages us to write generic functions.
 
 ## Summary
 
-![interfaces](/images/Typescript-images/interfaces.png)
-
 #### General Strategy for Reuseable Code in TS
+
 - create functions that accept arguments that are **types with interfaces**
 - **Objects/classes** can decide to 'implement' a given interface to work with a function
-
-![more general](/root/typescript/images/interfaces2.png)
