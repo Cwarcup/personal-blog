@@ -17,7 +17,7 @@ Create a queue data structure. The queue should be a class with methods 'add' an
 | Remove the element from the front of the queue | `queue.remove();`            |
 | Check if a queue is empty                      | `isEmpty()`                  |
 
-<Image alt="queue" src="https://en.wikipedia.org/wiki/File:Data_Queue.svg" width={256} height={128} />
+![queues](https://upload.wikimedia.org/wikipedia/commons/5/52/Data_Queue.svg)
 
 # Implementation
 
