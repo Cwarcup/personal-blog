@@ -8,7 +8,7 @@ summary: Definition and main methods of a queue.
 
 # Definition
 
-Create a queue data structure. The queue should be a class with methods 'add' and 'remove'. Adding to the queue should store an element until it is removed.
+Queues are a data type or collection in which the collection maintains a particular oder in which the elements are added and removed. Queues follow First-In-First-Out (FIFO) principle. The first element added to the queue is the first one to be removed.
 
 | We should be able to...                        | Run This                     |
 | ---------------------------------------------- | ---------------------------- |
@@ -16,8 +16,6 @@ Create a queue data structure. The queue should be a class with methods 'add' an
 | Add an element to the end of the queue         | `queue.add(1);`              |
 | Remove the element from the front of the queue | `queue.remove();`            |
 | Check if a queue is empty                      | `isEmpty()`                  |
-
-![queues](https://upload.wikimedia.org/wikipedia/commons/5/52/Data_Queue.svg)
 
 # Implementation
 
