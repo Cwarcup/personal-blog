@@ -21,7 +21,7 @@ Pseudocode:
 
 - Create empty array called `results`.
 - Create a counter variable called `count` and set it to 1.
-- As long as (start column <= end column) **AND** (start row <= end row)
+- As long as `(start column <= end column)` **AND** `(start row <= end row)`
   - **loop** from start column to end column.
     - at `results[start row][i]` assign `count`variable.
     - increment `count` by 1.
