@@ -1,14 +1,15 @@
 ---
 name: Curtis Warcup
 avatar: /static/images/avatar.jpg
-occupation: SVP of Dog Walking
+occupation: Lead at Apple
 company: University of British Columbia
 email: curtisgwarcup@gmail.com
 linkedin: https://www.linkedin.com/in/curtiswarcup/
 github: https://github.com/cwarcup
 ---
 
-Lorem ipsum dolor amet mustache knausgaard +1, blue bottle waistcoat tbh semiotics artisan synth stumptown gastropub cornhole celiac swag. Brunch raclette vexillologist post-ironic glossier ennui XOXO mlkshk godard pour-over blog tumblr humblebrag. Blue bottle put a bird on it twee prism biodiesel brooklyn. Blue bottle ennui tbh succulents.
+Curtis is currently a Lead at an Apple retail store based in Vancouver. He manages a team of over 100 employees and is responsible for the daily operations of the store. His duties include developing and facilitating in-store training events, scheduling, driving and adopting new initiatives while maintaining a positive environment for employees and customers. He works closely with the team by promoting a feedback culture to develop the customer journey and optimize the store's performance.
 
-Bacon ipsum dolor amet short ribs brisket venison rump drumstick pig sausage prosciutto chicken spare ribs salami picanha doner. Kevin capicola sausage, buffalo bresaola venison turkey shoulder picanha ham pork tri-tip meatball meatloaf ribeye. Doner spare ribs andouille bacon sausage. Ground round jerky brisket pastrami shank.
-Bacon ipsum dolor amet short ribs brisket venison rump drumstick pig sausage prosciutto chicken spare ribs salami picanha doner. Kevin capicola sausage, buffalo bresaola venison turkey shoulder picanha ham pork tri-tip meatball meatloaf ribeye. Doner spare ribs andouille bacon sausage. Ground round jerky brisket pastrami shank.
+Curtis studied Kinesiology at the University of British Columbia. He's an avid cyclist, weight lifter and enjoys enjoys experimenting with supplements, diets and lifestyle changes to improve his athletic performance.
+
+After working at Apple for over six years, Curtis felt the urge to learn something new and started learning to code on his own. He followed a basic road map developed by the Odin Project where he learnt the basics of HTML, CSS, and JavaScript. After creating a simple calculator app, he was hooked on the magical feeling of creating something and seeing it come to life. He then decided to learn more about the world of algorithms and data structures, dabbled in TypeScript and React, and continues to learn and build on his knowledge.
