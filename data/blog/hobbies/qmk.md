@@ -1,6 +1,6 @@
 ---
 title: QMK and VIA RGB Guide macOS
-date: '2021-04-25'
+date: '2022-04-26'
 tags: ['QMK', 'VIA', 'hobbies', 'keyboards']
 draft: false
 summary: 'Guide on flashing QMK keyboards. This is a guide for macOS users.'
