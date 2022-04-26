@@ -1,103 +1,116 @@
 ---
-title: Doubly Linked List
-date: '2022-02-26'
-tags: ['Data Structures', 'Single Linked List']
-draft: true
-summary: Methods and implementation of a doubly linked list.
+title: Trees and Binary Search Trees
+date: '2022-04-26'
+tags: ['Data Structures', 'Trees', 'Binary Search Trees']
+draft: false
+summary: Terminology, implementation and common methods of trees and binary search trees.
 ---
 
-![tree](https://camo.githubusercontent.com/5025767109de4e8efdc97a7c0b00f15065a747b8a521bd09068ba4cbb5b1f0b2/68747470733a2f2f75706c6f61642e77696b696d656469612e6f72672f77696b6970656469612f636f6d6d6f6e732f662f66372f42696e6172795f747265652e737667)
+# Trees
 
-A simple unordered tree; in this diagram, the node labeled 7 has two children, labeled 2 and 6, and one parent, labeled 2. The root node, at the top, has no parent.
+A tree is a data structure that consists of a node and a collection of nodes in a _parent-child relationship_.
 
-Lists are linear. Everything is in a row.
+|                 List                  |                Tree                 |
+| :-----------------------------------: | :---------------------------------: |
+| Linear. Everything is is single path. | Have multiple paths. Is not linear. |
 
-Trees are NOT linear. There are multiple paths you can take.
+There are [many types](https://en.wikipedia.org/wiki/List_of_data_structures#Trees) of trees. We will focus on binary trees and binary search trees.
 
-- Root - The top node in a tree.
-- Child -A node directly connected to another node when moving away from the Root.
-- Parent - The converse notion of a child.
-- Siblings -A group of nodes with the same parent.
-- Leaf - A node with no children.
-- Edge - The connection between one node and another.
+## Terminology
+
+- **Root** - The top node in a tree. The root node is the first node in the tree.
+- **Child** -A node directly connected to another node when moving away from the Root.
+- **Parent** - The converse notion of a child.
+- **Siblings** - A group of nodes with the same parent.
+- **Leaf** - A node with no children.
+- **Edge** - The connection between one node and another.
 
 [Terminology](https://www.tutorialspoint.com/data_structures_algorithms/images/binary_tree.jpg)
 
-### Uses
+# Uses Cases For Trees
 
-- HTML DOM
-- Folders in Operating Systems
-- Computer File Systems
+| Uses Case                    | Description                                                          |
+| :--------------------------- | :------------------------------------------------------------------- |
+| HTML DOM                     | A tree that represents the structure of an HTML document.            |
+| Folders in Operating Systems | Have a hierarchy of folders.                                         |
+| AI                           | Can have a tree which describes all the possible outcomes of a game. |
 
 ## Binary Trees
 
 - each node can have **at most, 2 children**
 
+![BinaryTree](https://www.30secondsofcode.org/assets/blog_images/ds-tree.webp)
+
 ## Binary Search Trees (BST)
 
-- special try of binary tree.
-- 0, 1, 2 children
-- are sorted in a particular way. Can be **compared**, sortable.
-
-- Every parent node has at most **two** children
+- Is a special type of binary tree.
+- Has either 0, 1, or 2 children.
+- Are sorted in a particular way in which they can be **compared**, **sortable**.
 - Every node to the **left** of a parent node is always **less than the parent**
-- Every node to the **right** of a parent node is always **greater than the parent**
+- Every node to the **right** of a parent node is always **greater than the parent**.
 
-### Searching BST
+![BinarySearchTree](https://www.30secondsofcode.org/assets/blog_images/ds-binary-tree.webp)
 
-- you compare...
-- if val > node -> go left
-- if val < node -> go right
+**Searching** a binary search tree is done by...
 
-## BST Classes
+- if `val > node`: go left
+- if `val < node`: go right
+
+# Binary Search Tree (BST) Node
 
 ```js
 class Node {
-    constructor(value){
-        this.value = value;
-        this.left = null;
-        this.right = null;
-    }
+  constructor(value) {
+    this.value = value
+    this.left = null
+    this.right = null
+  }
 }
-
-class BinarySearchTree {
-    constructor(){
-        this.root = null;
-    }
-}
-
-//setting up a basic tree
-
-var tree = new BinarySearchTree();
-tree.root = new Node(10);
-tree.root.right = new Node(15);
-tree.root.left = new Node(7);
-tree.root.left.right = new Node(9);
-
-console.log(tree);
-
-BinarySearchTree { root:
-   Node { value: 10,
-     left: Node { value: 7, left: null, right: [Object] },
-     right: Node { value: 15, left: null, right: null } } }
 ```
 
-## BST Inserting
+# Binary Search Tree (BST) Class
 
-- will make a new node and place it in the correct place.
+```js
+class BinarySearchTree {
+  constructor() {
+    this.root = null
+  }
+}
+```
 
-- Create a new node
-- Starting at the root
-- Check if there is a root, if not the root now becomes that new node!
-- If there is a root, check if the value of the new node is - greater than or less than the value of the root. Easiest to use a while() loop.
-- If it is greater
-- Check to see if there is a node to the right
-- If there is, move to that node and repeat these steps
-- If there is not, add that node as the right property
-- If it is less
-- Check to see if there is a node to the left
-- If there is, move to that node and repeat these steps
-- If there is not, add that node as the left property
+Can construct a very basic BST:
+
+```js
+const tree = new BinarySearchTree()
+tree.root = new Node(10)
+tree.root.right = new Node(15)
+tree.root.left = new Node(7)
+tree.root.left.right = new Node(9)
+
+console.log(tree)
+// Node { value: 10,
+//      left: Node { value: 7, left: null, right: [Object] },
+//      right: Node { value: 15, left: null, right: null } }
+```
+
+## BST Insert()
+
+Should be able to call `insert(value)` on a BST and it will insert the value into the tree in the correct spot. Recall, the **left** side of the tree is always less than the parent node. The **right** side of the tree is always greater than the parent node.
+
+Pseudocode:
+
+- Create a new node.
+- Starting at the root.
+  - Check if there is a root, if not - the root now becomes that new node!
+  - If there is a root, check if the value of the new node is **greater** than or **less** than the **value of the root**. Easiest to use a `while()` loop.
+    - If it is **less**.
+      - Check to see if there is a node to the **left**.
+        - If there is, move to that node and repeat these steps.
+        - If there is not, add that node as the left property.
+    - If it is **greater**.
+      - Check to see if there is a node to the **right**.
+        - If there is, move to that node and repeat these steps.
+        - If there is not, add that node as the right property.
 
 ```js
 class Node {
@@ -112,29 +125,33 @@ class BinarySearchTree {
   constructor() {
     this.root = null
   }
+
   insert(value) {
-    let newNode = new Node(value)
+    const newNode = new Node(value)
+
+    // check to see if there's a root
     if (!this.root) {
       this.root = newNode
       return this
     } else {
-      let current = this.root // select the node
+      let currentNode = this.root
+
       while (true) {
-        if (value < current.value) {
-          if (value === current.value) return undefined //do not do anything with duplicates
-          if (current.left === null) {
-            //if no left
-            current.left = newNode
+        if (value === currentNode.value) return undefined
+        if (value < currentNode.value) {
+          // check to see is there's a left
+          if (currentNode.left === null) {
+            currentNode.left = newNode
             return this
           } else {
-            current = current.left
+            currentNode = currentNode.left
           }
-        } else if (value > current.value) {
-          if (current.right === null) {
-            current.right = newNode
+        } else if (value > currentNode.value) {
+          if (currentNode.right === null) {
+            currentNode.right = newNode
             return this
           } else {
-            current = current.right
+            currentNode = currentNode.right
           }
         }
       }
@@ -142,13 +159,12 @@ class BinarySearchTree {
   }
 }
 
-//setting up your basic tree
-let tree = new BinarySearchTree()
+const tree = new BinarySearchTree()
 tree.insert(10)
 tree.insert(5)
-tree.insert(2)
 tree.insert(13)
 tree.insert(11)
+tree.insert(2)
 tree.insert(16)
 tree.insert(7)
 
@@ -157,62 +173,106 @@ tree.insert(7)
 // 2   7    11   16
 ```
 
-## BST Find
+## BST Find()
 
-- searching a binary tree to see if a value is present in the tree.
+Searching a binary tree to see if a particular value is within the tree.
 
-Starting at the root
+Pseudocode:
 
-- Check if there is a root, if not - we're done searching!
-- If there is a root, check if the value of the new node is the value we are looking for. If we found it, we're done!
-- If not, check to see if the value is greater than or less than the value of the root
-- If it is greater...
-  - Check to see if there is a node to the right
-    - If there is, move to that node and repeat these steps
-    - If there is not, we're done searching!
-- If it is less
-  - Check to see if there is a node to the left
-    - If there is, move to that node and repeat these steps
-    - If there is not, we're done searching!
+- Check if there is a root, if not - return null.
+  - If there is a root, check if the value of the new node is the value we are looking for. If we found it, we're done!.
+  - If not, check to see if the value is **greater** than or **less** than the value of the **root**.
+    - If it is greater...
+      - Check to see if there is a node to the right.
+        - If there is, move to that node and repeat these steps.
+        - If there is not, we're done searching!.
+    - If it is less...
+      - Check to see if there is a node to the left.
+        - If there is, move to that node and repeat these steps.
+        - If there is not, we're done searching!.
 
 ```js
-  find(value) {
-    if (this.root === null) return false;
+find(value) {
+    if (!this.root) return false;
+
     let current = this.root;
     let found = false; // keeps track of if we found the item
-    // run loop until found is not true, and we have something to loop over.
-    while (!found && current) {
+
+    while (current && !found) {
+      // while there is something to loop over and we have not found it
       if (value < current.value) {
-        // know our value must be on the left
+        // recall, smaller values on the left
         current = current.left;
       } else if (value > current.value) {
-        // know our value must be on the right
         current = current.right;
       } else {
+        // if we found it, loops ends
         found = true;
       }
     }
-    if(!found) return false;
-    return current;
+    if (!found) return false;
+    return current; // returns the node if found
   }
 
-  let tree = new BinarySearchTree();
+const tree = new BinarySearchTree();
 tree.insert(10);
 tree.insert(5);
-tree.insert(2);
 tree.insert(13);
 tree.insert(11);
+tree.insert(2);
 tree.insert(16);
 tree.insert(7);
-console.log(tree.find(211)); // false
+console.log(tree.find(11)); // Node { value: 11, left: null, right: null }
+console.log(tree.find(100)); // false
+```
+
+## BST Contains()
+
+Returns a boolean if the value is in the tree.
+
+```js
+  contains(value) {
+    if (!this.root) return false;
+
+    let current = this.root;
+
+    while (current) {
+      // while there is something to loop over and we have not found it
+      if (value < current.value) {
+        // recall, smaller values on the left
+        current = current.left;
+      } else if (value > current.value) {
+        current = current.right;
+      } else {
+        // if we found it, loops ends
+        return true
+      }
+    }
+    return false// returns the node if found
+  }
+
+tree.insert(10);
+tree.insert(5);
+tree.insert(13);
+tree.insert(11);
+tree.insert(2);
+tree.insert(16);
+tree.insert(7);
+console.log(tree.find(11)); // Node { value: 11, left: null, right: null }
+console.log(tree.contains(11)); // true
+console.log(tree.contains(100)); // false
 ```
 
 ## Big O of BST
 
-- Insertion O(log n)
-- Searching/finding O(log n)
+| Operation | Time Complexity |
+| --------- | --------------- |
+| Insertion | O(log n)        |
+| Searching | O(log n)        |
 
 [big o](https://res.cloudinary.com/practicaldev/image/fetch/s--cCSlyRS8--/c_imagga_scale,f_auto,fl_progressive,h_900,q_auto,w_1600/https://dev-to-uploads.s3.amazonaws.com/i/d155tk2ttynxoehhz39k.jpeg)
+
+# Complete Code for BST
 
 ```js
 class Node {
@@ -227,62 +287,91 @@ class BinarySearchTree {
   constructor() {
     this.root = null
   }
+
   insert(value) {
-    let newNode = new Node(value)
+    const newNode = new Node(value)
+
+    // check to see if there's a root
     if (!this.root) {
       this.root = newNode
       return this
     } else {
-      let current = this.root // select the node
+      let currentNode = this.root
+
       while (true) {
-        if (value === current.value) return undefined //do not do anything with duplicates
-        if (value < current.value) {
-          if (current.left === null) {
-            //if no left
-            current.left = newNode
+        if (value === currentNode.value) return undefined
+        if (value < currentNode.value) {
+          // check to see is there's a left
+          if (currentNode.left === null) {
+            currentNode.left = newNode
             return this
           } else {
-            current = current.left
+            currentNode = currentNode.left
           }
-        } else if (value > current.value) {
-          if (current.right === null) {
-            current.right = newNode
+        } else if (value > currentNode.value) {
+          if (currentNode.right === null) {
+            currentNode.right = newNode
             return this
           } else {
-            current = current.right
+            currentNode = currentNode.right
           }
         }
       }
     }
   }
+
   find(value) {
-    if (this.root === null) return false
+    if (!this.root) return false
+
     let current = this.root
     let found = false // keeps track of if we found the item
-    // run loop until found is not true, and we have something to loop over.
-    while (!found && current) {
+
+    while (current && !found) {
+      // while there is something to loop over and we have not found it
       if (value < current.value) {
-        // know our value must be on the left
+        // recall, smaller values on the left
         current = current.left
       } else if (value > current.value) {
-        // know our value must be on the right
         current = current.right
       } else {
+        // if we found it, loops ends
         found = true
       }
     }
     if (!found) return false
-    return current
+    return current // returns the node if found
+  }
+
+  // returns true or false if a value is within a tree
+  contains(value) {
+    if (!this.root) return false
+
+    let current = this.root
+
+    while (current) {
+      // while there is something to loop over and we have not found it
+      if (value < current.value) {
+        // recall, smaller values on the left
+        current = current.left
+      } else if (value > current.value) {
+        current = current.right
+      } else {
+        // if we found it, loops ends
+        return true
+      }
+    }
+    return false // returns the node if found
   }
 }
 
-//setting up your basic tree
-let tree = new BinarySearchTree()
+const tree = new BinarySearchTree()
 tree.insert(10)
 tree.insert(5)
-tree.insert(2)
 tree.insert(13)
 tree.insert(11)
+tree.insert(2)
 tree.insert(16)
 tree.insert(7)
+console.log(tree.find(11))
+console.log(tree.contains(11))
 ```
