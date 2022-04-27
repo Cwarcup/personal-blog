@@ -25,7 +25,7 @@ There are [many types](https://en.wikipedia.org/wiki/List_of_data_structures#Tre
 - **Leaf** - A node with no children.
 - **Edge** - The connection between one node and another.
 
-[Terminology](https://www.tutorialspoint.com/data_structures_algorithms/images/binary_tree.jpg)
+![Terminology](https://www.tutorialspoint.com/data_structures_algorithms/images/binary_tree.jpg)
 
 # Uses Cases For Trees
 
