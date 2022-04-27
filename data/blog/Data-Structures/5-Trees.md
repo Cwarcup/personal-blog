@@ -127,33 +127,26 @@ class BinarySearchTree {
   }
 
   insert(value) {
-    const newNode = new Node(value)
-
-    // check to see if there's a root
-    if (!this.root) {
+    var newNode = new Node(value)
+    if (this.root === null) {
       this.root = newNode
       return this
-    } else {
-      let currentNode = this.root
-
-      while (true) {
-        if (value === currentNode.value) return undefined
-        if (value < currentNode.value) {
-          // check to see is there's a left
-          if (currentNode.left === null) {
-            currentNode.left = newNode
-            return this
-          } else {
-            currentNode = currentNode.left
-          }
-        } else if (value > currentNode.value) {
-          if (currentNode.right === null) {
-            currentNode.right = newNode
-            return this
-          } else {
-            currentNode = currentNode.right
-          }
+    }
+    var current = this.root
+    while (true) {
+      if (value === current.value) return undefined
+      if (value < current.value) {
+        if (current.left === null) {
+          current.left = newNode
+          return this
         }
+        current = current.left
+      } else {
+        if (current.right === null) {
+          current.right = newNode
+          return this
+        }
+        current = current.right
       }
     }
   }
@@ -161,16 +154,15 @@ class BinarySearchTree {
 
 const tree = new BinarySearchTree()
 tree.insert(10)
-tree.insert(5)
-tree.insert(13)
-tree.insert(11)
-tree.insert(2)
-tree.insert(16)
-tree.insert(7)
+tree.insert(6)
+tree.insert(15)
+tree.insert(3)
+tree.insert(8)
+tree.insert(20)
 
 //       10
-//   5        13
-// 2   7    11   16
+//    6      15
+//  3    8     20
 ```
 
 ## BST Find()
@@ -193,37 +185,32 @@ Pseudocode:
 
 ```js
 find(value) {
-    if (!this.root) return false;
+  if (!this.root) return console.log('no root, dummy');
 
-    let current = this.root;
-    let found = false; // keeps track of if we found the item
-
-    while (current && !found) {
-      // while there is something to loop over and we have not found it
-      if (value < current.value) {
-        // recall, smaller values on the left
-        current = current.left;
-      } else if (value > current.value) {
-        current = current.right;
-      } else {
-        // if we found it, loops ends
-        found = true;
-      }
-    }
-    if (!found) return false;
-    return current; // returns the node if found
+  let current = this.root;
+  let found = false;
+  while (current && !found) {
+    if (value < current.value) current = current.left;
+    if (value > current.value) current = current.right;
+    else found = true;
   }
+  if (!found) return false;
+  return current;
+}
 
 const tree = new BinarySearchTree();
 tree.insert(10);
-tree.insert(5);
-tree.insert(13);
-tree.insert(11);
-tree.insert(2);
-tree.insert(16);
-tree.insert(7);
-console.log(tree.find(11)); // Node { value: 11, left: null, right: null }
+tree.insert(6);
+tree.insert(15);
+tree.insert(3);
+tree.insert(8);
+tree.insert(20);
+console.log(tree.find(10)); // 10
 console.log(tree.find(100)); // false
+
+//       10
+//    6      15
+//  3    8     20
 ```
 
 ## BST Contains()
@@ -231,36 +218,35 @@ console.log(tree.find(100)); // false
 Returns a boolean if the value is in the tree.
 
 ```js
-  contains(value) {
-    if (!this.root) return false;
-
-    let current = this.root;
-
-    while (current) {
-      // while there is something to loop over and we have not found it
-      if (value < current.value) {
-        // recall, smaller values on the left
-        current = current.left;
-      } else if (value > current.value) {
-        current = current.right;
-      } else {
-        // if we found it, loops ends
-        return true
-      }
+contains(value) {
+  if (this.root === null) return false;
+  let current = this.root,
+    found = false;
+  while (current && !found) {
+    if (value < current.value) {
+      current = current.left;
+    } else if (value > current.value) {
+      current = current.right;
+    } else {
+      return true;
     }
-    return false// returns the node if found
   }
+  return false;
+}
 
+const tree = new BinarySearchTree();
 tree.insert(10);
-tree.insert(5);
-tree.insert(13);
-tree.insert(11);
-tree.insert(2);
-tree.insert(16);
-tree.insert(7);
-console.log(tree.find(11)); // Node { value: 11, left: null, right: null }
-console.log(tree.contains(11)); // true
+tree.insert(6);
+tree.insert(15);
+tree.insert(3);
+tree.insert(8);
+tree.insert(20);
+console.log(tree.contains(10)); // true
 console.log(tree.contains(100)); // false
+
+//       10
+//    6      15
+//  3    8     20
 ```
 
 ## Big O of BST
@@ -289,89 +275,120 @@ class BinarySearchTree {
   }
 
   insert(value) {
-    const newNode = new Node(value)
-
-    // check to see if there's a root
-    if (!this.root) {
+    var newNode = new Node(value)
+    if (this.root === null) {
       this.root = newNode
       return this
-    } else {
-      let currentNode = this.root
-
-      while (true) {
-        if (value === currentNode.value) return undefined
-        if (value < currentNode.value) {
-          // check to see is there's a left
-          if (currentNode.left === null) {
-            currentNode.left = newNode
-            return this
-          } else {
-            currentNode = currentNode.left
-          }
-        } else if (value > currentNode.value) {
-          if (currentNode.right === null) {
-            currentNode.right = newNode
-            return this
-          } else {
-            currentNode = currentNode.right
-          }
+    }
+    var current = this.root
+    while (true) {
+      if (value === current.value) return undefined
+      if (value < current.value) {
+        if (current.left === null) {
+          current.left = newNode
+          return this
         }
+        current = current.left
+      } else {
+        if (current.right === null) {
+          current.right = newNode
+          return this
+        }
+        current = current.right
       }
     }
   }
 
   find(value) {
-    if (!this.root) return false
+    if (!this.root) return console.log('no root, dummy')
 
     let current = this.root
-    let found = false // keeps track of if we found the item
-
+    let found = false
     while (current && !found) {
-      // while there is something to loop over and we have not found it
-      if (value < current.value) {
-        // recall, smaller values on the left
-        current = current.left
-      } else if (value > current.value) {
-        current = current.right
-      } else {
-        // if we found it, loops ends
-        found = true
-      }
+      if (value < current.value) current = current.left
+      if (value > current.value) current = current.right
+      else found = true
     }
     if (!found) return false
-    return current // returns the node if found
+    return current
   }
 
-  // returns true or false if a value is within a tree
   contains(value) {
-    if (!this.root) return false
-
-    let current = this.root
-
-    while (current) {
-      // while there is something to loop over and we have not found it
+    if (this.root === null) return false
+    let current = this.root,
+      found = false
+    while (current && !found) {
       if (value < current.value) {
-        // recall, smaller values on the left
         current = current.left
       } else if (value > current.value) {
         current = current.right
       } else {
-        // if we found it, loops ends
         return true
       }
     }
-    return false // returns the node if found
+    return false
+  }
+
+  BFS() {
+    let visited = []
+    let queue = []
+    let node = this.root
+    queue.push(node)
+    while (queue.length) {
+      // while there's something in our queue
+      node = queue.shift() // assign node to the first item in the queue
+      visited.push(node.value)
+      if (node.left) queue.push(node.left)
+      if (node.right) queue.push(node.right)
+    }
+    return visited
+  }
+
+  DFSPreOrder() {
+    let data = []
+    function traverse(node) {
+      data.push(node.value)
+      if (node.left) traverse(node.left)
+      if (node.right) traverse(node.right)
+    }
+    traverse(this.root)
+    return data
+  }
+
+  DFSPostOrder() {
+    let data = []
+    function traverse(node) {
+      if (node.left) traverse(node.left)
+      if (node.right) traverse(node.right)
+      data.push(node.value)
+    }
+    traverse(this.root)
+    return data
+  }
+  DFSInOrder() {
+    let data = []
+    function traverse(node) {
+      if (node.left) traverse(node.left)
+      data.push(node.value)
+      if (node.right) traverse(node.right)
+    }
+    traverse(this.root)
+    return data
   }
 }
 
 const tree = new BinarySearchTree()
 tree.insert(10)
-tree.insert(5)
-tree.insert(13)
-tree.insert(11)
-tree.insert(2)
-tree.insert(16)
-tree.insert(7)
-console.log(tree.find(11))
-console.log(tree.contains(11))
+tree.insert(6)
+tree.insert(15)
+tree.insert(3)
+tree.insert(8)
+tree.insert(20)
+
+// console.log(tree.root.value);
+// console.log(tree.find(10));
+// console.log(tree.BFS());
+// console.log(tree.DFSPreOrder());
+// console.log(tree.DFSPostOrder());
+// console.log(tree.DFSInOrder());
 ```
