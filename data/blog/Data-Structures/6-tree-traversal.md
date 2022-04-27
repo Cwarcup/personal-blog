@@ -212,12 +212,12 @@ Depends on the tree. If you have **lots of nodes to keep track of** (think a wid
 
 If you have **few nodes to keep track of** (think a small tree), then you should use a **depth first search**.
 
-| **BFS**                                                                                      | **DFS**                                              |
-| -------------------------------------------------------------------------------------------- | ---------------------------------------------------- | ------------------------------------------------------------------------------------------------ |
-| Best when you have a **wide** tree, not very deep.                                           | Best when you have a **skinny** tree, but very deep. |
-| Many branches in the tree.                                                                   | Few branches in the tree.                            |
-| But results in a lot of **memory use**                                                       | Doesn't use much memory, but can be slow.            |
-| ![when to use BFS](https://github.com/Cwarcup/notes/blob/main/images/whentoDFS.png?raw=true) |                                                      | ![when to use DFS](https://raw.githubusercontent.com/Cwarcup/notes/main/images/whentouseBFS.png) |
+| **BFS**                                                                                      | **DFS**                                                                                          |
+| -------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------ |
+| Best when you have a **wide** tree, not very deep.                                           | Best when you have a **skinny** tree, but very deep.                                             |
+| Many branches in the tree.                                                                   | Few branches in the tree.                                                                        |
+| But results in a lot of **memory use**                                                       | Doesn't use much memory, but can be slow.                                                        |
+| ![when to use BFS](https://github.com/Cwarcup/notes/blob/main/images/whentoDFS.png?raw=true) | ![when to use DFS](https://raw.githubusercontent.com/Cwarcup/notes/main/images/whentouseBFS.png) |
 
 ## Cases for DFS - InOrder, PostOrder, and PreOrder
 
