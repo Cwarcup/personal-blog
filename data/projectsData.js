@@ -17,6 +17,12 @@ const projectsData = [
     imgSrc: '/static/images/video-player-react.png',
     href: 'https://yt-video-player.vercel.app/',
   },
+  {
+    title: 'Wavy Website',
+    description: `Some fun with CSS to create a wavy website.`,
+    imgSrc: '/static/images/wavy-website.png',
+    href: 'https://cwarcup.github.io/wavy-website/',
+  },
 ]
 
 export default projectsData
