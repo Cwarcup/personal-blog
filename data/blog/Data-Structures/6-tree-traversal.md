@@ -11,10 +11,10 @@ summary: how can we visit every node one time? There are many ways to print out 
 The idea is, if we have a tree (binary tree, unsorted tree, etc.), how can we visit every node one time? There are many ways to print out the nodes of a tree.
 
 Two main approaches to traversing a tree:
-| **Breadth-First Search (BFS)** | **Depth-First Search (DFS)** | | |
-| ----------------------------------------------------------------------- | --------------------------------------------------------------- | ------------ | ------------- |
-| Prints all the nodes at a given level, then move on to the level below. | Visit all nodes vertically, before moving on to a sibling node. | | |
-| | DFS-InOrder | DFS-PreOrder | DFS-PostOrder |
+| **Breadth-First Search (BFS)** | **Depth-First Search (DFS)** |
+| ----------------------------------------------------------------------- | --------------------------------------------------------------- |
+| Prints all the nodes at a given level, then move on to the level below. | Visit all nodes vertically, before moving on to a sibling node. |
+| | DFS-InOrder, PreOrder, and PostOrder |
 
 # Breadth First Search - BFS
 
@@ -212,12 +212,12 @@ Depends on the tree. If you have **lots of nodes to keep track of** (think a wid
 
 If you have **few nodes to keep track of** (think a small tree), then you should use a **depth first search**.
 
-| **BFS**                                                                                          | **DFS**                                                                                      |
-| ------------------------------------------------------------------------------------------------ | -------------------------------------------------------------------------------------------- |
-| Best when you have a **wide** tree, not very deep.                                               | Best when you have a **skinny** tree, but very deep.                                         |
-| Many branches in the tree.                                                                       | Few branches in the tree.                                                                    |
-| But results in a lot of **memory use**                                                           | Doesn't use much memory, but can be slow.                                                    |
-| ![when to use BFS](https://raw.githubusercontent.com/Cwarcup/notes/main/images/whentouseBFS.png) | ![when to use DFS](https://github.com/Cwarcup/notes/blob/main/images/whentoDFS.png?raw=true) |
+| **BFS**                                                                                      | **DFS**                                              |
+| -------------------------------------------------------------------------------------------- | ---------------------------------------------------- | ------------------------------------------------------------------------------------------------ |
+| Best when you have a **wide** tree, not very deep.                                           | Best when you have a **skinny** tree, but very deep. |
+| Many branches in the tree.                                                                   | Few branches in the tree.                            |
+| But results in a lot of **memory use**                                                       | Doesn't use much memory, but can be slow.            |
+| ![when to use BFS](https://github.com/Cwarcup/notes/blob/main/images/whentoDFS.png?raw=true) |                                                      | ![when to use DFS](https://raw.githubusercontent.com/Cwarcup/notes/main/images/whentouseBFS.png) |
 
 ## Cases for DFS - InOrder, PostOrder, and PreOrder
 
@@ -359,6 +359,7 @@ class BinarySearchTree {
     traverse(this.root)
     return data
   }
+
   DFSInOrder() {
     let data = []
     function traverse(node) {
