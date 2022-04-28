@@ -5,11 +5,13 @@ tags: ['markdown', 'code', 'features']
 draft: false
 summary: test from data/blog/1-data-structures-overview.md
 ---
+
 # Chunk
 
 Directions: Given an array and **chunk size**, divide the array into many subarrays where each subarray is of length size.
 
 Examples:
+
 ```js
 chunk([1, 2, 3, 4], 2) --> [[ 1, 2], [3, 4]]
 chunk([1, 2, 3, 4, 5], 2) --> [[ 1, 2], [3, 4], [5]]
@@ -18,7 +20,7 @@ chunk([1, 2, 3, 4, 5], 4) --> [[ 1, 2, 3, 4], [5]]
 chunk([1, 2, 3, 4, 5], 10) --> [[ 1, 2, 3, 4, 5]]
 ```
 
-> For the first example, you have an array, and a chunk with a size of 2. Therefore, the array should be broken up into CHUNKS of 2 elements. 
+> For the first example, you have an array, and a chunk with a size of 2. Therefore, the array should be broken up into CHUNKS of 2 elements.
 
 ## Option 1:
 
@@ -29,29 +31,29 @@ chunk([1, 2, 3, 4, 5], 10) --> [[ 1, 2, 3, 4, 5]]
       - push a new chunk into the chunked array
    3. **Else** add the current element to the last element in the chunked array
 
-
 ```js
 function chunk(array, size) {
-  const chunked = [];
+  const chunked = []
 
   for (let char of array) {
-    const last = chunked[chunked.length - 1]; // get last character in array
+    const last = chunked[chunked.length - 1] // get last character in array
 
-    if (!last || last.length === size) { //   if no last element, or length of chunk is size,
-      chunked.push([char]);  // <------------ push a new chunk containing the char to chunked array
+    if (!last || last.length === size) {
+      //   if no last element, or length of chunk is size,
+      chunked.push([char]) // <------------ push a new chunk containing the char to chunked array
     } else {
-      last.push(char);  // <----------------- push character into the last chunk
+      last.push(char) // <----------------- push character into the last chunk
     }
   }
 
-  return chunked;
+  return chunked
 }
-
 ```
 
 ## Option 2: using slice()
 
 Syntax:
+
 ```
 slice()
 slice(start)
@@ -61,12 +63,12 @@ slice(start, end)
 ```js
 function chunk(array, size) {
   // option 2 with slice()
-  const chunked = [];
-  let index = 0;
+  const chunked = []
+  let index = 0
   while (index < array.length) {
-    chunked.push(array.slice(index, index + size));
-    index = index + size;
+    chunked.push(array.slice(index, index + size))
+    index = index + size
   }
-  return chunked;
+  return chunked
 }
 ```

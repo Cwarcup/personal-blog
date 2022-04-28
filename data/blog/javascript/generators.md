@@ -3,7 +3,7 @@ title: Generators
 date: '2022-04-28'
 tags: ['Generators', 'JavaScript']
 draft: false
-summary: Some notes on the **Generator** function
+summary: Intro to JavaScript generators
 ---
 
 Generators are functions that you can use for controlling the iterator. In comparison with regular functions that return a single value or nothing, generators return multiple values in a sequence, one after another. They operate great with iterables and allow creating data streams with ease.

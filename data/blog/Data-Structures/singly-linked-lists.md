@@ -372,7 +372,7 @@ If an interviewer asks you to write a method like `removeFirst()`, you should as
 
 ## for..of Loop - List Traversal through ForEach
 
-Linked list should be compatible as the subject of a 'for...of' loop
+Linked list should be compatible as the subject of a 'for...of' loop.
 
 example:
 
@@ -391,7 +391,7 @@ for (let node of list) {
 node.getAt(1) // returns node with data 11
 ```
 
-**SEE GENERATOR NOTES!**
+Learn more about generators [here](https://curtcodes.vercel.app/blog/javascript/generators).
 
 ```js
   *[Symbol.iterator]() {
