@@ -17,9 +17,6 @@ module.exports = {
     extend: {
       spacing: {
         '9/16': '56.25%',
-        0.75: '0.1875rem',
-        'content-sm': 'calc(100vh - 4.5rem)',
-        content: 'calc(100vh - 4rem)',
       },
       lineHeight: {
         11: '2.75rem',
@@ -35,79 +32,6 @@ module.exports = {
       },
       fontFamily: {
         sans: ['InterVariable', ...defaultTheme.fontFamily.sans],
-      },
-      gradientColorStops: {
-        // https://coolors.co/2d00f7-6a00f4-8900f2-a100f2-b100e8-bc00dd-d100d1-db00b6-e500a4-f20089
-        'gradient-1-start': '#F20089',
-        'gradient-1-end': '#D100D1',
-        'gradient-2-start': '#D100D1',
-        'gradient-2-end': '#A100F2',
-        'gradient-3-start': '#A100F2',
-        'gradient-3-end': '#2D00F7',
-      },
-      keyframes: {
-        'gradient-foreground-1': {
-          'from, 16.667%, to': {
-            opacity: 1,
-          },
-          '33.333%, 83.333%': {
-            opacity: 0,
-          },
-        },
-        'gradient-background-1': {
-          'from, 16.667%, to': {
-            opacity: 0,
-          },
-          '25%, 91.667%': {
-            opacity: 1,
-          },
-        },
-        'gradient-foreground-2': {
-          'from, to': {
-            opacity: 0,
-          },
-          '33.333%, 50%': {
-            opacity: 1,
-          },
-          '16.667%, 66.667%': {
-            opacity: 0,
-          },
-        },
-        'gradient-background-2': {
-          'from, to': {
-            opacity: 1,
-          },
-          '33.333%, 50%': {
-            opacity: 0,
-          },
-          '25%, 58.333%': {
-            opacity: 1,
-          },
-        },
-        'gradient-foreground-3': {
-          'from, 50%, to': {
-            opacity: 0,
-          },
-          '66.667%, 83.333%': {
-            opacity: 1,
-          },
-        },
-        'gradient-background-3': {
-          'from, 58.333%, 91.667%, to': {
-            opacity: 1,
-          },
-          '66.667%, 83.333%': {
-            opacity: 0,
-          },
-        },
-      },
-      animation: {
-        'gradient-background-1': 'gradient-background-1 8s infinite',
-        'gradient-foreground-1': 'gradient-foreground-1 8s infinite',
-        'gradient-background-2': 'gradient-background-2 8s infinite',
-        'gradient-foreground-2': 'gradient-foreground-2 8s infinite',
-        'gradient-background-3': 'gradient-background-3 8s infinite',
-        'gradient-foreground-3': 'gradient-foreground-3 8s infinite',
       },
       colors: {
         primary: colors.sky,
