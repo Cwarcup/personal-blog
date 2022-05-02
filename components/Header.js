@@ -1,10 +1,7 @@
 import headerNavLinks from '@/data/headerNavLinks'
+import Link from './CustomLink'
 import { useEffect, useState } from 'react'
-import siteMetadata from '@/data/siteMetadata'
-import Logo from '@/data/logo.svg'
-import Link from './Link'
-import ThemeSwitch from './ThemeSwitch'
-import MobileNav from './MobileNav'
+import MenuButton from './MenuButton'
 
 function useIsScrollTop() {
   const [isTop, setIsTop] = useState(true)
@@ -45,44 +42,53 @@ export default function Header() {
   return (
     <>
       <header
-        className={`sticky top-0 z-20 flex w-full items-center justify-between py-6  ${
+        className={`sticky top-0 z-20 flex w-full items-center justify-between py-10  ${
           isTop ? 'border-none' : 'border-b border-gray-200 dark:border-gray-800'
-        } firefox:bg-opacity-100 dark:firefox:bg-opacity-100 bg-white bg-opacity-30 backdrop-blur-lg backdrop-saturate-150 backdrop-filter dark:bg-gray-900 dark:bg-opacity-30`}
+        } firefox:bg-opacity-100 dark:firefox:bg-opacity-100 bg-white bg-opacity-30 backdrop-blur-lg backdrop-saturate-150 backdrop-filter dark:bg-black dark:bg-opacity-30`}
       >
-        <nav className="mx-auto flex w-full max-w-2xl items-center justify-between sm:py-2 xl:max-w-3xl">
-          <div>
-            <Link href="/" aria-label={siteMetadata.headerTitle}>
-              <div className="flex items-center justify-between">
-                <div className="mr-3">
-                  <Logo />
-                </div>
-                {typeof siteMetadata.headerTitle === 'string' ? (
-                  <div className="hidden h-6 text-2xl font-semibold sm:block">
-                    {siteMetadata.headerTitle}
-                  </div>
-                ) : (
-                  siteMetadata.headerTitle
-                )}
-              </div>
-            </Link>
-          </div>
+        <nav className="mx-auto flex w-full max-w-2xl items-center justify-between px-4 sm:px-6 sm:py-2 xl:max-w-3xl xl:px-0">
           <div className="flex items-center text-base leading-5">
-            <div className="hidden sm:block">
-              {headerNavLinks.map((link) => (
-                <Link
-                  key={link.title}
-                  href={link.href}
-                  className="p-1 font-medium text-gray-900 dark:text-gray-100 sm:p-4"
-                >
-                  {link.title}
-                </Link>
-              ))}
+            <div className="hidden sm:block sm:space-x-8">
+              {headerNavLinks
+                .filter((l) => !l.onlyMobile)
+                .map((link) => (
+                  <Link
+                    key={link.title}
+                    title={link.title}
+                    href={link.href}
+                    className="font-medium text-gray-700 hover:text-black dark:text-gray-300 dark:hover:text-white"
+                  >
+                    {link.title}
+                  </Link>
+                ))}
             </div>
-            <ThemeSwitch />
-            <MobileNav />
+            <div className="flex items-center sm:hidden">
+              <MenuButton onClick={onMenuToggle} isOpened={menuShow} />
+            </div>
           </div>
         </nav>
       </header>
+      {/* Mobile side menu */}
+      <div
+        className={`fixed right-0 z-20 h-screen w-full transform bg-white duration-500 ease-in-out dark:bg-black sm:hidden ${
+          menuShow ? 'translate-x-0' : ' -translate-x-full'
+        } firefox:bg-opacity-100 dark:firefox:bg-opacity-100 bg-opacity-30 backdrop-blur-lg backdrop-saturate-150 backdrop-filter dark:bg-opacity-30`}
+      >
+        <nav className="mt-8 h-full space-y-8">
+          {headerNavLinks.map((link) => (
+            <div key={link.title} className="px-12">
+              <Link
+                href={link.href}
+                title={link.title}
+                className="text-xl font-semibold leading-8 tracking-wide text-gray-700 hover:text-black dark:text-gray-300 dark:hover:text-white"
+                onClick={onMenuToggle}
+              >
+                {link.title}
+              </Link>
+            </div>
+          ))}
+        </nav>
+      </div>
     </>
   )
 }

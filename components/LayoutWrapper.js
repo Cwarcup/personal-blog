@@ -1,11 +1,13 @@
 import SectionContainer from './SectionContainer'
 import Footer from './Footer'
 import Header from './Header'
+import MobileNav from './MobileNav'
 
 const LayoutWrapper = ({ children }) => {
   return (
     <>
       <Header />
+
       <SectionContainer>
         <div className="flex h-screen flex-col justify-between">
           <main className="mb-auto">{children}</main>
