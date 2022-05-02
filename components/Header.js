@@ -1,6 +1,5 @@
 import headerNavLinks from '@/data/headerNavLinks'
 import { useEffect, useState } from 'react'
-import MenuButton from './MenuButton'
 import siteMetadata from '@/data/siteMetadata'
 import Logo from '@/data/logo.svg'
 import Link from './Link'
@@ -46,11 +45,11 @@ export default function Header() {
   return (
     <>
       <header
-        className={`sticky top-0 z-20 flex w-full items-center justify-between py-4  ${
+        className={`sticky top-0 z-20 flex w-full items-center justify-between py-6  ${
           isTop ? 'border-none' : 'border-b border-gray-200 dark:border-gray-800'
-        } firefox:bg-opacity-100 dark:firefox:bg-opacity-100 bg-white bg-opacity-30 backdrop-blur-lg backdrop-saturate-150 backdrop-filter dark:bg-black dark:bg-opacity-30`}
+        } firefox:bg-opacity-100 dark:firefox:bg-opacity-100 bg-white bg-opacity-30 backdrop-blur-lg backdrop-saturate-150 backdrop-filter dark:bg-gray-900 dark:bg-opacity-30`}
       >
-        <nav className="mx-auto flex w-full max-w-2xl items-center justify-between px-4 sm:px-6 sm:py-2 xl:max-w-3xl xl:px-0">
+        <nav className="mx-auto flex w-full max-w-2xl items-center justify-between sm:py-2 xl:max-w-3xl">
           <div>
             <Link href="/" aria-label={siteMetadata.headerTitle}>
               <div className="flex items-center justify-between">
