@@ -5,6 +5,7 @@ import siteMetadata from '@/data/siteMetadata'
 import { getAllFilesFrontMatter } from '@/lib/mdx'
 import formatDate from '@/lib/utils/formatDate'
 import Image from '@/components/Image'
+import Hero from '@/components/Hero'
 
 import NewsletterForm from '@/components/NewsletterForm'
 
@@ -20,19 +21,9 @@ export default function Home({ posts }) {
   return (
     <>
       <PageSEO title={siteMetadata.title} description={siteMetadata.description} />
+      <Hero />
       <div className="divide-y divide-gray-200 dark:divide-gray-700">
         <div className="space-y-2 pt-6 md:space-y-5">
-          <div className="flex items-center justify-between">
-            <div className="">
-              <h1 className="pb-4 text-3xl font-extrabold leading-9 tracking-tight text-gray-900 dark:text-gray-100 sm:text-4xl sm:leading-10 md:text-6xl md:leading-14">
-                Hi, I'm Curtis Warcup
-              </h1>
-            </div>
-          </div>
-          <p className=" prose pb-4 text-lg text-gray-600 dark:text-gray-400">
-            I'm a self taught developer looking to improve my coding abilities everyday. Here is a
-            look into my personal notes, projects and passions.
-          </p>
           <h2 className="flex pb-6 text-2xl font-extrabold tracking-tight text-gray-900 dark:text-gray-100 sm:text-3xl md:text-5xl">
             Latest
           </h2>

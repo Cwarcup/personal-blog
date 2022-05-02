@@ -2,6 +2,10 @@
 @tailwind components;
 @tailwind utilities;
 
+html {
+  scroll-behavior: smooth;
+}
+
 .task-list-item::before {
   @apply hidden;
 }
@@ -11,7 +15,7 @@
 }
 
 .footnotes {
-  @apply pt-8 mt-12 border-t border-gray-200 dark:border-gray-700;
+  @apply mt-12 border-t border-gray-200 pt-8 dark:border-gray-700;
 }
 
 .csl-entry {
@@ -22,4 +26,40 @@
 input:-webkit-autofill,
 input:-webkit-autofill:focus {
   transition: background-color 600000s 0s, color 600000s 0s;
+}
+
+/* https://jarv.is/notes/css-waving-hand-emoji/ */
+.wave {
+  animation-name: wave-animation;
+  animation-duration: 2.667s;
+  animation-iteration-count: infinite;
+  transform-origin: 70% 70%;
+  display: inline-block;
+}
+
+@keyframes wave-animation {
+  0% {
+    transform: rotate(0deg);
+  }
+  10% {
+    transform: rotate(14deg);
+  }
+  20% {
+    transform: rotate(-8deg);
+  }
+  30% {
+    transform: rotate(14deg);
+  }
+  40% {
+    transform: rotate(-4deg);
+  }
+  50% {
+    transform: rotate(10deg);
+  }
+  60% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(0deg);
+  }
 }
