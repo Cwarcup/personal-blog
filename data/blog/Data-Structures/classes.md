@@ -1,12 +1,12 @@
 ---
-title: Data Structures
+title: Classes in JavaScript
 date: '2022-03-17'
-tags: ['react', 'context', 'redux']
+tags: ['Classes', 'this', ' hoisting']
 draft: false
-summary: 'Instead of "prop drilling" to pass around data, we can use react context API to pass around data'
+summary: General overview of classes in JavaScript.
 ---
 
-## What do Data Structures Do?
+# What do Data Structures Do?
 
 - Are collections of values
 - the relationship among values
@@ -16,15 +16,18 @@ Different data structures excel at different things. Some are highly specialized
 
 A data structure is a particular way of organizing and storing data in a computer so that it can be accessed and modified efficiently. More precisely, a data structure is a collection of data values, the relationships among them, and the functions or operations that can be applied to the data.
 
-## ES2015 Class Syntax Overview
+# ES2015 Class Syntax Overview
 
 [JS Class Guide](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes)
 
-### What is a class?
+## What is a class?
 
-- a blueprint for creating objects with pre-defined properties and methods.
+A class is a blueprint for creating objects with pre-defined properties and methods.
 
-## The Syntax
+## Class Syntax
+
+- The method to create new objects **must** be called **constructor**.
+- The **class** keyword creates a constant, so you can not redefine it.
 
 ```js
 class Student {
@@ -34,9 +37,6 @@ class Student {
   }
 }
 ```
-
-- the method to create new objects **must** be called **constructor**.
-- the **class** keyword creates a constant, so you can not redefine it.
 
 ## Creating Objects From Classes
 
@@ -50,33 +50,22 @@ class Student {
     }
 }
 
-let firstStudent = new Student("Colt", "Steele");
-let secondStudent = new Student("Blue", "Steele");
+let firstStudent = new Student("Curtis", "W");
+let secondStudent = new Student("Gilligan", "Dog");
 
 > firstStudent
-< Student {firstName: 'Colt', lastName: 'Steele'}
+< Student {firstName: 'Curtis', lastName: 'W'}
 ```
 
-Defining a class does NOT do anything on its own. You must instantiate it by using `let someVariable = new classCreated(...)`.
+Defining a class does NOT do anything on its own. You must **instantiate** it by using `let someVariable = new classCreated(...)`.
 
-### Class Declaration:
-
-```
-class Rectangle {
-  constructor(height, width) {
-    this.height = height;
-    this.width = width;
-  }
-}
-```
-
-## Instance Methods
+# Instance Methods
 
 - An instance is an object containing data and behavior described by the class.
-- The new operator instantiates the class in JavaScript: instance = new Class().
+- The new operator instantiates the class in JavaScript: `instance = new Class()`.
 
 For example, you can instantiate the User class using the new operator: `const myUser = new User();`
-new User() creates an instance of the User class.
+In this case, `new User()` creates an **instance** of the` User class`.
 
 ```js
 class Student {
@@ -96,7 +85,7 @@ firstStudent.fullName() // "Curtis Warcup"
 
 Here `this` refers to the individual instance. If you made an instance called `firstStudent`, then `this` refers to `firstStudent`.
 
----
+Another example:
 
 ```js
 class Student {
@@ -130,12 +119,12 @@ class Student {
   }
 }
 
-let firstStudent = new Student('Colt', 'Steele')
-let secondStudent = new Student('Jell', 'Wang')
+let firstStudent = new Student('Curtis', 'W')
+let secondStudent = new Student('Gilly', 'Poo')
 
 firstStudent.markLate()
 firstStudent.markLate()
-firstStudent.markLate() //'You Colt Steele are a moron'
+firstStudent.markLate() //'You Curtis W are a moron'
 
 secondStudent.addScores(25) // [25]
 secondStudent.addScores(100) //[25, 100]
@@ -143,13 +132,11 @@ secondStudent.addScores(100) //[25, 100]
 secondStudent.calculateAverage() //62.5
 ```
 
----
+# Class Methods
 
-## Class Methods
-
-- use the **static** keyword in front of the method definition.
-- The static keyword defines a static method or property for a class.
-- Static members (properties and methods) are called without instantiating their class and **cannot** be called through a class instance.
+- Use the `static` keyword in front of the **method definition**.
+- The `static` keyword defines a static method or property for a class.
+- Static members (properties and methods) are called **without instantiating** their class and **cannot** be called through a class instance.
 - Static methods are often used to create utility functions for an application, whereas static properties are useful for caches, fixed-configuration, or any other data you don't need to be replicated across instances.
 
 ```js
@@ -163,13 +150,14 @@ class Student {
     return `Your full name is ${this.firstName} ${this.lastName}`
   }
 
+  // Static method
   static enrollStudents(...students) {
     // maybe send an email here
   }
 }
 
-let firstStudent = new Student('Colt', 'Steele')
-let secondStudent = new Student('Blue', 'Steele')
+let firstStudent = new Student('Curtis', 'W')
+let secondStudent = new Student('Blue', 'W')
 
 Student.enrollStudents([firstStudent, secondStudent])
 ```
@@ -180,9 +168,11 @@ Here `enrollStudents` is a **static class method**. It can be used to send multi
 
 Inside all of our **instance methods** and constructor, the keyword `this` refers to the **object** created from that **class** (also known as an **instance**).
 
-### Hoisting
+## Hoisting
 
-An important difference between **function** declarations and **class** declarations is that while functions can be called in code that appears before they are defined, **classes must be defined before they can be constructed**. Code like the following will throw a ReferenceError:
+An important difference between **function** declarations and **class** declarations is that while functions can be called in code that appears before they are defined, **classes must be defined before they can be constructed**.
+
+Code like the following will throw a ReferenceError:
 
 ```js
 const p = new Rectangle() // ReferenceError
@@ -190,7 +180,7 @@ const p = new Rectangle() // ReferenceError
 class Rectangle {}
 ```
 
-### Class Expressions
+## Class Expressions
 
 A class expression is another way to define a class. Class expressions can be named or unnamed. The name given to a named class expression is local to the class's body. However, it can be accessed via the name property.
 
@@ -216,7 +206,7 @@ console.log(Rectangle.name)
 // output: "Rectangle2"
 ```
 
-## Recap
+# Summary
 
 - Classes are blueprints that when created make objects known as instances
 - Classes are created with the new keyword

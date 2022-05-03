@@ -1,5 +1,5 @@
 ---
-title: Printing a Pyramid Pattern
+title: Printing a Pyramid Pattern - JavaScript Algorithms
 date: '2022-04-29'
 tags: ['Pyramid', 'JavaScript', 'algorithms']
 draft: false

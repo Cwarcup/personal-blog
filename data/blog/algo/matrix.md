@@ -1,5 +1,5 @@
 ---
-title: Matrix Spiral Algorithm - JavaScript
+title: Matrix Spiral Algorithm - JavaScript Algorithms
 date: '2022-04-25'
 tags: ['Matrix', 'JavaScript', 'algorithms']
 draft: false

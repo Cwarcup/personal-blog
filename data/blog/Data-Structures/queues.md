@@ -3,7 +3,7 @@ title: Queues - JavaScript Data Structures
 date: '2022-04-24'
 tags: ['Data Structures', 'JavaScript', 'Queues']
 draft: false
-summary: Definition and main methods of a queue.
+summary: Implementation and methods of a queue.
 ---
 
 # Definition

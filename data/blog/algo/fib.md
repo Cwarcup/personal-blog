@@ -1,5 +1,5 @@
 ---
-title: Fibonacci Sequence - JavaScript
+title: Fibonacci Sequence - JavaScript Algorithms
 date: '2022-04-25'
 tags: ['Fibonacci', 'JavaScript', 'algorithms']
 draft: false

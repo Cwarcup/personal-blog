@@ -2,8 +2,8 @@
 title: Stacks - JavaScript Data Structures
 date: '2022-04-25'
 tags: ['Data Structures', 'JavaScript', 'Stack']
-draft: false
-summary: Weave receives two queues as arguments and combines the contents of each into new, third queue.
+draft: true
+summary: Overview of a stack, including creating, pushing, popping, and peeking.
 ---
 
 A stack is a linear data structure that behaves much like stacking real-world physical items. Stacks follow the 'Last In, First Out' principle. For example, imagine adding a magazine on top of a stack of books. The magazine would be the first item to be removed.

@@ -1,5 +1,5 @@
 ---
-title: Steps - JavaScript Algorithms
+title: Printing Steps - JavaScript Algorithms
 date: '2022-05-02'
 tags: ['steps', 'Algorithms']
 draft: false

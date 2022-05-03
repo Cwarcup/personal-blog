@@ -3,7 +3,7 @@ title: Arrays
 date: '2022-02-26'
 tags: ['Data Structures', 'Single Linked List']
 draft: true
-summary: Methods and implementation of a doubly linked list.
+summary: Arrays
 ---
 
 Sometimes called lists and orders data sequentially. If you need to iterate over some data, one by one, arrays are the best choice.

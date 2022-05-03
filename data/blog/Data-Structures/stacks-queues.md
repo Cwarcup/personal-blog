@@ -8,10 +8,13 @@ summary: All about stacks and queues. Covers uses, methods and implementations.
 
 # Stacks
 
-Adding a record is done by `push`ing to the top of the stack.
-Removing a record is done by `pop`ing from the top of the stack.
+**First in, last out (FIFO)**
 
-**First in, last out.**
+- Create a Stack `class` with a `constructor` method which initializes an empty array.
+- Define a `push` method which **adds** an element to the top of the stack. Can use `unshift` to add to the beginning of an array.
+- Define a `pop` method which **removes** an element from the top of the stack. Can use `shift` to remove from the beginning of an array.
+- Define a `peek` method which **returns** the element at the top of the stack, without removing it. Can refer to the first element in an array with `[0]` since arrays are zero-indexed.
+- Define a `isEmpty` method which **checks** if the stack is empty. Uses the `length` property of an array to check if the array is empty.
 
 Example:
 
@@ -28,26 +31,30 @@ s.pop() // returns 1
 ```js
 class Stack {
   constructor() {
-    this.data = []
+    this.items = []
   }
 
-  push(value) {
-    this.data.push(value)
+  push(item) {
+    this.items.unshift(item)
   }
 
-  pop() {
-    return this.data.pop()
+  pop(item) {
+    return this.items.shift()
   }
 
-  peek() {
-    return this.data[this.data.length - 1]
+  peek(item) {
+    return this.items[0]
+  }
+
+  isEmpty() {
+    return this.items.length === 0
   }
 }
 ```
 
 # Queue
 
-**First one in, first one out (FIFO).**
+**First one in, first one out (FIFO)**
 
 Enqueue: add to the end of the queue.
 Dequeue: remove from the front of the queue.

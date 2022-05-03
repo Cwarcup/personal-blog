@@ -1,12 +1,10 @@
 ---
-title: Test Data Structure
-date: '2022-04-20'
-tags: ['markdown', 'code', 'features']
+title: Chunked Arrays - JavaScript Algorithms
+date: '2022-05-03'
+tags: ['Chunk', 'algorithms']
 draft: false
-summary: test from data/blog/1-data-structures-overview.md
+summary: Returning a chunk of data with a given size
 ---
-
-# Chunk
 
 Directions: Given an array and **chunk size**, divide the array into many subarrays where each subarray is of length size.
 
@@ -20,9 +18,9 @@ chunk([1, 2, 3, 4, 5], 4) --> [[ 1, 2, 3, 4], [5]]
 chunk([1, 2, 3, 4, 5], 10) --> [[ 1, 2, 3, 4, 5]]
 ```
 
-> For the first example, you have an array, and a chunk with a size of 2. Therefore, the array should be broken up into CHUNKS of 2 elements.
+For the first example, you have an array, and a chunk with a size of 2. Therefore, the array should be broken up into CHUNKS of 2 elements.
 
-## Option 1:
+# Solution 1:
 
 1. Create empty array to hold chunks called 'chunked'
 2. For each element in the array...
@@ -50,9 +48,9 @@ function chunk(array, size) {
 }
 ```
 
-## Option 2: using slice()
+# Solution 2: while-loop & slice()
 
-Syntax:
+Slice() Syntax:
 
 ```
 slice()
