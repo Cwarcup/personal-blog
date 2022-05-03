@@ -22,10 +22,10 @@
  */
 const TOCInline = ({
   toc,
-  indentDepth = 3,
+  indentDepth = 2,
   fromHeading = 1,
   toHeading = 6,
-  asDisclosure = false,
+  asDisclosure = true,
   exclude = '',
 }) => {
   const re = Array.isArray(exclude)
