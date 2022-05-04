@@ -1,0 +1,103 @@
+---
+title: Creating a Queue from a Stack
+date: '2022-05-04'
+tags: ['Data Structures', 'Queues', 'Stacks']
+draft: false
+summary: Creating a queue from a class.
+---
+
+<TOCInline toc={props.toc} asDisclosure toHeading={3} />
+
+Recall that a **queue** is a data structure that follows the **FIFO (first in, first out)** principle.
+
+And a **stack** is a data structure that follows the **LIFO (last in, first out)** principle.
+
+# Create a Queue
+
+```js
+class Stack {
+  constructor() {
+    this.data = []
+  }
+  push(record) {
+    this.data.push(record)
+  }
+  pop() {
+    return this.data.pop()
+  }
+  peek() {
+    return this.data[this.data.length - 1]
+  }
+
+  isEmpty() {
+    return this.data.length === 0
+  }
+}
+```
+
+# Create Queue from a Stack
+
+```js
+class QueueFromStack {
+  constructor() {
+    this.first = new Stack()
+    this.second = new Stack()
+  }
+
+  enqueue(item) {
+    this.first.push(item)
+  }
+
+  dequeue() {
+    while (this.first.peek()) {
+      this.second.push(this.first.pop())
+    }
+
+    let val = this.second.pop()
+
+    while (this.second.peek()) {
+      this.first.push(this.second.pop())
+    }
+    return val
+  }
+
+  peek() {
+    while (this.first.peek()) {
+      this.second.push(this.first.pop())
+    }
+
+    let val = this.second.peek()
+
+    while (this.second.peek()) {
+      this.first.push(this.second.pop())
+    }
+    return val
+  }
+
+  isEmpty() {
+    return this.first.peek() === undefined
+  }
+}
+
+const s = new Stack()
+s.push(1)
+s.push(2)
+console.log(s.peek()) // returns 2
+console.log(s.pop())
+console.log(s.pop())
+console.log(s.isEmpty()) // returns 1
+
+const qfs = new QueueFromStack()
+
+console.log(qfs.isEmpty()) // true
+qfs.enqueue('A')
+qfs.enqueue('B')
+qfs.enqueue('C')
+qfs.enqueue('D')
+console.log(qfs.peek()) // A
+console.log(qfs.dequeue()) // A
+console.log(qfs.dequeue()) // B
+console.log(qfs.dequeue()) // C
+console.log(qfs.dequeue()) // D
+console.log(qfs.isEmpty()) // true
+```
