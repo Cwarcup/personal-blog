@@ -66,9 +66,7 @@ list.head = '10'
 console.log(list) // LinkedList { head: '10' }
 ```
 
-## Linked List Methods
-
-### insertFirst
+# insertFirst
 
 ```js
   insertFirst(data) {
@@ -83,7 +81,7 @@ const list = new LinkedList()
 list.insertFirst('Hi There') // List has one node
 ```
 
-### size
+# size
 
 ```js
   size() {
@@ -109,7 +107,7 @@ list.insertFirst('c')
 list.size() // returns 3
 ```
 
-### getFirst
+# getFirst
 
 ```js
   getFirst() {
@@ -126,7 +124,7 @@ list.insertFirst('b')
 list.getFirst() // returns Node instance with data 'a'
 ```
 
-### getLast
+# getLast
 
 ```js
 getLast() {
@@ -152,7 +150,7 @@ list.insertFirst('b')
 list.getLast() // returns node with data 'a'
 ```
 
-### clear
+# clear
 
 Empties the linked list of any nodes.
 
@@ -172,7 +170,7 @@ list.clear()
 list.size() // returns 0
 ```
 
-### removeFirst
+# removeFirst
 
 Removes only the first node of the linked list. The list's head should now be the second element.
 
@@ -195,7 +193,7 @@ list.removeFirst()
 list.getFirst() // returns node with data 'a'
 ```
 
-### removeLast
+# removeLast
 
 Removes the last node of the chain.
 
@@ -233,7 +231,7 @@ list.size() // returns 1
 list.getLast() // returns node with data of 'b'
 ```
 
-### insertLast
+# insertLast
 
 Inserts a new node with provided data at the end of the chain.
 
@@ -275,7 +273,7 @@ list.insertLast('c')
 list.getLast() // returns node with data 'C'
 ```
 
-### getAt
+# getAt
 
 Returns the node at the provided index.
 
@@ -298,7 +296,7 @@ Returns the node at the provided index.
   }
 ```
 
-### removeAt
+# removeAt
 
 Removes the node at the provided index.
 
@@ -322,7 +320,7 @@ Removes the node at the provided index.
   }
 ```
 
-### insertAt
+# insertAt
 
 Create an insert a new node at provided index. If index is out of bounds, add the node to the end of the list.
 
@@ -355,7 +353,7 @@ list.getAt(1) // returns node with data 'Hi'
   }
 ```
 
-### Code Re-use in Linked Lists
+# Code Re-use in Linked Lists
 
 We have written a lot of methods, however, many of these methods could have been combined.
 
@@ -372,7 +370,7 @@ We have written a lot of methods, however, many of these methods could have been
 
 If an interviewer asks you to write a method like `removeFirst()`, you should ask if additional methods will be asked of you. If so, you should write `removeAt()` and `getAt()` methods.
 
-### for..of Loop - List Traversal through ForEach
+# for..of Loop - List Traversal through ForEach
 
 Linked list should be compatible as the subject of a 'for...of' loop.
 
@@ -390,7 +388,7 @@ for (let node of list) {
   node.data += 10
 }
 
-node.getAt(1) // returns node with data 11
+list.getAt(0).data // returns node with data 11
 ```
 
 Learn more about generators [here](https://curtcodes.vercel.app/blog/javascript/generators).
