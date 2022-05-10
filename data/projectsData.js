@@ -23,6 +23,12 @@ const projectsData = [
     imgSrc: '/static/images/wavy-website.png',
     href: 'https://cwarcup.github.io/wavy-website/',
   },
+  {
+    title: 'Dad Quotes',
+    description: `Basic use of Dad Quote API.`,
+    imgSrc: '/static/images/dad-quotes.png',
+    href: 'https://cwarcup.github.io/dad-quotes/',
+  },
 ]
 
 export default projectsData
