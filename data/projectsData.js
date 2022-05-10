@@ -1,5 +1,11 @@
 const projectsData = [
   {
+    title: 'CSS Toggle Theme',
+    description: `Toggle theme created with pure CSS.`,
+    imgSrc: '/static/images/toggle-theme-css.png',
+    href: 'https://cwarcup.github.io/css-toggle-theme/',
+  },
+  {
     title: 'Search NPM Modules',
     description: `Want to search NPM for a module? Here's a quick and easy example using the NPM Registry API to search NPM modules.`,
     imgSrc: '/static/images/searchNPM.png',
