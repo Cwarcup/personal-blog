@@ -6,6 +6,18 @@ const projectsData = [
     href: 'https://cwarcup.github.io/css-toggle-theme/',
   },
   {
+    title: 'React with Redux Youtube Search',
+    description: `Youtube API to search youtube and return list of popular videos. Uses hooks to handle video search and set the playing video.`,
+    imgSrc: '/static/images/video-player-react.png',
+    href: 'https://yt-video-player.vercel.app/',
+  },
+  {
+    title: 'Responsive Icon Navbar',
+    description: `Small amount of JS, icons provided by Font Awesome.`,
+    imgSrc: '/static/images/icon-navbar.png',
+    href: 'https://cwarcup.github.io/responsive-icon-navbar/',
+  },
+  {
     title: 'Search NPM Modules',
     description: `Want to search NPM for a module? Here's a quick and easy example using the NPM Registry API to search NPM modules.`,
     imgSrc: '/static/images/searchNPM.png',
@@ -17,12 +29,7 @@ const projectsData = [
     imgSrc: '/static/images/infiniteScroll.png',
     href: 'https://cwarcup.github.io/infinite_scroll/',
   },
-  {
-    title: 'React with Redux Youtube Search',
-    description: `Youtube API to search youtube and return list of popular videos. Uses hooks to handle video search and set the playing video.`,
-    imgSrc: '/static/images/video-player-react.png',
-    href: 'https://yt-video-player.vercel.app/',
-  },
+
   {
     title: 'Wavy Website',
     description: `Some fun with CSS to create a wavy website.`,
