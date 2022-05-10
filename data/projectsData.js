@@ -29,6 +29,12 @@ const projectsData = [
     imgSrc: '/static/images/dad-quotes.png',
     href: 'https://cwarcup.github.io/dad-quotes/',
   },
+  {
+    title: 'Node Weather App',
+    description: `Uses Mapbox for geocoding and Weatherstack for weather forecast.`,
+    imgSrc: '/static/images/basic-weather-node-app.png',
+    href: 'https://basic-weather-node-app.herokuapp.com/',
+  },
 ]
 
 export default projectsData
