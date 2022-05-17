@@ -28,6 +28,28 @@ input:-webkit-autofill:focus {
   transition: background-color 600000s 0s, color 600000s 0s;
 }
 
+.backdrop {
+  backdrop-filter: blur(6px);
+}
+
+.top-n-1 {
+  top: -5px;
+}
+
+header.isSticky .title {
+  opacity: 0;
+  transition: 0.5s;
+}
+
+.leftNav {
+  opacity: 0;
+}
+
+.leftNav.isSticky {
+  opacity: 1;
+  transition: 0.5s;
+}
+
 /* https://jarv.is/notes/css-waving-hand-emoji/ */
 .wave {
   animation-name: wave-animation;
