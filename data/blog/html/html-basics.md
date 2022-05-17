@@ -26,7 +26,7 @@ This paragraph would now appear like this:
 
 This is a paragraph element. All of the content from the opening tag at the beginning of the line until the closing paragraph tag (the one with the / inside of it) will be treated as a single paragraph by the browser.
 
-The <em> element is considered nested within the <p> element, as it is one element inside of another. HTML pages are built by nesting tags and content inside of each other. The browser is then smart enough to look all the way down to the innermost tags and decide how everything should be displayed.
+The `<em>` element is considered nested within the `<p>` element, as it is one element inside of another. HTML pages are built by nesting tags and content inside of each other. The browser is then smart enough to look all the way down to the innermost tags and decide how everything should be displayed.
 
 # Page Structure
 
