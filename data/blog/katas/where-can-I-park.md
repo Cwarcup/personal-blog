@@ -1,6 +1,6 @@
 ---
 title: Where Can I Park?
-date: '2022-05-19'
+date: '2022-05-20'
 tags: ['Kata']
 draft: false
 summary: write a function called whereCanIPark() that returns the coordinates of an available parking spot for the vehicle, or returns false if there is no available spot.
