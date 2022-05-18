@@ -3,7 +3,7 @@ title: Where Can I Park?
 date: '2022-05-20'
 tags: ['Kata']
 draft: false
-summary: write a function called whereCanIPark() that returns the coordinates of an available parking spot for the vehicle, or returns false if there is no available spot.
+summary: Write a function that returns the coordinates of an available parking spot for the vehicle, or returns false if there is no available spot.
 ---
 
 We need to write a function called whereCanIPark() that returns the coordinates of an available parking spot for the vehicle, or returns false if there is no available spot. Our function receives an array of arrays representing parking spots, and a string with type of the vehicle that is looking for a parking spot.
