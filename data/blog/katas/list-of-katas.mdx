@@ -519,3 +519,32 @@ console.log(calculateChange(2623, 4000))
 console.log(calculateChange(501, 1000))
 // { twoDollar: 2, quarter: 3, dime: 2, penny: 4 }
 ```
+
+# Case Maker
+
+We will receive a normal string of words separated with spaces as the input. Our job is to convert these strings into **camel** cased strings.
+
+```js
+const camelCase = function (input) {
+  // Your code here
+}
+
+console.log(camelCase('this is a string')) // thisIsAString
+console.log(camelCase('loopy lighthouse')) // loopyLighthouse
+console.log(camelCase('supercalifragalisticexpialidocious')) // supercalifragalisticexpialidocious
+```
+
+```js
+const camelCase = function (input) {
+  const lowers = input.toLowerCase().split(' ') // in case any letters are already uppercase
+  const result = [lowers.shift()]
+  for (let word of lowers) {
+    result.push(word[0].toUpperCase() + word.slice(1))
+  }
+  return result.join('')
+}
+
+console.log(camelCase('this is a string')) // thisIsAString
+console.log(camelCase('loopy lighthouse')) // loopyLighthouse
+console.log(camelCase('supercalifragalisticexpialidocious')) // supercalifragalisticexpialidocious
+```
