@@ -2,7 +2,7 @@
 title: Where Can I Park?
 date: '2022-05-20'
 tags: ['Kata']
-draft: false
+draft: true
 summary: Write a function that returns the coordinates of an available parking spot for the vehicle, or returns false if there is no available spot.
 ---
 

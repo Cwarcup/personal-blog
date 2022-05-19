@@ -2,7 +2,7 @@
 title: Number of Vowels
 date: '2022-05-19'
 tags: ['Kata']
-draft: false
+draft: true
 summary: Counting the number of vowels that appear in a given string.
 ---
 

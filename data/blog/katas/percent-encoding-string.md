@@ -2,7 +2,7 @@
 title: Percent Encoded String
 date: '2022-05-19'
 tags: ['Kata']
-draft: false
+draft: true
 summary: Given a normal string of words, turn it into a percent-encoded string by replacing all whitespace with %20.
 ---
 

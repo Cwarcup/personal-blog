@@ -2,7 +2,7 @@
 title: Air Quality Checker
 date: '2022-05-22'
 tags: ['Kata']
-draft: false
+draft: true
 summary: Implement a function which will check a collection of air samples. The first argument is an array of strings, where each string represents a small air sample that is either clean or dirty. The second argument is a number representing the highest acceptable amount of dirty samples.
 ---
 

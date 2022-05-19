@@ -2,7 +2,7 @@
 title: Conditional Sums
 date: '2022-05-19'
 tags: ['Kata']
-draft: false
+draft: true
 summary: Adding only the numbers in the array which match the given condition
 ---
 

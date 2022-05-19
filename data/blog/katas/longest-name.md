@@ -2,7 +2,7 @@
 title: Longest Name
 date: '2022-05-19'
 tags: ['Kata']
-draft: false
+draft: true
 summary: Given a list of names, determine which instructor has the longest name.
 ---
 
