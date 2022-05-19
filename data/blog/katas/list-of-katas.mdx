@@ -352,3 +352,33 @@ The input data for this exercise will be two dimensional array (an array of arra
 ```
 
 The first will be the value to **repeat**, the second will be the amount of **times to repeat** that value.
+
+```js
+const repeatNumbers = function (data) {
+  let values = []
+
+  for (let i = 0; i < data.length; i++) {
+    let result = ''
+    for (let repeats = 0; repeats < data[i][1]; repeats++) {
+      result += data[i][0]
+    }
+    values.push(result)
+  }
+  return values.join(', ')
+}
+
+console.log(repeatNumbers([[1, 10]])) // 1111111111
+console.log(
+  repeatNumbers([
+    [1, 2],
+    [2, 3],
+  ])
+) // 11, 222
+console.log(
+  repeatNumbers([
+    [10, 4],
+    [34, 6],
+    [92, 2],
+  ])
+) // 10101010, 343434343434, 9292
+```
