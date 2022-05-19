@@ -551,6 +551,122 @@ console.log(camelCase('loopy lighthouse')) // loopyLighthouse
 console.log(camelCase('supercalifragalisticexpialidocious')) // supercalifragalisticexpialidocious
 ```
 
+# Case Maker II
+
+We will still be given an input string to convert. However, this time, we'll also be given a casing style to work with. The following code block will describe all the casing styles to support. We may also receive an array of casing styles, and each of these should be applied.
+
+Example:
+
+```js
+const makeCase = function(input, case) {
+  // Put your solution here
+}
+
+console.log(makeCase("this is a string", "camel")); // thisIsAString
+console.log(makeCase("this is a string", "pascal"));  // ThisIsAString
+console.log(makeCase("this is a string", "snake")); // this_is_a_string
+console.log(makeCase("this is a string", "kebab")); // this-is-a-string
+console.log(makeCase("this is a string", "title")); // This Is A String
+console.log(makeCase("this is a string", "vowel")); // thIs Is A strIng
+console.log(makeCase("this is a string", "consonant")); // THiS iS a STRiNG
+console.log(makeCase("this is a string", ["upper", "snake"])); // THIS_IS_A_STRING
+```
+
+Precedence of each of the casing styles are as follows, values higher in the list should be processed first:
+
+1. `camel`, `pascal`, `snake`, `kebab`, `title`
+2. `vowel`, `consonant`
+3. `upper`, `lower`
+
+Our function should be able to handle all of these cases.
+
+For more information on casing styles, read [Wikipedia's Special Case Styles](https://en.wikipedia.org/wiki/Letter_case#Special_case_styles) for a list of various casing examples.
+
+```js
+const makeCase = function (input, cases) {
+  function handleCase(input) {
+    if (cases.includes('camel')) {
+      const lowers = input.toLowerCase().split(' ') // in case any letters are already uppercase
+      const result = [lowers.shift()]
+      for (let word of lowers) {
+        result.push(word[0].toUpperCase() + word.slice(1))
+      }
+      return result.join('')
+    } else if (cases.includes('pascal')) {
+      const lowers = input.toLowerCase().split(' ') // in case any letters are already uppercase
+      const result = []
+      for (let word of lowers) {
+        result.push(word[0].toUpperCase() + word.slice(1))
+      }
+      return result.join('')
+    } else if (cases.includes('snake')) {
+      return input.toLowerCase().replace(/\s/g, '_')
+    } else if (cases.includes('kebab')) {
+      return input.toLowerCase().replace(/\s/g, '-')
+    } else if (cases.includes('title')) {
+      let result = []
+      for (let word of input.split(' ')) {
+        result.push(word[0].toUpperCase() + word.slice(1))
+      }
+      return result.join(' ')
+    } else {
+      return input
+    }
+  }
+
+  function handleChars(input) {
+    if (cases.includes('upper')) {
+      return input.toUpperCase()
+    } else if (cases.includes('lower')) {
+      return input.toLowerCase()
+    } else {
+      return input
+    }
+  }
+
+  function handleType(input) {
+    if (cases.includes('vowel')) {
+      let newWords = ''
+
+      for (let char of input) {
+        if (char.match(/[aeiou]/)) {
+          newWords += char.toUpperCase()
+        } else {
+          newWords += char
+        }
+      }
+      return newWords
+    } else if (cases.includes('consonant')) {
+      let newWords = ''
+
+      for (let char of input) {
+        if (char.match(/[bcdfghjklmnpqrstvwxys]/)) {
+          newWords += char.toUpperCase()
+        } else {
+          newWords += char
+        }
+      }
+      return newWords
+    } else {
+      return input
+    }
+  }
+
+  let inputCase = handleCase(input)
+  let inputType = handleType(inputCase)
+  return handleChars(inputType)
+}
+
+console.log(makeCase('this is a string', 'camel')) // thisIsAString
+console.log(makeCase('this is a string', 'pascal')) // ThisIsAString
+console.log(makeCase('this is a string', 'snake')) // this_is_a_string
+console.log(makeCase('this is a string', 'kebab')) // this-is-a-string
+console.log(makeCase('this is a string', 'title')) // This Is A String
+console.log(makeCase('this is a string', 'vowel')) // thIs Is A strIng
+console.log(makeCase('this is a string', 'consonant')) // THiS iS a STRiNG
+console.log(makeCase('this is a string', ['upper', 'snake'])) // THIS_IS_A_STRING
+```
+
 # Multiplication Table
 
 We will be given a number as our input data. This number is the highest value of our multiplication table.
