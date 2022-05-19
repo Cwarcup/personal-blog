@@ -382,3 +382,53 @@ console.log(
   ])
 ) // 10101010, 343434343434, 9292
 ```
+
+# Talking Calender
+
+In this activity, we will be converting date strings like "2017/12/02", into more English friendly date strings like "December 2nd, 2017".
+
+We will be given a date as a string (not a `Date` object). The date will always be formatted as `YYYY/MM/DD`. We will have to parse the given string and produce a human readable date.
+
+```js
+const talkingCalendar = function (date) {
+  const monthNames = [
+    'January',
+    'February',
+    'March',
+    'April',
+    'May',
+    'June',
+    'July',
+    'August',
+    'September',
+    'October',
+    'November',
+    'December',
+  ]
+
+  let monthIndex = new Date(date).getMonth()
+  let year = new Date(date).getFullYear()
+  let month = monthNames[monthIndex]
+  let day = parseInt(date.slice(8, 10))
+
+  const nth = function (day) {
+    if (day > 3 && day < 21) return `${day}th`
+    switch (day % 10) {
+      case 1:
+        return `${day}st`
+      case 2:
+        return `${day}nd`
+      case 3:
+        return `${day}rd`
+      default:
+        return `${day}th`
+    }
+  }
+
+  return `${month} ${nth(day)}, ${year}`
+}
+
+console.log(talkingCalendar('2017/12/02')) // December 2nd, 2017
+console.log(talkingCalendar('2007/11/11')) // November 11th, 2007
+console.log(talkingCalendar('1987/08/24')) // August 24th, 1987
+```
