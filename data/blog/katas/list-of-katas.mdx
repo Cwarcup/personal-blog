@@ -827,3 +827,121 @@ const squareCode = (message) => {
 // console.log(squareCode("have a nice day")); // hae and via ecy
 // console.log(squareCode("if man was meant to stay on the ground god would have given us roots")); // imtgdvs fearwer mayoogo anouuio ntnnlvt wttddes aohghn sseoau
 ```
+
+# Queen Threat Detector
+
+In this exercise we will be writing an algorithm, to detect if two queens on a chess board can attack each other.
+
+A game of chess is played on an 8 column by 8 row board. In the game of chess, a queen can attack pieces which are on the same row, column, or diagonal.
+
+![Queen movements](https://i.imgur.com/nfs59jJ.png)
+
+In JavaScript, we can represent a chessboard using an 8 by 8 array (8 arrays within an array). For this exercise, our chess board will have 2 queens, and nothing else. A 1 in the array represents a queen on the corresponding square, and a O in the array represents an unoccupied square.
+
+So the following chess board:
+
+![chess board example](https://i.imgur.com/d7NkGVQ.png)
+
+Would be represented in JavaScript like this:
+
+```js
+;[
+  [0, 0, 0, 0, 0, 1, 0, 0],
+  [0, 0, 0, 0, 0, 0, 0, 0],
+  [0, 0, 0, 0, 0, 0, 0, 0],
+  [0, 0, 0, 0, 0, 0, 0, 0],
+  [0, 0, 0, 0, 0, 0, 0, 0],
+  [1, 0, 0, 0, 0, 0, 0, 0],
+  [0, 0, 0, 0, 0, 0, 0, 0],
+  [0, 0, 0, 0, 0, 0, 0, 0],
+]
+```
+
+1. Our first challenge will be to write a function that generates a chess board like this.
+
+2. We will then write a function to detect weather or not the two queens are positioned so that they attack each other.
+
+```js
+let whiteQueen = [0, 5]
+let blackQueen = [5, 0]
+let generatedBoard = generateBoard(whiteQueen, blackQueen)
+console.log(generatedBoard)
+console.log(queenThreat(generatedBoard))
+
+//returns
+;[
+  [0, 0, 0, 0, 0, 1, 0, 0],
+  [0, 0, 0, 0, 0, 0, 0, 0],
+  [0, 0, 0, 0, 0, 0, 0, 0],
+  [0, 0, 0, 0, 0, 0, 0, 0],
+  [0, 0, 0, 0, 0, 0, 0, 0],
+  [1, 0, 0, 0, 0, 0, 0, 0],
+  [0, 0, 0, 0, 0, 0, 0, 0],
+  [0, 0, 0, 0, 0, 0, 0, 0],
+]
+true
+```
+
+Possible Solution:
+
+```js
+const generateBoard = function (whiteQueen, blackQueen) {
+  let result = []
+
+  // empty arrays
+  for (let i = 0; i < 8; i++) {
+    result.push([])
+  }
+
+  // blank board, insert 0's
+  for (let i = 0; i < 8; i++) {
+    while (result[i].length < 8) {
+      result[i].push(0)
+    }
+  }
+  // add queen positions
+  result[whiteQueen[0]][whiteQueen[1]] = 1
+  result[blackQueen[0]][blackQueen[1]] = 1
+
+  return result
+}
+
+const queenThreat = function (board) {
+  let queenMoves = []
+
+  // find the queens
+  for (let i = 0; i < 8; i++) {
+    for (let j = 0; j < 8; j++) {
+      if (board[i][j] === 1) queenMoves.push([i, j])
+    }
+  }
+
+  // detect a threat
+  if (queenMoves[0][0] - queenMoves[1][0] || queenMoves[0][1] - queenMoves[1][1]) {
+    // diagonal if any equal 0
+    return true
+  } else if (queenMoves[0][0] === queenMoves[1][0] || queenMoves[0][1] === queenMoves[1][1]) {
+    // horizontal and vertical
+    return true
+  } else {
+    return false
+  }
+}
+
+let whiteQueen = [0, 5]
+let blackQueen = [5, 0]
+let generatedBoard = generateBoard(whiteQueen, blackQueen)
+console.log(generatedBoard) // see below
+console.log(queenThreat(generatedBoard)) // false
+
+// [  0  1  2  3  4  5  6  7
+// 0 [0, 0, 0, 0, 0, 1, 0, 0],
+// 1 [0, 0, 0, 0, 0, 0, 0, 0],
+// 2 [0, 0, 0, 0, 0, 0, 0, 0],
+// 3 [0, 0, 0, 0, 0, 0, 0, 0],
+// 4 [0, 0, 0, 0, 0, 0, 0, 0],
+// 5 [1, 0, 0, 0, 0, 0, 0, 0],
+// 6 [0, 0, 0, 0, 0, 0, 0, 0],
+// 7 [0, 0, 0, 0, 0, 0, 0, 0]
+// ]
+```
