@@ -1258,3 +1258,62 @@ console.log(
 //   iOS: ["Martha"]
 // }
 ```
+
+# JS Object From URL Encoded String
+
+In this exercise, we will be given a url encoded string of key-value pairs, and we will have to turn it into a JavaScript object.
+
+To safely send data in a URL, the data first has to be encoded to convert any special characters to URL safe characters. For this assignment we will only focus on the following URL encoding rules:
+
+- `%20` represents a space character.
+- Key-value pairs are represented using an `=` character: `key=value`
+- Multiple key-value pairs are separated using a `&` character: `key1=value1&key2=value2`
+
+So the following URL encoded string:
+
+```
+city=Vancouver&weather=lots%20of%20rain
+```
+
+Could be converted to the following JavaScript object:
+
+```js
+{
+  city: "Vancouver",
+  weather: "lots of rain"
+}
+```
+
+Example:
+
+```js
+const urlDecode = function (text) {
+  // Put your solution here
+}
+
+console.log(urlDecode('duck=rubber')) // { duck: "rubber" }
+console.log(urlDecode('breed=cattle%20dog')) // { breed: "cattle dog" }
+console.log(urlDecode('city=Vancouver&weather=lots%20of%20rain')) // { city: "Vancouver", weather: "lots of rain" }
+console.log(urlDecode('city=Vancouver&weather=lots%20of%20rain').weather) // "lots of rain"
+```
+
+Possible Solution:
+
+```js
+const urlDecode = function (text) {
+  let result = {}
+  let arrOfKeys = text.split('&')
+
+  for (let message of arrOfKeys) {
+    result[message.substr(0, message.indexOf('='))] = message
+      .substr(message.indexOf('=') + 1)
+      .replace(/[%20]/g, ' ')
+  }
+  return result
+}
+
+console.log(urlDecode('duck=rubber')) // { duck: "rubber" }
+console.log(urlDecode('breed=cattle%20dog')) // { breed: "cattle dog" }
+console.log(urlDecode('city=Vancouver&weather=lots%20of%20rain')) // { city: "Vancouver", weather: "lots of rain" }
+console.log(urlDecode('city=Vancouver&weather=lots%20of%20rain').weather) // "lots of rain"
+```
