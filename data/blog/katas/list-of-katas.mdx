@@ -1317,3 +1317,100 @@ console.log(urlDecode('breed=cattle%20dog')) // { breed: "cattle dog" }
 console.log(urlDecode('city=Vancouver&weather=lots%20of%20rain')) // { city: "Vancouver", weather: "lots of rain" }
 console.log(urlDecode('city=Vancouver&weather=lots%20of%20rain').weather) // "lots of rain"
 ```
+
+# Taxicab Geometry
+
+In this exercise, we will write an algorithm to help taxicabs determine how far away a destination is based on the directions given.
+
+The following grid represents the streets of a city and the blue dot represents a taxi cab before it leaves for its destination.
+
+![taxicab geometry](https://i.imgur.com/5rKYptW.png)
+
+The taxi driver is given a list of directions that tell her whether to turn left or right, and how many blocks to drive for. Every time the taxi driver has to turn left, she will make a 90° turn anticlockwise, and every time the taxi driver has to turn right, she will make a 90° turn clockwise.
+
+Let's take a look at some example directions: `["right", 2, "left", 3, "left", 1]`.
+
+First the taxi driver must turn `"right"`, then drive for `2` blocks.
+
+![taxicab geometry](https://i.imgur.com/lTZmIZY.png)
+
+Then the taxi driver must turn `"left"`, and drive for `3` blocks.
+
+![taxicab geometry](https://i.imgur.com/zuFU6eK.png)
+
+Finally, the taxi driver must turn `"left"` again, and drive for `1` block.
+
+![taxicab geometry](https://i.imgur.com/y3yZIvx.png)
+
+Now that the taxi driver is at her final destination, we can determine that she is `1 block east` and `3 blocks north` of where she started.
+
+Examples:
+
+```js
+const blocksAway = function (directions) {
+  // Put your solution here
+}
+
+console.log(blocksAway(['right', 2, 'left', 3, 'left', 1])) // {east: 1, north: 3}
+console.log(blocksAway(['left', 1, 'right', 1, 'left', 1, 'right', 1, 'left', 1, 'right', 1])) // {east: 3, north: 3}
+console.log(blocksAway(['left', 3, 'right', 1, 'right', 3, 'right', 1])) // {east: 0, north: 0}
+```
+
+Create a function named `blocksAway()` that will receive an array of directions, and return an object that calculates how far north and east those directions will take someone.
+
+The taxi driver will always start at the same position, in the most **south west position on the grid**. This means that the output will only need to specify an east and north position, since the taxi driver can only end up in these East and North of the starting point.
+
+Possible Solution:
+
+```js
+const blocksAway = function (directions) {
+  let finalLocation = {
+    east: 0,
+    north: 0,
+  }
+
+  let degrees = 0
+
+  for (let i = 0; i < directions.length; i += 2) {
+    if (directions[i] === 'right') {
+      if (degrees === 0 && i === 0) {
+        degrees += 0
+        finalLocation.east += directions[i + 1]
+      } else if (degrees === 0) {
+        degrees += 270
+        finalLocation.north -= directions[i + 1]
+      } else if (degrees === 90) {
+        degrees -= 90
+        finalLocation.east += directions[i + 1]
+      } else if (degrees === 180) {
+        degrees -= 90
+        finalLocation.north += directions[i + 1]
+      } else if (degrees === 270) {
+        degrees -= 90
+        finalLocation.east -= directions[i + 1]
+      }
+    }
+    if (directions[i] === 'left') {
+      if (degrees === 0) {
+        degrees += 90
+        finalLocation.north += directions[i + 1]
+      } else if (degrees === 90) {
+        degrees += 90
+        finalLocation.east -= directions[i + 1]
+      } else if (degrees === 180) {
+        degrees += 90
+        finalLocation.north -= directions[i + 1]
+      } else if (degrees === 270) {
+        degrees -= 270
+        finalLocation.north += directions[i + 1]
+      }
+    }
+  }
+
+  return finalLocation
+}
+
+console.log(blocksAway(['right', 2, 'left', 3, 'left', 1])) // {east: 1, north: 3}
+console.log(blocksAway(['left', 1, 'right', 1, 'left', 1, 'right', 1, 'left', 1, 'right', 1])) // {east: 3, north: 3}
+console.log(blocksAway(['left', 3, 'right', 1, 'right', 3, 'right', 1])) // {east: 0, north: 0}
+```
