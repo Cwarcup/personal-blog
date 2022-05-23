@@ -1158,3 +1158,103 @@ recipes = [
 
 console.log(chooseRecipe(bakeryA, bakeryB, recipes)) // outputs 'Nima's Famous Dijon Raisins'
 ```
+
+# Organizing Instructors
+
+In this exercise, we will be given a list of instructors and we will **create a single object** to organize them based on their course.
+
+Example:
+
+```js
+const organizeInstructors = function (instructors) {
+  // Put your solution here
+}
+
+console.log(
+  organizeInstructors([
+    { name: 'Samuel', course: 'iOS' },
+    { name: 'Victoria', course: 'Web' },
+    { name: 'Karim', course: 'Web' },
+    { name: 'Donald', course: 'Web' },
+  ])
+)
+
+// outcome
+// {
+//   iOS: ["Samuel"],
+//   Web: ["Victoria", "Karim", "Donald"]
+// }
+
+console.log(
+  organizeInstructors([
+    { name: 'Brendan', course: 'Blockchain' },
+    { name: 'David', course: 'Web' },
+    { name: 'Martha', course: 'iOS' },
+    { name: 'Carlos', course: 'Web' },
+  ])
+)
+
+// oputcome
+// {
+//   Blockchain: ["Brendan"],
+//   Web: ["David", "Carlos"],
+//   iOS: ["Martha"]
+// }
+```
+
+Create a function named `organizeInstructors()` that will receive an array of instructor objects, and will return a new object that has the following format:
+
+```js
+{
+  CourseName: [instructors]
+}
+```
+
+Possible Solution:
+
+```js
+const organizeInstructors = function (instructors) {
+  let result = {}
+
+  for (let item of instructors) {
+    let course = item.course
+    if (!result[course]) {
+      result[course] = [item.name]
+    } else {
+      result[course].push(item.name)
+    }
+  }
+  return result
+}
+
+console.log(
+  organizeInstructors([
+    { name: 'Samuel', course: 'iOS' },
+    { name: 'Victoria', course: 'Web' },
+    { name: 'Karim', course: 'Web' },
+    { name: 'Donald', course: 'Web' },
+  ])
+)
+
+// outcome
+// {
+//   iOS: ["Samuel"],
+//   Web: ["Victoria", "Karim", "Donald"]
+// }
+
+console.log(
+  organizeInstructors([
+    { name: 'Brendan', course: 'Blockchain' },
+    { name: 'David', course: 'Web' },
+    { name: 'Martha', course: 'iOS' },
+    { name: 'Carlos', course: 'Web' },
+  ])
+)
+
+// oputcome
+// {
+//   Blockchain: ["Brendan"],
+//   Web: ["David", "Carlos"],
+//   iOS: ["Martha"]
+// }
+```
