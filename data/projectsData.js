@@ -1,5 +1,11 @@
 const projectsData = [
   {
+    title: 'Bar Chart Generator',
+    description: `Create bar charts with custom data, labels and colors. Bars can display up to two data fields to produce a stacked bar chart. Created with vanilla HTML, CSS, JS with a touch of jQuery.`,
+    imgSrc: '/static/images/barChartApp.png',
+    href: 'https://github.com/Cwarcup/stretch-project-1',
+  },
+  {
     title: 'CSS Toggle Theme',
     description: `Toggle theme created with pure CSS.`,
     imgSrc: '/static/images/toggle-theme-css.png',
