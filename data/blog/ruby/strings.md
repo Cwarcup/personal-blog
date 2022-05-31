@@ -1,5 +1,5 @@
 ---
-title: Introduction to strings and numbers in Ruby
+title: Introduction to strings, numbers and operators in Ruby
 date: '2022-05-31'
 tags: ['ruby', 'strings']
 draft: false
@@ -281,3 +281,16 @@ num2 = gets.chomp.to_i
 operation = "#{num1} #{op} #{num2}"
 puts eval(operation).to_s
 ```
+
+# Operators in Ruby
+
+Good article on operators in Ruby: [here](https://www.tutorialspoint.com/ruby/ruby_operators.htm)
+
+| Operator  | Description                                                                 | Example                |
+| --------- | --------------------------------------------------------------------------- | ---------------------- |
+| `==`      | Checks if two values are equal.                                             |                        |
+| `!=`      | Checks if two values are not equal.                                         | a != b                 |
+| `>`       | Checks if one value is greater than another.                                | a > b                  |
+| `<`       | Checks if one value is less than another.                                   | a < b                  |
+| `<=>`     | Combined comparison operator. Returns 0 if equal, 1 if greater, -1 if less. | a <=> b                |
+| `.eql?()` | Checks if two values are equal.                                             | 10.eql?(10.0) => false |
