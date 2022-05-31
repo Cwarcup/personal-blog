@@ -1,12 +1,12 @@
 ---
-title: Introduction to strings in Ruby
+title: Introduction to strings and numbers in Ruby
 date: '2022-05-31'
 tags: ['ruby', 'strings']
 draft: false
 summary: Introduction to how strings work in Ruby. Includes examples of string interpolation, concatenation, methods and getting user input.
 ---
 
-# Strings
+# Strings in Ruby
 
 Use double or single quotes to define strings.
 
@@ -168,4 +168,116 @@ end
 
 full_name_length(first, last)
 # => name is 8 characters long
+```
+
+# Numbers in Ruby
+
+Can enter a repl by typing `irb` in the terminal.
+
+```ruby
+> 1 + 1
+=> 2
+
+> 10 / 4
+=> 2
+
+# However, we are missing the decimal. To fix this, we can use the `.to_f` method.
+> 10.to_f / 4
+=> 2.5
+
+# Or could add the decimal to the number.
+> 10.0 / 4
+=> 2.5
+```
+
+`.to_f` is a method that converts a number to a float.
+
+Doing the same thing with **variables**:
+
+```rb
+x = 5
+y = 10
+puts y / x
+=> 2
+```
+
+Can have a string multiplied by a number:
+
+```rb
+puts "I am a line"
+puts "-" * 10
+puts "I am below the line"
+
+=>
+# I am a line
+# ----------
+# I am below the line
+```
+
+> Creates a line of dashes.
+
+Can do something very similar with the `.times` method.
+
+```rb
+5.times { puts "hi" }
+
+=>  hi
+    hi
+    hi
+    hi
+    hi
+
+3.times { puts rand(10)} # Random number between 0 and 9.
+ => 3
+    5
+    7
+```
+
+## Convert string to integer
+
+If the string can be converted to a number, we can use the `.to_i` method.
+
+```rb
+puts "5".to_i
+=> 5
+```
+
+If you convert a string that **cannot** be converted to a number, it will return `0`.
+
+Example calculation:
+
+```rb
+puts "Simple calculator"
+25.times { print "-" }
+puts
+puts "Enter the first number"
+num1 = gets.chomp.to_i
+puts "Enter the second number"
+num2 = gets.chomp.to_i
+puts "The first number multiplied by the second number is #{num1 * num2}"
+
+=>
+# Simple calculator
+# -------------------------
+# Enter the first number
+# 5
+# Enter the second number
+# 10
+# The first number multiplied by the second number is 50
+```
+
+Can use any operator:
+
+```rb
+puts "Simple calculator"
+25.times { print "-" }
+puts ""
+puts "Enter the first number"
+num1 = gets.chomp.to_i
+puts "Enter the operator"
+op = gets.chomp # + - * /
+puts "Enter the second number"
+num2 = gets.chomp.to_i
+operation = "#{num1} #{op} #{num2}"
+puts eval(operation).to_s
 ```
