@@ -1,5 +1,11 @@
 const projectsData = [
   {
+    title: 'jsBooks - Interactive Notes and Code Cells',
+    description: `This is an interactive coding environment. You can write Javascript, see it executed, and write comprehensive documentation using markdown.`,
+    imgSrc: '/static/images/jsBooks.png',
+    href: 'https://github.com/Cwarcup/jbook',
+  },
+  {
     title: 'Bar Chart Generator',
     description: `Create bar charts with custom data, labels and colors. Bars can display up to two data fields to produce a stacked bar chart. Created with vanilla HTML, CSS, JS with a touch of jQuery.`,
     imgSrc: '/static/images/barChartApp.png',
