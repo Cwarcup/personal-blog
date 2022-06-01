@@ -1,5 +1,5 @@
 ---
-title: Sample .md file
+title: First Ruby Projects
 date: '2022-06-01'
 tags: ['ruby', 'projects']
 draft: false
@@ -73,4 +73,63 @@ while attempts < 4
   attempts += 1 #increment on each loop
 end
 puts "You have exceeded the number of attempts." if attempts == 4
+```
+
+# Project #2
+
+1. Create a dictionary (hash) with 10 city names, where the city name (key) will be a string, and the area code would be the value.
+
+2. Display the city names to the user for cities which are available in the dictionary
+
+3. Get input from the user on the city name (hint: use gets.chomp method)
+
+4. Display area code based on user's city choice
+
+5. Loop - keep the program running and prompt the user for new city names to lookup
+
+6. Complete the two methods to lookup city names and to find area code based on city names
+
+7. Please post your code to the Q & A/discussions area for the video
+
+```rb
+dial_book = {
+  "newyork" => "212",
+  "newbrunswick" => "732",
+  "edison" => "908",
+  "plainsboro" => "609",
+  "sanfrancisco" => "301",
+  "miami" => "305",
+  "paloalto" => "650",
+  "evanston" => "847",
+  "orlando" => "407",
+  "lancaster" => "717"
+}
+
+# Get city names from the hash
+def get_city_names(somehash)
+  somehash.keys
+end
+
+# Get area code based on given hash and key
+def get_area_code(somehash, key)
+  somehash[key]
+end
+
+get_area_code(dial_book, "newyork")
+
+# Execution flow
+loop do
+  puts "Do you want to lookup an area code based on a city name?(Y/N)"
+  answer = gets.chomp.downcase
+  break if answer != "y"
+  puts "What city are you looking for?"
+  puts get_city_names(dial_book)
+  city = gets.chomp.downcase.gsub(/\s+/, "")
+
+  if dial_book.include?(city)
+    puts "The area code you are looking for is #{get_area_code(dial_book, city)}"
+  else
+    puts "You entered an invalid city name"
+  end
+end
 ```
