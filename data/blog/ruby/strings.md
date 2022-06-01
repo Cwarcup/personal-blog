@@ -8,9 +8,9 @@ summary: Introduction to how strings work in Ruby. Includes examples of string i
 
 # Strings in Ruby
 
-Use double or single quotes to define strings.
+Use **double** or **single** quotes to define strings.
 
-- single quotes: wont be able to do string interpolation.
+- single quotes: wont be able to perform **string interpolation**.
 
 ```rb
 first_name = 'Curtis '
@@ -54,7 +54,7 @@ p full_name.empty?
 
 How do you replace a word in a string?
 
-- use the `gsub` [method](https://ruby-doc.org/core-2.5.3/String.html#method-i-gsub).
+- use the `.gsub` [method](https://ruby-doc.org/core-2.5.3/String.html#method-i-gsub).
 
 ```rb
 sentence = "Welcome to the jungle"
@@ -221,16 +221,16 @@ Can do something very similar with the `.times` method.
 ```rb
 5.times { puts "hi" }
 
-=>  hi
-    hi
-    hi
-    hi
-    hi
+# =>  hi
+#     hi
+#     hi
+#     hi
+#     hi
 
 3.times { puts rand(10)} # Random number between 0 and 9.
- => 3
-    5
-    7
+#  => 3
+#     5
+#     7
 ```
 
 ## Convert string to integer
@@ -286,11 +286,11 @@ puts eval(operation).to_s
 
 Good article on operators in Ruby: [here](https://www.tutorialspoint.com/ruby/ruby_operators.htm)
 
-| Operator  | Description                                                                 | Example                |
-| --------- | --------------------------------------------------------------------------- | ---------------------- |
-| `==`      | Checks if two values are equal.                                             |                        |
-| `!=`      | Checks if two values are not equal.                                         | a != b                 |
-| `>`       | Checks if one value is greater than another.                                | a > b                  |
-| `<`       | Checks if one value is less than another.                                   | a < b                  |
-| `<=>`     | Combined comparison operator. Returns 0 if equal, 1 if greater, -1 if less. | a <=> b                |
-| `.eql?()` | Checks if two values are equal.                                             | 10.eql?(10.0) => false |
+| Operator  | Description                                                                       | Example                  |
+| --------- | --------------------------------------------------------------------------------- | ------------------------ |
+| `==`      | Checks if two values are equal.                                                   |                          |
+| `!=`      | Checks if two values are not equal.                                               | `a != b`                 |
+| `>`       | Checks if one value is greater than another.                                      | `a > b`                  |
+| `<`       | Checks if one value is less than another.                                         | `a < b`                  |
+| `<=>`     | Combined comparison operator. Returns `0` if equal, `1` if greater, `-1` if less. | `a <=> b`                |
+| `.eql?()` | Checks if two values are equal.                                                   | `10.eql?(10.0) => false` |

@@ -3,7 +3,7 @@ title: Methods, Arrays and Hashes in Ruby
 date: '2022-06-01'
 tags: ['ruby', 'methods', 'arrays', 'Hashes']
 draft: false
-summary: Introduction to creating methods and some common array/hash methods.
+summary: 'Introduction to creating methods and some common array/hash methods.'
 ---
 
 # Methods in Ruby
@@ -148,7 +148,7 @@ p letters.shuffle
 
 ### Add to the end of an array
 
-Uses the **<<** operator.
+Uses the **`<<`** operator.
 
 ```rb
 letters = ["a", "b", "c"]
@@ -157,7 +157,7 @@ letters << "d" # => ["a", "b", "c", "d"]
 
 ### Add to the beginning of an array
 
-Uses the **unshift** operator.
+Uses the **`unshift`** operator.
 
 ```rb
 letters = ["a", "b", "c"]
@@ -166,7 +166,7 @@ letters.unshift("d") # => ["d", "a", "b", "c"]
 
 ### Add to the middle of an array
 
-Uses the **insert** operator.
+Uses the **`insert`** operator.
 
 `insert(index, obj)`
 
@@ -210,7 +210,7 @@ p letters # ["x", "x", "a", "b", "c", "d"]
 p letters.uniq # ["x", "a", "b", "c", "d"]
 ```
 
-## .split
+## `.split`
 
 Can be used on a long string to split it into an array of words.
 
@@ -219,7 +219,7 @@ letters = "a-b-c-d-e"
 p letters.split("-") # => ["a", "b", "c", "d", "e"]
 ```
 
-## %w()
+## `%w()`
 
 A notation to write an array of strings separated by spaces instead of commas and without quotes around them.
 
@@ -231,7 +231,7 @@ p %w[ a b c d e] # => ["a", "b", "c", "d", "e"]
 
 ## Iterating Over an Array
 
-### .each
+### `.each`
 
 Commonly use the **`.each`** method:
 
@@ -262,9 +262,9 @@ This is called a **block**.
 # => Apple is yummy
 ```
 
-### .select
+### `.select`
 
-Works on booleans. Returns an array of elements that are true.
+Works on `booleans`. Returns an array of elements that are `true`.
 
 For example, create an array with only odd numbers from 1 to 100:
 
@@ -290,7 +290,7 @@ p letters # => ["a", "b"]
 
 # Hashes / Dictionaries in Ruby
 
-Take for form like so:
+Example syntax:
 
 ```rb
 sample_hash = {

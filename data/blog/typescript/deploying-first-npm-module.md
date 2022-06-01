@@ -3,14 +3,14 @@ title: How to deploy a TypeScript NPM Module
 date: '2022-05-30'
 tags: ['typescript', 'NPM', 'deployment']
 draft: false
-summary: Outlines the steps to deploy a module written in TypeScript to the NPM registry.
+summary: 'Outlines the steps to deploy a module written in TypeScript to the NPM registry.'
 ---
 
 We are going to create a small NPM module that will be deployed to the NPM registry.
 
 Start off by creating a new project folder.
 
-```
+```zsh
 mkdir example-npm-module
 
 cd example-npm-deploy
