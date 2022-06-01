@@ -1,9 +1,9 @@
 ---
-title: Methods in Ruby
-date: '2022-05-31'
-tags: ['ruby', 'methods']
-draft: true
-summary: Introduction to how methods work in Ruby.
+title: Methods and Arrays in Ruby
+date: '2022-06-01'
+tags: ['ruby', 'methods', 'arrays']
+draft: false
+summary: Introduction to creating methods and some common array methods.
 ---
 
 # Methods in Ruby
