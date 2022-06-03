@@ -3,7 +3,7 @@ title: Introduction to Rails
 date: '2022-06-03'
 tags: ['ruby', 'rails', 'deploy', 'database']
 draft: false
-summary: 'Introduction to creating methods and some common array/hash methods.'
+summary: 'Covers the basics of Rails, adding new routes, creating databases and their CRUD operations.'
 ---
 
 # MVC - Rails App Structure
@@ -87,103 +87,6 @@ end
 7. Run `git push heroku main` to push to heroku.
 
 Ran easily rename the app by running `heroku rename <new_name>`.
-
-# Databases in Rails
-
-Columns in a table are known as **attributes**.
-Rows in a table are known as **records**.
-
-| id  | title    | description                     | user_id |
-| --- | -------- | ------------------------------- | ------- |
-| 1   | Ruby     | Ruby is a programming language. | 1       |
-| 2   | Rails    | Rails is a web framework.       | 1       |
-| 3   | Postgres | Postgres is a database.         | 2       |
-| 4   | SQLite   | SQLite is a database.           | 3       |
-
-All databases need to be able to...**CRUD**
-
-- Create tables
-- Read records
-- Update records
-- Delete records
-
-## SQL (Structured Query Language)
-
-Is used to communicate with databases. There are slight various variations of SQL (Microsoft SQL, MySQL, PostgreSQL, SQLite, etc.), but they all use the same basic syntax.
-
-## ORM (Object Relational Mapping)
-
-Is a way to map Ruby objects to database tables. The database is just sitting there with data. An ORM comes into play by mapping the data in the database to Ruby objects.
-
-Inside the `models` folder you will notice a file called `application_record.rb`. This is a special file that Rails uses to connect your models to the database. You'll see it uses the `ActiveRecord` module to connect to the database.
-
-Essentially, this allows you to write Ruby code which gets translated to SQL queries, which interacts with the database using the `ActiveRecord` module.
-
-## Scaffolding
-
-Can easily [create](https://guides.rubyonrails.org/v3.2/getting_started.html) a database table for your model by using the `$ rails generate scaffold Post name:string title:string content:text` command.
-
-```zsh
-rails generate scaffold Articles title:string description:text
-```
-
-Can then run the `rails db:migrate` command to create the table in the database. Now if you look in the `db/migrate` folder you'll see a new migration file.
-
-It also adds an `articles_controller.rb` file to the `controllers` folder, and `article.r`b model file to the `models` folder.
-
-## Routes
-
-Can easily see all routes in your application by running the `rails routes --expanded` command.
-
-```zsh
---[ Route 1 ]-----------------------------------------------------------------------------------------------------------------------------------
-Prefix            | articles
-Verb              | GET
-URI               | /articles(.:format)
-Controller#Action | articles#index
---[ Route 2 ]-----------------------------------------------------------------------------------------------------------------------------------
-Prefix            |
-Verb              | POST
-URI               | /articles(.:format)
-Controller#Action | articles#create
---[ Route 3 ]-----------------------------------------------------------------------------------------------------------------------------------
-Prefix            | new_article
-Verb              | GET
-URI               | /articles/new(.:format)
-Controller#Action | articles#new
---[ Route 4 ]-----------------------------------------------------------------------------------------------------------------------------------
-Prefix            | edit_article
-Verb              | GET
-URI               | /articles/:id/edit(.:format)
-Controller#Action | articles#edit
---[ Route 5 ]-----------------------------------------------------------------------------------------------------------------------------------
-Prefix            | article
-Verb              | GET
-URI               | /articles/:id(.:format)
-Controller#Action | articles#show
---[ Route 6 ]-----------------------------------------------------------------------------------------------------------------------------------
-Prefix            |
-Verb              | PATCH
-URI               | /articles/:id(.:format)
-Controller#Action | articles#update
---[ Route 7 ]-----------------------------------------------------------------------------------------------------------------------------------
-Prefix            |
-Verb              | PUT
-URI               | /articles/:id(.:format)
-Controller#Action | articles#update
---[ Route 8 ]-----------------------------------------------------------------------------------------------------------------------------------
-Prefix            |
-Verb              | DELETE
-URI               | /articles/:id(.:format)
-Controller#Action | articles#destroy
---[ Route 9 ]-----------------------------------------------------------------------------------------------------------------------------------
-Prefix            | root
-Verb              | GET
-URI               | /
-Controller#Action | pages#home
-```
-
-Can go to `/articles` to create a new article.
 
 # Databases in Rails
 
