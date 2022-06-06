@@ -185,6 +185,33 @@ Controller#Action | pages#home
 
 Can go to `/articles` to create a new article.
 
+## Adding a new route to your Rails application
+
+1. Add the following **route** to the `config/routes.rb` file:
+
+```rb
+Rails.application.routes.draw do
+  root 'pages#home' # This is the homepage
+  get 'about', to: 'pages#about' # new route here
+end
+```
+
+2. Add a new **action** to the `pages_controller.rb` file:
+
+```rb
+class PagesController < ApplicationController
+  def home
+  end
+
+  def about # new action here
+  end
+end
+```
+
+3. add a new **view** template to the `views` folder:
+   - Create a new file named `about.html.erb`
+   - Here is where you can add your HTML.
+
 # Creating a database manually
 
 Run: `rails generate migration create_articles` to create a new migration file. This will create a new table in the database. Open this file.
