@@ -93,3 +93,106 @@ Processing by ArticlesController#show as HTML
 # Building a list of items from a database
 
 We want to be able to go to a page that shows a list of articles. For example, going to 'http://localhost:3000/articles' would show a list of articles.
+
+Recall, we use the URL route to search our configuration file for a matching **route**.
+
+```rb
+Rails.application.routes.draw do
+  root 'pages#home'
+  get 'about', to: 'pages#about'
+  resources :articles, only: [:show]
+end
+```
+
+The **controller** will search for a matching route and then call the action. The controller also searches the database for any variables that are passed to it. Remember to add the `@` symbol to the variable name.
+
+```rb
+class ArticlesController < ApplicationController
+  def show
+    @article = Article.find(params[:id])
+  end
+end
+```
+
+This includes the `@article` variable that we can use in the view. This information may get passed to the **view** by the controller, which gets passed back to the browsers.
+
+```html
+<h1>Showing article details</h1>
+
+<p>
+  <strong>Title: </strong>
+  <%= @article.title %>
+</p>
+<p>
+  <strong>Description: </strong>
+  <%= @article.description %>
+</p>
+```
+
+The controller also communicates with the **model** to get the data.
+
+```rb
+# example model
+class Article < ApplicationRecord
+  validates :title, presence: true, length: { minimum: 3, maximum: 50 }
+  validates :description, presence: true, length: { minimum: 5, maximum: 500 }
+end
+```
+
+So, now we know our work flow.
+
+1. Need to add a route to the configuration file to get the articles index page.
+
+```rb
+Rails.application.routes.draw do
+ root 'pages#home'
+ get 'about', to: 'pages#about'
+ resources :articles only: [:show, :index,]
+end
+```
+
+2. Need to create a new view for the articles index page.
+
+```rb
+<h1>Articles listing page</h1>
+
+<table>
+<thead>
+  <tr>
+    <th>Title</th>
+    <th>Description</th>
+    <th>Actions</th>
+  </tr>
+</thead>
+
+<tbody>
+  <% @articles.each do |article| %>
+    <tr>
+      <td>
+        <%= article.title %>
+      </td>
+      <td>
+        <%= article.description %>
+      </td>
+      <td>palceholder</td>
+    </tr>
+    <% end %>
+</tbody>
+
+</table>
+```
+
+3. Build the controller for the articles index page.
+
+```rb
+class ArticlesController < ApplicationController
+
+  def show
+    @article = Article.find(params[:id])
+  end
+
+  def index  # this is the action that gets called when we go to http://localhost:3000/articles
+    @articles = Article.all # this is where we get the data from the model
+  end
+end
+```
