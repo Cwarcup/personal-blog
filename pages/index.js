@@ -7,8 +7,6 @@ import formatDate from '@/lib/utils/formatDate'
 import Image from '@/components/Image'
 import Hero from '@/components/Hero'
 
-import NewsletterForm from '@/components/NewsletterForm'
-
 const MAX_DISPLAY = 8
 
 export async function getStaticProps() {
@@ -22,80 +20,63 @@ export default function Home({ posts }) {
     <>
       <PageSEO title={siteMetadata.title} description={siteMetadata.description} />
       <Hero />
-      <div className="divide-y divide-gray-200 dark:divide-gray-700">
-        <div className="space-y-2 pt-6 md:space-y-5">
-          <h2 className="flex pb-6 text-2xl font-extrabold tracking-tight text-gray-900 dark:text-gray-100 sm:text-3xl md:text-5xl">
-            Latest
-          </h2>
+      <div className="container mx-auto">
+        <div className="my-4 flex flex-col">
+          <span className="font-poppins title-font text-3xl font-bold">Previous Posts</span>
         </div>
-        <ul className="divide-y divide-gray-200 dark:divide-gray-700">
+        <div className="grid grid-cols-1 gap-8 md:grid-cols-2 xl:grid-cols-3">
           {!posts.length && 'No posts found.'}
           {posts.slice(0, MAX_DISPLAY).map((frontMatter) => {
-            const { slug, date, title, summary, tags } = frontMatter
+            const { slug, date, title, summary, tags, images } = frontMatter
             return (
-              <li key={slug} className="py-12">
-                <article>
-                  <div className="space-y-2 xl:grid xl:grid-cols-4 xl:items-baseline xl:space-y-0">
-                    <dl>
-                      <dt className="sr-only">Published on</dt>
-                      <dd className="text-base font-medium leading-6 text-gray-500 dark:text-gray-400">
-                        <time dateTime={date}>{formatDate(date)}</time>
-                      </dd>
-                    </dl>
-                    <div className="space-y-5 xl:col-span-3">
-                      <div className="space-y-6">
-                        <div>
-                          <h2 className="text-2xl font-bold leading-8 tracking-tight">
-                            <Link
-                              href={`/blog/${slug}`}
-                              className="text-gray-900 dark:text-gray-100"
-                            >
-                              {title}
-                            </Link>
-                          </h2>
-                          <div className="flex flex-wrap">
-                            {tags.map((tag) => (
-                              <Tag key={tag} text={tag} />
-                            ))}
-                          </div>
-                        </div>
-                        <div className="prose max-w-none text-gray-500 dark:text-gray-400">
-                          {summary}
-                        </div>
-                      </div>
-                      <div className="text-base font-medium leading-6">
-                        <Link
-                          href={`/blog/${slug}`}
-                          className="text-primary-500 hover:text-primary-600 dark:hover:text-primary-400"
-                          aria-label={`Read "${title}"`}
-                        >
-                          Read more &rarr;
-                        </Link>
-                      </div>
-                    </div>
+              <div
+                key={slug}
+                className="group bg-day dark:bg-night w-full bg-opacity-50 dark:bg-opacity-50 "
+              >
+                <div className="c-card block transform overflow-hidden rounded-lg  bg-transparent transition duration-500 group-hover:scale-105">
+                  <div className="relative max-h-4 overflow-hidden rounded-lg pb-60">
+                    <span>
+                      <img
+                        alt={title}
+                        src={images}
+                        className="absolute inset-0 h-full w-full  object-cover "
+                      />
+                    </span>
                   </div>
-                </article>
-              </li>
+                  <div className="py-4 px-2">
+                    <span className="inline-flex w-full items-center justify-between">
+                      <span className="inline-block rounded border border-gray-700 py-1 px-2 text-xs font-medium">
+                        {tags.map((tag) => (
+                          <Tag key={tag} text={tag} />
+                        ))}
+                      </span>
+                      <time dateTime={date}>{formatDate(date)}</time>
+                    </span>
+                    <h2 className="mt-2 mb-2 font-bold md:text-xl">
+                      <Link href={`/blog/${slug}`} className="dark:text-gray-100">
+                        {title}
+                      </Link>
+                    </h2>
+                    <p className="text-sm tracking-wider dark:text-gray-300">{summary}</p>
+                  </div>
+                </div>
+              </div>
             )
           })}
-        </ul>
+        </div>
+
+        {posts.length > MAX_DISPLAY && (
+          <div className="flex justify-end text-base font-medium leading-6">
+            <Link
+              href="/posts"
+              className="text-primary-500 dark:hover:text-primary-400"
+              aria-label="all posts"
+            >
+              All Posts &rarr;
+            </Link>
+          </div>
+        )}
       </div>
-      {posts.length > MAX_DISPLAY && (
-        <div className="flex justify-end text-base font-medium leading-6">
-          <Link
-            href="/blog"
-            className="text-primary-500 hover:text-primary-600 dark:hover:text-primary-400"
-            aria-label="all posts"
-          >
-            All Posts &rarr;
-          </Link>
-        </div>
-      )}
-      {siteMetadata.newsletter.provider !== '' && (
-        <div className="flex items-center justify-center pt-4">
-          <NewsletterForm />
-        </div>
-      )}
     </>
   )
 }

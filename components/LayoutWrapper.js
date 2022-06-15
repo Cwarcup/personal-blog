@@ -36,7 +36,7 @@ const LayoutWrapper = ({ children }) => {
       <header className={classes} ref={ref}>
         <div className="mx-auto flex max-w-3xl items-center justify-between px-4 sm:px-6 xl:max-w-5xl xl:px-0">
           <div>
-            <Link href="/" aria-label="rooks blog">
+            <Link href="/" aria-label="Curtis Warcup">
               <div className="flex items-center justify-between">
                 <div className="mr-3">
                   <Logo />

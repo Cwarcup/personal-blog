@@ -1,5 +1,11 @@
 const projectsData = [
   {
+    title: 'On Your Mental Podcast',
+    description: `Website for Reuben's podcast On Your Mental. This was a great learning experience to teach me about Tailwind CSS and Nextjs.`,
+    imgSrc: '/static/images/onyourmental.png',
+    href: 'https://github.com/Cwarcup/on-your-mental',
+  },
+  {
     title: 'jsBooks - Interactive Notes and Code Cells',
     description: `This is an interactive coding environment. You can write Javascript, see it executed, and write comprehensive documentation using markdown.`,
     imgSrc: '/static/images/jsBooks.png',
