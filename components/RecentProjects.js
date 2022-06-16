@@ -9,7 +9,6 @@ const RecentProjects = ({ MAX_PROJECTS }) => {
 
   return (
     <>
-      <PageSEO title={`Projects - ${siteMetadata.author}`} description={siteMetadata.description} />
       <div className="divide-y divide-gray-200 dark:divide-gray-700">
         <div className="my-4">
           <span className="font-poppins title-font text-3xl font-bold">Recent Projects</span>
