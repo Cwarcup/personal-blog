@@ -4,7 +4,7 @@ const siteMetadata = {
   headerTitle: "Curtis' Journey",
   description: 'Curtis Warcup site',
   language: 'en-us',
-  theme: 'system', // system, dark or light
+  theme: 'dark', // system, dark or light
   siteUrl: 'https://curtcodes.vercel.app/',
   siteRepo: 'https://github.com/Cwarcup/personal-blog',
   siteLogo: '/static/images/logo.png',

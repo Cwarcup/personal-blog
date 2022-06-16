@@ -31,7 +31,7 @@ export default function Home({ posts }) {
             return (
               <div
                 key={slug}
-                className="group bg-day dark:bg-night w-full bg-opacity-50 dark:bg-opacity-50 "
+                className="group bg-day w-full rounded-lg bg-opacity-50 dark:bg-slate-700 dark:bg-opacity-30 "
               >
                 <div className="c-card block transform overflow-hidden rounded-lg  bg-transparent transition duration-500 group-hover:scale-105">
                   <div className="relative max-h-4 overflow-hidden rounded-lg pb-60">
