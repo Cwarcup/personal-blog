@@ -3,7 +3,7 @@ import Link from './Link'
 import { motion } from 'framer-motion'
 
 const ProjectCard = ({ title, description, imgSrc, href }) => (
-  <div className="group bg-day  w-full  rounded-lg bg-opacity-50 dark:bg-slate-700 dark:bg-opacity-30 ">
+  <div className="group rounded-lg ">
     <motion.div
       whileHover={{ scale: 1.02 }}
       whileTap={{ scale: 0.98 }}
@@ -13,7 +13,7 @@ const ProjectCard = ({ title, description, imgSrc, href }) => (
         <Image
           alt={title}
           src={imgSrc}
-          className="absolute inset-0 h-full w-full  object-cover "
+          className="absolute inset-0 h-full w-full rounded-lg object-cover "
           width="300px"
           height="250px"
         />

@@ -36,10 +36,11 @@ export default function Home({ posts }) {
                 key={slug}
                 whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.98 }}
-                className=" group bg-day w-full rounded-lg bg-opacity-50 dark:bg-slate-700 dark:bg-opacity-30 "
+                className=" group bg-day relative h-full rounded-lg   "
               >
-                <div className="c-card block overflow-hidden rounded-lg  bg-transparent">
-                  <div className="relative max-h-4 overflow-hidden rounded-lg pb-60">
+                <div className="animate-tilt absolute -inset-0.5 rounded-lg bg-gradient-to-r from-green-600 to-amber-500 opacity-25 blur transition duration-1000 group-hover:opacity-100 group-hover:duration-200"></div>
+                <a className="c-card relative block h-full overflow-hidden rounded-lg dark:bg-[#0F141A]">
+                  <div className="group relative max-h-4 overflow-hidden rounded-lg pb-60">
                     <span>
                       <img
                         alt={title}
@@ -48,7 +49,7 @@ export default function Home({ posts }) {
                       />
                     </span>
                   </div>
-                  <div className="py-4 px-2">
+                  <div className="h-full py-4 px-2">
                     <span className="inline-flex w-full items-center justify-between">
                       <span className="inline-block rounded border border-gray-700 py-1 px-2 text-xs font-medium">
                         {tags.map((tag) => (
@@ -62,19 +63,19 @@ export default function Home({ posts }) {
                         {title}
                       </Link>
                     </h2>
-                    <p className="text-sm tracking-wider dark:text-gray-300">{summary}</p>
+                    <p className="h-auto text-sm tracking-wider dark:text-gray-300">{summary}</p>
                   </div>
-                </div>
+                </a>
               </motion.div>
             )
           })}
         </div>
 
         {posts.length > MAX_DISPLAY && (
-          <div className="flex justify-end text-base font-medium leading-6">
+          <div className="mt-5 flex justify-end text-base font-medium leading-6">
             <Link
               href="/posts"
-              className="text-primary-500 dark:hover:text-primary-400"
+              className="mt-5 text-primary-500 dark:hover:text-primary-400"
               aria-label="all posts"
             >
               All Posts &rarr;
