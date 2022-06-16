@@ -6,6 +6,7 @@ import { getAllFilesFrontMatter } from '@/lib/mdx'
 import formatDate from '@/lib/utils/formatDate'
 import Image from '@/components/Image'
 import Hero from '@/components/Hero'
+import RecentProjects from '@/components/RecentProjects'
 
 const MAX_DISPLAY = 4
 
@@ -20,11 +21,12 @@ export default function Home({ posts }) {
     <>
       <PageSEO title={siteMetadata.title} description={siteMetadata.description} />
       <Hero />
-      <div className="container mx-auto">
+      <RecentProjects MAX_PROJECTS="2" />
+      <div className="container mx-auto divide-y divide-gray-200 dark:divide-gray-700">
         <div className="my-4 flex flex-col">
-          <span className="font-poppins title-font text-3xl font-bold">Previous Posts</span>
+          <span className="font-poppins title-font  text-3xl font-bold">Previous Posts</span>
         </div>
-        <div className="grid grid-cols-1 gap-8 md:grid-cols-2 xl:grid-cols-3">
+        <div className="grid grid-cols-1 gap-8 pt-10 md:grid-cols-2 xl:grid-cols-3">
           {!posts.length && 'No posts found.'}
           {posts.slice(0, MAX_DISPLAY).map((frontMatter) => {
             const { slug, date, title, summary, tags, images } = frontMatter

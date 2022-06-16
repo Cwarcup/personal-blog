@@ -1,7 +1,7 @@
 const siteMetadata = {
-  title: "Curtis' Journey",
+  title: 'Code Sponge',
   author: 'Curtis Warcup',
-  headerTitle: "Curtis' Journey",
+  headerTitle: 'Code Sponge',
   description: 'Curtis Warcup site',
   language: 'en-us',
   theme: 'dark', // system, dark or light
