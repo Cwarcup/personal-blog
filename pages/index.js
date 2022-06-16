@@ -36,7 +36,7 @@ export default function Home({ posts }) {
                 key={slug}
                 whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.98 }}
-                className=" group bg-day relative h-full rounded-lg   "
+                className="group bg-day relative h-full rounded-lg"
               >
                 <div className="animate-tilt absolute -inset-0.5 rounded-lg bg-gradient-to-r from-green-600 to-amber-500 opacity-25 blur transition duration-1000 group-hover:opacity-100 group-hover:duration-200"></div>
                 <a className="c-card relative block h-full overflow-hidden rounded-lg dark:bg-cardBg">
