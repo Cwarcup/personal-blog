@@ -1,7 +1,11 @@
 ---
 title: Methods, Arrays and Hashes in Ruby
 date: '2022-06-01'
-tags: ['ruby', 'methods', 'arrays', 'Hashes']
+tags: ['ruby']
+images:
+  [
+    'https://images.unsplash.com/photo-1590959651373-a3db0f38a961?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1039&q=80',
+  ]
 draft: false
 summary: 'Introduction to creating methods and some common array/hash methods.'
 ---

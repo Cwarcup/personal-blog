@@ -1,7 +1,11 @@
 ---
 title: Getting to know classes, modules and mixins
 date: '2022-06-02'
-tags: ['ruby', 'modules', 'bcrypt', 'mixins']
+tags: ['ruby']
+images:
+  [
+    'https://images.unsplash.com/photo-1522252234503-e356532cafd5?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1325&q=80',
+  ]
 draft: false
 summary: Basic understanding of creating modules, requiring modules, and using bcrypt to hash passwords. Also includes a mixin to add a `.create_hash_digest` method to classes.
 ---

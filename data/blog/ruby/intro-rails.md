@@ -1,7 +1,7 @@
 ---
 title: Introduction to Rails
 date: '2022-06-03'
-tags: ['ruby', 'rails', 'deploy', 'database']
+tags: ['ruby', 'rails']
 draft: false
 images:
   [
