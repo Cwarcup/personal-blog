@@ -1,12 +1,11 @@
 import { useState, useEffect, useRef } from 'react'
 import siteMetadata from '@/data/siteMetadata'
 import headerNavLinks from '@/data/headerNavLinks'
-import Logo from '@/data/logo.svg'
+import Logo from '@/data/logo-header.svg'
 import Link from './Link'
 import SectionContainer from './SectionContainer'
 import Footer from './Footer'
 import MobileNav from './MobileNav'
-import ThemeSwitch from './ThemeSwitch'
 
 const LayoutWrapper = ({ children }) => {
   const [stuck, setStuck] = useState(false)
