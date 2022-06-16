@@ -1,8 +1,8 @@
 const siteMetadata = {
-  title: 'Code Sponge',
+  title: 'Curtis Warcup',
   author: 'Curtis Warcup',
-  headerTitle: 'Code Sponge',
-  description: 'Curtis Warcup site',
+  headerTitle: '',
+  description: 'Curtis Warcup personal blog and portfolio site.',
   language: 'en-us',
   theme: 'dark', // system, dark or light
   siteUrl: 'https://curtcodes.vercel.app/',
