@@ -7,7 +7,7 @@ import formatDate from '@/lib/utils/formatDate'
 import Image from '@/components/Image'
 import Hero from '@/components/Hero'
 
-const MAX_DISPLAY = 8
+const MAX_DISPLAY = 4
 
 export async function getStaticProps() {
   const posts = await getAllFilesFrontMatter('blog')

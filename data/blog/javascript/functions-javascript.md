@@ -1,6 +1,7 @@
 ---
 title: Functions in JavaScript
 date: '2022-06-06'
+images: 'https://images.unsplash.com/photo-1627398242454-45a1465c2479?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwzMTE0Mzh8MHwxfHNlYXJjaHwxfHxqYXZhc2NyaXB0fGVufDB8fHx8MTY1NTM5NTE4OA&ixlib=rb-1.2.1&q=80&w=1080"'
 tags: ['javascript', 'hoisting']
 draft: false
 summary: Covers topics like hoisting, functions, and scope.
