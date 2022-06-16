@@ -7,6 +7,7 @@ import formatDate from '@/lib/utils/formatDate'
 import Image from '@/components/Image'
 import Hero from '@/components/Hero'
 import RecentProjects from '@/components/RecentProjects'
+import { motion } from 'framer-motion'
 
 const MAX_DISPLAY = 4
 
@@ -31,11 +32,13 @@ export default function Home({ posts }) {
           {posts.slice(0, MAX_DISPLAY).map((frontMatter) => {
             const { slug, date, title, summary, tags, images } = frontMatter
             return (
-              <div
+              <motion.div
                 key={slug}
-                className="group bg-day w-full rounded-lg bg-opacity-50 dark:bg-slate-700 dark:bg-opacity-30 "
+                whileHover={{ scale: 1.02 }}
+                whileTap={{ scale: 0.98 }}
+                className=" group bg-day w-full rounded-lg bg-opacity-50 dark:bg-slate-700 dark:bg-opacity-30 "
               >
-                <div className="c-card block transform overflow-hidden rounded-lg  bg-transparent transition duration-500 group-hover:scale-105">
+                <div className="c-card block overflow-hidden rounded-lg  bg-transparent">
                   <div className="relative max-h-4 overflow-hidden rounded-lg pb-60">
                     <span>
                       <img
@@ -62,7 +65,7 @@ export default function Home({ posts }) {
                     <p className="text-sm tracking-wider dark:text-gray-300">{summary}</p>
                   </div>
                 </div>
-              </div>
+              </motion.div>
             )
           })}
         </div>
