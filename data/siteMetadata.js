@@ -5,7 +5,7 @@ const siteMetadata = {
   description: 'Curtis Warcup personal blog and portfolio site.',
   language: 'en-us',
   theme: 'dark', // system, dark or light
-  siteUrl: 'https://curtcodes.vercel.app/',
+  siteUrl: 'https://cwarcup.com/',
   siteRepo: 'https://github.com/Cwarcup/personal-blog',
   siteLogo: '/static/images/logo.png',
   image: '/static/images/avatar.jpg',
