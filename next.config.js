@@ -4,14 +4,14 @@ const withBundleAnalyzer = require('@next/bundle-analyzer')({
 
 // You might need to insert additional domains in script-src if you are using external services
 const ContentSecurityPolicy = `
-  default-src 'self';
-  script-src 'self' 'unsafe-eval' 'unsafe-inline' giscus.app vitals.vercel-insights.com www.googletagmanager.com www.google-analytics.com;
-  style-src 'self' 'unsafe-inline' *.googleapis.com;
-  img-src * blob: data:;
-  media-src 'none';
-  connect-src *;
-  font-src 'self' fonts.gstatic.com cdn.jsdelivr.net;
-  frame-src giscus.app youtube.com www.youtube.com;
+default-src 'self';
+script-src 'self' 'unsafe-eval' 'unsafe-inline' www.googletagmanager.com www.google-analytics.com vitals.vercel-insights.com;
+style-src 'self' 'unsafe-inline' *.googleapis.com cdn.jsdelivr.net;
+frame-src youtube.com www.youtube.com;
+img-src * blob: data:;
+media-src 'self'  *.buzzsprout.com;
+connect-src *;
+font-src 'self' fonts.gstatic.com cdn.jsdelivr.net
 `
 
 const securityHeaders = [
