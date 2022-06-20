@@ -1,14 +1,9 @@
 import Image from './Image'
 import Link from './Link'
-import { motion } from 'framer-motion'
 
 const ProjectCard = ({ title, description, imgSrc, href }) => (
   <div className="group rounded-lg ">
-    <motion.div
-      whileHover={{ scale: 1.02 }}
-      whileTap={{ scale: 0.98 }}
-      className=" grid items-center gap-3 overflow-hidden rounded-lg bg-transparent py-2  md:grid-cols-2 md:grid-rows-1"
-    >
+    <div className="grid items-center gap-3 overflow-hidden rounded-lg bg-transparent py-2  md:grid-cols-2 md:grid-rows-1">
       <Image
         alt={title}
         src={imgSrc}
@@ -24,7 +19,7 @@ const ProjectCard = ({ title, description, imgSrc, href }) => (
         </h2>
         <p className="text-sm tracking-wider dark:text-gray-300">{description}</p>
       </div>
-    </motion.div>
+    </div>
   </div>
 )
 
