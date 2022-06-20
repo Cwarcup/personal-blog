@@ -38,13 +38,15 @@ export default function Home({ posts }) {
                 <div className="animate-tilt absolute -inset-0.5 rounded-lg bg-gradient-to-r from-green-600 to-amber-500 opacity-25 blur transition duration-1000 group-hover:opacity-100 group-hover:duration-200"></div>
                 <a className="c-card relative block h-full overflow-hidden rounded-lg dark:bg-cardBg">
                   <div className="group relative max-h-4 overflow-hidden rounded-lg pb-60">
-                    <span>
-                      <img
-                        alt={title}
-                        src={images}
-                        className="absolute inset-0 h-full w-full  object-cover "
-                      />
-                    </span>
+                    <Link href={`/blog/${slug}`}>
+                      <span>
+                        <img
+                          alt={title}
+                          src={images}
+                          className="absolute inset-0 h-full w-full  object-cover "
+                        />
+                      </span>
+                    </Link>
                   </div>
                   <div className="h-full py-4 px-2">
                     <span className="inline-flex w-full items-center justify-between">
