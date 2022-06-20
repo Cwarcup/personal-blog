@@ -7,7 +7,6 @@ import formatDate from '@/lib/utils/formatDate'
 import Image from '@/components/Image'
 import Hero from '@/components/Hero'
 import RecentProjects from '@/components/RecentProjects'
-import { motion } from 'framer-motion'
 
 const MAX_DISPLAY = 6
 
@@ -25,18 +24,16 @@ export default function Home({ posts }) {
       <RecentProjects MAX_PROJECTS="2" />
       <div className="container mx-auto divide-y divide-gray-200 dark:divide-gray-700">
         <div className="my-4 flex flex-col">
-          <span className="font-poppins title-font  text-3xl font-bold">Previous Posts</span>
+          <span className="font-poppins title-font  text-3xl font-bold">Recent Posts</span>
         </div>
         <div className="grid grid-cols-1 gap-8 pt-10 md:grid-cols-2 xl:grid-cols-3">
           {!posts.length && 'No posts found.'}
           {posts.slice(0, MAX_DISPLAY).map((frontMatter) => {
             const { slug, date, title, summary, tags, images } = frontMatter
             return (
-              <motion.div
+              <div
                 key={slug}
-                whileHover={{ scale: 1.02 }}
-                whileTap={{ scale: 0.98 }}
-                className="group bg-day relative h-full rounded-lg"
+                className="group bg-day relative h-full transform rounded-lg transition duration-500 hover:scale-105"
               >
                 <div className="animate-tilt absolute -inset-0.5 rounded-lg bg-gradient-to-r from-green-600 to-amber-500 opacity-25 blur transition duration-1000 group-hover:opacity-100 group-hover:duration-200"></div>
                 <a className="c-card relative block h-full overflow-hidden rounded-lg dark:bg-cardBg">
@@ -66,7 +63,7 @@ export default function Home({ posts }) {
                     <p className="h-auto text-sm tracking-wider dark:text-gray-300">{summary}</p>
                   </div>
                 </a>
-              </motion.div>
+              </div>
             )
           })}
         </div>
