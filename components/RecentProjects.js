@@ -1,6 +1,4 @@
-import siteMetadata from '@/data/siteMetadata'
 import projectsData from '@/data/projectsData'
-import Card from '@/components/Card'
 import { PageSEO } from '@/components/SEO'
 import ProjectCard from '@/components/ProjectCard'
 
