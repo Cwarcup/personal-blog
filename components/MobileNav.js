@@ -58,17 +58,37 @@ const MobileNav = () => {
           onClick={onToggleNav}
         ></button>
         <nav className="fixed mt-8 h-full">
-          {headerNavLinks.map((link) => (
-            <div key={link.title} className="px-12 py-4">
-              <Link
-                href={link.href}
-                className="mono-type text-2xl font-bold tracking-widest text-gray-100"
-                onClick={onToggleNav}
-              >
-                {link.title} &rarr;
-              </Link>
-            </div>
-          ))}
+          {headerNavLinks.map((link) => {
+            if (link.type !== 'dropdown') {
+              return (
+                <div key={link.title} className="px-12 py-4">
+                  <Link
+                    href={link.href}
+                    className="mono-type text-2xl font-bold tracking-widest text-gray-100"
+                    onClick={onToggleNav}
+                  >
+                    {link.title} &rarr;
+                  </Link>
+                </div>
+              )
+            }
+
+            return (
+              <>
+                {link.links.map((item, index) => (
+                  <div key={index} className="px-12 py-4">
+                    <Link
+                      href={item.href}
+                      className="mono-type text-2xl font-bold tracking-widest text-gray-100"
+                      onClick={onToggleNav}
+                    >
+                      {item.title} &rarr;
+                    </Link>
+                  </div>
+                ))}
+              </>
+            )
+          })}
         </nav>
       </div>
     </div>
