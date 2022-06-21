@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import Link from './Link'
 import headerNavLinks from '@/data/headerNavLinks'
+import { ChevronRightIcon } from '@heroicons/react/solid'
 
 const MobileNav = () => {
   const [navShow, setNavShow] = useState(false)
@@ -61,13 +62,19 @@ const MobileNav = () => {
           {headerNavLinks.map((link) => {
             if (link.type !== 'dropdown') {
               return (
-                <div key={link.title} className="px-12 py-4">
+                <div key={link.title} className="flex items-center px-12 py-4">
                   <Link
                     href={link.href}
                     className="mono-type text-2xl font-bold tracking-widest text-gray-100"
                     onClick={onToggleNav}
                   >
-                    {link.title} &rarr;
+                    {link.title}
+                  </Link>
+                  <Link href={link.href}>
+                    <ChevronRightIcon
+                      className="ml-2 -mr-1 h-5 w-5 text-violet-200 hover:text-violet-100"
+                      aria-hidden="true"
+                    />
                   </Link>
                 </div>
               )
@@ -76,13 +83,19 @@ const MobileNav = () => {
             return (
               <>
                 {link.links.map((item, index) => (
-                  <div key={index} className="px-12 py-4">
+                  <div key={index} className="flex items-center  px-12 py-4">
                     <Link
                       href={item.href}
                       className="mono-type text-2xl font-bold tracking-widest text-gray-100"
                       onClick={onToggleNav}
                     >
-                      {item.title} &rarr;
+                      {item.title}
+                    </Link>
+                    <Link href={item.href}>
+                      <ChevronRightIcon
+                        className="ml-2 -mr-1 h-5 w-5 text-violet-200 hover:text-violet-100"
+                        aria-hidden="true"
+                      />
                     </Link>
                   </div>
                 ))}
