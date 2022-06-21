@@ -12,9 +12,9 @@ const LayoutWrapper = ({ children }) => {
   const ref = useRef()
 
   const stuckClasses =
-    'py-2 sticky top-n-1 z-50 transition-all backdrop isSticky mx-auto border-b border-slate-900/10 dark:border-slate-300/10 mb-16 w-full'
+    'py-2 sticky top-n-1 z-50 transition-all backdrop isSticky mx-auto border-b border-slate-300/10 mb-16 w-full'
   const unstuckClasses =
-    'py-2 md:py-8 sticky top-n-1 z-50 transition-all backdrop mx-auto border-b border-b-0 border-slate-900/10 dark:border-slate-300/10 mb-16 w-full'
+    'py-2 md:py-8 sticky top-n-1 z-50 transition-all backdrop mx-auto border-b border-b-0 border-slate-300/10 mb-16 w-full'
 
   const classes = stuck ? stuckClasses : unstuckClasses
 
@@ -41,7 +41,7 @@ const LayoutWrapper = ({ children }) => {
                   <Logo />
                 </div>
                 {typeof siteMetadata.headerTitle === 'string' ? (
-                  <div className="title mono-type hidden text-2xl font-semibold hover:text-primary-600 dark:hover:text-primary-400 sm:block">
+                  <div className="title mono-type hidden text-2xl font-semibold hover:text-primary-400 sm:block">
                     {siteMetadata.headerTitle}
                   </div>
                 ) : (
@@ -56,7 +56,7 @@ const LayoutWrapper = ({ children }) => {
                 <Link
                   key={link.title}
                   href={link.href}
-                  className="p-1 font-bold text-gray-900 hover:text-primary-600 dark:text-gray-100 dark:hover:text-primary-400 sm:p-4"
+                  className="p-1 font-bold text-gray-100 hover:text-primary-400 sm:p-4"
                 >
                   {link.title}
                 </Link>

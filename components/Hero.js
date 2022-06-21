@@ -12,7 +12,7 @@ export default function Hero() {
             👋
           </span>
         </PageTitle>
-        <p className=" prose max-w-none pb-4 text-lg leading-7 text-gray-500 dark:text-gray-400">
+        <p className=" prose max-w-none pb-4 text-lg leading-7 text-gray-400">
           I'm a self taught developer looking to improve my coding abilities everyday. Here is a
           look into my personal note, projects and passions.{' '}
           <Link href={`mailto:${siteMetadata.email}`}>

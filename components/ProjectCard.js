@@ -13,8 +13,8 @@ const ProjectCard = ({ title, description, imgSrc, href }) => (
           height="250px"
         />
         <div className="py-4 px-2 md:col-span-2 md:col-start-2 md:row-span-1">
-          <h2 className="mt-2 mb-2 font-bold dark:text-gray-100 md:text-xl">{title}</h2>
-          <p className="text-sm tracking-wider dark:text-gray-300">{description}</p>
+          <h2 className="mt-2 mb-2 font-bold text-gray-100 md:text-xl">{title}</h2>
+          <p className="text-sm tracking-wider text-gray-300">{description}</p>
         </div>
       </div>
     </Link>
