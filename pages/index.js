@@ -22,7 +22,7 @@ export default function Home({ posts }) {
       <PageSEO title={siteMetadata.title} description={siteMetadata.description} />
       <Hero />
       <RecentProjects MAX_PROJECTS="2" />
-      <div className="container mx-auto divide-y divide-gray-200 dark:divide-gray-700">
+      <div className="container mx-auto divide-y divide-gray-700">
         <div className="my-4 flex flex-col">
           <span className="font-poppins title-font  text-3xl font-bold">Recent Posts</span>
         </div>
@@ -36,7 +36,7 @@ export default function Home({ posts }) {
                 className="group bg-day relative h-full transform rounded-lg transition duration-500 hover:scale-105"
               >
                 <div className="animate-tilt absolute -inset-0.5 rounded-lg bg-gradient-to-r from-green-600 to-amber-500 opacity-25 blur transition duration-1000 group-hover:opacity-100 group-hover:duration-200"></div>
-                <a className="c-card relative block h-full overflow-hidden rounded-lg dark:bg-cardBg">
+                <a className="c-card relative block h-full overflow-hidden rounded-lg bg-cardBg">
                   <div className="group relative max-h-4 overflow-hidden rounded-lg pb-60">
                     <Link href={`/blog/${slug}`}>
                       <span>
@@ -58,11 +58,11 @@ export default function Home({ posts }) {
                       <time dateTime={date}>{formatDate(date)}</time>
                     </span>
                     <h2 className="mt-2 mb-2 font-bold md:text-xl">
-                      <Link href={`/blog/${slug}`} className="dark:text-gray-100">
+                      <Link href={`/blog/${slug}`} className="text-gray-100">
                         {title}
                       </Link>
                     </h2>
-                    <p className="h-auto text-sm tracking-wider dark:text-gray-300">{summary}</p>
+                    <p className="h-auto text-sm tracking-wider text-gray-300">{summary}</p>
                   </div>
                 </a>
               </div>
@@ -72,11 +72,7 @@ export default function Home({ posts }) {
 
         {posts.length > MAX_DISPLAY && (
           <div className="mt-5 flex justify-end text-base font-medium leading-6">
-            <Link
-              href="/posts"
-              className="mt-5 text-primary-500 dark:hover:text-primary-400"
-              aria-label="all posts"
-            >
+            <Link href="/posts" className="mt-5 hover:text-primary-400" aria-label="all posts">
               All Posts &rarr;
             </Link>
           </div>
