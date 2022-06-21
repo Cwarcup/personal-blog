@@ -2,10 +2,7 @@
 title: Add, edit, and update articles in the database
 date: '2022-06-05'
 tags: ['ruby', 'rails']
-images:
-  [
-    'https://images.unsplash.com/photo-1514428631868-a400b561ff44?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80',
-  ]
+images: ['/static/images/postImages/tobias-fischer-PkbZahEG2Ng-unsplash.jpg']
 draft: false
 summary: How to add, edit and updates new items to a database in Ruby on Rails.
 ---

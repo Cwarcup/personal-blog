@@ -3,10 +3,7 @@ title: Introduction to Rails
 date: '2022-06-03'
 tags: ['ruby', 'rails']
 draft: false
-images:
-  [
-    'https://images.unsplash.com/photo-1580894894513-541e068a3e2b?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80',
-  ]
+images: ['/static/images/postImages/jake-weirick-krsmsfjjGgg-unsplash.jpg']
 summary: 'Covers the basics of Rails, adding new routes, creating databases and their CRUD operations.'
 ---
 
