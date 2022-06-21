@@ -36,31 +36,29 @@ const LayoutWrapper = ({ children }) => {
         <div className="mx-auto flex max-w-3xl items-center justify-between bg-cardBg bg-opacity-5 px-4 sm:px-6 xl:max-w-5xl xl:px-0">
           <div>
             <Link href="/" aria-label="Curtis Warcup">
-              <div className="flex items-center justify-between">
-                <div className="mr-3">
-                  <Logo />
-                </div>
-                {typeof siteMetadata.headerTitle === 'string' ? (
-                  <div className="title mono-type hidden text-2xl font-semibold hover:text-primary-400 sm:block">
-                    {siteMetadata.headerTitle}
-                  </div>
-                ) : (
-                  siteMetadata.headerTitle
-                )}
+              <div className="mr-3">
+                <Logo />
               </div>
             </Link>
           </div>
           <div className="flex items-center text-base leading-5">
             <div className="hidden sm:block">
-              {headerNavLinks.map((link) => (
-                <Link
-                  key={link.title}
-                  href={link.href}
-                  className="p-1 font-bold text-gray-100 hover:text-primary-400 sm:p-4"
-                >
-                  {link.title}
-                </Link>
-              ))}
+              {headerNavLinks.map((link) => {
+                if (link.type !== 'dropdown') {
+                  return (
+                    <Link
+                      key={link.title}
+                      href={link.href}
+                      className="p-1 font-bold text-gray-100 hover:text-primary-400 sm:p-4"
+                    >
+                      {link.title}
+                    </Link>
+                  )
+                }
+                if (link.type === 'dropdown') {
+                  return <a>link.title</a>
+                }
+              })}
             </div>
             <MobileNav />
           </div>
