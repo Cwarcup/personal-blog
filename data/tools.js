@@ -79,5 +79,37 @@ const Tools = [
     name: `Apollo`,
     description: `The best way to browse Reddit.`,
   },
+  {
+    id: `autosleep`,
+    category: [`ios`],
+    link: `http://autosleep.tantsissa.com/`,
+    labels: [`Sleep`],
+    name: `Autosleep`,
+    description: `Automatically track your sleep from your Apple Watch.`,
+  },
+  {
+    id: `fantastical`,
+    category: [`ios`, `mac`],
+    link: `https://flexibits.com/fantastical`,
+    labels: [`Calendar`],
+    name: `Fantastical`,
+    description: `Calender and reminder app.`,
+  },
+  {
+    id: `carrot`,
+    category: [`ios`],
+    link: `https://www.meetcarrot.com/weather/`,
+    labels: [`Weather`],
+    name: `Carrot Weather`,
+    description: `Powerful weather app.`,
+  },
+  {
+    id: `stackoverflow`,
+    category: [`web`],
+    link: `https://stackoverflow.com/`,
+    labels: [`Questions`],
+    name: `Stack Overflow`,
+    description: `C'mon, we all have questions.`,
+  },
 ]
 export default Tools
