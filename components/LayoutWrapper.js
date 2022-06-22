@@ -14,9 +14,9 @@ const LayoutWrapper = ({ children }) => {
   const ref = useRef()
 
   const stuckClasses =
-    'py-2 sticky top-n-1 z-50 transition-all backdrop isSticky mx-auto border-b border-slate-300/10 mb-16 w-full'
+    'py-2 sticky top-n-1 z-50 transition-all backdrop isSticky mx-auto border-b border-slate-300/10 mb-8 w-full'
   const unstuckClasses =
-    'py-2 md:py-8 sticky top-n-1 z-50 transition-all backdrop mx-auto border-b border-b-0 border-slate-300/10 mb-16 w-full'
+    'py-2 md:py-8 sticky top-n-1 z-50 transition-all backdrop mx-auto border-b border-b-0 border-slate-300/10 mb-8 w-full'
 
   const classes = stuck ? stuckClasses : unstuckClasses
 
