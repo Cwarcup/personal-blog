@@ -7,13 +7,10 @@ const ToolsCard = ({ name, description, link, id, labels }) => {
   return (
     <div
       key={id}
-      className="group bg-day relative h-28 transform rounded-lg transition duration-500 hover:scale-105 "
+      className="group bg-day relative h-full transform rounded-lg transition duration-500 hover:scale-105 "
     >
-      <div
-        className="animate-tilt absolute -inset-0.5 rounded-lg bg-gradient-to-r from-green-600 to-amber-500 opacity-25 blur transition duration-1000 group-hover:opacity-100 group-hover:duration-200"
-        style={{ height: '130px' }}
-      ></div>
-      <a className="content-fit relative grid grid-cols-[86px,_1fr] content-center justify-start rounded-lg  bg-cardBg">
+      <div className="animate-tilt absolute -inset-0.5 rounded-lg bg-gradient-to-r from-green-600 to-amber-500 opacity-25 blur transition duration-1000 group-hover:opacity-100 group-hover:duration-200"></div>
+      <a className="card-c grid- relative grid h-full  grid-cols-[86px,_1fr] content-center justify-start rounded-lg  bg-cardBg">
         <div className="group relative rounded-lg py-4 px-2">
           <Link href={link}>
             <span>
