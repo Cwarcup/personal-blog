@@ -37,6 +37,7 @@ module.exports = {
         primary: colors.sky,
         gray: colors.neutral,
         cardBg: '#0F141A',
+        logoColor: '#46CDCF',
       },
       typography: (theme) => ({
         DEFAULT: {
