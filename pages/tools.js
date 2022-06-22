@@ -2,6 +2,7 @@ import ToolsGrid from '/components/ToolsGrid'
 import { PageSEO } from '@/components/SEO'
 import siteMetadata from '/data/siteMetadata'
 import { HeartIcon } from '@heroicons/react/solid'
+import SocialIcon from '@/components/social-icons'
 
 export default function Tools() {
   return (
@@ -18,8 +19,17 @@ export default function Tools() {
             Some tools that I find useful
             <HeartIcon className="ml-2 -mr-1 h-5 w-5 text-logoColor" aria-hidden="true" />
           </p>
+          <div className="flex flex-wrap justify-center">
+            <a
+              className="text-sm text-gray-500 transition hover:text-gray-600"
+              target="_blank"
+              rel="noopener noreferrer"
+              href={`./components/social-icons/ios.svg`}
+            >
+              <span className="sr-only">iOS</span>
+            </a>
+          </div>
         </div>
-
         <div className="container py-12">
           <div className="-m-4 flex flex-wrap justify-center">
             <ToolsGrid filter="ios" />
