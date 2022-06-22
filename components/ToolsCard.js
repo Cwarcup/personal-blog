@@ -1,24 +1,55 @@
 import Image from './Image'
 import Link from './Link'
 
-const ToolsCard = ({ title, description, imgSrc, href }) => (
-  <div className="group rounded-lg ">
-    <Link href={href}>
-      <div className="grid items-center gap-3 overflow-hidden rounded-lg bg-transparent py-2  md:grid-cols-2 md:grid-rows-1">
-        <Image
-          alt={title}
-          src={imgSrc}
-          className="absolute inset-0 col-start-1 col-end-2 row-start-1 h-full w-full rounded-lg object-cover md:col-span-2 md:col-start-1 md:row-span-1"
-          width="300px"
-          height="250px"
-        />
-        <div className="py-4 px-2 md:col-span-2 md:col-start-2 md:row-span-1">
-          <h2 className="mt-2 mb-2 font-bold text-gray-100 md:text-xl">{title}</h2>
-          <p className="text-sm tracking-wider text-gray-300">{description}</p>
+const ToolsCard = ({ name, description, link, id, labels }) => {
+  const imgPath = `/public/static/images/toolsImages/${id}.png`
+
+  return (
+    <div
+      key={id}
+      className="group bg-day relative h-28 transform rounded-lg transition duration-500 hover:scale-105 "
+    >
+      <div
+        className="animate-tilt absolute -inset-0.5 rounded-lg bg-gradient-to-r from-green-600 to-amber-500 opacity-25 blur transition duration-1000 group-hover:opacity-100 group-hover:duration-200"
+        style={{ height: '130px' }}
+      ></div>
+      <a className="content-fit relative grid grid-cols-[86px,_1fr] content-center justify-start rounded-lg  bg-cardBg">
+        <div className="group relative rounded-lg py-4 px-2">
+          <Link href={link}>
+            <span>
+              <Image
+                alt={id}
+                src={`/static/images/toolsImages/${id}.png`}
+                className=""
+                width="68px"
+                height="68px"
+              />
+            </span>
+          </Link>
         </div>
-      </div>
-    </Link>
-  </div>
-)
+        <div className="h-full py-4 px-2">
+          <h2 className="font-bold md:text-xl">
+            <Link href={link} className="text-gray-100">
+              {name}
+            </Link>
+          </h2>
+          <p className="h-auto text-sm tracking-wider text-gray-300">{description}</p>
+          <span className="my-2 inline-flex w-full items-center justify-between">
+            <span className="inline-block rounded border border-gray-700 py-1 px-2 text-xs font-medium">
+              {labels.map((tag) => (
+                <a
+                  key={tag}
+                  className="mr-3 text-xs font-medium uppercase  hover:text-primary-600 "
+                >
+                  {tag.split(' ').join('-')}
+                </a>
+              ))}
+            </span>
+          </span>
+        </div>
+      </a>
+    </div>
+  )
+}
 
 export default ToolsCard

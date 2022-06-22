@@ -32,14 +32,6 @@ const Tools = [
     description: `Hides items in the menu bar.`,
   },
   {
-    id: `rocket`,
-    category: [`mac`],
-    link: `https://matthewpalmer.net/rocket/`,
-    labels: [`Emoji`],
-    name: `Rocket`,
-    description: `Globally search emojis.`,
-  },
-  {
     id: `aldente`,
     category: [`mac`],
     link: `https://github.com/davidwernhart/AlDente`,
@@ -48,12 +40,12 @@ const Tools = [
     description: `Prevents overcooking of your battery!`,
   },
   {
-    id: `responsively app`,
+    id: `responsivelyApp`,
     category: [`mac`],
     link: `https://responsively.app/`,
     labels: [`Dev Tools`],
     name: `Responsively App`,
-    description: `A dev-tool that aids faster and precise responsive web development.`,
+    description: `Aids in responsive web development.`,
   },
   {
     id: `postman`,
@@ -72,12 +64,12 @@ const Tools = [
     description: `A password manager.`,
   },
   {
-    id: `Zwift`,
+    id: `zwift`,
     category: [`mac`, `ios`],
     link: `https://www.zwift.com/`,
     labels: [`Cycling`],
     name: `Zwift`,
-    description: `A massive multiplayer cycling training game that enables you to train in a virtual world.`,
+    description: `Multiplayer cycling training game in a virtual world.`,
   },
   {
     id: `apollo`,

@@ -1,8 +1,9 @@
 import tools from '/data/tools'
+import ToolsCard from './ToolsCard'
 
 const ToolGrid = ({ filter }) => {
   return (
-    <div className="grid grid-cols-1 gap-2 md:grid-cols-2">
+    <div className="grid grid-cols-1 gap-5 md:grid-cols-2 ">
       {tools
         .filter((x) => x.category.includes(filter))
         .sort((a, b) => {
@@ -15,9 +16,7 @@ const ToolGrid = ({ filter }) => {
           return 0
         })
         .map((tool, index) => (
-          <div key={index} className="bg-cardGb">
-            {tool.name}
-          </div>
+          <ToolsCard {...tool} key={index.toString()} />
         ))}
     </div>
   )
