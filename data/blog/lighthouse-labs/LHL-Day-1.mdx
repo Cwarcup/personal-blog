@@ -1,0 +1,206 @@
+---
+title: Lighthouse Labs - Day 1
+date: '2022-07-27'
+tags: ['Lighthouse Labs']
+images: ['/static/images/postImages/paulius-dragunas-Nhs0sLAn1Is-unsplash.jpg']
+draft: false
+summary: First day of Web Developer Bootcamp at Lighthouse Labs.
+---
+
+<TOCInline toc={props.toc} asDisclosure />
+
+Today marks the day of the first day of Web Developer Bootcamp at Lighthouse Labs. I've forgotten about that uneasy feeling you get when you experience the first day at school. Although I've learning to code for the last few months, learning in a structured enviconment is a lot more intimidating. That being said, I'm excited to further my coding abilities and meet like-minded people to learn more about web development.
+
+### Command Line Arguments
+
+In most cases, you will want to pass command line arguments to your program. The syntax for doing so is as follows:
+
+```
+$ [runtime] [script_name] [argument-1 argument-2 argument-3 ... argument-n]
+```
+
+Here `[runtime]` is the name of the runtime environment you are using (`node`, `sh`, `java`), and `[script_name]` is the name of the script you are running.
+
+#### Why use command line arguments?
+
+- Can pass information to your program before it starts. This is useful for passing information to your program when you are testing it.
+- Arguments are passed as strings, so you can pass any type of data.
+
+#### How to pass command line arguments in Node.js
+
+The built in way uses the `process` object (`process.argv` **array**) to get the arguments passed to your program.
+
+- The first argument is always the **file system path** pointing to the `node` executable.
+- The second argument is is the **name of the JavaScript file** that is being run.
+- The third argument is the **first argument that is passed by the user**.
+
+Example:
+
+```
+node sum.js 10 25
+```
+
+#### Example 1: Sum
+
+Create a function that takes in two numbers and returns the sum of those two numbers.
+
+```js
+const args = process.argv.slice(2)
+
+const a = Number(args[0])
+const b = Number(args[1])
+
+function sum(a, b) {
+  return console.log(a + b)
+}
+
+sum(a, b)
+```
+
+#### Example 2: Reverse String
+
+```js
+const str = process.argv.slice(2)
+
+const reverse = (str) => {
+  str.forEach(function (item) {
+    let reversed = ''
+    for (let i = item.length - 1; i >= 0; i--) {
+      reversed += item[i]
+    }
+    console.log(reversed)
+  })
+}
+
+reverse(str)
+```
+
+#### Example 3: Pig Latin
+
+Converts any argument into [Pig-Latin](https://en.wikipedia.org/wiki/Pig_Latin).
+
+```js
+// words beginning with consonant sounds are moved to the end of the word and appended with "ay"
+const consonants = [
+  'b',
+  'c',
+  'd',
+  'f',
+  'g',
+  'h',
+  'j',
+  'k',
+  'l',
+  'm',
+  'n',
+  'p',
+  'q',
+  'r',
+  's',
+  't',
+  'v',
+  'w',
+  'x',
+  'y',
+  'z',
+]
+
+// consonant clusters
+// when at the beginning, the letters are grouped at the end
+const consonantClusters = [
+  'bl',
+  'br',
+  'ch',
+  'cl',
+  'cr',
+  'dr',
+  'fl',
+  'fr',
+  'gl',
+  'gr',
+  'pl',
+  'pr',
+  'sc',
+  'sh',
+  'sk',
+  'sl',
+  'sm',
+  'sn',
+  'sp',
+  'st',
+  'str',
+  'sw',
+  'th',
+  'tr',
+  'tw',
+  'wh',
+  'wr',
+  'sch',
+  'scr',
+  'shr',
+  'spl',
+  'spr',
+  'squ',
+  'str',
+  'thr',
+]
+
+// words that begin with vowels are moved to the end of the word and appended with "yay"
+const vowels = ['a', 'e', 'i', 'o', 'u']
+
+const string = process.argv.slice(2).join(' ')
+
+const pigLatin = (str) => {
+  let result = ''
+  let beginning = ''
+  let ending = ''
+  let split = str.split(' ')
+  for (const word of split) {
+    beginning = word.substring(0, 1)
+    ending = word.substring(1)
+    if (consonants.includes(beginning)) {
+      result += ending + beginning + 'ay '
+    } else if (consonantClusters.includes(beginning)) {
+      result += ending + beginning + 'ay '
+    } else if (vowels.includes(beginning)) {
+      result += word + 'yay '
+    }
+  }
+  console.log(result)
+}
+
+pigLatin(string)
+```
+
+#### Example 4: Loopy Lighthouse
+
+Wrap the code you've written in a function called `loopyLighthouse(range, multiples, words)` that you call with 3 parameters.
+
+- `range` should be an array of 2 numbers representing the start and end values for the loop.
+- `multiples` should be an array of 2 numbers representing the multiples you want to replace with words.
+- `words` should be an array of 2 strings representing the words that will replace the multiples.
+
+For example, say we called the function with the following arguments.
+
+```js
+loopyLighthouse([15, 90], [2, 5], ['Batty', 'Beacon'])
+```
+
+The `loopyLighthouse` function should log to the console all the numbers from 15 to 90, except replacing multiples of 2 with "Batty", multiples of 5 with "Beacon", and multiples of 2 and 5 with "BattyBeacon".
+
+```js
+function loopyLighthouse(range, multiples, words) {
+  for (let i = range[0]; i <= range[1]; i++) {
+    if (i % multiples[0] === 0 && i % multiples[1] === 0) {
+      console.log(words[0] + words[1])
+    } else if (i % multiples[0] === 0) {
+      console.log(words[0])
+    } else if (i % multiples[1] === 0) {
+      console.log(words[1])
+    } else {
+      console.log(i)
+    }
+  }
+}
+loopyLighthouse([15, 90], [2, 5], ['Batty', 'Beacon'])
+```
