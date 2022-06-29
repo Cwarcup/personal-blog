@@ -205,6 +205,63 @@ This function returns an **array** of all the keys in an object.
 Object.keys(person) // => [ 'name', 'address', 'phoneNumbers' ]
 ```
 
+## Iterating Over an Object
+
+Will be using a for loop to iterate over an object `for (const key in object) { … }`.
+
+Recall that iterating over an array can easily be done with a for loop by using the index of the array.
+
+```js
+or (var i = 0; i < 10; i++) {
+  // iterating over an array
+  console.log(someArray[i]);
+}
+```
+
+However, JavaScript objects, `{key: value}`, themselves are **not iterable** in the way that arrays are. Instead we need to do things a little differently, using a `for...in` statement.
+
+For example, we can iterate over an object like this:
+
+```js
+const planetMoons = {
+  mercury: 0,
+  venus: 0,
+  earth: 1,
+  mars: 2,
+  jupiter: 67,
+  saturn: 62,
+  uranus: 27,
+  neptune: 14,
+}
+
+for (let planet in planetMoons) {
+  const numberOfMoons = planetMoons[planet]
+  console.log(`${planet} has ${numberOfMoons} moon(s)`)
+}
+
+// mercury has 0 moon(s)
+// venus has 0 moon(s)
+// earth has 1 moon(s)
+// mars has 2 moon(s)
+// jupiter has 67 moon(s)
+// saturn has 62 moon(s)
+// uranus has 27 moon(s)
+// neptune has 14 moon(s)
+```
+
+### Limitations of `for... in`
+
+Objects have properties that can be inherited from their prototype chain as well as method names.
+
+```js
+for (let planet in planetMoons) {
+  // additional filter for object properties:
+  if (planetMoons.hasOwnProperty(planet)) {
+    //  ...
+  }
+}
+```
+
 # Lotide
 
 ## middle
