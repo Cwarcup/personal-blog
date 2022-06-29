@@ -1,7 +1,7 @@
 ---
 title: lotide - Utility Library
 date: '2022-07-29'
-tags: ['lotide', 'Library]
+tags: ['lotide', 'Library']
 images: ['/static/images/postImages/robin-spielmann-TUiNzx1vMBM-unsplash.jpg']
 draft: false
 summary: Utility library, similar to lodash.
@@ -149,4 +149,49 @@ console.log(middle([1, 2, 3])) // => [2]
 console.log(middle([1, 2, 3, 4, 5])) // => [3]
 console.log(middle([1, 2, 3, 4])) // => [2, 3]
 console.log(middle([1, 2, 3, 4, 5, 6])) // => [3, 4]
+```
+
+### countOnly
+
+countOnly will be given an array and an object. It will return an object containing counts of everything that the input object listed.
+
+Only keys which have a truthy value should be counted in the resulting object. All other strings (either set to false or not included at all in the object) should not be counted. That said, if a particular string is meant to be counted but does not exist in the input array (like "f" in the example above), it also does not have to be included in the final count.
+
+```js
+const countOnly = (allItems, itemsToCount) => {
+  const results = {}
+  // loop over the items
+  for (const item of allItems) {
+    if (itemsToCount[item]) {
+      if (results[item]) {
+        results[item] += 1
+      } else {
+        results[item] = 1
+      }
+    }
+  }
+  return results
+}
+
+const firstNames = [
+  'Karl',
+  'Salima',
+  'Agouhanna',
+  'Fang',
+  'Kavith',
+  'Jason',
+  'Salima',
+  'Fang',
+  'Joe',
+]
+
+const result1 = countOnly(firstNames, { Jason: true, Karima: true, Fang: true, Agouhanna: false })
+
+assertEqual(result1['Jason'], 1)
+assertEqual(result1['Karima'], undefined)
+assertEqual(result1['Fang'], 2)
+assertEqual(result1['Agouhanna'], undefined)
+
+console.log(countOnly(firstNames, { Jason: true, Karima: true, Fang: true, Agouhanna: false }))
+// { Fang: 2, Jason: 1 }
 ```
