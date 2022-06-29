@@ -1,0 +1,152 @@
+---
+title: lotide - Utility Library
+date: '2022-07-29'
+tags: ['lotide', 'Library]
+images: ['/static/images/postImages/robin-spielmann-TUiNzx1vMBM-unsplash.jpg']
+draft: false
+summary: Utility library, similar to lodash.
+---
+
+<TOCInline toc={props.toc} asDisclosure />
+
+## Lotide methods
+
+Here are some methods we added to our lotide library:
+
+### assertArraysEqual
+
+Implement assertArraysEqual which will take in two arrays and console.log an appropriate message to the console.
+
+```js
+// takes in two arrays and returns true or false, based on a perfect match.
+const eqArrays = (arr1, arr2) => {
+  if (arr1.length !== arr2.length) {
+    return false
+  }
+  for (let i = 0; i < arr1.length; i++) {
+    if (arr1[i] !== arr2[i]) {
+      return false
+    }
+  }
+  return true
+}
+
+const assertArraysEqual = (actual, expected) => {
+  if (eqArrays(actual, expected)) {
+    console.log(`✅ Assertion Passed: [${actual}] === [${expected}]`)
+  } else {
+    console.log(`❌ Assertion Failed: [${actual}] !== [${expected}]`)
+  }
+}
+```
+
+### without
+
+Implement `without` which will return a subset of a given array, removing unwanted elements.
+
+This function should take in a `source` array and a `itemsToRemove` array. It should return a new array with only those elements from source that are not present in the itemsToRemove array.
+
+Example:
+
+```js
+without([1, 2, 3], [1]) // => [2, 3]
+without(['1', '2', '3'], [1, 2, '3']) // => ["1", "2"]
+```
+
+```js
+const without = (arr, itemsToRemove) => {
+  // empty array to store chars that pass condition
+  let result = []
+
+  while (arr.length > 0) {
+    // remove first item in array
+    let temp = arr.shift()
+
+    // determine if temp variable is found in the itemsToRemove array
+    if (!itemsToRemove.includes(temp)) {
+      // if not item is not found, push temp to result array
+      result.push(temp)
+    }
+  }
+  return result
+}
+
+const withoutResult = without(['1', '2', '3'], [1, 2, '3'])
+assertArraysEqual(withoutResult, ['1', '2']) // ✅ Assertion Passed: [1,2] === [1,2]
+```
+
+However, this results in the original array being mutated! This is caused by the fact that the `shift` method mutates the array.
+
+We can fix this by using a for-loop to iterate over the array.
+
+```js
+const without = (arr, itemsToRemove) => {
+  // empty array to store chars that pass condition
+  let result = []
+
+  for (let i = 0; i < arr.length; i++) {
+    // remove first item in array
+    let temp = arr[i]
+
+    // determine if temp variable is found in the itemsToRemove array
+    if (!itemsToRemove.includes(temp)) {
+      // if not item is not found, push temp to result array
+      result.push(temp)
+    }
+  }
+  return result
+}
+```
+
+### middle
+
+Implement `middle` which will take in an array and return the middle-most element(s) of the given array.
+
+The `middle` function should return an array with only the middle element(s) of the provided array. This means that the length of the returned elements could vary.
+
+- For arrays with **one** or **two elements**, there is no middle. Return an empty array.
+
+```js
+middle([1]) // => []
+middle([1, 2]) // => []
+```
+
+- For arrays with **odd** number of elements, an array containing a single middle element should be returned.
+
+```js
+middle([1, 2, 3]) // => [2]
+middle([1, 2, 3, 4, 5]) // => [3]
+```
+
+- For arrays with an even number of elements, an array containing the two elements in the middle should be returned
+
+```js
+middle([1, 2, 3, 4]) // => [2, 3]
+middle([1, 2, 3, 4, 5, 6]) // => [3, 4]
+```
+
+Possible Solution:
+
+```js
+const middle = (arr) => {
+  // edge case when arr has less than 3 items
+  if (arr.length < 3) {
+    return []
+  }
+
+  // get middle index of array
+  const middleIndex = Math.floor(arr.length / 2)
+
+  // if true (1), return first
+  // if false (even length) (0), return second option
+  return arr.length % 2 ? arr[middleIndex] : [arr[middleIndex - 1], arr[middleIndex]]
+}
+
+// test cases
+console.log(middle([1])) // => []
+console.log(middle([1, 2])) // => []
+console.log(middle([1, 2, 3])) // => [2]
+console.log(middle([1, 2, 3, 4, 5])) // => [3]
+console.log(middle([1, 2, 3, 4])) // => [2, 3]
+console.log(middle([1, 2, 3, 4, 5, 6])) // => [3, 4]
+```

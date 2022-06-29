@@ -1,0 +1,203 @@
+---
+title: Stretch Assignments
+date: '2022-07-29'
+tags: ['Stretch']
+images: ['/static/images/postImages/d-s-chapman-aIgZHolF4Dg-unsplash.jpg']
+draft: false
+summary: List of all completed stretch assignments.
+---
+
+<TOCInline toc={props.toc} asDisclosure />
+
+# Stretch Assignments
+
+## obfuscate
+
+Make `password.js` take in a single string as a command line argument and print out an obfuscated version of that password, using the rules defined below.
+
+- Every "a" in the string should be replaced with a "4".
+- Every "e" in the string should be replaced with a "3".
+- Every "o" (oh) in the string should be replaced with a "0" (zero).
+- Every "l" (el) in the string should be replaced with a "1" (one).
+
+```js
+const obfuscate = (password) => {
+  password.forEach((item) => {
+    console.log(
+      item.replace(/\a/gi, '4').replace(/\e/gi, '3').replace(/\o/gi, '0').replace(/\l/gi, '1')
+    )
+  })
+}
+
+obfuscate(process.argv.slice(2))
+```
+
+## Flatten
+
+`flatten` is a function which does something like this. Given an array with other arrays inside, it can flatten it into a single-level array.
+
+```js
+const flatten = (nested) => {
+  const result = []
+  return result.concat(...nested)
+}
+
+console.log(flatten([1, 2, [3, 4], 5, [6]]))
+```
+
+## Palindrome
+
+```js
+const isPalindrome = function (str) {
+  let reversed = str.toLowerCase().replace(/\s/g, '').split('').reverse().join('')
+  return str.toLowerCase().replace(/\s/g, '') === reversed
+}
+
+// Assertion Function
+const assertPalindrome = function (word, expected) {
+  console.log(`Testing isPalindrome(\"${word}\"):`)
+  const actual = isPalindrome(word)
+  if (actual === expected) {
+    console.log('\x1b[32m%s\x1b[0m', `\tPASS ✅ function returned ${actual}\n`)
+  } else {
+    console.log(
+      '\x1b[31m%s\x1b[0m',
+      `\tFAIL 🛑 function returned ${actual} (expected ${expected})\n`
+    )
+  }
+}
+
+// TEST CODE
+// These should all pass assertion, but they don't.
+assertPalindrome('p', true)
+assertPalindrome('racecar', true)
+assertPalindrome('my gym', true)
+assertPalindrome('foo', false)
+assertPalindrome('fluff', false)
+assertPalindrome('just some random words', false)
+
+// Bonus / Stretch: Uncomment these tests and figure out why these are also failing
+assertPalindrome('Kayak', true)
+assertPalindrome('a santa at NASA', true)
+```
+
+## PrintInFrame
+
+```js
+const printInFrame = function (list) {
+  list = list.split(' ')
+  const longest = longestStr(list).length
+  const border = repeat('*', longest + 4)
+
+  console.log(border)
+  for (const word of list) {
+    console.log(`* ${word}${repeat(' ', longest - word.length + 1)}*`)
+  }
+  console.log(border)
+}
+
+const repeat = function (str, times) {
+  let result = str
+
+  for (let i = 0; i < times; i++) {
+    result += str
+  }
+
+  return result
+}
+
+const longestStr = function (list) {
+  let longest = list[0]
+
+  for (const str of list) {
+    if (str.length > longest.length) {
+      longest = str
+    }
+  }
+
+  return longest
+}
+
+// Test driver code, do not modify
+printInFrame('May the force be with you')
+printInFrame("Here's Johnny!")
+printInFrame('Supercalifragalisticexpialadocious')
+printInFrame('Lost, like tears in the rain')
+```
+
+## calculateDayInYear
+
+The code defines a function calculateDayInYear which calculates the day of the year for a particular date string.
+
+```js
+function calculateDayInYear(date) {
+  const splitDate = date.split('/')
+  const year = Number(splitDate[0])
+  const month = Number(splitDate[1])
+  const day = Number(splitDate[2])
+
+  const isLeapYear = function (year) {
+    if (
+      (isMultiple(year, 400) && isMultiple(year, 100)) ||
+      (!isMultiple(year, 100) && isMultiple(year, 4))
+    ) {
+      return true
+    }
+    return false
+  }
+
+  const daysInFeb = function (year) {
+    if (isLeapYear(year)) {
+      return 29
+    }
+    return 28
+  }
+
+  const DAYS_IN_MONTH = [31, daysInFeb(year), 31, 30, 31, 30, 31, 31, 30, 31, 30, 31]
+
+  const validMonth = function (month) {
+    return month && month >= 1 && month <= 12
+  }
+
+  const validDay = function (month, day) {
+    return day && day >= 1 && day <= DAYS_IN_MONTH[month - 1]
+  }
+
+  //leap year is good
+  const calculateDayNumber = function (month, day) {
+    let dayNumber = 0
+    for (let i = 0; i < month - 1; i++) {
+      dayNumber += DAYS_IN_MONTH[i]
+    }
+    dayNumber += day
+    return Number(dayNumber)
+  }
+
+  if (year && validMonth(month) && validDay(month, day)) {
+    console.log(date, 'is day', calculateDayNumber(month, day), 'of the year', year)
+    return calculateDayNumber(month, day)
+  } else {
+    console.log('Invalid date')
+  }
+}
+
+const isMultiple = function (numerator, denominator) {
+  return numerator % denominator === 0
+}
+/*
+    Below are some simple tests!
+
+    They run the function with a predetermined parameter and compare the output to the value we are expecting to get!
+
+    The console.log will output either 'true' or 'false' based on whether or not the function
+    returns a value that matched our expected value.
+
+    You'll know your code works correctly when all of these tests return 'true'.
+*/
+console.log('Tests:')
+console.log('---------------')
+console.log(calculateDayInYear('1900/3/2') === 61)
+console.log(calculateDayInYear('2000/3/2') === 62)
+console.log(calculateDayInYear('2012/2/29') === 60)
+console.log(calculateDayInYear('2015/12/31') === 365)
+```
