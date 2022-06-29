@@ -195,3 +195,27 @@ assertEqual(result1['Agouhanna'], undefined)
 console.log(countOnly(firstNames, { Jason: true, Karima: true, Fang: true, Agouhanna: false }))
 // { Fang: 2, Jason: 1 }
 ```
+
+### countLetters
+
+The function should take in a sentence (as a string) and then return a count of each of the letters in that sentence.
+
+```js
+const countLetters = (str) => {
+  const result = {}
+  // using regex to filter only letters
+  for (let char of str.toLowerCase().match(/[a-z]/g)) {
+    if (result[char]) {
+      result[char] += 1
+    } else {
+      result[char] = 1
+    }
+  }
+  return result
+}
+
+assertEqual(countLetters('Curtis')['c'], 1)
+assertEqual(countLetters('aaa')['a'], 3)
+
+console.log(countLetters('Curtis')) // => { c: 1, u: 1, t: 1, i: 1, s: 1 }
+```
