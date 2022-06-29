@@ -1,0 +1,640 @@
+---
+title: Lighthouse Labs - Day 2
+date: '2022-07-28'
+tags: ['functions', 'errors']
+images: ['/static/images/postImages/becomes-co-s_FHDDSVp1s-unsplash.jpg']
+draft: false
+summary: Rules of functions, scope, errors, Ccercion, and more.
+---
+
+# Summary
+
+Day 2 of Lighthouse Labs! Today's lesson includes writing code incrementally, problem solving tips and basic git workflow (init -> add -> commit -> push). Additionally, we cover JavaScript specific concenpts such as debugging, pseudocode, and scope.
+
+### Function Best Practices
+
+1. Give your functions precise verb/action based names
+2. Use `camelCasedNames` (like this one)
+3. Properly indent the function code (two spaces)
+4. Functions should focus on a single task: returning a value or causing a side effect. Break your function into additional smaller functions if you find it doing two or more things
+
+- One single task could be to compute and return a value (eg: `zeroPad`)
+- Another single task could be to perform a side effect such as logging a message to the screen (eg: `printFarmInventory`)
+
+#### Function Best Practices - Rolling Dice
+
+Write a program that takes a single parameter from the command line, a number, and rolls that many six-sided dice.
+
+```
+> node dice-roller.js 3
+Rolled 3 dice: 2, 6, 5
+```
+
+Solution:
+
+```js
+const rollDice = (num) => {
+  let result = []
+  for (let i = 0; i < num; i++) {
+    // generate random number between 1 - 6
+    let randomNum = Math.floor(Math.random() * 6)
+    result.push(randomNum)
+  }
+  return console.log(`Rolled ${num} dice: ${result.join(', ')}`)
+}
+
+rollDice(process.argv.slice(2))
+```
+
+### Scope in JavaScript
+
+#### Global vs Local Scope
+
+Globally-scoped variables are available to all functions, everywhere in out code. Locally-scoped variables are only available within the function they are defined in.
+
+For example:
+
+```js
+let myGlobalVar = 'global'
+
+const printMyVars = function () {
+  let myLocalVar = 'local'
+  console.log('-- Inside printMyVars --')
+  console.log('myLocalVar is:', myLocalVar)
+  console.log('myGlobalVar is:', myGlobalVar)
+}
+
+printMyVars()
+
+console.log('-- Outside of printMyVars now --')
+console.log(myLocalVar)
+```
+
+> Here we will get an error. The variable `myLocalVar` is not defined because it is locally scoped.
+
+Scoping can result in variables being **overwriten**.
+
+```js
+let myVar = 'global'
+
+const myFunction = function () {
+  let myVar = 'local'
+
+  console.log('inside myFunction, myVar is:', myVar) // "local"
+}
+
+myFunction()
+
+console.log('outside myFunction, myVar is:', myVar) // "global"
+```
+
+> Inside out function the local spode will take precedence over the global scope, printing `local` instead of `global`. However, outside of the function, the global scope will be used, printing `global`.
+
+#### One more Rule: Pass in the Data Needed
+
+It is idea to try and **avoid passing in globally scoped data**. If a function needs some information/data, it should be passed in as a **parameter**, making it available within the functions inner scope.
+
+Example:
+
+```js
+const person = 'Martha'
+
+// BAD
+const sayHelloBadly = function () {
+  console.log(`Howdy, ${person}`)
+}
+sayHelloBadly() // Works, but not ideal!
+
+// GOOD
+const sayHelloGoodly = function (name) {
+  console.log(`Howdy, ${name}`)
+}
+sayHelloGoodly(person)
+```
+
+But why do we care? Why do we want to avoid passing in globally scoped data?
+
+Because functions that take in parameters are more **reusable**. They are not depenedent on their outer scope. They can be used in different ways, and they can be passed in different data.
+
+#### Rules of functions summary
+
+1. Give your functions precise verb/action based names
+1. Use `camelCasedNames` (like this one)
+1. Properly indent the function code
+1. Functions should focus on a single task: returning a value or causing a side effect. Break your function into additional smaller functions if you find it doing two or more things
+
+- One single task could be to compute and return a value (eg: `zeroPad`)
+- Another single task could be to perform a side effect such as logging a message to the screen (eg: `printFarmInventory`)
+
+1. Data needed by Functions should be passed in as parameters/arguments (i.e. local scope) instead of being accessed 1. directly
+
+# Understanding Errors
+
+### Syntax Erros
+
+Errors are a **signal** that something went wrong. They are used to communicate to the developer what went wrong.
+
+Consider the following:
+
+```js
+const rank = "Imperator";
+const name = "Furiosa";
+
+console.log(rank name);
+```
+
+Returns:
+
+```
+node syntax-error.js
+/vagrant/focal/syntax-error.js:4
+console.log(rank name);
+                 ^^^^
+SyntaxError: Unexpected identifier
+    at exports.runInThisContext (vm.js:73:16)
+    at Module._compile (module.js:443:25)
+    at Object.Module._extensions..js (module.js:478:10)
+    at Module.load (module.js:355:32)
+    at Function.Module._load (module.js:310:12)
+    at Function.Module.runMain (module.js:501:10)
+    at startup (node.js:129:16)
+    at node.js:814:3
+```
+
+This tells us that the error happened in a file called `/vagrant/focal/syntax-error.js`, but more importantly, the `:4` on the end of the file name tells us the error was thrown by line **4** in this file.
+
+Looking at our code, we see line 4 has the following: `console.log(rank name);`.
+
+Our error gives us another hint - we are leading with a `SyntaxError`. There appears to be something wrong with `name`, which javascript is calling `Unexpected identifier`.
+
+The issue here is that the variables are not separated by a comma (`,`) and the error is thrown in the middle of the line.
+
+Solution: `console.log(rank, name);`
+
+### Stack Traces
+
+Stack traces are the **traceback** of the error.
+
+When an error is thrown, the stack trace is a list of all the functions that were called before the error was thrown.
+
+```
+    at exports.runInThisContext (vm.js:73:16)
+    at Module._compile (module.js:443:25)
+    at Object.Module._extensions..js (module.js:478:10)
+    at Module.load (module.js:355:32)
+    at Function.Module._load (module.js:310:12)
+    at Function.Module.runMain (module.js:501:10)
+    at startup (node.js:129:16)
+    at node.js:814:3
+```
+
+This will be covered in a later section.
+
+### Tricky Syntax Errors
+
+Consider the following:
+
+```js
+if (5 > 10) {
+  console.log("Impossible!");
+
+console.log("Phew, logical fallacies avoided.");
+```
+
+We expect to see the following output:
+
+```
+Phew, logical fallacies avoided.
+```
+
+But we get this instead:
+
+```
+/vagrant/focal/syntax-error2.js:6
+});
+ ^
+SyntaxError: Unexpected token )
+    at exports.runInThisContext (vm.js:73:16)
+    at Module._compile (module.js:443:25)
+    at Object.Module._extensions..js (module.js:478:10)
+    at Module.load (module.js:355:32)
+    at Function.Module._load (module.js:310:12)
+    at Function.Module.runMain (module.js:501:10)
+    at startup (node.js:129:16)
+    at node.js:814:3
+```
+
+For one, there is no line 6 in our code. We only wrote 4 lines.
+
+We also have a new type of syntaxError: `Unexpected token`.
+
+`Unexpected token` errors occur when JavaScript **expected** something that wasn't there, which frequently means we're missing a parenthesis, bracket or curly brace. In our case, we're missing a `}`.
+
+```js
+if (5 > 10) {
+  console.log('Impossible!')
+}
+
+console.log('Phew, logical fallacies avoided.')
+```
+
+### Reference Errors
+
+Consider the following:
+
+```js
+var firstName = 'Jane'
+var lastName = 'Doe'
+
+console.log(firstName, lasName)
+```
+
+However, it does not work. We get the following error:
+
+```
+node reference-error.js
+/vagrant/focal/reference-error.js:4
+console.log(firstName, lasName);
+                       ^
+ReferenceError: lasName is not defined
+    at Object.<anonymous> (/vagrant/focal/reference-error.js:4:24)
+    at Module._compile (module.js:460:26)
+    at Object.Module._extensions..js (module.js:478:10)
+    at Module.load (module.js:355:32)
+    at Function.Module._load (module.js:310:12)
+    at Function.Module.runMain (module.js:501:10)
+    at startup (node.js:129:16)
+    at node.js:814:3
+```
+
+Let's begin by reading the error message **line by line**.
+
+```
+/vagrant/focal/reference-error.js:4
+```
+
+> Indicates an issue on line 4.
+
+Something went wrong with `lasName`. Node tells us that it's **not defined**. `ReferenceErrors` are also common errors we see in day-to-day development, and they occur when we're trying to use the value of an **undefined variable**. In our case, this happened because we misspelled `lastName`.
+
+```js
+var firstName = 'Jane'
+var lastName = 'Doe'
+
+console.log(firstName, lastName) // Jane Doe
+```
+
+### Type Errors
+
+Let's quiet down and convert all capital letters into lowercase.
+
+```js
+var favouriteMeal = 'BREAKFAST'
+
+console.log(favouriteMeal.toLower())
+```
+
+But we get an error:
+
+```
+node type-error.js
+/vagrant/focal/type-error.js:3
+console.log(favouriteMeal.toLower());
+                          ^
+TypeError: undefined is not a function
+    at Object.<anonymous> (/vagrant/focal/type-error.js:3:27)
+    at Module._compile (module.js:460:26)
+    at Object.Module._extensions..js (module.js:478:10)
+    at Module.load (module.js:355:32)
+    at Function.Module._load (module.js:310:12)
+    at Function.Module.runMain (module.js:501:10)
+    at startup (node.js:129:16)
+    at node.js:814:3
+```
+
+So our error tells us we have an issue on line 3, something to do with `toLower`. It tells us a function is `undefined` when we tried to run the method.
+
+We only have two functions here, `console.log` and `toLower`. After a quick Google search we learn that the method we wanted to use is `toLowerCase()`.
+
+### Coercion and Truthy/Falsey
+
+The `===` does not only compare two values, but also the **type** of those values.
+
+Consider this example:
+
+```js
+23 === '23' // false
+
+23 == '23' // true
+```
+
+Using the `===` operator, we can see that the two values are not the same. They differ in type.
+
+In this case, `==` returns True. Before performing any sort of comparison, the `==` operator will attempt to force the two values to be of the same type, if possible. This is called **type coercion**, and it can really mess up your expected results if you're not careful.
+
+It's better to use tripple equals (`===`) instead of double equals (`==`).
+
+#### Truthy/Falsey
+
+Comparisons of two values will return either True or False. But some unexpected results can be caused by using the `==` operator.
+
+```
+0 == false
+```
+
+In JavaScript, everything has an inherent Boolean value (a Truthy or Falsey value).
+
+In this case, even though `0` is a Number, it also holds a **Falsey** value.
+
+Most things are considered **truthy**, except:
+
+| Value       | Result | Description                          |
+| ----------- | ------ | ------------------------------------ |
+| `false`     | False  |                                      |
+| `null`      | False  | is an empty value                    |
+| `undefined` | False  | Is an object that has not be defined |
+| `0`         | False  | Is a Number with a value of 0        |
+| `''`        | False  | Is a String with a value of ''       |
+| `NaN`       | False  | Is a Number with a value of NaN      |
+
+## Lotide methods
+
+Here are some methods we added to our lotide library:
+
+### assertArraysEqual
+
+Implement assertArraysEqual which will take in two arrays and console.log an appropriate message to the console.
+
+```js
+// takes in two arrays and returns true or false, based on a perfect match.
+const eqArrays = (arr1, arr2) => {
+  if (arr1.length !== arr2.length) {
+    return false
+  }
+  for (let i = 0; i < arr1.length; i++) {
+    if (arr1[i] !== arr2[i]) {
+      return false
+    }
+  }
+  return true
+}
+
+const assertArraysEqual = (actual, expected) => {
+  if (eqArrays(actual, expected)) {
+    console.log(`✅ Assertion Passed: [${actual}] === [${expected}]`)
+  } else {
+    console.log(`❌ Assertion Failed: [${actual}] !== [${expected}]`)
+  }
+}
+```
+
+### without
+
+Implement `without` which will return a subset of a given array, removing unwanted elements.
+
+This function should take in a `source` array and a `itemsToRemove` array. It should return a new array with only those elements from source that are not present in the itemsToRemove array.
+
+Example:
+
+```js
+without([1, 2, 3], [1]) // => [2, 3]
+without(['1', '2', '3'], [1, 2, '3']) // => ["1", "2"]
+```
+
+```js
+const without = (arr, itemsToRemove) => {
+  // empty array to store chars that pass condition
+  let result = []
+
+  while (arr.length > 0) {
+    // remove first item in array
+    let temp = arr.shift()
+
+    // determine if temp variable is found in the itemsToRemove array
+    if (!itemsToRemove.includes(temp)) {
+      // if not item is not found, push temp to result array
+      result.push(temp)
+    }
+  }
+  return result
+}
+
+const withoutResult = without(['1', '2', '3'], [1, 2, '3'])
+assertArraysEqual(withoutResult, ['1', '2']) // ✅ Assertion Passed: [1,2] === [1,2]
+```
+
+However, this results in the original array being mutated! This is caused by the fact that the `shift` method mutates the array.
+
+We can fix this by using a for-loop to iterate over the array.
+
+```js
+const without = (arr, itemsToRemove) => {
+  // empty array to store chars that pass condition
+  let result = []
+
+  for (let i = 0; i < arr.length; i++) {
+    // remove first item in array
+    let temp = arr[i]
+
+    // determine if temp variable is found in the itemsToRemove array
+    if (!itemsToRemove.includes(temp)) {
+      // if not item is not found, push temp to result array
+      result.push(temp)
+    }
+  }
+  return result
+}
+```
+
+# Stretch Assignments
+
+### obfuscate
+
+Make `password.js` take in a single string as a command line argument and print out an obfuscated version of that password, using the rules defined below.
+
+- Every "a" in the string should be replaced with a "4".
+- Every "e" in the string should be replaced with a "3".
+- Every "o" (oh) in the string should be replaced with a "0" (zero).
+- Every "l" (el) in the string should be replaced with a "1" (one).
+
+```js
+const obfuscate = (password) => {
+  password.forEach((item) => {
+    console.log(
+      item.replace(/\a/gi, '4').replace(/\e/gi, '3').replace(/\o/gi, '0').replace(/\l/gi, '1')
+    )
+  })
+}
+
+obfuscate(process.argv.slice(2))
+```
+
+### Flatten
+
+`flatten` is a function which does something like this. Given an array with other arrays inside, it can flatten it into a single-level array.
+
+```js
+const flatten = (nested) => {
+  const result = []
+  return result.concat(...nested)
+}
+
+console.log(flatten([1, 2, [3, 4], 5, [6]]))
+```
+
+### Palindrome
+
+```js
+const isPalindrome = function (str) {
+  let reversed = str.toLowerCase().replace(/\s/g, '').split('').reverse().join('')
+  return str.toLowerCase().replace(/\s/g, '') === reversed
+}
+
+// Assertion Function
+const assertPalindrome = function (word, expected) {
+  console.log(`Testing isPalindrome(\"${word}\"):`)
+  const actual = isPalindrome(word)
+  if (actual === expected) {
+    console.log('\x1b[32m%s\x1b[0m', `\tPASS ✅ function returned ${actual}\n`)
+  } else {
+    console.log(
+      '\x1b[31m%s\x1b[0m',
+      `\tFAIL 🛑 function returned ${actual} (expected ${expected})\n`
+    )
+  }
+}
+
+// TEST CODE
+// These should all pass assertion, but they don't.
+assertPalindrome('p', true)
+assertPalindrome('racecar', true)
+assertPalindrome('my gym', true)
+assertPalindrome('foo', false)
+assertPalindrome('fluff', false)
+assertPalindrome('just some random words', false)
+
+// Bonus / Stretch: Uncomment these tests and figure out why these are also failing
+assertPalindrome('Kayak', true)
+assertPalindrome('a santa at NASA', true)
+```
+
+### PrintInFrame
+
+```js
+const printInFrame = function (list) {
+  list = list.split(' ')
+  const longest = longestStr(list).length
+  const border = repeat('*', longest + 4)
+
+  console.log(border)
+  for (const word of list) {
+    console.log(`* ${word}${repeat(' ', longest - word.length + 1)}*`)
+  }
+  console.log(border)
+}
+
+const repeat = function (str, times) {
+  let result = str
+
+  for (let i = 0; i < times; i++) {
+    result += str
+  }
+
+  return result
+}
+
+const longestStr = function (list) {
+  let longest = list[0]
+
+  for (const str of list) {
+    if (str.length > longest.length) {
+      longest = str
+    }
+  }
+
+  return longest
+}
+
+// Test driver code, do not modify
+printInFrame('May the force be with you')
+printInFrame("Here's Johnny!")
+printInFrame('Supercalifragalisticexpialadocious')
+printInFrame('Lost, like tears in the rain')
+```
+
+# calculateDayInYear
+
+The code defines a function calculateDayInYear which calculates the day of the year for a particular date string.
+
+```js
+function calculateDayInYear(date) {
+  const splitDate = date.split('/')
+  const year = Number(splitDate[0])
+  const month = Number(splitDate[1])
+  const day = Number(splitDate[2])
+
+  const isLeapYear = function (year) {
+    if (
+      (isMultiple(year, 400) && isMultiple(year, 100)) ||
+      (!isMultiple(year, 100) && isMultiple(year, 4))
+    ) {
+      return true
+    }
+    return false
+  }
+
+  const daysInFeb = function (year) {
+    if (isLeapYear(year)) {
+      return 29
+    }
+    return 28
+  }
+
+  const DAYS_IN_MONTH = [31, daysInFeb(year), 31, 30, 31, 30, 31, 31, 30, 31, 30, 31]
+
+  const validMonth = function (month) {
+    return month && month >= 1 && month <= 12
+  }
+
+  const validDay = function (month, day) {
+    return day && day >= 1 && day <= DAYS_IN_MONTH[month - 1]
+  }
+
+  //leap year is good
+  const calculateDayNumber = function (month, day) {
+    let dayNumber = 0
+    for (let i = 0; i < month - 1; i++) {
+      dayNumber += DAYS_IN_MONTH[i]
+    }
+    dayNumber += day
+    return Number(dayNumber)
+  }
+
+  if (year && validMonth(month) && validDay(month, day)) {
+    console.log(date, 'is day', calculateDayNumber(month, day), 'of the year', year)
+    return calculateDayNumber(month, day)
+  } else {
+    console.log('Invalid date')
+  }
+}
+
+const isMultiple = function (numerator, denominator) {
+  return numerator % denominator === 0
+}
+/*
+    Below are some simple tests!
+
+    They run the function with a predetermined parameter and compare the output to the value we are expecting to get!
+
+    The console.log will output either 'true' or 'false' based on whether or not the function
+    returns a value that matched our expected value.
+
+    You'll know your code works correctly when all of these tests return 'true'.
+*/
+console.log('Tests:')
+console.log('---------------')
+console.log(calculateDayInYear('1900/3/2') === 61)
+console.log(calculateDayInYear('2000/3/2') === 62)
+console.log(calculateDayInYear('2012/2/29') === 60)
+console.log(calculateDayInYear('2015/12/31') === 365)
+```
