@@ -201,3 +201,61 @@ console.log(calculateDayInYear('2000/3/2') === 62)
 console.log(calculateDayInYear('2012/2/29') === 60)
 console.log(calculateDayInYear('2015/12/31') === 365)
 ```
+
+## calculateSalesTax
+
+Given the following data, implement a function calculateSalesTax that calculates the total sales and total tax, grouped by company.
+
+```js
+const salesTaxRates = {
+  AB: 0.05,
+  BC: 0.12,
+  SK: 0.1,
+}
+
+const companySalesData = [
+  {
+    name: 'Telus',
+    province: 'BC',
+    sales: [100, 200, 400],
+  },
+  {
+    name: 'Bombardier',
+    province: 'AB',
+    sales: [80, 20, 10, 100, 90, 500],
+  },
+  {
+    name: 'Telus',
+    province: 'SK',
+    sales: [500, 100],
+  },
+]
+
+const calculateSalesTax = (salesData, taxRates) => {
+  const result = {}
+
+  for (let company of salesData) {
+    const province = company.province
+    const taxForCompany = taxRates[province]
+    const totalSales = company.sales.reduce((acc, val) => {
+      return acc + val
+    }, 0)
+    const totalTaxes = Math.round(totalSales * taxForCompany)
+
+    if (result[company.name]) {
+      let companyName = result[company.name]
+      companyName.totalSales = companyName.totalSales + totalSales
+      companyName.totalTaxes = companyName.totalTaxes + totalTaxes
+    } else {
+      result[company.name] = {
+        totalSales: totalSales,
+        totalTaxes: totalTaxes,
+      }
+    }
+  }
+  return result
+}
+
+const results = calculateSalesTax(companySalesData, salesTaxRates)
+console.log(results)
+```
