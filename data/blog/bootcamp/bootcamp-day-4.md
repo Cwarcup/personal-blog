@@ -1,10 +1,10 @@
 ---
 title: Callbacks
 date: '2022-07-30'
-tags: ['functions']
+tags: ['Callbacks']
 images: ['/static/images/postImages/michael-dziedzic-qDG7XKJLKbs-unsplash.jpg']
 draft: true
-summary:
+summary: Introduction to callbacks, arrow functions, HOF and how to use them.
 ---
 
 # Summary
@@ -59,6 +59,8 @@ Let's say we are looping over an array of values (days of the week) and we want 
 Is a function that takes in another function as an **argument**.
 
 The callback is the function we pass **into the higher order function**.
+
+They allow for creation of more powerful and **generalized** functions. A Higher-order function's job is reduced in scope when you allow it to interact with other functions.
 
 This means that built-in functions such as `forEach`, `filter`, and others can be called "Higher-Order Functions".
 

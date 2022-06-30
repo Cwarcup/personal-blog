@@ -1,6 +1,6 @@
 ---
 title: lotide - Utility Library
-date: '2022-07-29'
+date: '2022-07-30'
 tags: ['lotide', 'Library']
 images: ['/static/images/postImages/robin-spielmann-TUiNzx1vMBM-unsplash.jpg']
 draft: false
@@ -340,4 +340,96 @@ const assertObjectsEqual = (actual, expected) => {
     console.log(`❌ Assertion Failed: [${inspect(actual)}] !== [${inspect(expected)}]`)
   }
 }
+```
+
+### map
+
+Making our own version of map. Will take in two arguments (array to map over, and a callback function). It should return a new array with the result of the callback function applied to each element in the array.
+
+```js
+const map = function (array, callback) {
+  const results = []
+
+  for (let item of array) {
+    results.push(callback(item))
+  }
+
+  return results
+}
+
+/// example of map
+
+const daysOfTheWeek = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday']
+
+const result1 = map(daysOfTheWeek, (day) => day[0])
+
+console.log(result1) // => ['M', 'T', 'W', 'T', 'F', 'S', 'S']
+```
+
+### takeUntil
+
+Inspired by lodash's [takeWhile function](https://lodash.com/docs/4.17.15#takeWhile).
+
+It will take in two parameters as well:
+-The array to work with
+
+- The callback (which Lodash calls "predicate")
+
+The function will return a "slice of the `array` with elements taken from the beginning." It should keep going until the callback/predicate returns a truthy value.
+
+To keep things simple, the callback should only be provided one value: The item in the array.
+
+```js
+const takeUntil = (arr, cb) => {
+  const result = []
+
+  for (let item of arr) {
+    if (!cb(item)) {
+      result.push(item)
+    } else {
+      return result
+    }
+  }
+}
+
+// testing
+const data1 = [1, 2, 5, 7, 2, -1, 2, 4, 5]
+const results1 = takeUntil(data1, (x) => x < 0)
+console.log(results1) // [ 1, 2, 5, 7, 2 ]
+
+const data2 = ["I've", 'been', 'to', 'Hollywood', ',', "I've", 'been', 'to', 'Redwood']
+const results2 = takeUntil(data2, (x) => x === ',')
+console.log(results2) // [ 'I\'ve', 'been', 'to', 'Hollywood' ]
+```
+
+### findKey
+
+Similar to lodash's [findKey function](https://lodash.com/docs/4.17.15#findKey).
+
+Implement the function `findKey` which takes in an object and a callback. It should scan the object and return the first key for which the callback returns a truthy value. If no key is found, then it should return undefined.
+
+```js
+const findKey = (object, callback) => {
+  for (let item in object) {
+    if (callback(object[item])) {
+      return item
+    }
+  }
+  return undefined
+}
+
+//test case
+console.log(
+  findKey(
+    {
+      'Blue Hill': { stars: 1 },
+      Akaleri: { stars: 3 },
+      noma: { stars: 2 },
+      elBulli: { stars: 3 },
+      Ora: { stars: 2 },
+      Akelarre: { stars: 3 },
+    },
+    (x) => x.stars === 2
+  )
+) // => "noma"
 ```
