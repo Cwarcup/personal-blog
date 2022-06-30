@@ -2,7 +2,7 @@
 title: Callbacks
 date: '2022-07-30'
 tags: ['Callbacks']
-images: ['/static/images/postImages/michael-dziedzic-qDG7XKJLKbs-unsplash.jpg']
+images: ['/static/images/postImages/mars-sector-6-kwzWjTnDPLk-unsplash.jpg']
 draft: true
 summary: Introduction to callbacks, arrow functions, HOF and how to use them.
 ---
@@ -12,6 +12,12 @@ summary: Introduction to callbacks, arrow functions, HOF and how to use them.
 ## Functions as Values
 
 Functions have as many rights and uses as any other object. They exist as their own entity. You can even invoke a function that is within an array, inside of a parent object.
+
+```js
+const myFunction = function () {
+  // do something
+}
+```
 
 ## Passing Functions
 
@@ -66,12 +72,6 @@ This means that built-in functions such as `forEach`, `filter`, and others can b
 
 This is a very important concept in **Functional Programing**.
 
-In our example, printTheDay is the callback, and \_\_\_ is the higher order function.
-
-```js
-
-```
-
 ### Using map
 
 Let's use the higher order function `map` to practice.
@@ -94,6 +94,15 @@ console.log(names) // ['Fluffy', 'Caro', 'Hamilton', 'Harold', 'Ursula', 'Jimmy'
 ```
 
 ## Anonymous Functions
+
+```js
+const myHigherOrderFunction = function (callback) {
+  callback()
+}
+
+// the function we pass as an argument has no name
+myHigherOrderFunction(function () {})
+```
 
 Simply means that the function is not named (not declared), but is rather inline like so:
 
@@ -180,11 +189,7 @@ If you want to use `this` in your function, you need to use `bind` to bind the `
 
 ```
 
-## Make another Higher Order Function
-
-Ones that come to mind are array methods (forEach, map, filter, reduce etc.).
-
-#### Filter
+## Make another Higher Order Function - Filter
 
 The built in `filter` method takes a callback function as an argument. The callback function is invoked for each element in the array.
 
