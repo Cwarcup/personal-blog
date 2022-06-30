@@ -21,7 +21,6 @@ export default function Home({ posts }) {
     <>
       <PageSEO title={siteMetadata.title} description={siteMetadata.description} />
       <Hero />
-      <RecentProjects MAX_PROJECTS="2" />
       <div className="container mx-auto divide-y divide-gray-700">
         <div className="my-4 flex flex-col">
           <span className="font-poppins title-font  text-3xl font-bold">Recent Posts</span>
@@ -78,6 +77,7 @@ export default function Home({ posts }) {
           </div>
         )}
       </div>
+      <RecentProjects MAX_PROJECTS="2" />
     </>
   )
 }
