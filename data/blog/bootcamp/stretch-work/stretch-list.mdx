@@ -1,6 +1,6 @@
 ---
 title: Bootcamp Stretch Assignments
-date: '2022-07-29'
+date: '2022-08-01'
 tags: ['Stretch']
 images: ['/static/images/postImages/d-s-chapman-aIgZHolF4Dg-unsplash.jpg']
 draft: false
@@ -273,4 +273,170 @@ const result = input.map((item) => Math.sqrt(Math.pow(item.x, 2) + Math.pow(item
 console.log(result[0] === 5)
 console.log(result[1] === 13)
 console.log(result[2] === 17)
+```
+
+## studentSort
+
+Say we have a list of students that we would like to sort in alphabetical order.
+
+If students have the same name, then we prioritize the older student first.
+
+```js
+const students = [
+  { id: 1, name: 'bruce', age: 40 },
+  { id: 2, name: 'zoidberg', age: 22 },
+  { id: 3, name: 'alex', age: 22 },
+  { id: 4, name: 'alex', age: 30 },
+]
+
+const studentSort = (arr) => {
+  for (let i = arr.length; i > 0; i--) {
+    for (let j = 0; j < i - 1; j++) {
+      if (arr[j].name === arr[j + 1].name) {
+        if (arr[j].age > arr[j + 1].age) {
+          let temp = arr[j]
+          arr[j] = arr[j + 1]
+          arr[j + 1] = temp
+        }
+      } else {
+        if (arr[j].name > arr[j + 1].name) {
+          let temp = arr[j]
+          arr[j] = arr[j + 1]
+          arr[j + 1] = temp
+        }
+      }
+    }
+  }
+  return arr
+}
+
+console.log(studentSort(students))
+```
+
+## Music Library Problems
+
+```js
+const library = {
+  tracks: {
+    t01: {
+      id: 't01',
+      name: 'Code Monkey',
+      artist: 'Jonathan Coulton',
+      album: 'Thing a Week Three',
+    },
+    t02: { id: 't02', name: 'Model View Controller', artist: 'James Dempsey', album: 'WWDC 2003' },
+    t03: { id: 't03', name: 'Four Thirty-Three', artist: 'John Cage', album: 'Woodstock 1952' },
+  },
+  playlists: {
+    p01: { id: 'p01', name: 'Coding Music', tracks: ['t01', 't02'] },
+    p02: { id: 'p02', name: 'Other Playlist', tracks: ['t03'] },
+  },
+}
+
+/////////////////////////////
+// FUNCTIONS TO IMPLEMENT:
+/////////////////////////////
+
+// prints a list of all playlists, in the form:
+// p01: Coding Music - 2 tracks
+// p02: Other Playlist - 1 tracks
+const printPlaylists = (obj) => {
+  let playlistsArr = Object.values(obj.playlists)
+
+  for (let item of playlistsArr) {
+    console.log(`${item.id}: ${item.name} - ${item.tracks.length} tracks`)
+  }
+}
+
+// prints a list of all tracks, using the following format:
+// t01: Code Monkey by Jonathan Coulton (Thing a Week Three)
+// t02: Model View Controller by James Dempsey (WWDC 2003)
+// t03: Four Thirty-Three by John Cage (Woodstock 1952)
+const printTracks = (obj) => {
+  let tracksListArr = Object.values(obj.tracks)
+
+  for (let item of tracksListArr) {
+    console.log(`${item.id}: ${item.name} by ${item.artist} (${item.album})`)
+  }
+}
+//printTracks(library);
+
+// prints a list of tracks for a given playlist, using the following format:
+// p01: Coding Music - 2 tracks
+// t01: Code Monkey by Jonathan Coulton (Thing a Week Three)
+// t02: Model View Controller by James Dempsey (WWDC 2003)
+const printPlaylist = (playlistId) => {
+  let playlist = library.playlists[playlistId]
+  console.log(`${playlist.id}: ${playlist.name} - ${playlist.tracks.length} tracks`)
+  let trackDetails
+
+  for (let trackId of playlist.tracks) {
+    trackDetails = library.tracks[trackId]
+    console.log(
+      `${trackDetails.id}: ${trackDetails.name} by ${trackDetails.artist} (${trackDetails.album})`
+    )
+  }
+}
+//printPlaylist('p01');
+
+// adds an existing track to an existing playlist
+const addTrackToPlaylist = (trackId, playlistId) => {
+  library.playlists[playlistId].tracks.push(trackId)
+}
+
+//addTrackToPlaylist('t99', 'p01')
+
+// generates a unique id
+// (already implemented: use this for addTrack and addPlaylist)
+const generateUid = function () {
+  return Math.floor((1 + Math.random()) * 0x10000)
+    .toString(16)
+    .substring(1)
+}
+
+// adds a track to the library
+const addTrack = (name, artist, album) => {
+  const generatedId = generateUid()
+
+  library.tracks[generatedId] = {
+    id: generatedId,
+    name,
+    artist,
+    album,
+  }
+}
+
+addTrack('Objects Rule the World', 'Infinite SyntaxError', 'Tears on My Keyboard')
+addTrack('Objects Rule the World', 'Infinite SyntaxError', 'Test Album')
+addTrack('Objects Rule the World', 'Test Artist', 'Tears on My Keyboard')
+addTrack('Test Name', 'Infinite SyntaxError', 'Tears on My Keyboard')
+
+// adds a playlist to the library
+const addPlaylist = (name) => {
+  const generatedId = generateUid()
+
+  library.playlists[generatedId] = {
+    id: generatedId,
+    name,
+    tracks: [],
+  }
+}
+//addPlaylist('Coding on prod');
+
+// STRETCH:
+// given a query string string, prints a list of tracks
+// where the name, artist or album contains the query string (case insensitive)
+// tip: use "string".search("tri")
+// https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/search
+const printSearchResults = (query) => {
+  const tracksIdObj = Object.values(library.tracks)
+
+  for (let track of tracksIdObj) {
+    if (!track.name.search(query) || !track.artist.search(query) || !track.album.search(query)) {
+      console.log(track)
+    }
+  }
+}
+
+printSearchResults('Test')
 ```

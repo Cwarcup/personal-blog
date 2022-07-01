@@ -202,3 +202,33 @@ const evens = numbers.filter(function (num) {
 })
 console.log('Subset of even numbers:', evens)
 ```
+
+## Closures
+
+Consider the following code:
+
+```js
+const outer = function () {
+  const x = 10
+
+  const inner = function () {
+    console.log('The value of x is: ' + x)
+  }
+  return inner
+}
+
+const foo = outer()
+foo()
+```
+
+What does `foo` return?
+
+```
+The value of x is: 10
+```
+
+Why? Because the `inner` function accesses variable `x`, which is defined within the parent function `outer`.
+
+### definition of closure
+
+> "A closure is the combination of a function bundled together (enclosed) with references to its surrounding state (the lexical environment). In other words, a closure gives you access to an outer function's scope from an inner function. In JavaScript, closures are created every time a function is created, at function creation time." - https://developer.mozilla.org/en-US/docs/Web/JavaScript/Closures

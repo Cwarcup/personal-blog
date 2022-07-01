@@ -1,0 +1,325 @@
+---
+title: Objects and Recursion
+date: '2022-08-01'
+tags: ['Objects', 'recursion']
+images: ['/static/images/postImages/mario-mesaglio-kesOP4tet6Y-unsplash.jpg']
+draft: false
+summary: More on objects, with a bit of recursion.
+---
+
+<TOCInline toc={props.toc} asDisclosure />
+
+# Steps for Troubleshooting
+
+Ask yourself the following:
+
+1. ...pseudo-coded the solution?
+2. ...googled the error message I am getting?
+3. ...actually READ the error message?
+4. ...double-checked my syntax?
+5. ...linted my code?
+6. ...pair programmed or gotten a peer to code review?
+7. ...rubber-ducked the problem?
+
+# Functions as Object Properties
+
+Instead of just assigning data to a variable, we can assign a function to a variable.
+
+```js
+const person = {
+  firstName: 'Curtis',
+  lastName: 'W',
+  fullName: function () {
+    return this.firstName + ' ' + this.lastName
+  },
+}
+
+// Nice, now I can just say:
+console.log('Hello, ' + person.fullName())
+// Hello Curtis W
+```
+
+However, this also introduces the concept of `this`.
+
+Recall that functions can be assigned to variables, which means they are values:
+
+```js
+// The function below is being defined and assigned to a variable myFunc!
+const myFunc = function () {
+  console.log('Hello from myFunc!')
+}
+
+// We can now call myFunc() with the () syntax.
+myFunc()
+
+// We can also assign that value to other variables!
+const anotherVar = myFunc
+
+// And call them the same way
+anotherVar() // => Same as myFunc()!
+
+/////////////////////////////////////////
+
+const someObject = {
+  foo: 1,
+  bar: function () {
+    console.log('hello!')
+  },
+}
+
+someObject.bar()
+```
+
+> Semantically speaking, `bar` is a method on the object `someObject`.
+
+Example using the `this` keyword in our `library` object:
+
+```js
+const library = {
+  tracks: {
+    t01: {
+      id: 't01',
+      name: 'Code Monkey',
+      artist: 'Jonathan Coulton',
+      album: 'Thing a Week Three',
+    },
+    t02: { id: 't02', name: 'Model View Controller', artist: 'James Dempsey', album: 'WWDC 2003' },
+    t03: { id: 't03', name: 'Four Thirty-Three', artist: 'John Cage', album: 'Woodstock 1952' },
+  },
+  playlists: {
+    p01: { id: 'p01', name: 'Coding Music', tracks: ['t01', 't02'] },
+    p02: { id: 'p02', name: 'Other Playlist', tracks: ['t03'] },
+  },
+  printPlaylists: function () {
+    let playlistsArr = Object.values(this.playlists)
+
+    for (let item of playlistsArr) {
+      console.log(`${item.id}: ${item.name} - ${item.tracks.length} tracks`)
+    }
+  },
+  printTracks: function () {
+    let tracksListArr = Object.values(this.tracks)
+
+    for (let item of tracksListArr) {
+      console.log(`${item.id}: ${item.name} by ${item.artist} (${item.album})`)
+    }
+  },
+  printPlaylist: function (playlistId) {
+    let playlist = this.playlists[playlistId]
+    console.log(`${playlist.id}: ${playlist.name} - ${playlist.tracks.length} tracks`)
+    let trackDetails
+
+    for (let trackId of playlist.tracks) {
+      trackDetails = this.tracks[trackId]
+      console.log(
+        `${trackDetails.id}: ${trackDetails.name} by ${trackDetails.artist} (${trackDetails.album})`
+      )
+    }
+  },
+  addTrackToPlaylist: function (trackId, playlistId) {
+    library.playlists[playlistId].tracks.push(trackId)
+    console.log(`The ${trackId} was added to playlist ${playlistId}`)
+  },
+  generateUid: function () {
+    return Math.floor((1 + Math.random()) * 0x10000)
+      .toString(16)
+      .substring(1)
+  },
+  addTrack: function (name, artist, album) {
+    const generatedId = this.generateUid()
+
+    library.tracks[generatedId] = {
+      id: generatedId,
+      name,
+      artist,
+      album,
+    }
+    console.log(`Track ${name} by ${artist} has been added 👍`)
+  },
+  addPlaylist: function (name) {
+    const generatedId = this.generateUid()
+
+    library.playlists[generatedId] = {
+      id: generatedId,
+      name,
+      tracks: [],
+    }
+    console.log(`Playlist '${name}' has been added 🎶`)
+  },
+  printSearchResults: function (query) {
+    const tracksIdObj = Object.values(this.tracks)
+
+    const searchTerm = new RegExp(query, 'i')
+
+    for (let track of tracksIdObj) {
+      if (
+        !track.name.search(searchTerm) ||
+        !track.artist.search(searchTerm) ||
+        !track.album.search(searchTerm)
+      ) {
+        console.log(`Search results: ${JSON.stringify(track)}`)
+      }
+    }
+  },
+}
+
+/////////////////////// testing ///////////////////////
+
+// library.printPlaylists();
+// library.printTracks();
+// library.printPlaylist('p01');
+// library.addTrackToPlaylist('t99', 'p01');
+// library.addTrack('Objects Rule the World', 'Infinite SyntaxError', 'Tears on My Keyboard');
+// library.addTrack('Objects Rule the World', 'Infinite SyntaxError', 'Test Album');
+// library.addTrack('Objects Rule the World', 'Test Artist', 'Tears on My Keyboard');
+// library.addTrack('Test Name', 'Infinite SyntaxError', 'Tears on My Keyboard');
+// library.addPlaylist('Coding on prod');
+// library.printSearchResults('test');
+// library.printSearchResults('Test');
+```
+
+# Recursion
+
+## Introduction to Recursion
+
+Recursion is an alternative to traditional looking that allows your to do the same thing, but in a different way.
+
+Example: This loop counts all even numbers from 0 to 12:
+
+```js
+let number = 0
+while (number <= 12) {
+  console.log(number)
+  number += 2
+}
+```
+
+We can do the same thing using `recursion`:
+
+```js
+function countEvens(number) {
+  if (number <= 12) {
+    console.log(number)
+    countEvens(number + 2)
+  }
+}
+
+countEvens(0)
+```
+
+Each time `countEvens` calls itself, on line 4, it passes in a different input value. In this case, each time the function is called, `number` will be 2 more than it was the last time.
+
+Instead of incrementing the number directly, like in the loop, the function calls itself again with a modified input parameter.
+
+Every time the function calls itself, `number` gets bigger and bigger. This is important, because the function will **only stop** calling itself when number is greater than 12. This is known as a **base case**.
+
+```js
+function countEvens(number) {
+  if (number <= 12) {
+    // Recursive Case
+    console.log(number)
+    // The function will call itself again and get closer to the base case
+    countEvens(number + 2)
+  }
+  // Base case, do nothing when number > 12
+}
+countEvens(0)
+```
+
+If you're going to use recursion, you'll need to think about...
+
+- What is the base case?
+- What is the recursive case?
+- Each recursive call should break down the current problem into smaller pieces.
+- The recursive call **must** eventually reach the smallest version of the problem (the base case).
+- The base case is when the recursive call reaches a point where it can no longer make any more calls.
+
+## Recursion Examples
+
+### Summing with Recursion
+
+Write a function that will return the sum of every whole number from `n` down to `1`.
+
+With a `for...loop`:
+
+```js
+function sumToOne(n) {
+  let sum = 0
+  for (let i = n; i >= 1; i--) {
+    sum += i
+  }
+  return sum
+}
+
+sumToOne(4) // returns 10
+```
+
+With recursion:
+
+```js
+function sumToOne(n) {
+  if (n === 1) {
+    return 1
+  }
+
+  if (n > 1) {
+    return n + sumToOne(n - 1)
+  }
+}
+
+console.log(sumToOne(4)) // returns 10
+```
+
+### Print all elements of an array
+
+Without recursion:
+
+```js
+const printItems = function (array) {
+  for (let item of array) {
+    console.log(item)
+  }
+}
+
+// const array = ['A', 'B', 'C', 'D', 'E'];
+const array = ['A', ['B', 'C'], 'D', 'E']
+printItems(array)
+// A
+// [ 'B', 'C' ]
+// D
+// E
+```
+
+> Can't do cases with nested arrays.
+
+With recursion:
+
+```js
+const printItems = function (array) {
+  for (let item of array) {
+    if (Array.isArray(item)) {
+      // Print out all it's items individually
+      printItems(item)
+    } else {
+      console.log(item)
+    }
+  }
+}
+
+// const array = ['A', 'B', 'C', 'D', 'E'];
+// const array = ['A', ['B', 'C'], 'D', 'E']; // works
+const array = [
+  'A',
+  [
+    ['B', ['C']],
+    [[['D']], 'E'],
+  ],
+] // works
+
+printItems(array)
+// A
+// B
+// C
+// D
+// E
+```
