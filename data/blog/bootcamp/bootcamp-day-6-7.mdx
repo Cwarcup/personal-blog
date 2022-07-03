@@ -1,0 +1,632 @@
+---
+title: Modules and Unit Testing
+date: '2022-08-02'
+tags: ['Modules', 'Unit Testing']
+images: ['/static/images/postImages/ferenc-almasi-EWLHA4T-mso-unsplash.jpg']
+draft: false
+summary: Sharing functions with modules and automated testing.
+---
+
+# Modules
+
+Recall, we want to keep our code [DRY](https://en.wikipedia.org/wiki/Don%27t_repeat_yourself#DRY_vs_WET_solutions)!
+
+## Exporting Modules
+
+A JavaScript file must export the part that we want to share. This makes it `require`able. It's common to export objects, including functions.
+
+In order to export a function, we need to use the `module.export` keyword.
+
+```js
+const sayHelloTo = function (person) {
+  console.log(`Hello, ${person}`)
+}
+// add this line to the end of the file.
+module.exports = sayHelloTo
+```
+
+## Requiring a Module
+
+Basic syntax for **importing from local filesystem** using `require`:
+
+```js
+const sayHelloTo = require('./myModule')
+```
+
+> Here we are assuming that the file is in the same directory as the file that is importing it.
+
+File extensions are not necessary, but can be used.
+
+```js
+const sayHelloTo = require('./myModule.js')
+```
+
+Example with [chalk](https://github.com/chalk/chalk):
+
+```js
+const chalk = require('chalk')
+
+const message = `Hello ${chalk.yellow('World')}`
+console.log(message)
+
+// or with import
+import chalk from 'chalk'
+
+console.log(chalk.blue('Hello world!'))
+```
+
+# Packages and npm
+
+What are packages?
+
+> A package is a collection of modules. They are useful for grouping similar modules together, and can be installed into a project using `npm install`.
+
+What are libraries?
+
+> A collection of pre-written code. Libraries can be private, but many are packaged up nicely, branded and made publicly available for other developers to use in their own projects. Think jQuery and Bootstrap for example.
+
+## package.json
+
+All node.js projects have a `package.json` file. This file contains information about the project, such as the name, version, and dependencies.
+
+More on [package.json](https://docs.npmjs.com/cli/v8/configuring-npm/package-json) via npm.
+
+```json
+{
+  "name": "my-project",
+  "version": "1.0.0",
+  "description": "A simple project",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "author": "John Doe",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.13.4"
+  }
+}
+```
+
+### Custom Scripts in `package.json`
+
+The `scripts` portion allows us to run commands using an **alias**, for instance:
+
+```bash
+npm run start
+```
+
+### Dependencies in `package.json`
+
+The `dependencies` section of `package.json` lists the packages that need to be installed for the project to run properly. In the above example it lists a package called `express`, and the value `^4.13.4` specifies the version.
+
+```bash
+///
+"dependencies": {
+    "express": "^4.13.4"
+  }
+///
+```
+
+### package-lock.json
+
+The `package-lock.json` file lists all the details about our project's dependencies. It should be checked into git, along with `package.json.`
+
+We should always **avoid** **editing** the `package-lock.json` this file directly. We modify it indirectly via commands like `npm install`.
+
+# Unit Testing
+
+Unit testing is the practice of testing small pieces of code, typically individual functions, alone and isolated.
+
+Unit tests should be fairly simple to write. A unit tests should essentially just give the function that’s tested some inputs, and then check what the function outputs is correct.
+
+Examples include [Jest](https://jestjs.io/), [Mocha](https://mochajs.org/), [Cypress](https://docs.cypress.io/guides/overview/why-cypress) and [Puppeteer](https://jestjs.io/docs/puppeteer).
+
+### Types of Testing
+
+**Integration tests**: are similar to unit tests, but there’s one big difference: while unit tests are isolated from other components, integration tests are not. For example, a unit test for database access code would not talk to a real database, but an integration test would.
+
+Integration testing is mainly useful for situations where unit testing is not enough. Sometimes you need to have tests to verify that two separate systems – like a database and your app – work together correctly, and that calls for an integration test.
+
+---
+
+**Functional Testing**: sometimes called E2E testing, or browser testing, is a way to test the behavior of a web application. In practice with web apps, this means using some tool to automate a browser, which is then used to click around on the pages to test the application.
+
+## Mocha and Chai Introduction
+
+**BDD** or **Behavior Driven Development** is a process that emerged from test-driven development. BDD encourages you to specify the behavior of your app in terms of user stories which are broken down into scenarios that can be built and tested.
+
+If you want to test code in the browser, run:
+
+```bash
+npm install mocha chai --save-dev
+```
+
+If you want to test Node.js code, in addition to the above, run:
+
+```bash
+npm install -g mocha
+```
+
+[Mocha](https://mochajs.org/) is the library that allows us to run tests, and [Chai](https://www.chaijs.com/) contains the assertion functions that we use to check our tests.
+
+### Testing on Node.js vs Testing on the Browser
+
+The examples below are designed to work for running tests in a browser. To unit test a node application, follow these steps:
+
+- For Node, you do not need a test runner file.
+- To include Chai, add `const chai = require('chai')` to the top of your test file.
+- Run the tests using `mocha` command, instead of opening a browser.
+
+### Setting up a directory structure for testing
+
+Tests should be put in a separate directory from your main code. This is because the tests should not be run with the main code.
+
+The most popular technique for separating tests from the code is to use a `test` directory in the root of your project. Then, each test file is placed under `test/someModuleTest.js`.
+
+### Setting up a Test Runner
+
+In order to run our test in a browser, we need some HTML. This page loads Mocha. To run the test, we simply open the runner in a browser.
+
+If you are using Node.js, you can skip this step. Recall, Node.js unit tests can be run using the `mocha` command.
+
+1. Create some basic HTML file.
+2. We create a div with the **ID** `mocha`. This is where the test results are inserted.
+3. We load **Mocha** and **Chai**. They are located in subfolders of the `node_modules `folder since we installed them via npm.
+4. By calling `mocha.setup`, we make Mocha’s testing helpers available.
+5. Then, we load the code we want to test and the test files. We don’t have anything here just yet.
+6. Last, we call `mocha.run` to run the tests. Make sure you call this after loading the source and test files.
+
+```html
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Mocha Tests</title>
+    <link rel="stylesheet" href="node_modules/mocha/mocha.css" />
+  </head>
+  <body>
+    <div id="mocha"></div>
+    <script src="node_modules/mocha/mocha.js"></script>
+    <script src="node_modules/chai/chai.js"></script>
+    <script>
+      mocha.setup('bdd')
+    </script>
+
+    <!-- load code you want to test here -->
+
+    <!-- load your test files here -->
+
+    <script>
+      mocha.run()
+    </script>
+  </body>
+</html>
+```
+
+### Building a Test File
+
+We create a new file `test/arrayTest.js`. This is known as a _test case_. For this example we will call it `arrayTest.js`.
+
+Every test follows the same pattern:
+
+1. You first `describe()` the block of code you want to test.
+
+```js
+describe('Array', function () {
+  // Further code for tests goes here
+})
+```
+
+> `describe()` is used to group tests together.
+
+The first argument is the **name of the test**. The second argument is a function that **contains the tests**.
+
+2. Inside of the `describe()`, we'll have a `it()` block. `it()` is used to create the actual tests.
+
+```js
+describe('Array', function () {
+  it('should start empty', function () {
+    // Test implementation goes here
+  })
+
+  // We can have more its here
+})
+```
+
+Summary:
+
+- First, we use `describe()` to say what we’re testing – for example, “describe how array should work”.
+- Then, we use a number of `it()` functions to create the individual tests – each `it()` should explain **one** specific behavior, such as “it should start empty” for our array case above.
+
+### Writing the test code
+
+For our example, we will be testing an empty array.
+
+```js
+const assert = chai.assert
+
+describe('Array', function () {
+  it('should start empty', function () {
+    var arr = []
+
+    assert.equal(arr.length, 0)
+  })
+})
+```
+
+In the `it` function, we create an array and check its length. Although simple, this is a good example of how tests work.
+
+After we test something, we need to validate it with an **assertion** which checks the result. Here, we are using `assert.equal` to do this.
+
+Most assertion functions take parameters in the same order:
+
+1. First the “actual” value
+2. then the “expected” value.
+
+```js
+assert.equal(arr.length, 0)
+```
+
+### Running the tests
+
+If running in Node.js, we should have a file that looks like so:
+
+```js
+const chai = require('chai')
+
+const assert = chai.assert
+
+describe('Array', function () {
+  it('should start empty', function () {
+    let arr = []
+
+    assert.equal(arr.length, 0)
+  })
+})
+```
+
+> We can simply call `mocha` to run the tests.
+
+In terminal we get a response like this:
+
+```bash
+
+  Array
+    ✔ should start empty
+
+
+  1 passing (4ms)
+
+```
+
+You can add in an option third parameter to display a custom message if the test fails.
+
+```js
+describe('Array', function () {
+  it('should start empty', function () {
+    let arr = []
+
+    assert.equal(arr.length, 0, 'Array should start empty')
+  })
+})
+```
+
+### More practical example:
+
+Will be testing this in browser.
+
+1. Create your javascript:
+
+```js
+function addClass(el, newClass) {
+  if (el.className.indexOf(newClass) === -1) {
+    el.className += newClass
+  }
+}
+```
+
+2. Create your test:
+
+```js
+const assert = chai.assert
+
+describe('addClass', function () {
+  it('should add class to element', function () {
+    let element = { className: '' }
+
+    addClass(element, 'test-class')
+
+    assert.equal(element.className, 'test-class')
+  })
+  it('should not add a class which already exists')
+})
+```
+
+3. Add the javascript and test to the HTML page:
+
+```html
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Mocha Tests</title>
+    <link rel="stylesheet" href="node_modules/mocha/mocha.css" />
+  </head>
+
+  <body>
+    <div id="mocha"></div>
+    <script src="node_modules/mocha/mocha.js"></script>
+    <script src="node_modules/chai/chai.js"></script>
+    <script>
+      mocha.setup('bdd')
+    </script>
+
+    <!-- load code you want to test here -->
+    <script src="className.js"></script>
+
+    <!-- load your test files here -->
+
+    <script src="test/classNameTest.js"></script>
+    <script>
+      mocha.run()
+    </script>
+  </body>
+</html>
+```
+
+Implmenting the second test...
+
+```js
+const assert = chai.assert
+
+describe('addClass', function () {
+  it('should add class to element', function () {
+    let element = { className: '' }
+
+    addClass(element, 'test-class')
+
+    assert.equal(element.className, 'test-class')
+  })
+
+  // Add a second test here
+
+  it('should not add a class which already exists', function () {
+    let element = { className: 'exists' }
+
+    addClass(element, 'exists')
+
+    let numClasses = element.className.split(' ').length
+    assert.equal(numClasses, 1)
+  })
+})
+```
+
+### Testing on Node
+
+In Node, things are only visible to other things in the same file. As `className.js` and `classNameTest.js` are in different files, we need to find a way to expose one to the other. The standard way to do this is through the use of `module.exports`.
+
+In className.js:
+
+```js
+// className.js
+
+module.exports = {
+  addClass: function (el, newClass) {
+    if (el.className.indexOf(newClass) !== -1) {
+      return
+    }
+
+    if (el.className !== '') {
+      //ensure class names are separated by a space
+      newClass = ' ' + newClass
+    }
+
+    el.className += newClass
+  },
+}
+```
+
+And classNameTest.js:
+
+```js
+// classNameTest.js
+
+var chai = require('chai');
+var assert = chai.assert;
+
+var className = require('../js/className.js');
+var addClass = className.addClass;
+
+// The rest of the file remains the same
+
+describe('addClass', function() {
+  ...
+});
+```
+
+### Example using `car.js`
+
+Have a look at the `car.js` file.
+
+```js
+const shouldBuyCar = function (car) {
+  if (car === undefined) {
+    return undefined
+  }
+
+  if (car.type && car.type.toLowerCase() === 'hatchback') {
+    return false
+  }
+
+  if (car.color && car.color.toLowerCase() === 'pink') {
+    return true
+  }
+
+  const goodLitres = car.litresPer100km && car.litresPer100km >= 6 && car.litresPer100km <= 11
+
+  const goodPrice = car.price && car.price <= 5000
+
+  if (goodLitres && goodPrice) {
+    return true
+  }
+
+  return false
+}
+
+module.exports = shouldBuyCar
+```
+
+Create a new folder named `test` and create `carTest.js`. Inside of here we will add the following tests:
+
+```js
+const chai = require('chai')
+const assert = chai.assert
+
+const shouldBuyCar = require('../shouldBuyCar.js')
+
+describe('#shouldBuyCar()', function () {
+  it("should return false if it's a hatchback", function () {
+    const car = {
+      type: 'hatchback',
+    }
+    const shouldBuy = shouldBuyCar(car)
+    assert.isFalse(shouldBuy)
+  })
+
+  it('should return true when ar is pink', function () {
+    const car = {
+      color: 'pink',
+    }
+    const shouldBuy = shouldBuyCar(car)
+    assert.isTrue(shouldBuy)
+  })
+
+  it('should return false when there are no details about the car', function () {
+    const car = {}
+    const shouldBuy = shouldBuyCar(car)
+    assert.isFalse(shouldBuy)
+  })
+
+  it('should return false when the car is pink and a hatchback', function () {
+    const car = {
+      type: 'hatchback',
+      color: 'pink',
+    }
+    const shouldBuy = shouldBuyCar(car)
+    assert.isFalse(shouldBuy)
+  })
+
+  it('should return true when the car has 6 litres/100km and is under or equal to $5,000', function () {
+    const car = {
+      litresPer100km: 6,
+      price: 5000,
+    }
+    const shouldBuy = shouldBuyCar(car)
+    assert.isTrue(shouldBuy)
+  })
+
+  it('should return true when the car has 11 litres/100km and is under or equal to $5,000', function () {
+    const car = {
+      litresPer100km: 11,
+      price: 5000,
+    }
+    const shouldBuy = shouldBuyCar(car)
+    assert.isTrue(shouldBuy)
+  })
+
+  it('should return false when the car has 6 litres/100km and is over $5,000', function () {
+    const car = {
+      litresPer100km: 6,
+      price: 5001,
+    }
+    const shouldBuy = shouldBuyCar(car)
+    assert.isFalse(shouldBuy)
+  })
+
+  it('should return false when the car has 11 litres/100km and is over $5,000', function () {
+    const car = {
+      litresPer100km: 11,
+      price: 5001,
+    }
+    const shouldBuy = shouldBuyCar(car)
+    assert.isFalse(shouldBuy)
+  })
+
+  it('should return false when the car has 5 litres/100km and is under or equal to $5,000', function () {
+    const car = {
+      litresPer100km: 5,
+      price: 5000,
+    }
+    const shouldBuy = shouldBuyCar(car)
+    assert.isFalse(shouldBuy)
+  })
+
+  it('should return false when the car has 12 litres/100km and is under or equal to $5,000', function () {
+    const car = {
+      litresPer100km: 12,
+      price: 5000,
+    }
+    const shouldBuy = shouldBuyCar(car)
+    assert.isFalse(shouldBuy)
+  })
+
+  it('should return false when the car is undefined', function () {
+    const car = undefined
+    const shouldBuy = shouldBuyCar(car)
+    assert.isUndefined(shouldBuy)
+  })
+})
+```
+
+when we run `mocha`, we will see the following output:
+
+```
+  #shouldBuyCar()
+    ✔ should return false if it's a hatchback
+    ✔ should return true when ar is pink
+    ✔ should return false when there are no details about the car
+    ✔ should return false when the car is pink and a hatchback
+    ✔ should return true when the car has 6 litres/100km and is under or equal to $5,000
+    ✔ should return true when the car has 11 litres/100km and is under or equal to $5,000
+    ✔ should return false when the car has 6 litres/100km and is over $5,000
+    ✔ should return false when the car has 11 litres/100km and is over $5,000
+    ✔ should return false when the car has 5 litres/100km and is under or equal to $5,000
+    ✔ should return false when the car has 12 litres/100km and is under or equal to $5,000
+    ✔ should return false when the car is undefined
+```
+
+Last example in `carTest.js` uses `isUndefined` to check if the car is undefined. See [Chai docs](https://www.chaijs.com/api/assert/#method_isundefined) for more.
+
+### Another example:
+
+For Example, if we have a test to make sure a user is 18 or older to sign up for an account:
+
+- Test the happy path and the sad path.
+
+  - Happy Path: Test what happens when a user is old enough
+  - Sad Path: Test what happens when a user is not old enough
+
+- Test the edge cases. The minimum possible and maximum possible values.
+
+  - 18 is an edge case because the user is only just old enough.
+  - 17 is an edge case because the user is only just too young.
+  - 15 is not an edge case, it's a random number under 18.
+
+```js
+// Happy Path
+it('should return true if the user is old enough', function () {
+  const user = {
+    age: 18, // Edge Case
+  }
+  const canSignUp = signUpUser(user)
+  assert.isTrue(canSignUp)
+})
+
+// Sad Path
+it('should return false if the user is not old enough', function () {
+  const user = {
+    age: 17, // Edge Case
+  }
+  const canSignUp = signUpUser(user)
+  assert.isFalse(canSignUp)
+})
+```
