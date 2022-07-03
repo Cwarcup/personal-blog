@@ -4,7 +4,7 @@ date: '2022-07-27'
 tags: ['CLI', 'git']
 images: ['/static/images/postImages/paulius-dragunas-Nhs0sLAn1Is-unsplash.jpg']
 draft: false
-summary: First day of Web Developer Bootcamp. I learned how to use the command line interface (CLI) and how to use the Node.js framework.
+summary: Using inputs from CLI and basic git commands
 ---
 
 <TOCInline toc={props.toc} asDisclosure />
@@ -13,13 +13,16 @@ Today marks the day of the first day of Web Developer Bootcamp at Lighthouse Lab
 
 ### Command Line Arguments
 
-In most cases, you will want to pass command line arguments to your program. The syntax for doing so is as follows:
+At some point in time, you may want to pass command line arguments to your program.
+
+The syntax for passing command line arguments is:
 
 ```
-$ [runtime] [script_name] [argument-1 argument-2 argument-3 ... argument-n]
+$ [runtime] [script_name] [argument-1 argument-2 ... argument-n]
 ```
 
-Here `[runtime]` is the name of the runtime environment you are using (`node`, `sh`, `java`), and `[script_name]` is the name of the script you are running.
+- `[runtime]` is the name of the runtime **environment** you are using (`node`, `sh`, `java`)
+- `[script_name]` is the name of the **script** you are running.
 
 #### Why use command line arguments?
 
@@ -42,7 +45,7 @@ node sum.js 10 25
 
 #### Example 1: Sum
 
-Create a function that takes in two numbers and returns the sum of those two numbers.
+Goal: Create a function that takes in two numbers and returns the sum of those two numbers.
 
 ```js
 const args = process.argv.slice(2)
@@ -55,6 +58,8 @@ function sum(a, b) {
 }
 
 sum(a, b)
+
+console.log(sum(3, 4)) // 7
 ```
 
 #### Example 2: Reverse String
@@ -73,6 +78,7 @@ const reverse = (str) => {
 }
 
 reverse(str)
+console.log(reverse('hello')) // olleh
 ```
 
 #### Example 3: Pig Latin
@@ -172,9 +178,9 @@ const pigLatin = (str) => {
 pigLatin(string)
 ```
 
-#### Example 4: Loopy Lighthouse
+#### Example 4: Loopy Dog
 
-Wrap the code you've written in a function called `loopyLighthouse(range, multiples, words)` that you call with 3 parameters.
+Wrap the code you've written in a function called `loopyDog(range, multiples, words)` that you call with 3 parameters.
 
 - `range` should be an array of 2 numbers representing the start and end values for the loop.
 - `multiples` should be an array of 2 numbers representing the multiples you want to replace with words.
@@ -183,13 +189,13 @@ Wrap the code you've written in a function called `loopyLighthouse(range, multip
 For example, say we called the function with the following arguments.
 
 ```js
-loopyLighthouse([15, 90], [2, 5], ['Batty', 'Beacon'])
+loopyDog([15, 90], [2, 5], ['Ball', 'Stick'])
 ```
 
-The `loopyLighthouse` function should log to the console all the numbers from 15 to 90, except replacing multiples of 2 with "Batty", multiples of 5 with "Beacon", and multiples of 2 and 5 with "BattyBeacon".
+The `loopyDog` function should log to the console all the numbers from 15 to 90, except replacing multiples of 2 with "Ball", multiples of 5 with "Stick", and multiples of 2 and 5 with "BallStick".
 
 ```js
-function loopyLighthouse(range, multiples, words) {
+function loopyDog(range, multiples, words) {
   for (let i = range[0]; i <= range[1]; i++) {
     if (i % multiples[0] === 0 && i % multiples[1] === 0) {
       console.log(words[0] + words[1])
@@ -202,7 +208,7 @@ function loopyLighthouse(range, multiples, words) {
     }
   }
 }
-loopyLighthouse([15, 90], [2, 5], ['Batty', 'Beacon'])
+loopyDog([15, 90], [2, 5], ['Ball', 'Stick'])
 ```
 
 # Git Workflow

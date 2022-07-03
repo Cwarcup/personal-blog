@@ -440,3 +440,30 @@ const printSearchResults = (query) => {
 
 printSearchResults('Test')
 ```
+
+## sumItems - recursive
+
+Should be able to accept nested arrays.
+
+```js
+// recursively sum all numbers in nested array
+function sumItems(array) {
+  let sum = 0
+  // iterate through array
+  for (let i = 0; i < array.length; i++) {
+    // check to see if array[i] is an array
+    if (Array.isArray(array[i])) {
+      // if it is, call sumItems on array[i]
+      // allows for nested arrays
+      sum += sumItems(array[i])
+    } else {
+      // if it is not, add array[i] to sum
+      sum += array[i]
+    }
+  }
+  // return sum once all items in array have been iterated through
+  return sum
+}
+
+module.exports = sumItems
+```
