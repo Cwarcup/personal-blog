@@ -3,7 +3,7 @@ title: Modules and Unit Testing
 date: '2022-08-02'
 tags: ['Modules', 'Unit Testing']
 images: ['/static/images/postImages/ferenc-almasi-EWLHA4T-mso-unsplash.jpg']
-draft: false
+draft: true
 summary: Sharing functions with modules and automated testing.
 ---
 
