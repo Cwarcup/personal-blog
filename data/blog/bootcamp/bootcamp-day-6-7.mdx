@@ -4,7 +4,7 @@ date: '2022-08-02'
 tags: ['Modules', 'Unit Testing']
 images: ['/static/images/postImages/ferenc-almasi-EWLHA4T-mso-unsplash.jpg']
 draft: false
-summary: Sharing functions with modules and automated testing.
+summary: Sharing functions with modules and unit testing with Mocha and Chai.
 ---
 
 # Modules
@@ -54,6 +54,12 @@ import chalk from 'chalk'
 
 console.log(chalk.blue('Hello world!'))
 ```
+
+---
+
+When we add `require('./someFile')`, the `.` means we are looking in the same directory as the file that is importing it. Doing `../` means we are looking in the parent directory.
+
+You do not need to include the file extension when importing.
 
 # Packages and npm
 
@@ -629,4 +635,124 @@ it('should return false if the user is not old enough', function () {
   const canSignUp = signUpUser(user)
   assert.isFalse(canSignUp)
 })
+```
+
+### Exmple with nameFormatter.js
+
+```js
+// nameInverter.js
+
+const nameInverter = function (name) {
+  if (name === undefined) {
+    return 'Error'
+  }
+  const honorifics = ['Mr. ', 'Mrs. ', 'Ms. ', 'Dr. ']
+
+  if (name === '') {
+    return ''
+  }
+
+  if (name[0] === ' ') {
+    return name.trim()
+  }
+
+  for (let word of honorifics) {
+    if (name === word) {
+      return ''
+    }
+
+    if (name.includes(word) && name.split(' ').length <= 2) {
+      return name
+    }
+    if (name.includes(word) && name.split(' ').length > 2) {
+      let nameArr = name.split(' ')
+      return `${nameArr[0]} ${nameArr[2]}, ${nameArr[1]}`
+    }
+  }
+
+  if (name.includes(' ')) {
+    return name.split(' ').reverse().join(', ')
+  }
+
+  return name
+}
+
+module.exports = nameInverter
+```
+
+```js
+// nameInverterTest.js
+
+const chai = require('chai')
+const assert = chai.assert
+
+const nameInverter = require('../nameInverter')
+
+describe('nameInverter', function () {
+  it('should return an empty string when passed an empty string', function () {
+    const inputName = ''
+    const expectedOutput = ''
+    assert.equal(nameInverter(inputName), expectedOutput)
+  })
+
+  it('should return a single name when passed a single name', function () {
+    const inputName = 'name'
+    const expectedOutput = 'name'
+    assert.equal(nameInverter(inputName), expectedOutput)
+  })
+
+  it('should return a single name when passed a single name with extra spaces', function () {
+    const inputName = ' name'
+    const expectedOutput = 'name'
+    assert.equal(nameInverter(inputName), expectedOutput)
+  })
+
+  it('should return a last-name, first-name when passed a first and last-name', function () {
+    const inputName = 'first last'
+    const expectedOutput = 'last, first'
+    assert.equal(nameInverter(inputName), expectedOutput)
+  })
+
+  it('should return an empty string when passed a single honorific', function () {
+    const inputName = 'Dr. '
+    const expectedOutput = ''
+    assert.equal(nameInverter(inputName), expectedOutput)
+  })
+
+  it('should return honorific first-name when passed honorific first-name', function () {
+    const inputName = 'Dr. First'
+    const expectedOutput = 'Dr. First'
+    assert.equal(nameInverter(inputName), expectedOutput)
+  })
+
+  it('should return a honorific last-name, first-name when passed honorific first-name last-name', function () {
+    const inputName = 'Dr. first-name last-name'
+    const expectedOutput = 'Dr. last-name, first-name'
+    assert.equal(nameInverter(inputName), expectedOutput)
+  })
+
+  it('throw an error when name is undefined', function () {
+    const inputName = undefined
+    const expectedOutput = 'Error'
+    assert.equal(nameInverter(inputName), expectedOutput)
+  })
+})
+```
+
+```bash
+vagrant [nameFormatter]> mocha
+
+
+  nameInverter
+    ✔ should return an empty string when passed an empty string
+    ✔ should return a single name when passed a single name
+    ✔ should return a single name when passed a single name with extra spaces
+    ✔ should return a last-name, first-name when passed a first and last-name
+    ✔ should return an empty string when passed a single honorific
+    ✔ should return honorific first-name when passed honorific first-name
+    ✔ should return a honorific last-name, first-name when passed honorific first-name last-name
+    ✔ throw an error when name is undefined
+
+
+  8 passing (7ms)
 ```
