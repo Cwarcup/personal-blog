@@ -1,11 +1,13 @@
 ---
 title: Modules and Unit Testing
-date: '2022-08-02'
+date: '2022-08-04'
 tags: ['Modules', 'Unit Testing']
 images: ['/static/images/postImages/ferenc-almasi-EWLHA4T-mso-unsplash.jpg']
 draft: false
 summary: Sharing functions with modules and unit testing with Mocha and Chai.
 ---
+
+<TOCInline toc={props.toc} asDisclosure />
 
 # Modules
 
@@ -154,7 +156,11 @@ If you want to test Node.js code, in addition to the above, run:
 npm install -g mocha
 ```
 
-[Mocha](https://mochajs.org/) is the library that allows us to run tests, and [Chai](https://www.chaijs.com/) contains the assertion functions that we use to check our tests.
+### What is the difference between Mocha and Chai?
+
+[Mocha](https://mochajs.org/) provides us with the `describe()` and `it()` functions. These are required for each test we run.
+
+[Chai](https://www.chaijs.com/) contains the assertion functions that we use to check our tests. It's a library that provides us with a bunch of useful assertion functions. Chai is designed to work with Mocha.
 
 ### Testing on Node.js vs Testing on the Browser
 
