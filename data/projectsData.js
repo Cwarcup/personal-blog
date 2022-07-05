@@ -6,10 +6,22 @@ const projectsData = [
     href: 'https://github.com/Cwarcup/on-your-mental',
   },
   {
+    title: 'lotide',
+    description: `A library similar to lodash for JavaScript.`,
+    imgSrc: '/static/images/lotide.png',
+    href: 'https://www.npmjs.com/package/@cwarcup/lotide',
+  },
+  {
     title: 'jsBooks - Interactive Notes and Code Cells',
     description: `This is an interactive coding environment. You can write Javascript, see it executed, and write comprehensive documentation using markdown.`,
     imgSrc: '/static/images/jsBooks.png',
     href: 'https://github.com/Cwarcup/jbook',
+  },
+  {
+    title: 'React with Redux Youtube Search',
+    description: `Youtube API to search youtube and return list of popular videos. Uses hooks to handle video search and set the playing video.`,
+    imgSrc: '/static/images/video-player-react.png',
+    href: 'https://yt-video-player.vercel.app/',
   },
   {
     title: 'Bar Chart Generator',
@@ -22,12 +34,6 @@ const projectsData = [
     description: `Toggle theme created with pure CSS.`,
     imgSrc: '/static/images/toggle-theme-css.png',
     href: 'https://cwarcup.github.io/css-toggle-theme/',
-  },
-  {
-    title: 'React with Redux Youtube Search',
-    description: `Youtube API to search youtube and return list of popular videos. Uses hooks to handle video search and set the playing video.`,
-    imgSrc: '/static/images/video-player-react.png',
-    href: 'https://yt-video-player.vercel.app/',
   },
   {
     title: 'Responsive Icon Navbar',

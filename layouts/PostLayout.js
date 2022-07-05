@@ -6,15 +6,10 @@ import { BlogSEO } from '@/components/SEO'
 import Image from '@/components/Image'
 import Tag from '@/components/Tag'
 import siteMetadata from '@/data/siteMetadata'
-import Comments from '@/components/comments'
 import { useEffect, useRef, useState } from 'react'
 
 const twitterShare = (slug) =>
   `https://twitter.com/intent/tweet?url=${encodeURIComponent(
-    `${siteMetadata.siteUrl}/blog/${slug}`
-  )}`
-const facebookShare = (slug) =>
-  `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(
     `${siteMetadata.siteUrl}/blog/${slug}`
   )}`
 
@@ -128,35 +123,6 @@ export default function PostLayout({ frontMatter, authorDetails, next, prev, chi
               <div className="prose max-w-none pt-10 pb-8 dark:prose-dark">{children}</div>
 
               <div className="flex justify-end gap-2 pt-6 pb-6 text-sm text-gray-300">
-                <Link title="Share on Facebook" href={facebookShare(slug)}>
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    data-name="Layer 1"
-                    className="w-20"
-                    viewBox="0 0 122.88 38.48"
-                  >
-                    <path
-                      d="M118.69 0H4.19A4.21 4.21 0 000 4.19v30.1a4.2 4.2 0 004.19 4.19h114.5a4.2 4.2 0 004.19-4.19V4.19A4.21 4.21 0 00118.69 0z"
-                      className="cls-1"
-                      fill="#1877f2"
-                    ></path>
-                    <path
-                      d="M52 21.34l3.13-.23a3 3 0 00.42 1.34 1.65 1.65 0 001.45.75 1.45 1.45 0 001.09-.38 1.24 1.24 0 00.38-.89 1.21 1.21 0 00-.36-.86 3.82 3.82 0 00-1.68-.72 6.73 6.73 0 01-3.09-1.5 3.22 3.22 0 01-.94-2.39 3.57 3.57 0 01.48-1.8 3.38 3.38 0 011.43-1.34 6 6 0 012.63-.48 4.81 4.81 0 013.12.88 4 4 0 011.27 2.82l-3.1.21a2.07 2.07 0 00-.52-1.23 1.52 1.52 0 00-1.09-.38 1.24 1.24 0 00-.87.28.94.94 0 00-.29.69.72.72 0 00.24.53 2.35 2.35 0 001.1.46 12.27 12.27 0 013.09 1.1 3.38 3.38 0 011.36 1.37 3.92 3.92 0 01.43 1.83 4.37 4.37 0 01-.57 2.2 3.78 3.78 0 01-1.59 1.53 5.69 5.69 0 01-2.56.51c-1.82 0-3.08-.4-3.77-1.21A5.15 5.15 0 0152 21.34zm11.14-8.29h3.3v4.32H70v-4.32h3.31v12.39H70v-5h-3.6v5h-3.3V13.05zm19 10.34h-3.77l-.54 2.05h-3.37l4-12.39h3.61l4 12.39h-3.43l-.54-2.05zm-.69-2.68l-1.17-4.45-1.17 4.45zm5.77 4.73V13.05h5.5a7 7 0 012.33.3 2.6 2.6 0 011.31 1.13 3.84 3.84 0 01.49 2 3.93 3.93 0 01-.38 1.78 3.25 3.25 0 01-1 1.22 3.61 3.61 0 01-1.16.49 2.9 2.9 0 01.86.46 3.81 3.81 0 01.52.65 5 5 0 01.46.77l1.61 3.58H94l-1.76-3.78a3 3 0 00-.6-1 1.25 1.25 0 00-.81-.28h-.29v5zm3.31-7.36h1.39a4.59 4.59 0 00.88-.17.83.83 0 00.53-.39 1.27 1.27 0 00.21-.72 1.22 1.22 0 00-.33-.92 1.75 1.75 0 00-1.23-.32h-1.49v2.52zm8.24-5h8.83v2.64H102v2h5.12v2.52H102v2.44h5.68v2.81h-9V13.05z"
-                      className="cls-2"
-                      fill="#fff"
-                    ></path>
-                    <path
-                      d="M40.66 0L40.66 38.48 38.27 38.48 38.27 0 40.66 0 40.66 0z"
-                      className="cls-3"
-                      fill="#166bda"
-                    ></path>
-                    <path
-                      d="M31.43 18.75a12.18 12.18 0 10-14.07 12v-8.49h-3.11v-3.51h3.11v-2.68c0-3.05 1.81-4.74 4.59-4.74a17.55 17.55 0 012.71.25v3h-1.53a1.78 1.78 0 00-2 1.91v2.28h3.39L24 22.25h-2.87v8.51a12.14 12.14 0 0010.3-12z"
-                      fill="#fff"
-                      className="cls-2"
-                    ></path>
-                  </svg>
-                </Link>
                 <Link title="Share on Twitter" href={twitterShare(slug)}>
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
@@ -183,7 +149,6 @@ export default function PostLayout({ frontMatter, authorDetails, next, prev, chi
                   </svg>
                 </Link>
               </div>
-              <Comments frontMatter={frontMatter} />
             </div>
             <footer>
               <div className="divide-gray-700 text-sm font-medium leading-5 xl:col-start-1 xl:row-start-2 xl:divide-y">

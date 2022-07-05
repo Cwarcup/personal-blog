@@ -77,7 +77,7 @@ export default function Home({ posts }) {
           </div>
         )}
       </div>
-      <RecentProjects MAX_PROJECTS="2" />
+      <RecentProjects MAX_PROJECTS="4" />
     </>
   )
 }
