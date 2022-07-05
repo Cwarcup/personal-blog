@@ -1,6 +1,6 @@
-# cwarcup.com
+# cwarcup.com by Curtis Warcup
 
-This repository is the home to my personal [website](https://www.cwarcup.com/).
+This repository is the home to my personal [website](https://www.cwarcup.com/). This website is intended for personal use, and functions as a method of storing/organizing notes and projects.
 
 The site is forked from the incredible [Tailwind-Nextjs-Starter-Blog](https://github.com/timlrx/tailwind-nextjs-starter-blog) by [Tim Lrx](https://github.com/timlrx).
 
