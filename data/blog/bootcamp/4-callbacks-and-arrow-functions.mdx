@@ -1,5 +1,5 @@
 ---
-title: Callbacks
+title: Callbacks and Arrow Functions
 date: '2022-07-30'
 tags: ['Callbacks']
 images: ['/static/images/postImages/mars-sector-6-kwzWjTnDPLk-unsplash.jpg']
@@ -9,7 +9,7 @@ summary: Introduction to callbacks, arrow functions, HOF and how to use them.
 
 <TOCInline toc={props.toc} asDisclosure />
 
-# Summary
+# Callbacks
 
 ## Functions as Values
 
@@ -54,15 +54,7 @@ Functions are **first class objects** in JavaScript. This means:
 
 The most notable usage of having functions as values in JavaScript is a **callback function.**
 
-## Rationale
-
-Let's say we are looping over an array of values (days of the week) and we want to iterate through the array. We have many methods to do this. We will use a `for..of ` loop.
-
-```js
-
-```
-
-## Higher Order Functions
+### Higher Order Functions
 
 Is a function that takes in another function as an **argument**.
 
@@ -74,7 +66,7 @@ This means that built-in functions such as `forEach`, `filter`, and others can b
 
 This is a very important concept in **Functional Programing**.
 
-### Using map
+#### Using map
 
 Let's use the higher order function `map` to practice.
 
@@ -106,7 +98,7 @@ const myHigherOrderFunction = function (callback) {
 myHigherOrderFunction(function () {})
 ```
 
-Simply means that the function is not named (not declared), but is rather inline like so:
+Annonymous function simply means that the function is not named (not declared), but is rather inline like so:
 
 ```js
 // anonymous function
@@ -151,7 +143,7 @@ Notice how the function is directly as an argument _inline_, and not as a variab
 function(result) { ... }
 ```
 
-## Arrow Functions
+# Arrow Functions
 
 Introduced in ES6, inspired by CoffeeScript.
 
@@ -181,7 +173,7 @@ Syntax:
 ;[1, 2, 3].forEach((num) => console.log('num: ', num))
 ```
 
-### Issues with Arrow Functions - this
+## Issues with Arrow Functions - this
 
 Occurs when we use the word `this`. Arrow functions do not create `this`.
 
@@ -191,7 +183,7 @@ If you want to use `this` in your function, you need to use `bind` to bind the `
 
 ```
 
-## Make another Higher Order Function - Filter
+## Filter Example
 
 The built in `filter` method takes a callback function as an argument. The callback function is invoked for each element in the array.
 

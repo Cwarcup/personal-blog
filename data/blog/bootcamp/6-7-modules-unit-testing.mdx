@@ -20,11 +20,11 @@ A JavaScript file must export the part that we want to share. This makes it `req
 In order to export a function, we need to use the `module.export` keyword.
 
 ```js
-const sayHelloTo = function (person) {
+const hello = function (person) {
   console.log(`Hello, ${person}`)
 }
 // add this line to the end of the file.
-module.exports = sayHelloTo
+module.exports = hello
 ```
 
 ## Requiring a Module
@@ -32,7 +32,7 @@ module.exports = sayHelloTo
 Basic syntax for **importing from local filesystem** using `require`:
 
 ```js
-const sayHelloTo = require('./myModule')
+const hello = require('./someModule')
 ```
 
 > Here we are assuming that the file is in the same directory as the file that is importing it.
@@ -40,7 +40,7 @@ const sayHelloTo = require('./myModule')
 File extensions are not necessary, but can be used.
 
 ```js
-const sayHelloTo = require('./myModule.js')
+const hello = require('./someModule.js')
 ```
 
 Example with [chalk](https://github.com/chalk/chalk):

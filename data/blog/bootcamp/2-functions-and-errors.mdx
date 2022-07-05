@@ -13,21 +13,18 @@ summary: Rules of functions, scope, errors, coercion, and more.
 
 Day 2 of bootcamp! Today's lesson includes writing code incrementally, problem solving tips and basic git workflow (init -> add -> commit -> push). Additionally, we cover JavaScript specific concenpts such as debugging, pseudocode, and scope.
 
-### Function Best Practices
+## Function Best Practices
 
-1. Give your functions precise verb/action based names
-2. Use `camelCasedNames` (like this one)
-3. Properly indent the function code (two spaces)
-4. Functions should focus on a single task: returning a value or causing a side effect. Break your function into additional smaller functions if you find it doing two or more things
-
-- One single task could be to compute and return a value (eg: `zeroPad`)
-- Another single task could be to perform a side effect such as logging a message to the screen (eg: `printFarmInventory`)
+1. Use precise verb/action based names
+2. Use `camelCasedNames` for functions (and variables)
+3. use two spaces to indent code
+4. Functions should only do one thing
 
 #### Function Best Practices - Rolling Dice
 
-Write a program that takes a single parameter from the command line, a number, and rolls that many six-sided dice.
+Create a function that accepts a single parameter from the command line (a number), and rolls that many six-sided dice.
 
-```
+```bash
 > node dice-roller.js 3
 Rolled 3 dice: 2, 6, 5
 ```
@@ -48,28 +45,30 @@ const rollDice = (num) => {
 rollDice(process.argv.slice(2))
 ```
 
-### Scope in JavaScript
+## Scope in JavaScript
 
-#### Global vs Local Scope
+### Global and Local Scope
 
-Globally-scoped variables are available to all functions, everywhere in out code. Locally-scoped variables are only available within the function they are defined in.
+- Globally-scoped variables are available to all functions, everywhere in that code file.
+
+- Locally-scoped variables are only available within the function they are defined in.
 
 For example:
 
 ```js
-let myGlobalVar = 'global'
+let myGlobalVariable = 'global'
 
-const printMyVars = function () {
-  let myLocalVar = 'local'
-  console.log('-- Inside printMyVars --')
-  console.log('myLocalVar is:', myLocalVar)
-  console.log('myGlobalVar is:', myGlobalVar)
+const printVariables = function () {
+  let myLocalVariable = 'local'
+  console.log('-- Inside printVariables --')
+  console.log('myLocalVariable is:', myLocalVariable)
+  console.log('myGlobalVariable is:', myGlobalVariable)
 }
 
-printMyVars()
+printVariables()
 
-console.log('-- Outside of printMyVars now --')
-console.log(myLocalVar)
+console.log('-- Outside of printVariables now --')
+console.log(myLocalVariable)
 ```
 
 > Here we will get an error. The variable `myLocalVar` is not defined because it is locally scoped.
@@ -77,22 +76,20 @@ console.log(myLocalVar)
 Scoping can result in variables being **overwriten**.
 
 ```js
-let myVar = 'global'
+let variable = 'global'
 
 const myFunction = function () {
-  let myVar = 'local'
+  let variable = 'local'
 
-  console.log('inside myFunction, myVar is:', myVar) // "local"
+  console.log('inside myFunction, variable is:', variable) // "local"
 }
 
 myFunction()
 
-console.log('outside myFunction, myVar is:', myVar) // "global"
+console.log('outside myFunction, variable is:', variable) // "global"
 ```
 
 > Inside out function the local spode will take precedence over the global scope, printing `local` instead of `global`. However, outside of the function, the global scope will be used, printing `global`.
-
-#### One more Rule: Pass in the Data Needed
 
 It is idea to try and **avoid passing in globally scoped data**. If a function needs some information/data, it should be passed in as a **parameter**, making it available within the functions inner scope.
 
@@ -118,21 +115,9 @@ But why do we care? Why do we want to avoid passing in globally scoped data?
 
 Because functions that take in parameters are more **reusable**. They are not depenedent on their outer scope. They can be used in different ways, and they can be passed in different data.
 
-#### Rules of functions summary
-
-1. Give your functions precise verb/action based names
-1. Use `camelCasedNames` (like this one)
-1. Properly indent the function code
-1. Functions should focus on a single task: returning a value or causing a side effect. Break your function into additional smaller functions if you find it doing two or more things
-
-- One single task could be to compute and return a value (eg: `zeroPad`)
-- Another single task could be to perform a side effect such as logging a message to the screen (eg: `printFarmInventory`)
-
-1. Data needed by Functions should be passed in as parameters/arguments (i.e. local scope) instead of being accessed 1. directly
-
 # Understanding Errors
 
-### Syntax Erros
+## Syntax Erros
 
 Errors are a **signal** that something went wrong. They are used to communicate to the developer what went wrong.
 
@@ -173,7 +158,7 @@ The issue here is that the variables are not separated by a comma (`,`) and the 
 
 Solution: `console.log(rank, name);`
 
-### Stack Traces
+## Stack Traces
 
 Stack traces are the **traceback** of the error.
 
@@ -192,7 +177,7 @@ When an error is thrown, the stack trace is a list of all the functions that wer
 
 This will be covered in a later section.
 
-### Tricky Syntax Errors
+## Tricky Syntax Errors
 
 Consider the following:
 
@@ -240,7 +225,7 @@ if (5 > 10) {
 console.log('Phew, logical fallacies avoided.')
 ```
 
-### Reference Errors
+## Reference Errors
 
 Consider the following:
 
@@ -280,8 +265,8 @@ Let's begin by reading the error message **line by line**.
 Something went wrong with `lasName`. Node tells us that it's **not defined**. `ReferenceErrors` are also common errors we see in day-to-day development, and they occur when we're trying to use the value of an **undefined variable**. In our case, this happened because we misspelled `lastName`.
 
 ```js
-var firstName = 'Jane'
-var lastName = 'Doe'
+const firstName = 'Jane'
+const lastName = 'Doe'
 
 console.log(firstName, lastName) // Jane Doe
 ```
@@ -291,7 +276,7 @@ console.log(firstName, lastName) // Jane Doe
 Let's quiet down and convert all capital letters into lowercase.
 
 ```js
-var favouriteMeal = 'BREAKFAST'
+const favouriteMeal = 'BREAKFAST'
 
 console.log(favouriteMeal.toLower())
 ```
@@ -318,7 +303,7 @@ So our error tells us we have an issue on line 3, something to do with `toLower`
 
 We only have two functions here, `console.log` and `toLower`. After a quick Google search we learn that the method we wanted to use is `toLowerCase()`.
 
-### Coercion and Truthy/Falsey
+## Coercion and Truthy/Falsey
 
 The `===` does not only compare two values, but also the **type** of those values.
 

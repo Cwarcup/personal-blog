@@ -24,7 +24,7 @@ const myObject = {
 
 > The above code is an **object literal**, which is a way to create an object.
 
-## Primitive Data Types
+# Primitive Data Types
 
 | Data Type | Description                                |
 | --------- | ------------------------------------------ |
@@ -39,7 +39,7 @@ const myObject = {
 
 JavaScript has some strange features, for example, **functions** are objects!
 
-### Object Literals
+## Object Literals
 
 Here is an example of an object literal:
 
@@ -58,7 +58,7 @@ const myObject = {
 }
 ```
 
-### Object Values
+## Object Values
 
 Object values can be **any type**.
 
@@ -77,18 +77,18 @@ const myObject = {
 }
 ```
 
-## Accessing Object Values
+# Accessing Object Values
 
 We have two ways to access object values: **dot** notation and **bracket** notation.
 
 > **dot notation** is the preferred way to access object values.
 > **bracket notation** is a way to access object values.
 
-### Bracket Notation
+## Bracket Notation
 
 ```js
-const person = { firstName: 'Khurram' }
-const firstName = person['firstName'] // get the value associated with the key "firstName"
+const person = { fName: 'Curtis' }
+const fName = person['fName'] // get the value associated with the key "fName"
 ```
 
 In order to access the values of an object using bracket notation, the key must be a **string**, surrounded by **quotes**.
@@ -96,66 +96,66 @@ In order to access the values of an object using bracket notation, the key must 
 That being said, if the variable name points to a string, you can do **not** need to surround it with quotes.
 
 ```js
-const person = { firstName: 'Khurram' }
-const propertyName = 'firstName'
-const firstName = person[propertyName] // interpreted as person["firstName"], and therefore works fine :)
+const person = { fName: 'Curtis' }
+const propertyName = 'fName'
+const fName = person[propertyName] // interpreted as person["fName"], and therefore works fine :)
 ```
 
-### Dot Notation
+## Dot Notation
 
 ```js
-const person = { firstName: 'Khurram' }
-const firstName = person.firstName // get the value associated with the key "firstName"
+const person = { fName: 'Curtis' }
+const fName = person.fName // get the value associated with the key "fName"
 ```
 
-### Accessing a Key that does not exist
+## Accessing a Key that does not exist
 
 Will return `undefined` if the key does not exist.
 
-### Assigning a New Value to a Key
+## Assigning a New Value to a Key
 
 ```js
-const mary = { name: 'Mary Sue' }
-mary['name'] = 'Mary Jane'
-mary['age'] = 22
+const mary = { name: 'Curtis W' }
+Curtis['name'] = 'Curtis Dog'
+Curtis['age'] = 28
 
-console.log(mary) // { name: "Mary Jane", age: 22 }
+console.log(Curtis) // { name: "Curtis Dog", age: 28 }
 ```
 
-### Objects as Values
+## Objects as Values
 
-An object can be assigned as a value to another object.
+An **object** can be assigned as a value to another object (objects within objects).
 
 ```js
 const person = {
-  name: 'Paul',
+  name: 'Curtis',
   address: {
-    street: '310 W 95th',
-    city: 'New York',
-    zipCode: 10027,
+    street: '123 W 120th St',
+    city: 'Vancouver',
+    postalCode: 'V6T 1Z4',
   },
 }
 
 typeof person['address'] // 'object'
 
-person['address']['city'] // => "New York"
+person['address']['city'] // => "Vancouver"
 
-person.address.city // => 'New York'
+person.address.city // => 'Vancouver'
 ```
 
 Here, the `address` object is assigned as the value of the `person` object.
 
-### Arrays as Values
+## Arrays as Values
 
-An array can be assigned as a value to another object.
+An **array** can be assigned as a value to another object.
 
 ```js
 const person = {
-  name: 'Paul',
+  name: 'Curtis',
   address: {
-    street: '310 W 95th',
-    city: 'New York',
-    zipCode: 10027,
+    street: '123 W 120',
+    city: 'Vancouver',
+    postalCode: '',
   },
 }
 
@@ -163,7 +163,7 @@ person.phoneNumbers = [123456789, 123456789]
 
 console.log(person)
 // {
-//  name: "Paul",
+//  name: "Curtis",
 //  address: {…},
 //  phoneNumbers: [123456789, 123456789]
 // }
@@ -182,24 +182,25 @@ console.log(person.phoneNumbers instanceof String) // => false
 | 3. Cannot be reserved words.                  |
 | 4. Each key is associated with **one** value. |
 
-When writing out object literals, like `{ myKey: "some value" }`, the key is always interpreted as a **literal string**, even if it's unquoted.
+- When writing out object literals, like `{ myKey: "some value" }`, the key is always interpreted as a **literal string**, even if it's unquoted.
+- It's only necessary to use quotes around the key if the key contains **spaces**, **hyphens** or **periods**. Such as: `{ "my-hyphenated-key": "some value" }`.
 
-It's only necessary to use quotes around the key if the key contains **spaces**, **hyphens** or **periods**. For instance: `{ "my-hyphenated-key": "some value" }`.
-
-The following example shows two ways of specifying the same value in an object literal: using a literal string for the value, or using a variable.
+The example below demonstates two methods of specifying the same value in an object literal:
 
 ```js
 const spam = 'spam'
 
 person['dislikes'] = {
+  //using a variable
   food: spam,
+  // using a literal string for the value
   'e-mail': 'spam',
 }
 ```
 
 > Here, the value of `food` is assigned to the variable `spam`. While the value of `e-mail` is assigned to the literal string `spam`.
 
-### Object.keys()
+## Object.keys()
 
 This function returns an **array** of all the keys in an object.
 
@@ -251,7 +252,7 @@ for (let planet in planetMoons) {
 // neptune has 14 moon(s)
 ```
 
-### Limitations of `for... in`
+## Limitations of `for... in`
 
 Objects have properties that can be inherited from their prototype chain as well as method names.
 
