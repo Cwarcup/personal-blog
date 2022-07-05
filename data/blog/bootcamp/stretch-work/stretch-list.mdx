@@ -467,3 +467,68 @@ function sumItems(array) {
 
 module.exports = sumItems
 ```
+
+## caesar cipher
+
+- function to encrypt a string using caesar cipher
+- takes in a string and an integer as arguments
+- negative integers to shift left
+- positive integers to shift right
+
+```js
+const encrypt = (string, shift) => {
+  let result = ''
+  // iterate through each character in the string
+  for (let i = 0; i < string.length; i++) {
+    let char = string[i]
+    // if the character is a space, add it to the result right away
+    if (char === ' ') {
+      result += ' '
+    } else {
+      // get the character code of the character (97 - 122)
+      let charCode = char.charCodeAt(0)
+      let newCharCode = charCode + shift
+      // if the new character code is greater than 122, subtract 26 from it
+      if (newCharCode > 122) {
+        newCharCode -= 26
+      }
+      // if the new character code is less than 97, add 26 to it
+      if (newCharCode < 97) {
+        newCharCode += 26
+      }
+
+      result += String.fromCharCode(newCharCode)
+    }
+  }
+  return result
+}
+
+module.exports = { encrypt }
+```
+
+Tests:
+
+```js
+const assert = require('chai').assert
+const { encrypt } = require('./caesar')
+
+describe('caesar.encrypt', () => {
+  // tip: try to make this single test pass first, before implementing the whole thing
+  it('encrypts a single letter with a left shift of 3', () => {
+    assert.equal(encrypt('e', -3), 'b')
+  })
+
+  // tip 2: then make this one pass, before handling all letters in the given string
+  it('characters should wrap around the alphabet', () => {
+    assert.equal(encrypt('b', -3), 'y')
+  })
+
+  it('encrypts the string "hello" to "ebiil" with a left shift of 3', () => {
+    assert.equal(encrypt('hello', -3), 'ebiil')
+  })
+
+  it('encrypts a sentence "hello world" => "mjqqt btwqi", skips spaces (right shift of 5)', () => {
+    assert.equal(encrypt('hello world', 5), 'mjqqt btwqi')
+  })
+})
+```
