@@ -274,6 +274,50 @@ Here we are...
 
 Read more on node.js `net.createConnection`: [here](https://nodejs.org/api/net.html#netcreateconnection)
 
+### Snake Client
+
+Can use `conn.write` to send a message to the server.
+
+```js
+const net = require('net')
+
+// establishes a connection with the game server
+const connect = function () {
+  const conn = net.createConnection({
+    host: '165.227.47.243',
+    port: 50541,
+  })
+
+  // interpret incoming data as text
+  conn.setEncoding('utf8')
+
+  conn.on('data', (data) => {
+    console.log(data)
+  })
+
+  conn.on('connect', () => {
+    conn.write('Name: 401')
+    // setInterval(() => {
+    //   conn.write("Move: up");
+    // }, 50);
+    // setInterval(() => {
+    //   conn.write("Move: up");
+    // }, 100);
+  })
+}
+
+module.exports = {
+  connect,
+}
+```
+
+Server Moves:
+
+- "Move: up" - move up one square (unless facing down)
+- "Move: down" - move down one square (unless facing up)
+- "Move: left" - move left one square (unless facing right)
+- "Move: right" - move left one square (unless facing left)
+
 ## Messages from Server
 
 In order to handle messages from the server, we can use the `conn` object.
@@ -301,3 +345,113 @@ conn.on('event name', () => {
   // do something
 })
 ```
+
+The "event name" has to match the name of the event that is being listened for. This name is defined by Node.js. For example, the `connect` event occurs when a connection is established.
+
+```js
+conn.on('connect', () => {
+  // code that does something
+  // when the connection is created
+})
+```
+
+In our example, the `conn` object is an instance the `net.Socket` class.
+
+List of events that can be listened to: [here](https://nodejs.org/api/net.html#class-netsocket)
+
+Move Commands
+
+```js
+//input.js
+// interface to handle user input from stdin
+const handleUserInput = function (key) {
+  if (key === '\u0003') {
+    process.exit()
+  }
+  if (key === 'w') {
+    console.log('Move: up')
+  }
+  if (key === 'a') {
+    console.log('Move: left')
+  }
+  if (key === 's') {
+    console.log('Move: down')
+  }
+  if (key === 'd') {
+    console.log('Move: right')
+  }
+}
+
+const setupInput = function () {
+  const stdin = process.stdin
+  stdin.setRawMode(true)
+  stdin.setEncoding('utf8')
+  stdin.resume()
+
+  stdin.on('data', handleUserInput)
+
+  return stdin
+}
+
+module.exports = { setupInput, handleUserInput }
+```
+
+## Sending Data from the Input Module to the Server
+
+We need to have a connection object access the data from the keyboard.
+
+We can dop this by passing the `conn` object returned by `connect()` to the `setupInput()` function.
+
+```js
+// Stores the active TCP connection object.
+let connection
+
+// interface to handle user input from stdin
+const handleUserInput = function (key) {
+  //...
+}
+
+const setupInput = function () {
+  const stdin = process.stdin
+  stdin.setRawMode(true)
+  stdin.setEncoding('utf8')
+  stdin.resume()
+
+  stdin.on('data', handleUserInput)
+
+  return stdin
+}
+
+module.exports = { setupInput, handleUserInput }
+```
+
+> `connection` will be in the outermost scope so it can be used by any function in the module.
+
+Now we can pass the `conn` object to the `setupInput()` function.
+
+```js
+const setupInput = function (conn) {
+  connection = conn
+  const stdin = process.stdin
+  stdin.setRawMode(true)
+  stdin.setEncoding('utf8')
+  stdin.resume()
+  stdin.on('data', handleUserInput)
+
+  return stdin
+}
+```
+
+This allows us to interact with the server! The `connect()` function returns the `conn` object.
+
+Recall:
+
+- `connect()` returns the `conn` object, which can be used to send data to the server.
+- the object `conn` is being passed to `setupInput()`.
+- `setupInput()` places a references to that object in the `connection` variable.
+- Data comes the keyboard detected by the `stdin` event handler.
+- The `stdin` can interact with the `connection` object.
+
+---
+
+Full project can be found [here](https://github.com/Cwarcup/snake-client).

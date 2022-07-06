@@ -12,6 +12,12 @@ const projectsData = [
     href: 'https://www.npmjs.com/package/@cwarcup/lotide',
   },
   {
+    title: 'Snake Client Game',
+    description: `The goal of this project was to better understand how networking works from the perspective of the client. This project covers concepts including: callbacks, asynchronous programming, importing/exporting modules , refactoring code, and working with stdin`,
+    imgSrc: '/static/images/snake.png',
+    href: 'https://github.com/Cwarcup/snake-client',
+  },
+  {
     title: 'jsBooks - Interactive Notes and Code Cells',
     description: `This is an interactive coding environment. You can write Javascript, see it executed, and write comprehensive documentation using markdown.`,
     imgSrc: '/static/images/jsBooks.png',
