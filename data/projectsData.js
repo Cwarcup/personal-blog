@@ -7,8 +7,8 @@ const projectsData = [
   },
   {
     title: 'lotide',
-    description: `A library similar to lodash for JavaScript.`,
-    imgSrc: '/static/images/lotide.png',
+    description: `A library similar to lodash for JavaScript. This project was created and published by me as part of my learnings at Lighthouse Labs. The library provides utilities that are not built into native JavaScript such as 'flatten()' to convert nested arrays into a single array.`,
+    imgSrc: '/static/images/lotide.jpg',
     href: 'https://www.npmjs.com/package/@cwarcup/lotide',
   },
   {
