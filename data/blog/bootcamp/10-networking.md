@@ -85,16 +85,6 @@ There is the **local IP** and **global IP**
 | Use local IP to communicate to another device      |                                |
 | '192.' is always local                             |                                |
 
-### Request and Response Nature
-
-### How HTTP leverages TCP
-
-### Important parts of a request
-
-### Common Status Codes
-
-## Node HTTP Client Example (using request)
-
 # Building a Server
 
 Using `net` node package. `net` is a module that allows you to create a socket.
@@ -274,7 +264,7 @@ Here we are...
 
 Read more on node.js `net.createConnection`: [here](https://nodejs.org/api/net.html#netcreateconnection)
 
-### Snake Client
+## Snake Client
 
 Can use `conn.write` to send a message to the server.
 
@@ -455,5 +445,3 @@ Recall:
 ---
 
 Full project can be found [here](https://github.com/Cwarcup/snake-client).
-
-# HTTP Requestst
