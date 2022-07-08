@@ -11,10 +11,12 @@ summary: Weekly Test Answers
 
 Examples:
 
-- tempConverter(32, true) returns 89.6 as a result
-- tempConverter(32, false) returns 0.0 as a result
-- tempConverter(98.6, false) returns 37 as a result
-- tempConverter("12", <anything>) returns NaN as a result
+```
+tempConverter(32, true) returns 89.6 as a result
+tempConverter(32, false) returns 0.0 as a result
+tempConverter(98.6, false) returns 37 as a result
+tempConverter("12", <anything>) returns NaN as a result
+```
 
 ```js
 const tempConverter = function (value, cToF) {
@@ -40,10 +42,15 @@ Build a function called keyMatcher() which, when passed two objects and a string
 
 Examples:
 
-- keyMatcher({a: 1, b: 2, c: 3}, {here: 3, is: 2, a: 1, silly: 0, example: -1}, 'a') returns true (since the value and type are the exact same)
-- keyMatcher({apple: "red", banana: "yellow", cherry: "red"}, {apple: "green", banana: "brown", cherry: "black"}, "apple") returns false since the values are completely different ("red" vs "green")
-- keyMatcher({a: 1, b: 2, c: 3}, {a: "1", b: "2", c: "3"}, 'c') returns false since the values are different types (3 vs "3")
-- keyMatcher({a: 1, b: 2, c: 3}, {d: 4, e: 5, f: 6}, 'b') returns false since b is not in the second object
+```
+keyMatcher({a: 1, b: 2, c: 3}, {here: 3, is: 2, a: 1, silly: 0, example: -1}, 'a') returns true (since the value and type are the exact same)
+
+keyMatcher({apple: "red", banana: "yellow", cherry: "red"}, {apple: "green", banana: "brown", cherry: "black"}, "apple") returns false since the values are completely different ("red" vs "green")
+
+keyMatcher({a: 1, b: 2, c: 3}, {a: "1", b: "2", c: "3"}, 'c') returns false since the values are different types (3 vs "3")
+
+keyMatcher({a: 1, b: 2, c: 3}, {d: 4, e: 5, f: 6}, 'b') returns false since b is not in the second object
+```
 
 ```js
 const keyMatcher = function (firstObj, secondObj, key) {
@@ -65,12 +72,19 @@ If the first argument is not an array, our function should return false instead 
 
 Examples:
 
-- countWhich([1, 2, 3, 4, 5], function(num) { return (num > 4); }) returns 1 (only matches 5)
-- countWhich(["apple", "banana", "cherry"], function(fruit) { return fruit[0] === "a"; }) returns 1 (only matches apple)
-- countWhich([10, 20, 30, 40, 50], function(num) { return num % 7 === 0; }) returns 0 (none of the numbers are divisible by 7)
-- countWhich(["apple", "banana", "cherry"], function(fruit) { return fruit.length > 5; }) returns 2 ("apple" is shorter than 6 characters)
-- countWhich([], function(x) { return x > 10 }) returns 0
-- countWhich("This should fail", function(word) { return true; }) returns false (because the first argument is not an array)
+```
+countWhich([1, 2, 3, 4, 5], function(num) { return (num > 4); }) returns 1 (only matches 5)
+
+countWhich(["apple", "banana", "cherry"], function(fruit) { return fruit[0] === "a"; }) returns 1 (only matches apple)
+
+countWhich([10, 20, 30, 40, 50], function(num) { return num % 7 === 0; }) returns 0 (none of the numbers are divisible by 7)
+
+countWhich(["apple", "banana", "cherry"], function(fruit) { return fruit.length > 5; }) returns 2 ("apple" is shorter than 6 characters)
+
+countWhich([], function(x) { return x > 10 }) returns 0
+
+countWhich("This should fail", function(word) { return true; }) returns false (because the first argument is not an array)
+```
 
 ```js
 const countWhich = function (list, cb) {
@@ -93,12 +107,12 @@ const countWhich = function (list, cb) {
 
 Implement the function as defined below.
 
-Many programming languages have a range() functionality which will generate an array of numbers that increment from either 0 or 1 up to the number of digits requested. For example, range(10) might return [0, 1, 2, 3, 4, 5, 6, 7, 8, 9] or it might return [1, 2, 3, 4, 5, 6, 7, 8, 9, 10] depending on the implementation. Some even allow you to control the direction.
+Many programming languages have a `range()` functionality which will generate an array of numbers that increment from either `0` or `1` up to the number of digits requested. For example, `range(10)` might return `[0, 1, 2, 3, 4, 5, 6, 7, 8, 9]` or it might return `[1, 2, 3, 4, 5, 6, 7, 8, 9, 10]` depending on the implementation. Some even allow you to control the direction.
 
-Unfortunately, JavaScript doesn't have a built-in range() function, so we want you to build one. Build out the function range() so that it takes three parameters:
+Unfortunately, JavaScript doesn't have a built-in `range()` function, so we want you to build one. Build out the function `range()` so that it takes three parameters:
 
 1. The number of integers to generate
-2. A boolean for whether to skip 0 or not (true: skip zero)
+2. A boolean for whether to skip `0` or not (true: skip zero)
 3. A boolean for whether the range should be in reverse/decreasing order or regular/increasing order (true: reverse/decreasing order)
 
 If a non-number is passed in for the first argument, return an empty array.
@@ -107,6 +121,7 @@ Pro Tip: Remember to work incrementally. Start off just implementing the false a
 
 **Examples:**
 
+```
 - range(10, false, false) should return [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
 - range(10, true, false) should return [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
 - range(10, true, true) should return [10, 9, 8, 7, 6, 5, 4, 3, 2, 1]
@@ -116,6 +131,7 @@ Pro Tip: Remember to work incrementally. Start off just implementing the false a
 - range(10) should do the same thing as range(10, false, false)
 - range(10, true) should do the same thing as range(10, true, false)
 - range("2", <anything>, <anything>) should return []
+```
 
 ```js
 const range = function (count, skipZero, descending) {
@@ -141,18 +157,20 @@ const range = function (count, skipZero, descending) {
 
 Implement the function as defined below.
 
-Given an array of values, the `minmax()` function will return an array that contains the minimum and maximum values in the array, always with minimum at index 0 and maximum at index 1. For the purposes of this question, you are not allowed to use `Math.max()` or M`ath.min()`.
+Given an array of values, the `minmax()` function will return an array that contains the minimum and maximum values in the array, always with minimum at index 0 and maximum at index 1. For the purposes of this question, you are not allowed to use `Math.max()` or `Math.min()`.
 
-The array can be a list of lower-cased strings instead of numbers. In this case, min is the string that would be sorted first alphabetically and max is the string that would be sorted last alphabetically ("a" < "b", while "ab" > "aa", and so on).
+The array can be a list of lower-cased strings instead of numbers. In this case, min is the string that would be sorted first alphabetically and max is the string that would be sorted last alphabetically.
 
 Mixed-type (strings and numbers) arrays are not of concern to us (meaning, do not worry about this situation).
 
 Examples:
 
+```
 - minmax([1, 2, 3, 4, 5]) returns [1, 5]
 - minmax([90, 89, 123, 3]) returns [3, 123]
 - minmax(["apple", "banana", "canada"]) returns ["apple", "canada"]
 - minmax([]) returns [undefined, undefined]
+```
 
 ```js
 const minmax = function (list) {
