@@ -164,20 +164,93 @@ This is a problem that we can solve by using promises.
 Promises version of the same code:
 
 ```js
-// see notes to be sent out
-// .then
+// promises
+functionOneReturningPromise()
+  .then(() => {
+    return functionTwoReturningPromise()
+  })
+  .then(() => {
+    return functionThreeReturningPromise()
+  })
+  .then(() => {
+    return functionFourReturningPromise()
+  })
+  .then(() => {
+    // do something
+  })
 ```
 
 - using `readline-promise` to read the user's input
 - Users `questionAsync()` method to get the user's input
 
-## Intro to Promises Examples
-
-see notes for promise generator. Update at the end of the week.
-
 # Error Handling with Promises (and callbacks)
 
-see errors files. Update at the end of the week.
+A lot of Node callbacks use an _error-first_ approach where the first argument to the callback function is an **error** (if any) or null, and the second argument is the **data**.
+
+This can result in duplicated error handling logic in each callback in the chain.
+
+```js
+higherOrderFn((errOne, dataOne) => {
+  if (errOne) {
+    throw errOne
+  }
+  callbackTwo((errTwo, dataTwo) => {
+    if (errTwo) {
+      throw errTwo
+    }
+    callbackThree((errThree, dataThree) => {
+      if (errThree) {
+        throw errThree
+      }
+      // do something
+    })
+  })
+})
+```
+
+Promises allow us to handle error in the _Promise chain_ with a single `.catch()` on the end of the chain.
+
+```js
+functionOneReturningPromise()
+  .then(() => {
+    return functionTwoReturningPromise()
+  })
+  .then(() => {
+    return functionThreeReturningPromise()
+  })
+  .then(() => {
+    // do something
+  })
+  .catch((error) => {
+    throw error
+  })
+```
+
+# Async Operations in Parallel
+
+Instead of waiting for each operation to resolve before moving on to the next one, we can run them in parallel with methods like `Promise.all` and `Promise.race`.
+
+These methods accept an iterable as the argument. Usually this takes the form of an array.
+
+```js
+const promises = [promiseOne, promiseTwo, promiseThree]
+
+Promise.all(promises)
+  .then((arrayOfResults) => {
+    console.log('results', arrayOfResults.join(', '))
+  })
+  .catch((error) => {
+    throw error
+  })
+
+Promise.race(promises)
+  .then((firstResult) => {
+    console.log('result of the first promise to resolve', firstResult)
+  })
+  .catch((error) => {
+    console.error('error from the first promise to reject', error)
+  })
+```
 
 ## Promise.all
 
@@ -189,7 +262,19 @@ The event loop can launch code that will run in a multi-tasking fashion.
 
 This is useful when you have multiple asynchronous tasks that need to be completed in order to render some calculation.
 
----
+# Creating a Promise
+
+We can use the `Promise` constructor to create a promise. It takers a callback function that takes two arguments: `resolve` and `reject`.
+
+```js
+const myPromise = new Promise((resolve, reject) => {
+  // do something and resolve when finished or reject with an error
+})
+
+myPromise.then((data) => {
+  // do something with the resolved promises data
+})
+```
 
 # Applicable Repositories
 

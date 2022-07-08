@@ -7,6 +7,17 @@ draft: false
 summary: OOP is usually defined by its two core concepts. Polymorphism and Inheritance. Although both concepts are related, they are not the same. Let’s take a look at a real life example, that illustrates perfectly the advantages of Inheritance.
 ---
 
+<TOCInline toc={props.toc} asDisclosure />
+
+This post covers:
+
+- using classes to create objects (instances)
+- inheritance
+- Class data in the form of values and methods
+- Classes can inherit from other classes by uising the `extends` keyword
+- Use `super` to override methods in the parent class
+- Use `get` and `set` to define methods for getting and setting class data
+
 Languages that are Object Oriented (mostly):
 
 - Java
@@ -520,4 +531,219 @@ let pizza = new Pizza()
 
 pizza.price // instead of getPrice()
 pizza.size = 's' // instead of setSize(size)
+```
+
+# Examples
+
+## Account Transactions
+
+1. multiple classes
+2. create a superclass and subclass
+3. add getter method
+4. keeping track of transactions
+
+```js
+class Account {
+  constructor(username) {
+    this.username = username
+    this.balance = 0
+  }
+}
+
+class Withdrawal {
+  constructor(amount, account) {
+    this.amount = amount
+    this.account = account
+  }
+  commit() {
+    this.account.balance -= this.amount
+  }
+}
+
+class Deposit {
+  constructor(amount, account) {
+    this.amount = amount
+    this.account = account
+  }
+  commit() {
+    this.account.balance += this.amount
+  }
+}
+
+// DRIVER CODE
+
+const myAccount = new Account('cwarcup')
+
+t1 = new Withdrawal(50.25, myAccount)
+t1.commit()
+console.log('Transaction 1:', t1)
+// Transaction 2: Withdrawal { amount: 9.99,
+//  account: Account { username: 'cwarcup', balance: -60.24 } }
+
+t2 = new Withdrawal(9.99, myAccount)
+t2.commit()
+console.log('Transaction 2:', t2)
+// Transaction 1: Withdrawal { amount: 50.25,
+//   account: Account { username: 'cwarcup', balance: -50.25 } }
+
+t3 = new Deposit(120.0, myAccount)
+t3.commit()
+console.log('Transaction 3', t3)
+// Transaction 3 Deposit { amount: 120,
+//   account: Account { username: 'cwarcup', balance: 59.76 } }
+
+console.log(myAccount)
+// { username: 'cwarcup', balance: 59.76 }
+```
+
+Here we have the `Wirthdrawal` class and the `Deposit` class using the `Account` object. They are not accessing some global variable, but instead are accessing the `balance` property of the `Account` object.
+
+This means they `Withdrawal` and `Deposit` classes are not dependent on any global variables. Instead, it is dependent on the `Account` object.
+
+Additionally, transactions are not tied to a single account. We can access these transactions whenever we want.
+
+> This is a good example of a **dependency injection**.
+
+---
+
+2. create a superclass and subclass
+
+Now our `Withdrawal` and `Deposit` classes are looking very similar. We can use a **superclass** to keep our code DRY.
+
+We will create a `Transaction` class that will be the superclass of the `Withdrawal` and `Deposit` classes.
+
+```js
+// Transaction superclass
+class Transaction {
+  constructor(amount, account) {
+    this.amount = amount
+    this.account = account
+  }
+}
+
+// Withdrawal subclass
+class Withdrawal extends Transaction {
+  commit() {
+    this.account.balance -= this.amount
+  }
+}
+
+// Deposit subclass
+class Deposit extends Transaction {
+  commit() {
+    this.account.balance += this.amount
+  }
+}
+```
+
+---
+
+3. add getter method
+
+Instead of using `commit` to commit a transaction, we can use a getter method to return the transaction.
+
+```js
+class Account {
+  constructor(username) {
+    this.username = username
+    this.balance = 0
+  }
+}
+
+class Transaction {
+  constructor(amount, account) {
+    this.amount = amount
+    this.account = account
+  }
+
+  commit() {
+    this.account.balance += this.value
+  }
+}
+
+// Withdrawal subclass
+class Withdrawal extends Transaction {
+  get value() {
+    return -Math.abs(this.amount)
+  }
+}
+
+// Deposit subclass
+class Deposit extends Transaction {
+  get value() {
+    return this.amount
+  }
+}
+```
+
+- add a `get` method to both `Withdrawal` and `Deposit` classes
+  - `get` method for `Withdrawal` should return a negative value
+- `commit` metho no longer needs to be in both `Withdrawal` and `Deposit` classes
+  - `commit` method should be in the `Transaction` class.
+
+---
+
+4. Keeping track of transactions
+
+```js
+class Account {
+  constructor(username) {
+    this.username = username
+    this.transactions = [] // array of transactions
+  }
+
+  get balance() {
+    // method to sum all transactions
+    let balance = 0 // recall, value is a getter. Can call it like a property
+    for (let trans of this.transactions) {
+      balance += trans.value
+    }
+    return balance
+  }
+
+  addTransaction(transaction) {
+    this.transactions.push(transaction)
+  }
+}
+
+class Transaction {
+  constructor(amount, account) {
+    this.amount = amount
+    this.account = account
+  }
+
+  commit() {
+    // Keep track of the time of the transaction
+    this.time = new Date()
+    // Add the transaction to the account
+    this.account.addTransaction(this)
+  }
+}
+
+// Withdrawal subclass
+class Withdrawal extends Transaction {
+  get value() {
+    return -this.amount
+  }
+}
+
+// Deposit subclass
+class Deposit extends Transaction {
+  get value() {
+    return this.amount
+  }
+}
+
+// DRIVER CODE
+
+const myAccount = new Account('cwarcup')
+
+let t1 = new Withdrawal(60, myAccount)
+t1.commit()
+
+let t2 = new Withdrawal(10, myAccount)
+t2.commit()
+
+let t3 = new Deposit(150.0, myAccount)
+t3.commit()
 ```
