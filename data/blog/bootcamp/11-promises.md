@@ -102,12 +102,132 @@ In comparison, the Media Type for HTML is `text/html`.
 
 The Media Type is set in the `Content-Type` **header** of the HTTP response.
 
+# What is an API?
+
+Application Programming Interface (API) is a set of methods that allow us to interact with a resource.
+
 # Callback waterfall - callback hell problem
+
+Refer back to the profileGenerater app: [here](https://github.com/Cwarcup/profile_generator/blob/eef20534794f673462e75b3ef18fb7921c6476b3/survey.js)
+
+```js
+const readline = require('readline')
+
+const rl = readline.createInterface({
+  input: process.stdin,
+  output: process.stdout,
+})
+
+const answers = []
+
+rl.question("What's your name? Nicknames are also acceptable :) ", (answer1) => {
+  console.log(`${answer1}, cool. I like that.`)
+  answers.push(answer1)
+  rl.question("What's an activity you like doing? ", (answer2) => {
+    answers.push(answer2)
+    rl.question(`What do you listen to while ${answer2}? `, (answer3) => {
+      answers.push(answer3)
+      rl.question(`Which meal is your favourite (eg: dinner, brunch, etc.)? `, (answer4) => {
+        answers.push(answer4)
+        rl.question(`What's your favourite thing to eat for ${answer4}? `, (answer5) => {
+          answers.push(answer5)
+          rl.question(`Which sport is your absolute favourite? `, (answer6) => {
+            answers.push(answer6)
+            rl.question(
+              `What is your superpower? In a few words, tell us what you are amazing at! `,
+              (answer7) => {
+                answers.push(answer7)
+                rl.close()
+                const name = answer[0]
+                const activity = answer[1]
+                const music = answer[2]
+                const meal = answer[3]
+                const food = answer[4]
+                const sport = answer[5]
+                const superpower = answer[6]
+              }
+            )
+          })
+        })
+      })
+    })
+  })
+})
+```
+
+`answer1` is a variable that stores the user's name. It stores all the remaining answers in an array. The second question does the same thing. It is a callback within a callback. And so on and so on.
+
+This is a problem that we can solve by using promises.
+
+Promises version of the same code:
+
+```js
+// see notes to be sent out
+// .then
+```
+
+- using `readline-promise` to read the user's input
+- Users `questionAsync()` method to get the user's input
+
+## Intro to Promises Examples
+
+see notes for promise generator. Update at the end of the week.
 
 # Error Handling with Promises (and callbacks)
 
-# Parallelizing Asynchronous Code
-
-## Promise.race
+see errors files. Update at the end of the week.
 
 ## Promise.all
+
+The whole point of async is to do multitasking well.
+
+Here we have four promises, all with different lengths of time for the duration (using setTimeout).
+
+The event loop can launch code that will run in a multi-tasking fashion.
+
+This is useful when you have multiple asynchronous tasks that need to be completed in order to render some calculation.
+
+---
+
+# Applicable Repositories
+
+- [json_the_cat](https://github.com/Cwarcup/json_the_cat)
+- [iss_spotter](https://github.com/Cwarcup/iss_spotter)
+
+## Example
+
+```js
+let creditLimit = 50
+
+/*
+ * Input: number of dollars to loan out
+ * Returns: Promise of loan which may or may not fulfill, based on remaining credit.
+ * If creditLimit is less than the requested amount, only the remaining limit is loaned out, otherwise the full amount is loaned out. If $0 remain in the limit, the loan request is rejected (error!).
+ */
+
+const loanOut = (amount) => {
+  return new Promise((resolve, reject) => {
+    if (creditLimit <= 0) {
+      reject('Insufficient funds')
+    } else if (creditLimit < amount) {
+      let remaining = creditLimit
+      creditLimit = 0
+      resolve(remaining)
+    } else {
+      creditLimit -= amount
+      resolve(amount)
+    }
+  })
+}
+
+console.log('Asking for $150, which should be okay ...')
+loanOut(150)
+  .then((amountReceived) => {
+    console.log(
+      `\t-> I got $${amountReceived} loan from the bank! Remaining Credit Limit: $${creditLimit}`
+    )
+  })
+  .catch((err) => {
+    console.log(`\t-> Error: ${err}!`)
+  })
+```
