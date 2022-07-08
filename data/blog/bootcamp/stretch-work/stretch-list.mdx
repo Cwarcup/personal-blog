@@ -530,3 +530,68 @@ describe('caesar.encrypt', () => {
   })
 })
 ```
+
+### FindFriend
+
+```js
+const contacts = [
+  {
+    name: 'Laurel',
+    phone: '123 456 7890',
+    email: 'laurel@comics.com',
+    friends: ['Hardy', 'Abbott', 'Costello'],
+  },
+  {
+    name: 'Hardy',
+    phone: '321 654 0987',
+    email: 'hardy@hardyharhar.com',
+    friends: ['Laurel', 'Buster'],
+  },
+  {
+    name: 'Buster',
+    phone: '987 654 3210',
+    email: 'buster@keaton.ca',
+    friends: ['Hardy'],
+  },
+  {
+    name: 'Abbot',
+    phone: '888 123 4567',
+    email: 'abbott@whosonfirst.co',
+    friends: ['Costello', 'Laurel'],
+  },
+  {
+    name: 'Costello',
+    phone: '767 676 7676',
+    email: 'costello@imonfirst.co',
+    friends: ['Abbott', 'Laurel'],
+  },
+]
+
+// The first parameter is the contact data itself
+// The second is the name of a contact, and
+// The third parameter will be specifying the field (property) of the friend we want back.
+
+const findFriend = (contacts, name, field) => {
+  // Find the contact with the name specified
+  const contact = contacts.find((contact) => contact.name === name)
+  // case where contact is not in friends list
+  if (!contact) return 'Not found'
+  // find first friend that matches name
+  const contactFriends = contact.friends[0]
+  // iterate over arg1 till desired friend is found
+  const friendDetails = contacts.find((contact) => contact.name === contactFriends)
+  // create object to potentially return
+  const result = {}
+  // assign properties
+  result['name'] = contactFriends
+  result[field] = friendDetails[field]
+  // if property does not exist
+  if (!result[field]) return 'Not found'
+  return result
+}
+
+// // console.log(findFriend(contacts, "Abbott", "phone"));
+// // console.log(findFriend(contacts, "Buster", "email"));
+// // console.log(findFriend(contacts, "Bob", "phone"));
+// console.log(findFriend(contacts, "Costello", "birthday"));
+```
