@@ -8,7 +8,7 @@ import Image from '@/components/Image'
 import Hero from '@/components/Hero'
 import RecentProjects from '@/components/RecentProjects'
 
-const MAX_DISPLAY = 6
+const MAX_DISPLAY = 9
 
 export async function getStaticProps() {
   const posts = await getAllFilesFrontMatter('blog')
