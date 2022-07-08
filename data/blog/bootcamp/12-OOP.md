@@ -3,7 +3,7 @@ title: Object Oriented Programming
 date: '2022-07-08'
 tags: ['OOP']
 images: ['/static/images/postImages/andrew-petrov-hopnkQoC0dg-unsplash.jpg']
-draft: true
+draft: false
 summary: OOP is usually defined by its two core concepts. Polymorphism and Inheritance. Although both concepts are related, they are not the same. Let’s take a look at a real life example, that illustrates perfectly the advantages of Inheritance.
 ---
 
