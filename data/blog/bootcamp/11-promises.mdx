@@ -226,6 +226,48 @@ functionOneReturningPromise()
   })
 ```
 
+Another example:
+
+```js
+new Promise(function (resolve, reject) {
+  const value = doSomething()
+  if (thingWorked) {
+    resolve(value)
+  } else if (somethingWentWrong) {
+    reject()
+  }
+})
+  .then(function (value) {
+    //success
+    return nextThing(value)
+  })
+  .catch(rejectFunction)
+
+new Promise(function (resolve, reject) {
+  let img = document.createElement('img')
+  img.src = src
+  img.onload = resolve
+  img.onerror = reject
+  document.body.appendChild(img)
+})
+  .then(finishLoading)
+  .catch(showAlternateImage)
+```
+
+Instead of using a `.catch()`, we could use the following:
+
+```js
+get('example.json').then(resolveFunction).then(undefined, rejectFunction)
+```
+
+This is the same as:
+
+```js
+get('example.json').then(resolveFunction).catch(rejectFunction)
+```
+
+This is because as soon as a promise is rejected, it will be passed to the next `.then()` in the chain. However, you should just use `.catch()` if you want to handle the error.
+
 # Async Operations in Parallel
 
 Instead of waiting for each operation to resolve before moving on to the next one, we can run them in parallel with methods like `Promise.all` and `Promise.race`.
