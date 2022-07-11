@@ -224,3 +224,37 @@ Why? Because the `inner` function accesses variable `x`, which is defined within
 ### definition of closure
 
 > "A closure is the combination of a function bundled together (enclosed) with references to its surrounding state (the lexical environment). In other words, a closure gives you access to an outer function's scope from an inner function. In JavaScript, closures are created every time a function is created, at function creation time." - https://developer.mozilla.org/en-US/docs/Web/JavaScript/Closures
+
+Recall that in Javascript, functions have access to..
+
+1. variables in its own context (local variables)
+2. variables in the lexical environment/parent fucntion (the scope of the function in which it was defined)
+3. Global variables (variables defined outside of all functions)
+
+The concept of closure is that a function has access to the variables in its lexical environment. Meaning, the function has access to the variables in the scope of the function in which it was defined.
+
+Example:
+
+```js
+const countdownGenerator = function (x) {
+  let num = x + 1
+  return function () {
+    num--
+    if (num >= 1) {
+      return `T minus ${num}`
+    } else if (num === 0) {
+      return 'Blast Off!'
+    } else if (num < 0) {
+      return 'Rockets already gone, bub!'
+    }
+  }
+}
+
+const countdown = countdownGenerator(3)
+countdown() // T-minus 3...
+countdown() // T-minus 2...
+countdown() // T-minus 1...
+countdown() // Blast Off!
+countdown() // Rockets already gone, bub!
+countdown() // Rockets already gone, bub!
+```
