@@ -29,6 +29,7 @@ export default function Home({ posts }) {
           {!posts.length && 'No posts found.'}
           {posts.slice(0, MAX_DISPLAY).map((frontMatter) => {
             const { slug, date, title, summary, tags, images } = frontMatter
+            const firstTwoTags = tags.slice(0, 2)
             return (
               <div
                 key={slug}
@@ -50,7 +51,7 @@ export default function Home({ posts }) {
                   <div className="h-full py-4 px-2">
                     <span className="inline-flex w-full items-center justify-between">
                       <span className="inline-block rounded border border-gray-700 py-1 px-2 text-xs font-medium">
-                        {tags.map((tag) => (
+                        {firstTwoTags.map((tag) => (
                           <Tag key={tag} text={tag} />
                         ))}
                       </span>
