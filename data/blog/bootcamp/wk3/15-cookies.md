@@ -2,9 +2,9 @@
 title: Intro to Cookies
 date: '2022-07-12'
 tags: ['cookies', 'express', 'servers']
-images: ['/static/images/postImages/CRUD.jpg']
+images: ['/static/images/postImages/Cookies.jpg']
 draft: false
-summary:
+summary: Understand the basics of a cookie and how Express can be used to create a cookie.
 ---
 
 Recall that we have been communicating with the server and application through HTTP, which is _stateless_, meaning that the server doesn't remember the state of the application. Each request is a independent and separate transaction.
@@ -27,3 +27,39 @@ See the following for more information:
 - [What is a cookie YouTube video](https://www.youtube.com/watch?v=I01XMRo2ESg)
 - Wikipedia: [Cookie](https://en.wikipedia.org/wiki/HTTP_cookie)
 - Breakdown of how cookies work: [Cookie breakdown](https://blog.codeanalogies.com/2018/06/02/internet-cookies-explained-by-taking-your-kids-to-the-doctors-office/)
+
+## Express and Cookies
+
+We will be using [Cookie-Parser](https://github.com/expressjs/cookie-parser) to parse the `cookie` header.
+
+Cookie-parser serves as Express middleware that facilitates working with cookies.
+
+`cookie-parser` helps us **read** the values from the cookie.
+
+To **set** the values on the cookie, we can use `res.cookie`, a [method provided by Express](http://expressjs.com/en/api.html#res.cookie).
+
+```
+$ npm install cookie-parser
+```
+
+Syntax:
+
+```js
+res.cookie(name, value [, options])
+```
+
+- sets `name` to `value`
+- the `value` param may be a **string** or an **object converted to JSON**.
+
+```js
+const cookieParser = require('cookie-parser')
+
+res.cookie('name', 'tobi', { domain: '.example.com', path: '/admin', secure: true })
+res.cookie('rememberme', '1', { expires: new Date(Date.now() + 900000), httpOnly: true })
+```
+
+## Restrictions on Cookies
+
+Who has access to a cookie?
+
+- A browser cookie is specific to the domain that created it. This means that if you create a cookie for `.example.com`, it will only be available on that domain.
