@@ -28,8 +28,6 @@ server.listen(PORT, () => {
 })
 ```
 
-# Web Servers
-
 ## What is a web server?
 
 In general, a server has data, and a client want data from the server.
@@ -127,7 +125,7 @@ How can we tell what the client is asking for? We wll use the `request` object.
 
 The most important information is the **URL** and the **method**.
 
-# Express
+## Express
 
 [Express website](http://expressjs.com/)
 
@@ -162,7 +160,7 @@ This is much more simple compared to the built in methods in node.js.
 
 Order of the `app.get` is **important!**. Express works top down. You want the **specific routes** above the **general** routes.
 
-# Middleware
+## Middleware
 
 Is not exclusive to express. It can be used with any web server.
 
@@ -197,7 +195,7 @@ app.use(bodyParser.urlEncoded({ extended: false }))
 app.use(morgan('dev'))
 ```
 
-## Custom Middleware
+### Custom Middleware
 
 - We are not limited to using middleware that someone else has written, we can create our own!
 - To define custom middleware, we pass a **callback** function to the `.use` method
@@ -217,7 +215,7 @@ app.use((req, res, next) => {
 
 See express documents for more information: [here](https://expressjs.com/en/guide/writing-middleware.html)
 
-## Morgan Middleware
+### Morgan Middleware
 
 Check out [Morgan](https://www.npmjs.com/package/morgan) for a middleware that logs requests. The [dev](https://www.npmjs.com/package/morgan#dev) version of Morgan is very useful. Will show the method, URL, and status code.
 
@@ -230,7 +228,7 @@ app.use(morgan('dev'))
 
 > can easily get the status codes, any incoming requests, and the time it took to respond.
 
-## More on Express
+### More on Express
 
 Some more examples:
 
@@ -281,7 +279,7 @@ app.get('/fetch', (req, res) => {
 
 > No. The variable is only accessible in the function. This is due to scope!
 
-# Template Engines
+## Template Engines
 
 Templates are a way to create HTML files. It keeps the HTML and JavaScript separate.
 
@@ -305,18 +303,48 @@ We'll be using: `<%- include('partials/_header') %>`
 
 Check out this video to better understand how to use EJS: [EJS](https://www.youtube.com/watch?time_continue=566&v=dmJ9s6x_GmM&feature=emb_title)
 
-## EJS
+### EJS
 
 When sending variables to an EJS template, we need to send them inside an object, even if we are only sending one variable. This is so we can use the key of that variable to access the data within our template.
 
+When using EJS, we put our **templates** inside the `views` folder. The `ejs` file must be named the same as the `res.render` template being used.
+
+For example, if we want to use a template named `hello_world`, we need to create a file named `hello_world.ejs` inside the `views` folder.
+
 ```js
+// server.js
 app.get('/hello', (req, res) => {
-  const templateVars = { greeting: 'Hello World!' }
+  const templateVars = {
+    greeting: 'Hello World!',
+    message: 'This is a message!',
+  }
   res.render('hello_world', templateVars)
 })
 ```
 
+```html
+// hello_world.ejs
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Hello World</title>
+  </head>
+  <body>
+    <h5 class="card-title"><%= templateVars.greeting %></h5>
+    <p class="card-text"><%= templateVars.message %></p>
+  </body>
+</html>
+```
+
 - `templateVars` contains the variables we want to pass to the template. It uses the string `greeting` key to access the data.
+
+This `templateVars` is how we pass in data to our template. This property is the second argument to the `res.render` method (`res.render('hello_world', templateVars)`).
+
+We can then access the values in that object we passed into our template by using the `<%=` syntax.
+
+```html
+<p class="card-text"><%= templateVars.message %></p>
+```
 
 In a separate file, in the **views** folder, we can create a file called `hello_world.ejs`.
 

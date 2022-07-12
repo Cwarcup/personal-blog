@@ -10,3 +10,37 @@ summary: This post explains what git branches are and how they can be used to co
 We understand that a remote repository holds the 'master' branch of your code. This is the branch that is used to develop your application. We work locally on the 'master' branch and push to the 'master' branch on the remote repository.
 
 That being said, we can use git branches to control and organize our development process. We do not need to only rely on the 'master' branch. We can create and use any branch we want.
+
+[learngitbranching.js.org](https://learngitbranching.js.org/) is a great site to learn more about git branches.
+
+## Creating New Branches
+
+To **create a new branch**, we can use the following command:
+
+```
+git branch <new branch name>
+```
+
+## Switching Branches
+
+Before you commit your changes, you can use the following command to **switch to the new branch**:
+
+```
+git checkout <new branch name>
+
+// then you can commit your changes
+git commit -m "message"
+```
+
+In Git version 2.23, a new command called git `switch` was introduced to eventually replace git `checkout`
+
+If you want to **create** a new branch AND **check it out** at the same time, you can simply type `git checkout -b [yourbranchname]`
+
+## Merging Branches
+
+When you are done with your work on a branch, you can use the following command to **merge** the branch into the 'master' branch:
+
+```
+git checkout master
+git merge <branch name>
+```
