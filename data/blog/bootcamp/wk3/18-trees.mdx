@@ -330,3 +330,241 @@ We check in this order:
 <div className="my-1 px-2 w-full">
   ![bfs again](/static/images/individualBlogPostImages/dfs2.png)
 </div>
+
+## Implementation
+
+Trees are essentially just composed of subtrees. We can use recursion to traverse the tree.
+
+### Depth First Search (DFS)
+
+1. visit the root note
+2. get the first unvisited child cub-tree of the current node
+3. do step 1 with the sub-tree
+
+```
+traverse tree:
+
+  visit the root of the tree
+  let subTree = the first unvisited child sub-tree of the root node
+
+  recursive case:
+    is there's a subTree, traverse subTree.
+  base case:
+    if there's no subTree, do nothing
+```
+
+Code:
+
+```js
+class Node {
+  constructor(data) {
+    this.data = data
+    this.parent = null
+    this.children = []
+  }
+
+  depthFirstTraversal() {
+    console.log(this) // 1
+
+    for (const childNode of this.children) {
+      childNode.depthFirstTraversal() // 2
+    }
+  }
+}
+```
+
+1. Visit the current node. In this case, we're just printing out the data.
+2. Loop through every child of the current node and repeat the first step with that node.
+
+#### DFS Tree traversal Example - Durian Tree
+
+Create a method to find every single employee under Ada, that makes over $418,401 a year.
+
+```js
+class Employee {
+  constructor(name, title, salary) {
+    this.name = name
+    this.title = title
+    this.salary = salary
+    this.boss = null
+    this.subordinates = []
+  }
+
+  /// ... old code ...
+
+  // our new function  // DFS example
+  employeesThatMakeOver(amount) {
+    let employees = [] // 1
+
+    if (this.salary > amount) {
+      employees.push(this) // 2
+    }
+
+    for (const subordinate of this.subordinates) {
+      const subordinatesThatMakeOver = subordinate.employeesThatMakeOver(amount) // 3
+      employees = employees.concat(subordinatesThatMakeOver)
+    }
+
+    return employees
+  }
+}
+
+// root
+const ada = new Employee('Ada', 'CEO', 3000000.0)
+
+// employees
+const craig = new Employee('Craig', 'VP Software', 1000000)
+const arvinder = new Employee('Arvinder', 'Chief Design Officer', 1000000)
+const angela = new Employee('Angela', 'VP Retail', 1000000)
+const phil = new Employee('Phil', 'VP Marketing', 1000000)
+
+ada.addSubordinate(craig)
+ada.addSubordinate(arvinder)
+ada.addSubordinate(angela)
+ada.addSubordinate(phil)
+```
+
+1. Create a new employees array to hold every employee that makes over the specified amount.
+2. If the current employee makes over that amount, add them to the array.
+3. Call this method on all of the current employee's subordinates and combine their results with the current results.
+
+We can call this method on the root node of the tree.
+
+```js
+let wealthyEmployees = ada.employeesThatMakeOver(418401)
+```
+
+---
+
+Write a method that will count the total number of employees **under a certain employee**, including that employee.
+
+This will let us calculate the total number of people in a certain department.
+
+```js
+class Employee {
+  // ... prev code here
+
+  // recursively call the function on each subordinate
+  get totalEmployees() {
+    let totalEmployees = 1 // 1
+
+    for (const subordinate of this.subordinates) {
+      totalEmployees += subordinate.totalEmployees // 2
+    }
+
+    return totalEmployees
+  }
+}
+
+// root
+const ada = new Employee('Ada', 'CEO', 3000000.0)
+
+// employees
+const craig = new Employee('Craig', 'VP Software', 1000000)
+const arvinder = new Employee('Arvinder', 'Chief Design Officer', 1000000)
+const angela = new Employee('Angela', 'VP Retail', 1000000)
+const phil = new Employee('Phil', 'VP Marketing', 1000000)
+
+const curtis = new Employee('Curtis', 'Dev', 1)
+
+ada.addSubordinate(craig)
+ada.addSubordinate(arvinder)
+ada.addSubordinate(angela)
+ada.addSubordinate(phil)
+
+phil.addSubordinate(curtis)
+
+let wealthyEmployees = ada.employeesThatMakeOver(418401)
+
+console.log(wealthyEmployees) // very long list of employee nodes
+console.log(ada.totalEmployees) // 5
+console.log(craig.totalEmployees) // 1
+console.log(phil.totalEmployees) // 2
+```
+
+### vampire examples
+
+[see repo for full code and tests](https://github.com/Cwarcup/vampr-js)
+
+```js
+class Vampire {
+  constructor(name, yearConverted) {
+    this.name = name
+    this.yearConverted = yearConverted
+    this.offspring = []
+    this.creator = null
+  }
+
+  /** Simple tree methods **/
+
+  // Adds the vampire as an offspring of this vampire
+  addOffspring(vampire) {
+    vampire.creator = this
+    this.offspring.push(vampire)
+  }
+
+  // Returns the total number of vampires created by that vampire
+  get numberOfOffspring() {
+    return this.offspring.length
+  }
+
+  // Returns the number of vampires away from the original vampire this vampire is
+  get numberOfVampiresFromOriginal() {
+    let totalToOriginal = 0
+    let current = this
+
+    while (current.creator) {
+      totalToOriginal++
+      current = current.creator
+    }
+    return totalToOriginal
+  }
+
+  // Returns true if this vampire is more senior than the other vampire. (Who is closer to the original vampire)
+  isMoreSeniorThan(vampire) {
+    return vampire.numberOfVampiresFromOriginal > this.numberOfVampiresFromOriginal
+  }
+
+  // Returns the vampire object with that name, or null if no vampire exists with that name
+  vampireWithName(name) {
+    if (this.name === name) return this
+
+    // if not found, search offspring
+    for (let next of this.offspring) {
+      // assign result to variable so it can be returned if found
+      let find = next.vampireWithName(name)
+      if (find) return find
+    }
+
+    return null
+  }
+
+  // Returns the total number of vampires that exist
+  get totalDescendents() {
+    let total = 0
+
+    for (let next of this.offspring) {
+      total++
+      total += next.totalDescendents
+    }
+    return total
+  }
+
+  // Returns an array of all the vampires that were converted after 1980
+  get allMillennialVampires() {
+    let result = []
+
+    // condition to push into arr
+    if (this.yearConverted > 1980) {
+      result.push(this)
+    }
+
+    // recursive
+    for (let next of this.offspring) {
+      const vamps = next.allMillennialVampires
+      result = result.concat(vamps)
+    }
+    return result
+  }
+}
+```
