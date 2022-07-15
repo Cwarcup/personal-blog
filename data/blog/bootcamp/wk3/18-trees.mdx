@@ -2,10 +2,12 @@
 title: Trees
 date: '2022-07-15'
 tags: ['trees', 'data structures']
-images: ['/static/images/postImages/sincerely-media-CWL6tTDN31w-unsplash.jpg']
+images: ['/static/images/postImages/tree.jpg']
 draft: false
 summary: Learn about trees and how they can be used to store data.
 ---
+
+<TOCInline toc={props.toc} asDisclosure />
 
 Every app require some sort of data. Sometimes we store data in a single way, such as a string, number, or boolean.
 
@@ -169,7 +171,111 @@ get numberOfSubordinates(employee) {
 4. Method to return `true` is two people share the same boss. `false` otherwise.
 
 ```js
-  get isSameBoss(employee1, employee2) {
-    return employee1.boss === employee2.boss;
+  hasSameBoss(employee) {
+    return this.boss === employee.boss;
   }
 ```
+
+All together:
+
+```js
+class Employee {
+  constructor(name, title, salary) {
+    this.name = name
+    this.title = title
+    this.salary = salary
+    this.boss = null
+    this.subordinates = []
+  }
+
+  addSubordinate(subordinate) {
+    this.subordinates.push(subordinate)
+    subordinate.boss = this
+  }
+
+  get boss() {
+    return this.boss
+  }
+
+  get numberOfSubordinates() {
+    return this.subordinates.length
+  }
+
+  get numberOfPeopleToCEO() {
+    let numberOfPeople = 0
+    let currentEmployee = this
+    while (currentEmployee.boss) {
+      numberOfPeople++
+      currentEmployee = currentEmployee.boss
+    }
+    return numberOfPeople
+  }
+
+  SameBoss(employee) {
+    return this.boss === employee.boss
+  }
+}
+
+/////////// test this out
+
+// root
+const ada = new Employee('Ada', 'CEO', 3000000.0)
+
+// employees
+const craig = new Employee('Craig', 'VP Software', 1000000)
+const arvinder = new Employee('Arvinder', 'Chief Design Officer', 1000000)
+const angela = new Employee('Angela', 'VP Retail', 1000000)
+const phil = new Employee('Phil', 'VP Marketing', 1000000)
+
+ada.addSubordinate(craig)
+ada.addSubordinate(arvinder)
+ada.addSubordinate(angela)
+ada.addSubordinate(phil)
+
+console.log(craig.boss) // ada object
+console.log(craig.numberOfSubordinates) // 0
+console.log(craig.numberOfPeopleToCEO) // 1
+```
+
+## Tree Summary
+
+Trees are good for representing data in a **hierarchical relationship**.
+
+We can build a tree as long as we have a node that defines:
+
+- the parent
+- its children (if it has them)
+- data about the node
+
+For the example above...
+
+|   Node   |      Employee       |
+| :------: | :-----------------: |
+|  parent  |        boss         |
+| children |    subordinates     |
+|   data   | name, title, salary |
+
+We defined this within our Employee class, inside of the `constructor` function.
+
+```js
+class Employee {
+  constructor(name, title, salary) {
+    this.name = name // DATA
+    this.title = title // DATA
+    this.salary = salary // DATA
+    this.boss = null // PARENT
+    this.subordinates = [] // CHILDREN
+  }
+  // ...
+}
+```
+
+## Other Examples
+
+**Browser DOM**
+
+|   Node   |        HTML Element         |
+| :------: | :-------------------------: |
+|  parent  |       Parent Element        |
+| children |       Child Elements        |
+|   data   | attributes (id, class, etc) |
