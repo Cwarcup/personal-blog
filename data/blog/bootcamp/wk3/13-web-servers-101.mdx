@@ -434,13 +434,3 @@ Need to import the file into the main ejs file: `<%- include('partials/_header')
 > needs to be inside of the `<body>` tag
 
 See the following repo for full details: [Getting started with EJS](https://github.com/Cwarcup/tinyapp/tree/a368f3a4749d6767bb9409f5bb02d8f404571fe7)
-
-In this exercise we learned how to use the EJS templating engine to render web pages.
-
-We used the Express render method to respond to requests by sending back a template, along with an object containing the data the template needs. We then used EJS to render this data to our web page. We used Express route parameters to pass data from our frontend to our backend via the request url. Finally, we created a partial template for our header so that we can have the code for it in one location, but render it on multiple pages.
-
-Learning Outcomes:
-
-- Add route for `/urls` in `expressserver.js` and render using accompanying template
-- Add route for `/urls/:id` in `expressserver.js` and render using accompanying template
-- Include the header **partial** inside `urls_index.ejs` and `urls_show.ejs.` Make sure this is included inside the top of the **body**

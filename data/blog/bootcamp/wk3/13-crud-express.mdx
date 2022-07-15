@@ -1,6 +1,6 @@
 ---
 title: CRUD and Express
-date: '2022-07-12'
+date: '2022-07-10'
 tags: ['CRUD', 'Express']
 images: ['/static/images/postImages/CRUD.jpg']
 draft: false
@@ -44,6 +44,28 @@ When HTTP was first created, it was used to transfer data between the client and
 **Safe Methods**: GET, HEAD, OPTIONS, TRACE. Has no intended effect on the server. They are intended to be _read-only_ operations.
 
 On the other hand, the following methods are _unsafe_: POST, PUT, DELETE. These methods can be used to modify the database.
+
+### RESTR conventions
+
+- Is just a way of naming the routes.
+- Is a convention.
+- represents the endpoints of the API.
+
+| REST convention     | HTTP Method |
+| ------------------- | ----------- |
+| `/users`            | GET         |
+| `/users/:id`        | GET         |
+| `/users`            | POST        |
+| `/users/:id`        | PUT         |
+| `/users/:id/delete` | DELETE      |
+
+REST conventions can be extended! Let's say we want to get the commenrts for a video.
+
+```
+GET /videos/:id/comments
+```
+
+This is a GET request to the `/videos/:id/comments` endpoint.
 
 ## idempotent methods
 
@@ -275,13 +297,3 @@ app.post('/milestones/edit/:id', (req, res) => {
   res.redirect('/milestones')
 })
 ```
-
-Recall, our edit.ejs:
-
-```js
-<form action='/milestones/edit/<%= id %>' method="POST">
-```
-
-## DELETE an entry
-
-add notes
