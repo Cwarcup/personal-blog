@@ -155,5 +155,21 @@ get numberOfSubordinates(employee) {
 3. We can get the number of people between an employee and the CEO like so:
 
 ```js
+  get numberOfPeopleToCEO() {
+    let numberOfPeople = 0;
+    let currentEmployee = this;
+    while (currentEmployee.boss) {
+      numberOfPeople++;
+      currentEmployee = currentEmployee.boss;
+    }
+    return numberOfPeople;
+  }
+```
 
+4. Method to return `true` is two people share the same boss. `false` otherwise.
+
+```js
+  get isSameBoss(employee1, employee2) {
+    return employee1.boss === employee2.boss;
+  }
 ```

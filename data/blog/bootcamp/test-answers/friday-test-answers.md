@@ -194,3 +194,208 @@ const minmax = function (list) {
   return [min, max]
 }
 ```
+
+## Week 3
+
+Convert a given object into an array of arrays.
+
+Given an object, create an array which contains arrays with the key/value pairs.
+
+To keep this simple, the values will only be primitive types (number, string, etc.) and not other objects or array.
+
+Furthermore, assume that the input is always clean/accurate. In other words, don't worry about handling edge cases.
+
+Examples
+
+```js
+objectToArray({ a: 1, b: 2, c: 3 })
+// => [['a', 1], ['b', 2], ['c', 3]]
+
+objectToArray({ name: 'Dave', role: 'Instructor', yearsOfExperience: 10 })
+// => [['name', 'Dave'], ['role', 'Instructor'], ['yearsOfExperience', 10]]
+```
+
+```js
+const objectToArray = function (obj) {
+  const arr = []
+
+  for (let key in obj) {
+    arr.push([key, obj[key]])
+  }
+
+  return arr
+}
+```
+
+---
+
+Convert an array of arrays into an object.
+
+This is the inverse of the previous question.
+
+Arrays will only have two elements: [key, value]
+
+To keep this simple, the values will only be primitive types (number, string, etc.) and not other objects or array.
+
+Furthermore, assume that the input is always clean/accurate. In other words, don't worry about handling edge cases.
+
+Examples:
+
+```js
+arrayToObject([
+  ['a', 1],
+  ['b', 2],
+  ['c', 3],
+])
+// => { a: 1, b: 2, c: 3 }
+
+rrayToObject([
+  ['name', 'Dave'],
+  ['role', 'Instructor'],
+  ['yearsOfExperience', 10],
+])
+//=> {name: 'Dave', role: 'Instructor', yearsOfExperience: 10}
+```
+
+```js
+const arrayToObject = function (arr) {
+  const obj = {}
+
+  for (let item of arr) {
+    obj[item[0]] = item[1]
+  }
+
+  return obj
+}
+```
+
+---
+
+Write a function which will split an array into two arrays (i.e. partition it).
+
+It will take two parameters, the first is an array of Integer values, and the second will be a callback which will return a boolean. If the callback returns true for an element, it should be placed into the left array, otherwise it should be placed into the right array.
+
+Examples:
+
+```js
+partition([1, 2, 3, 4, 5, 6, 7, 8, 9, 10], (n) => n % 2 === 0)
+//  => [[2, 4, 6, 8, 10], [1, 3, 5, 7, 9]]
+
+partition([-5, -4, -3, -2, -1, 0, 1, 2, 3, 4, 5], (n) => n < 0)
+//  => [[-5, -4, -3, -2, -1], [0, 1, 2, 3, 4, 5]]
+```
+
+```js
+const partition = function (arr, callback) {
+  const result = [[], []]
+
+  for (let num of arr) {
+    if (callback(num)) {
+      result[0].push(num)
+    } else {
+      result[1].push(num)
+    }
+  }
+  return result
+}
+```
+
+---
+
+Let's revisit Question 01 which had us convert an array of arrays into an object.
+
+This time, make it support nested arrays.
+
+The nested arrays also only contain 2 element arrays to represent key & value: [key, value]. However, this time we are allowing the value to be another array.
+
+Non-array objects need NOT be supported/handled at all.
+
+Examples:
+
+```js
+deepArrayToObject([
+  ['a', 1],
+  ['b', 2],
+  ['c', [['d', 4]]],
+])
+// => { a: 1, b: 2, c: { d: 4 } }
+
+deepArrayToObject([
+  ['a', 1],
+  ['b', 2],
+  [
+    'c',
+    [
+      [
+        'd',
+        [
+          ['e', 5],
+          ['f', 6],
+        ],
+      ],
+    ],
+  ],
+])
+// => { a: 1, b: 2, c: { d: { e: 5, f: 6 } } }
+```
+
+```js
+const deepArrayToObject = function (arr) {
+  const obj = {}
+  // loop through the array
+  for (let item of arr) {
+    // if the item in the array at index 1 is another array, call the function again
+    if (Array.isArray(item[1])) {
+      obj[item[0]] = deepArrayToObject(item[1])
+    } else {
+      // if no nested arrays, do the same as before
+      obj[item[0]] = item[1]
+    }
+  }
+
+  return obj
+}
+```
+
+---
+
+Given a size in bits convert it to relevant size in B/KB/MB/GB/TB. Round your answers to two decimal places at most. Use base 10 for sizes.
+
+- 1 B
+- 1 kB == 1000 B
+- 1 MB == 1000 kB
+- 1 GB == 1000 MB
+- 1 TB == 1000 GB
+
+More info on these in case you are curious:
+https://en.wikipedia.org/wiki/Byte#Unit_symbol
+
+Examples:
+
+```js
+filesize(1) // => "1B"
+filesize(1000) // => "1kB"
+filesize(1000000) // => "1MB"
+filesize(1500000) // => "1.5MB"
+filesize(1250000000) // => "1.25GB"
+filesize(9000000000000) // => "9TB"
+```
+
+```js
+const filesize = function (bytes) {
+  let data = bytes
+  if (data < 1000) {
+    return `${data}B`
+  }
+  const sizes = ['B', 'kB', 'MB', 'GB', 'TB']
+  let i = 0
+  while (data >= 100) {
+    data /= 1000
+    i++
+  }
+
+  const result = data.toString().slice(0) + sizes[i]
+
+  return result.replace(/0./, '')
+}
+```
