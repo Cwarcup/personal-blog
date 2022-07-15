@@ -7,11 +7,13 @@ draft: true
 summary: Weekly Test Answers
 ---
 
+# Week 2
+
 ## tempConverter
 
 Examples:
 
-```
+```js
 tempConverter(32, true) returns 89.6 as a result
 tempConverter(32, false) returns 0.0 as a result
 tempConverter(98.6, false) returns 37 as a result
@@ -195,7 +197,7 @@ const minmax = function (list) {
 }
 ```
 
-## Week 3
+# Week 3
 
 Convert a given object into an array of arrays.
 
