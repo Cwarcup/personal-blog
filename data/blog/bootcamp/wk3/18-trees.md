@@ -126,3 +126,34 @@ ada.addSubordinate(phil)
 ```
 
 ![durian tree first level](../../../../public/static/images/individualBlogPostImages/durian-tree.png)
+
+We can continue adding levels to our tree to include all the employees, and use the `addSubordinate` function to add subordinates to the employees.
+
+Recall our original questions:
+
+1. Who an employee is reporting to (boss).
+2. The total number of people an employee supervises.
+3. How many people there are between an employee and the CEO.
+4. If two employees share the same boss.
+
+We can create methods to answer these questions.
+
+1. We can get the boss of an employee by using the nodes `boss` property like so:
+
+```js
+employee.boss // => returns the boss of the employee
+```
+
+2. We can get the total number of subordinates an employee has by using the nodes `subordinates` property like so:
+
+```js
+get numberOfSubordinates(employee) {
+  return employee.subordinates.length
+}
+```
+
+3. We can get the number of people between an employee and the CEO like so:
+
+```js
+
+```
