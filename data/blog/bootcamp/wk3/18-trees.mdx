@@ -38,9 +38,9 @@ We will look into a commonly used data structure called a **tree**.
 
 ## Tree Basics
 
-<div className="my-1 px-2 w-full">![nodes](/static/images/individualBlogPostImages/node.png)</div>- each
-circle is a _node_ - nodes represent a key entity and contain data about the entity. - each connection
-between nodes is called an _edge_
+<div className="my-1 px-2 w-full">![nodes](/static/images/individualBlogPostImages/node.png)</div>-
+each circle is a _node_ - nodes represent a key entity and contain data about the entity. - each
+connection between nodes is called an _edge_
 
 - edges represent a connection between two nodes.
 
@@ -65,7 +65,7 @@ between nodes is called an _edge_
   ![siblings](/static/images/individualBlogPostImages/siblings.png)
 </div>
 
-## Tree Example
+### Tree Example
 
 Imagine we have a company and need to be able to determine the following:
 
@@ -242,7 +242,7 @@ console.log(craig.numberOfSubordinates) // 0
 console.log(craig.numberOfPeopleToCEO) // 1
 ```
 
-## Tree Summary
+### Tree Summary
 
 Trees are good for representing data in a **hierarchical relationship**.
 
@@ -275,7 +275,7 @@ class Employee {
 }
 ```
 
-## Other Examples
+#### Other Examples
 
 **Browser DOM**
 
@@ -284,3 +284,49 @@ class Employee {
 |  parent  |       Parent Element        |
 | children |       Child Elements        |
 |   data   | attributes (id, class, etc) |
+
+## Tree Traversal
+
+When we want to access the items in an array, we can just use a for loop. But how do we do this with nodes in a tree?
+
+This involves traversing the tree.
+
+Traversing rhough a tree's nodes is similar to looping through items in an array. We can go through the entire tree and visit every node or just each node underneath another specific node.
+
+## Breadth-first traversal:
+
+- we check the nodes closest to the root first
+- visit all children of a node before moving on to the next node
+- once an entire level of the tree is visited, we move on to the next level
+- we start traversing through every node, **row by row**, until we find it
+- Breadth first traversal will always visit the nodes closest to the root node before moving on to the nodes that are farther away.
+- this is called breadth-first traversal
+
+We check in this order:
+
+<div className="my-1 px-2 w-full">![bfs](/static/images/individualBlogPostImages/bfs.png)</div>
+
+<div className="my-1 px-2 w-full">
+  ![bfs again](/static/images/individualBlogPostImages/bfs2.png)
+</div>
+
+## Depth First Traversal:
+
+- We try to visit each leaf before moving on to the next node
+- We visit an entire path down to a leaf before moving on to the next path
+- Starts at the root
+- Then move the nodes **first child.**
+- Once the node has no more childnre, we move on to the next **sibling**.
+- Once the node has **no children** and **no siblings**, we move back to the **parents next sibling**.
+
+<div className="my-1 px-2 w-full">
+  ![bfs again](/static/images/individualBlogPostImages/dfs.png)
+</div>
+
+<div className="my-1 px-2 w-full">
+  ![bfs again](/static/images/individualBlogPostImages/dfs1.png)
+</div>
+
+<div className="my-1 px-2 w-full">
+  ![bfs again](/static/images/individualBlogPostImages/dfs2.png)
+</div>
