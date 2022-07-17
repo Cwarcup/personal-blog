@@ -43,3 +43,27 @@ or the [MEAN stack](<https://en.wikipedia.org/wiki/MEAN_(solution_stack)>): **Mo
 > References to HTML elements [here](https://developer.mozilla.org/en-US/docs/Web/HTML/Element)
 
 ## Styling with CSS
+
+There are three ways to add CSS rules to a page:
+
+1. Linking - add a `<link>` element to the `<head>` element. This is the **recommended** way to add CSS.
+
+```html
+<link rel="stylesheet" href="style.css" />
+```
+
+2. Inline - add CSS rules to the HTML directly in the HTML code using the `style` attribute.
+
+```html
+<style>
+  p {
+    color: red;
+  }
+</style>
+```
+
+3. Directly to an element
+
+```html
+<p style="color: red;">This is red</p>
+```
