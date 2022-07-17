@@ -2,7 +2,7 @@
 title: Front-End Development
 date: '2022-07-16'
 tags: ['front-end', 'html', 'css', 'iquery]
-images: ['/static/images/postImages/greg-rakozy-vw3Ahg4x1tY-unsplash.jpeg']
+images: ['/static/images/postImages/jackson-sophat-_t-l5FFH8VA-unsplash.jpeg']
 draft: false
 summary: Learn about trees and how they can be used to store data.
 ---
