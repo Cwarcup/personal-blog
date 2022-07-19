@@ -1,0 +1,441 @@
+---
+title: Static Sites with Forms - basics of CSS
+date: '2022-07-18'
+tags: ['HTML', 'CSS', 'DOM']
+images: ['/static/images/postImages/kobu-agency-ipARHaxETRk-unsplash.jpg']
+draft: false
+summary: Browsers only have the ability to render webpages that are composed of HTML, CSS, and JavaScript. This post examines how HTML and CSS can be used to create a static website.
+---
+
+<TOCInline toc={props.toc} asDisclosure />
+
+Webpages that are readable by our browser are composed of...
+
+1. HTML (Hypertext Markup Language): Page content.
+1. CSS (Cascading Style Sheets): Defines the appearance of the aforementioned content.
+1. JS (JavaScript): In-page logic, allowing for an interactive user-interface.
+
+Together, these languages allow for a static website to be created.
+
+### Common HTML Elements
+
+- `<html>` - represents the **root** of an HTML document
+- `<head>` - provides general information (**metadata**) about the document
+  - `<title>` - defines the title of the document, shown in a browser's title bar
+  - `<link>` - specifies relationships between the current document and an external resource
+- `<body>` - represents the content of an HTML document
+- `<h1>,` `<h2>`, ... Heading elements implement six levels of document headings
+- `<p>` - represents a paragraph of text
+- `<div>` - Division Element, generic container for flow content
+- `<ol>`, `<ul>` list of items with, or without numerical ordering
+  - `<li>` - represents an item in a list
+- `<a>` - anchor element; defines a hyperlink to a location or page on the Web
+- `<table>` - display a data table. Note: not to be used for layout
+  - `<tr>` - a table row
+  - `<td>` - a cell in a table row
+
+### Semantic HTML
+
+Semantic means that that the word you are using, (i.e., `<h1>`) tells you about what this element is used for. `<header>` tells you that this element is used for the header of a page.
+
+See more on [semantic tags](https://www.w3schools.com/html/html5_semantic_elements.asp)
+
+- Semantic tags allow for coders to make their HTML more self-documenting.
+- It's also good for web-crawlers or search engines to know what the content of a page is.
+- This is a good way to make your website more accessible.
+
+## Including CSS in a Web Page
+
+There are three ways to add CSS rules to a page:
+
+1. Linking - add a `<link>` element to the `<head>` element. This is the **recommended** way to add CSS.
+
+```html
+<link rel="stylesheet" href="style.css" />
+```
+
+2. Inline - add CSS rules to the HTML directly in the HTML code using the `style` attribute.
+
+```html
+<style>
+  p {
+    color: red;
+  }
+</style>
+```
+
+3. Directly to an element
+
+```html
+<p style="color: red;">This is red</p>
+```
+
+## Anatomy of CSS Rules
+
+### Anatomy
+
+```css
+selector {
+  property: value;
+  property: value;
+}
+```
+
+We can use this type of syntax to set the `box-sizing` property of an element to `border-box`.
+
+```css
+* {
+  box-sizing: border-box;
+}
+```
+
+> Using `*` means that the rule applies to all elements.
+
+#### Selectors
+
+[W3 on selectors](https://www.w3schools.com/cssref/css_selectors.asp)
+
+- Element Selectors (the name of the element being selected) - `<p>`
+- Child Selectors (a space between two selectors implies the latter is nested inside the former) - `<p> > <span>`
+- Class Selectors (a `.` proceeding a class name)
+- ID Selectors (a `#` proceeding an ID)
+
+```css
+/* Octothorpes / hashtags / pound-signs are used to match with IDs. */
+#my-heading {
+  color: salmon;
+}
+
+/* Periods are used to match with classes. */
+.special-paragraph {
+  color: purple;
+}
+
+/* Targets all paragraphs. */
+p {
+  color: green;
+}
+
+/* Targets anchors (links) INSIDE OF paragraphs. */
+p a {
+  color: orange;
+  background: black;
+}
+```
+
+Can have multiple selectors in a single rule.
+
+```css
+/* A much cleaner approach! */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  color: salmon;
+}
+```
+
+When the cursor hovers over an element:
+
+```css
+selector:hover {
+}
+```
+
+Using `*` means that the rule applies to all elements.
+
+It makes sense to apply these rules at the top of the CSS file.
+
+##### Values
+
+Units of length can be absolute or relative:
+
+```css
+selector {
+  /* Relative units */
+  width: 50%; /* percentage of parent element width */
+  font-size: 2em; /* multiples of element's original font-size */
+  font-size: 2rem; /* or the root element's font-size */
+  font-size: 2vw; /* multiples of 1% of the viewport's width (CSS 3) */
+  font-size: 2vh; /* or its height */
+  font-size: 2vmin; /* whichever of a vh or a vw is smaller */
+  font-size: 2vmax; /* or greater */
+
+  /* Absolute units */
+  width: 200px; /* pixels */
+  font-size: 20pt; /* points */
+  width: 5cm; /* centimeters */
+  min-width: 50mm; /* millimeters */
+  max-width: 5in; /* inches */
+
+  /* Colors */
+  color: #f6e; /* short hex format */
+  color: #ff66ee; /* long hex format */
+  color: tomato; /* a named color */
+  color: rgb(255, 255, 255); /* as rgb values */
+  color: rgb(10%, 20%, 50%); /* as rgb percentages */
+  color: rgba(255, 0, 0, 0.3); /* as rgba values (CSS 3) Note: 0 <= a <= 1 */
+  color: transparent; /* equivalent to setting the alpha to 0 */
+  color: hsl(0, 100%, 50%); /* as hsl percentages (CSS 3) */
+  color: hsla(0, 100%, 50%, 0.3); /* as hsl percentages with alpha */
+
+  /* Borders */
+  border-width: 5px;
+  border-style: solid;
+  border-color: red; /* similar to how background-color is set */
+  border: 5px solid red; /* this is a short hand approach for the same */
+  border-radius: 20px; /* this is a CSS3 property */
+
+  /* Images as backgrounds of elements */
+  background-image: url(/img-path/img.jpg); /* quotes inside url() optional */
+
+  /* Fonts */
+  font-family: Arial;
+  /* if the font family name has a space, it must be quoted */
+  font-family: 'Courier New';
+  /* if the first one is not found, the browser uses the next, and so on */
+  font-family: 'Courier New', Trebuchet, Arial, sans-serif;
+}
+```
+
+#### Putting it All Together
+
+1. `p` Selector.
+1. `{` Open a code block for rules.
+1. `color:` Choose a property to set.
+1. `red;` Set a value and end your line with a semi-colon.
+1. `}` End your code block.
+
+## Box Model
+
+This determines how measurements are made and defined for each element in a web page. The layers of an element are laid out as such (from inside to outside):
+
+- Content
+- Padding
+- Border
+  - (Outline)
+  - (Box-Shadow)
+- Margin
+
+Hack for elements when using `float`:
+
+```css
+.clearfix::after {
+  content: '';
+  display: table;
+  clear: both;
+}
+```
+
+## Content-Box versus Border-Box
+
+![box model](https://developer.mozilla.org/en-US/docs/Learn/CSS/Building_blocks/The_box_model/box-model.png)
+
+Border-box:
+
+- the **width and height** of the element _include_ the **border** and **padding**.
+- becomes much easier to position elements.
+
+Content-box:
+
+- the **width and height** of the element _exclude_ the **border** and **padding**.
+
+- Width: width + (horizontal) padding + (horizontal) border
+- Height: height + (vertical) padding + (vertical) border
+
+## Images in Content
+
+In many web pages, especially blog articles, you'll find there seem to be images along either side of the page with text wrapping around them. To have an image slide to the left side of the element and allow text to wrap around it, apply `float: left`; on the image. To have it slide to the right side of its parent instead, use `float: right;`.
+
+```html
+<p>
+  <img src="img/your-image.png" />
+  Dictumst quisque sagittis purus sit. Dui vivamus arcu felis bibendum ut tristique et egestas quis.
+  Odio eu feugiat pretium nibh ipsum consequat nisl. Arcu vitae elementum curabitur vitae nunc sed
+  velit. Volutpat commodo sed egestas egestas fringilla phasellus faucibus scelerisque eleifend.
+  Elementum pulvinar etiam non quam lacus suspendisse. Nunc consequat interdum varius sit amet
+  mattis vulputate enim. Urna et pharetra pharetra massa massa ultricies mi. Egestas sed sed risus
+  pretium quam vulputate. In hac habitasse platea dictumst. Iaculis eu non diam phasellus vestibulum
+  lorem sed risus ultricies.
+</p>
+```
+
+```css
+img {
+  width: 200px;
+  height: auto;
+  float: right; /* Image "floats" this direction, allowing text to wrap around it. */
+}
+```
+
+## Flexbox
+
+There are many ways to position and display items with CSS, and each method is appropriate for different use cases.
+
+### Display Property
+
+- Is the default value of the display property for our HTML elements.
+
+#### display: block
+
+- Take up the **entire** space of it's container (parent element).
+  - Will stretch to fill the container.
+  - takes up the **entire width of the container**.
+- Can contain other block elements or inline elements.
+- Can add width, height, padding and margin.
+- Anything that can not be container on one line will be **wrapped**.
+
+Block elements:
+
+- headings (`<h1>`, `<h2>`, `<h3>`,`<h4>`,`<h5>`,`<h6>`)
+- div (`<div>`)
+- section (`<section>`)
+- footer (`<footer>`)
+- article (`<article>`)
+- paragraph (`<p>`)
+- lists (`<ul>`, `<ol>`)
+- nav (`<nav>`)
+
+#### display: inline
+
+- Do **not** start a new line when they are rendered in the browser.
+- Can **NOT** add width, height, padding and margin.
+- They simply take up as much room as they need to display their content. No more, and no less.
+
+![inline vs block](https://i0.wp.com/www.tutorialbrain.com/wp-content/uploads/2019/06/CSS-Display.png?fit=474%2C379&ssl=1&is-pending-load=1)
+
+- Inline elements:
+- anchor (`<a>`)
+- em (`<em>`)
+- strong (`<strong>`)
+- span (`<span>`)
+
+#### display: inline-block
+
+- **Can** add width, height, padding and margin.
+- **Doesn't** automatically create a new line in the browser.
+
+Inline-block elements:
+
+- `<img>`
+- `<button>`
+
+#### display: flex
+
+great resource: [flexbox.css](https://css-tricks.com/snippets/css/a-guide-to-flexbox/)
+
+- It is great for layouts that need to adapt to different screen sizes and display devices.
+
+```html
+<section class="parent">
+  <div class="a">A</div>
+  <div class="b">B</div>
+  <div class="c">C</div>
+  <div class="d">D</div>
+</section>
+```
+
+![flex example](https://f.v1.n0.cdn.getcloudapp.com/items/0P0L193d1s0h2h3R1A0y/Screen%20Recording%202017-10-01%20at%2012.57%20PM.gif)
+
+The `display: flex` property to the **parent element**.
+
+The parent element is also sometimes referred to as the **container** element.
+
+##### flex-direction
+
+`row` - The flex items are laid out horizontally.
+`column` - The flex items are laid out vertically.
+
+##### aligning the flex items
+
+- `justify-content`, determines where the flex items are along the **main axis**.
+- `align-items`, determines how flex items are laid out on the **cross axis**.
+
+- `flex-start`
+- `center`
+- `flex-end`
+- `space-between`
+- `space-around`
+- `space-evenly`
+- ![axis example](https://res.cloudinary.com/practicaldev/image/fetch/s---3gDSFf1--/c_limit%2Cf_auto%2Cfl_progressive%2Cq_auto%2Cw_880/https://dev-to-uploads.s3.amazonaws.com/i/fsln7je4ax7ft3er28hh.png)
+
+## Precedence or Cascade
+
+Given the following:
+
+```css
+/* A */
+p.class1[attr='value']
+
+/* B */
+p.class1 {
+}
+
+/* C */
+p.class2 {
+}
+
+/* D */
+p {
+}
+
+/* E */
+p {
+  property: value !important;
+}
+```
+
+For the following html:
+
+```html
+<p style="/*F*/ property:value;" class="class1 class2" attr="value"></p>
+```
+
+The precedence order is:
+
+1. `E` has the highest precedence because of the keyword !important. It is recommended that you avoid its usage.
+1. `F` is next, because it is an inline style.
+1. `A` is next, because it is more “specific” than anything else. It has 3 specifiers: The name of the element p, its class class1, an attribute attr='value'.
+1. `C` is next, even though it has the same specificity as B. This is because it appears after B.
+1. `B` is next.
+1. `D` is the last one.
+
+## Media Queries
+
+- Allows you to specify when certain CSS rules should be applied when a screen with certain dimensions or pixel density is displayed.
+
+```css
+/* A rule that will be used on all devices */
+h1 {
+  font-size: 2em;
+  color: white;
+  background-color: black;
+}
+
+/* make the font bigger when shown on a screen at least 480px wide */
+@media screen and (min-width: 480px) {
+  h1 {
+    font-size: 3em;
+    font-weight: normal;
+  }
+}
+
+/* change the h1 to use less ink on a printer */
+@media print {
+  h1 {
+    color: black;
+    background-color: white;
+  }
+}
+```
+
+Media queries can include these features:
+
+- `width`
+- `height`
+- `device-width`
+- `device-height`
+- `orientation`
+- `aspect-ratio`
