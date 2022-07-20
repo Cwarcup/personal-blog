@@ -77,9 +77,11 @@ use the `meta` tags to the `head` element of our html file.
 
 In order to make sure that the user's browser displays our page correctly, we want to target the `viewport` meta tag
 
+Disable viewport zooming by adding the following element to the `<head>` your document! Very important!
+
 ```html
 <head>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
 </head>
 ```
 
@@ -131,6 +133,45 @@ body {
 ```
 
 > These styles will be applied if the screen width is between `500px` and `1000px`
+
+Some common breakpoints examples for phones, tablets, and desktops:
+
+```css
+/* Smartphones: minimum width of 320px to maximum width of around 420px */
+@media only screen and (min-width: 320px) and (max-width: 420px) {
+  /* Write smartphone only styles here */
+}
+
+/* Another smartphone breakpoint is maximum width of around 420px */
+@media only screen and (max-width: 420px) {
+  /* Write smartphone only styles here */
+}
+
+/* Tablet: minimum width of 768px to maximum width of 1024px */
+@media only screen and (min-width: 768px) and (max-width: 1024px) {
+  /* Write Tablet only CSS here */
+}
+
+/* Another tablet breakpoint is maximum width of 1024px */
+@media only screen and (max-width: 1024px) {
+  /* Write CSS rules that target Tablets screen sizes downwards - including smartphones */
+}
+
+/* Another tablet breakpoint is minimum width of 768px */
+@media only screen and (min-width: 768px) {
+  /* Write CSS rules that target Tablets screen sizes upwards - including desktops */
+}
+
+/* Laptops / Desktops: minimum width of 1024px */
+@media only screen and (min-width: 1024px) {
+  /* Write CSS rules that target Laptop/Desktop screen sizes and beyond */
+}
+
+/* Laptops / Desktops: minimum width of 960px */
+@media only screen and (min-width: 960px) {
+  /* Write CSS rules that target small laptop screen sizes and beyond */
+}
+```
 
 ### CSS Preprocessors
 
@@ -269,3 +310,4 @@ header {
 - [MDN: CSS Values and Units](https://developer.mozilla.org/en-US/docs/Learn/CSS/Building_blocks/Values_and_units)
 - [Sass CLI](https://sass-lang.com/documentation/cli/dart-sass)
 - [Responsive Web Design: Media Queries](https://www.youtube.com/watch?v=KX94fPaKqaU&t=10s)
+- [More on responsive design](https://web.dev/learn/design/ui-patterns/)
