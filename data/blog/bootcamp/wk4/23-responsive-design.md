@@ -2,7 +2,7 @@
 title: Responsive Design and SASS
 date: '2022-07-21'
 tags: ['CSS', 'SASS']
-images: ['/static/images/postImages/hackerman.jpg']
+images: ['/static/images/postImages/responsive-design.jpg']
 draft: false
 summary: Make your website render well on mobile and desktop.
 ---
