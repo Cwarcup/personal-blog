@@ -7,7 +7,33 @@ draft: false
 summary: Make your website render well on mobile and desktop.
 ---
 
+<TOCInline toc={props.toc} asDisclosure />
+
+![css](https://media4.giphy.com/media/yYSSBtDgbbRzq/giphy.gif?cid=790b76114a5ae5e6f08d4129fba7e0666702a8cb58ef9c57&rid=giphy.gif&ct=g
+
 Responsive web design (RWD) is an approach to web design that makes web pages render well on a variety of devices and window or screen sizes.
+
+## Common CSS Patterns
+
+Start your body off like so:
+
+```css
+body {
+  margin: 0;
+  padding: 0;
+  font-family: sans-serif;
+}
+```
+
+Targetting a specific element:
+
+- target the element you want to target with the tag name first (e.g. `<h1>`) and then add the class (e.g. `.heading`)
+
+```css
+h2 .title {
+  font-size: 2em;
+}
+```
 
 ## CSS Responsive Design
 
@@ -16,6 +42,8 @@ CSS has a number of properties that can be used to make a website render well on
 ### Relative Units
 
 - Instead of specifying a specific pixel value (i.e., `px`), you can use relative units.
+
+Pixels are not always the best to use because it does **not scale well**.
 
 #### Percentages
 
@@ -73,7 +101,9 @@ p.relative {
 
 #### Viewport Meta Tag
 
-use the `meta` tags to the `head` element of our html file.
+The viewport is the user's visible area of a web page. It depends on the size of the device and the size of the browser/ user is using. The viewport is the area that the user is able to see. With the popularity of mobile devices, the viewport is becoming more and more important.
+
+Use the `meta` tags to the `head` element of our html file.
 
 In order to make sure that the user's browser displays our page correctly, we want to target the `viewport` meta tag
 
