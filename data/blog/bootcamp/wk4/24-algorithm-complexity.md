@@ -1,10 +1,10 @@
 ---
-title:
+title: Algorithms - Time Complexity, Big O Notation
 date: '2022-07-22'
-tags: ['CSS']
-images: ['/static/images/postImages/responsive-design.jpg']
+tags: ['algorithm', 'complexity', 'big-o']
+images: ['/static/images/postImages/algorithms-in-programming.jpg']
 draft: false
-summary:
+summary: introduction to time complexity of algorithms.
 ---
 
 In programing, an algorithm is a set of steps that a computer takes to accomplish a task. We tell computers what to do by writing code, so an algorithm is the code that accomplishes a certain task.
@@ -86,7 +86,7 @@ We can add up all the elementary operations to get the **running time**.
 - Algorithms that don't deal with dynamic data, like **loops**, usually take **constant time** (no `n` involved)
 - Algorithms that **iterate over data**, involve using `n` based on the size of the data
 
-### Binary Search
+## Binary Search
 
 This approach is done by comparing the **middle element** of the array to the **target value**.
 
@@ -95,3 +95,517 @@ Binary search is an efficient algorithm for finding an item from a sorted list o
 - _only_ works on **sorted arrays**.
 
 ![binary search ](https://camo.githubusercontent.com/41ad75ebe176b7d8cede65d44e649a406d5de97b88ca957403d0cc35d0bf6950/68747470733a2f2f626c6f672e70656e6a65652e636f6d2f77702d636f6e74656e742f75706c6f6164732f323031352f30342f62696e6172792d616e642d6c696e6561722d7365617263682d616e696d6174696f6e732e676966)
+
+Steps for Binary Search:
+
+- let `min = 1`, and `max = n`.
+- let `mid = (min + max) / 2`
+- if `target` is `mid`:
+  - return `mid`
+- if `target` is less than `mid`:
+  - set `max = mid - 1`
+- if `target` is greater than `mid`:
+  - set `min = mid + 1`
+- repeat steps 2 and 3 until `target` is found
+
+#### Binary Search Implementation
+
+- let `min` equal the **first** index of the array, and `max` equal the **last** index of the array
+  - `min = 0 and max = n-1.`
+- get the middle index of the array (`mid`)
+  - `mid = Math.floor((min + max) / 2)`
+- if...
+  - target is `mid`:
+    - return `mid`
+  - target is **less** than `mid`:
+    - set `max` to `mid` - 1
+    - `array[guess] < target, then set min = guess + 1`
+  - target is **greater** than `mid`:
+    - set `min` to `mid` + 1
+
+![array](https://cdn.kastatic.org/ka-perseus-images/bbb5cf3c0a28aee1a1961ee8b23800ed531953af.png)
+![first guess](https://cdn.kastatic.org/ka-perseus-images/b63e2970131ee28a7eb45299151731effe5c0c3e.png)
+![second guess](https://cdn.kastatic.org/ka-perseus-images/4c9fbfe50c5a4c6df7a4653c16c20e11b3dd9b7a.png)
+
+```js
+function binarySearch(array, item) {
+  let min = 0
+  let max = array.length - 1
+
+  while (true) {
+    const middleIndex = Math.floor((min + max) / 2.0)
+    const currentItem = array[middleIndex]
+
+    if (currentItem === item) {
+      // Found it
+      return middleIndex
+    } else if (currentItem < item) {
+      // Look at the right side
+      min = middleIndex + 1
+    } else {
+      // Look at the left side
+      max = middleIndex - 1
+    }
+
+    if (min > max) {
+      return null
+    }
+  }
+}
+
+console.log(binarySearch([1, 2, 3, 4, 5, 6, 7, 8, 9], 5)) // 4
+```
+
+When an algorithm's complexity grows logarithmically, our input may get very, very large and yet the number of elementary operations will remain relatively small.
+
+## Linear vs Logarithmic Algorithms
+
+```js
+// linear search function
+
+function linearSearch(array, item) {
+  let index = null
+
+  for (let i = 0; i < array.length; i++) {
+    if (item === array[i]) {
+      index = i
+      break
+    }
+  }
+  return index
+}
+```
+
+> As `n` grows, the number of elementary operations grows linearly.
+
+```js
+// binary search function
+function binarySearch(array, item) {
+  let min = 0
+  let max = array.length - 1
+
+  while (true) {
+    const middleIndex = Math.floor((min + max) / 2.0)
+    const currentItem = array[middleIndex]
+
+    if (currentItem === item) {
+      // Found it
+      return middleIndex
+    } else if (currentItem < item) {
+      // Look at the right side
+      min = middleIndex + 1
+    } else {
+      // Look at the left side
+      max = middleIndex - 1
+    }
+
+    if (min > max) {
+      return null
+    }
+  }
+}
+
+console.log(binarySearch([1, 2, 3, 4, 5, 6, 7, 8, 9], 5)) // 4
+```
+
+> As `n` grows, the number of elementary operations grows logarithmically `log(n)`.
+
+When an algorithm's complexity grows logarithmically, our input may get very, very large and yet the number of elementary operations will remain relatively small.
+
+![linear vs logarithmic](https://i.imgur.com/qU0Euzx.png)
+
+## Quadratic Algorithms
+
+Imagine I hand you a piece of paper containing a list of numbers in order from smallest to largest, something like `21, 25, 32, 45, 46, 56`. I then ask you to tell me if any two numbers in that list can be added together to make the number `71`. You can also add a number to itself.
+
+How would you go about solving this problem?
+
+### Quadratic Time
+
+The simplest approach would probably be to take the first number in the list and add it to every other number in the list. Then check if the result is `71`.
+
+```js
+21 + 21 = 42 // nope
+21 + 25 = 46 // nope
+21 + 32 = 53 // nope
+21 + 45 = 66 // nope
+21 + 46 = 67 // nope
+21 + 56 = 77 // nope
+25 + 21 = 46 // nope
+25 + 25 = 50 // nope
+25 + 32 = 57 // nope
+25 + 45 = 70 // nope
+25 + 46 = 71 // YES!
+```
+
+So if we have a list of n numbers, the number of comparisons we have to do is `n * n` or `n^2` (`n2`).
+
+This is **HORRIBLE**!
+
+![linear time](https://i.imgur.com/VRZdydf.png)
+
+### Linear Time
+
+Remember that the list of numbers is sorted from smallest to largest. We're not currently taking advantage of this fact.
+
+Since the list is ordered, we can start by summing together the _smallest_ and _largest_ numbers, and check if the result is `71`.
+
+This is **MUCH better**!
+
+![linear time](https://i.imgur.com/5MkSQqH.png)$$
+
+#### Quadratic Time vs Linear Time
+
+This function should check if any two numbers in that array can be added together to equal the input number.
+
+```js
+// arr = [0,2,4,7,9,10]
+// desired sum = 6
+
+// 2 and 4 can be added together to equal 6
+
+// Quadratic search function
+function arrayContainsSum(array, sum) {
+  for (let i = 0; i < array.length; i++) {
+    const element1 = array[i]
+
+    for (let k = 0; k < array.length; k++) {
+      const element2 = array[k]
+
+      if (element1 + element2 === sum) {
+        return true
+      }
+    }
+  }
+  return false
+}
+```
+
+To get the runtime:
+
+```js
+function arrayContainsSum(array, sum) {
+  for (
+    let i = 0; // 1
+    i < array.length; // n + 1
+    i++ // n
+  ) {
+    const element1 = array[i] // n
+
+    for (
+      let ii = 0; // n
+      ii < array.length; //n + n^2
+      ii++ // n^2
+    ) {
+      const element2 = array[ii] // n^2
+
+      if (element1 + element2 === sum) {
+        // n^2
+        return true
+      }
+    }
+  }
+  return fa
+}
+```
+
+Add all the operations together to get a running time of `3 + 5n + 4n^2`
+
+![quadratic runtime](https://i.imgur.com/HCFQmST.png)
+
+Why do we see **quadratic** runtime here?
+
+**NESTED LOOPS!**
+
+#### Nested Loops
+
+- Always result in a **quadratic** runtime.
+
+If we loop through an array of `n` items, that loop is going to execute the code inside of it `n` times:
+
+```js
+for (let i = 0; i < array.length; i++) {
+  console.log(array[i]) // n
+}
+```
+
+But if we loop through an array inside of this loop, then the inner loop will execute `n` times:
+
+```js
+for (let i = 0; i < array.length; i++) {
+  console.log(array[i]) // n
+  for (let ii = 0; ii < array.length; ii++) {
+    console.log(array[ii]) // n^2
+  }
+}
+```
+
+Every time we nest another loop, the number executions in the inner most loop will be multiplied by `n`.
+
+![nested loops](https://i.imgur.com/AAmzk1h.png)
+
+##### Looping over same array
+
+> Side note: Note that looping through a single array twice is different from looping through two separate arrays.
+
+```js
+for (let i = 0; i < array.length; i++) {
+  console.log(array[i]) // n
+  for (let ii = 0; ii < array.length; ii++) {
+    console.log(array[ii]) // n^2
+  }
+}
+```
+
+- Runtime will be `n^2`
+
+##### Looping over two separate arrays
+
+```js
+for (let i = 0; i < arrayA.length; i++) {
+  console.log(arrayA[i]) // a
+  for (let ii = 0; ii < arrayB.length; ii++) {
+    console.log(arrayB[ii]) // a*b
+  }
+}
+```
+
+- Runtime will be `a * b`
+- linear
+
+##### Linear Time
+
+```js
+// linear search function
+
+function linearArrayContainsSum(array, sum) {
+  let i = 0
+  let k = array.length - 1
+
+  while (i <= k) {
+    const element1 = array[i]
+    const element2 = array[k]
+    const currentSum = element1 + element2
+
+    if (currentSum === sum) {
+      return true
+    } else if (currentSum > sum) {
+      k--
+    } else {
+      i++
+    }
+  }
+
+  return false
+}
+```
+
+## Big O Notation
+
+- Written as `O(n)`
+- Describes how the runtime of an algorithm grows with the size of the input.
+
+As we increase the size of the _input_, how does the _runtime_ of the algorithm grow?
+
+3 things to consider when evaluating Big O notation:
+
+- We only care about arbitrarily **large inputs**
+  - How does the algorithm change if we have an array of 1,000,000 items?
+- We drop the **non-dominant terms**.
+  - If a runtime is `(n^2+n)/2`, we only care about `n^2`
+- We drop the **constant terms**.
+  - If we have `(n^3)/2` or `(n^3)*2`, we only care about `n^3`
+
+### Arbitrary Large Inputs
+
+Consider the following algorithm:
+
+```js
+///algo A
+for (let i = 0; i < array.length; i++) {
+  doSomething()
+}
+for (let i = 0; i < array.length; i++) {
+  doSomething()
+}
+
+// algo B
+for (let i = 0; i < array.length; i++) {
+  for (let ii = 0; ii < array.length; ii++) {
+    doSomething()
+  }
+}
+```
+
+| n       | a        | b             |
+| ------- | -------- | ------------- |
+| 1       | 10       | 7             |
+| 2       | 16       | 18            |
+| 3       | 22       | 35            |
+| Runtime | `4 + 6n` | 2 + 2n + 3n^2 |
+
+> We dont see a whole lot of change between the two
+
+What if `n` gets massive?
+
+| n          | a          | b                   |
+| ---------- | ---------- | ------------------- |
+| 100,000    | 600,004    | 30,000,200,002      |
+| 1,000,000  | 6,000,004  | 3,000,002,000,002   |
+| 10,000,000 | 60,000,004 | 300,000,020,000,002 |
+
+This is why we look at LARGE inputs. Difference becomes more obvious.
+
+### Non-dominant Terms
+
+Consider `1000n + n^2`. When `n` is small, the `1000n` term plays a large role. When `n` is large, the `n^2` term plays a large role.
+
+Therefore, we just write `O(n^2)`
+
+### Constant Terms
+
+Lets say we had a runtime od `102n + 2`. The constants `102` and `2` are constant terms. They do not change depending on the size of the input.
+
+Therefore, we just write `O(n)`
+
+- `2n + 3` will grow linearly, `O(n)`
+- `100n^2` will grow exponentially, `O(n^2)`
+- `log n + 1000000000` will grow logarithmically, `O(log n)`
+
+## Big O Examples
+
+### Constant O(1)
+
+- always takes the same amount of time to run
+- input size is irrelevant
+
+```js
+// O(1)
+
+// accessing an element in an array
+array[2]
+array[2] + array[3] + array[4]
+```
+
+### Linear O(n)
+
+- number of operations grows linearly relative to its input
+- as the input grows, the number of operations grows linearly
+- Adding one extra item to an array will **increase** by a _constant amount_
+
+```js
+// linear O(n)
+
+for (item of array) {
+  // perform 100 operations
+}
+```
+
+> Adding one more item will only increase the number of operations by a constant amount.
+
+```js
+function sumAllNumberInArray(array) {
+  let result = 0
+
+  for (let i = 0; i < array.length; i++) {
+    let number = array[i]
+    result += number
+  }
+
+  return result
+}
+```
+
+> Summing all the numbers in an array will increase the number of operations by a constant amount.
+
+### Exponential or Quadratic O(n^2)
+
+- Number of operations is directly proportional to the square of the input size
+
+```js
+// quadratic O(n^2)
+for (item of array) {
+  for (item of array) {
+    // perform 100 operations
+  }
+}
+
+// or Checking if an array of numbers contains a sum is a quadratic algorithm:
+
+function arrayContainsSum(array, sum) {
+  for (let i = 0; i < array.length; i++) {
+    const element1 = array[i]
+
+    for (let ii = 0; ii < array.length; ii++) {
+      const element2 = array[ii]
+
+      if (element1 + element2 === sum) {
+        return true
+      }
+    }
+  }
+  return false
+}
+```
+
+Examples:
+
+- Find all duplicates in an array.
+- Find the first unique number in an array.
+- Manually find duplicate phone numbers written on a sheet of paper.
+
+### Logarithmic O(log n)
+
+- Number of operations grows logarithmically relative to its input
+
+```js
+let i = array.length
+
+while (i > 0) {
+  i = i / 2
+}
+```
+
+> Doubling the size of the input only increases the runtime by only one.
+
+Binary Search:
+
+```js
+function binarySearch(array, item) {
+  let min = 0
+  let max = array.length - 1
+
+  while (true) {
+    const middleIndex = Math.floor((min + max) / 2.0)
+    const currentItem = array[middleIndex]
+
+    if (currentItem === item) {
+      return middleIndex
+    } else if (currentItem < item) {
+      min = middleIndex + 1
+    } else {
+      max = middleIndex - 1
+    }
+
+    if (min > max) {
+      return null
+    }
+  }
+}
+```
+
+### Big O Conclusion
+
+When we describe an algorithm using Big O notation, we:
+
+- Only care about arbitrarily large input.
+- Drop the Non-Dominant Terms.
+- Drop Constants.
+- Some of the more common Big O running times are:
+
+- Logarithmic `O(log n)`
+- Quadratic `O(n^2)`
+- Linear `O(n)`
+- Constant `O(1)`
+
+![big O](https://cdn-media-1.freecodecamp.org/images/1*KfZYFUT2OKfjekJlCeYvuQ.jpeg)
