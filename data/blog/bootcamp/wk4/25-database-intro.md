@@ -107,3 +107,43 @@ INSERT INTO groceries VALUES(6, "Chocolate syrup", 1, 4);
 
 SELECT * FROM groceries WHERE aisle > 5 ORDER BY aisle;
 ```
+
+### SELECT
+
+```sql
+SELECT name, population -- only select the name and population columns
+  FROM world -- select from the world table
+ WHERE population BETWEEN 1000000 AND 1250000
+ -- only select rows with population betweeen 1000000 and 1250000
+```
+
+```sql
+SELECT name FROM world
+ WHERE name LIKE '%a' OR name LIKE '%l'
+```
+
+> `%a` means select all rows that end in `a`
+
+Code that shows the population density of China, Australia, Nigeria and France:
+
+```sql
+SELECT name, population/area
+  FROM world
+ WHERE name IN ('China', 'Nigeria', 'France', 'Australia')
+```
+
+Gives the name of countries **beginning** with U:
+
+```sql
+SELECT name
+  FROM world
+ WHERE name LIKE 'U%'
+```
+
+Code which shows just the population of United Kingdom:
+
+```sql
+SELECT population
+  FROM world
+ WHERE name = 'United Kingdom'
+```

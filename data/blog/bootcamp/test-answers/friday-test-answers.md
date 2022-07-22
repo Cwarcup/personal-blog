@@ -7,6 +7,12 @@ draft: true
 summary: Weekly Test Answers
 ---
 
+All tests can be found here:
+
+```
+git clone  git@github.com:lighthouse-labs/assessment-exam-student.git
+```
+
 # Week 2
 
 ## tempConverter
@@ -399,5 +405,190 @@ const filesize = function (bytes) {
   const result = data.toString().slice(0) + sizes[i]
 
   return result.replace(/0./, '')
+}
+```
+
+## Week 4
+
+```
+git clone  git@github.com:lighthouse-labs/assessment-exam-student.git w4-test
+
+npm install sqlite3@4.0.9 && npm install --no-bin-links
+
+npm run question 0
+```
+
+### Question 00
+
+Given a collection of game outcome records, determine who all the players are by returning an array of their names.
+
+The array should be ordered by how the names are encountered.
+
+Example Input:
+
+```js
+;[
+  { winner: 'Alishah', loser: 'Bob', loser_points: 3 },
+  { winner: 'Maria', loser: 'Xu Jin', loser_points: 1 },
+  { winner: 'Elise', loser: 'Bob', loser_points: 2 },
+  { winner: 'Elise', loser: 'Maria', loser_points: 4 },
+  { winner: 'Alishah', loser: 'Maria', loser_points: 2 },
+  { winner: 'Maria', loser: 'Xu Jin', loser_points: 3 },
+  { winner: 'Xu Jin', loser: 'Elise', loser_points: 2 },
+]
+```
+
+Expected Result:
+
+```js
+;['Alishah', 'Bob', 'Maria', 'Xu Jin', 'Elise']
+```
+
+Solution:
+
+```js
+const allPlayerNames = function (outcomes) {
+  let playersArr = []
+
+  for (let player of outcomes) {
+    if (!playersArr.includes(player.winner)) {
+      playersArr.push(player.winner)
+    }
+    if (!playersArr.includes(player.loser)) {
+      playersArr.push(player.loser)
+    }
+  }
+  return playersArr
+}
+```
+
+### Question 01
+
+Implement a function which can run a given function after a delay.
+
+Arguments:
+
+- callback: the function to execute after the delay
+- delay: number of milliseconds to wait
+- data: the one (and only) argument to pass to the callback
+
+Solution:
+
+```js
+const doShortly = function (callback, delay, data) {
+  setTimeout(() => {
+    callback(data)
+  }, delay)
+}
+```
+
+### Question 02
+
+Implement a function fetchDataForUser, which fetches data from a remote JSON api and then returns a part of it.
+
+Since this is a network call, it will need to be an asynchronous function and return the data via a callback.
+
+The JSON-based data will be fetched from this URL, and others like it:
+
+'https://gist.githubusercontent.com/kvirani/f7d65576cc1331da1c98d5cad4f82a69/raw/4baad7566f0b6cd6f651c5d3558a015e226428b5/data.json'
+
+The callback should be called with two arguments:
+
+1. error: if request comes back with an err, pass it through to this callback. otherwise set this to null
+2. data: if there is no error, this should be the object representing the wins and losses for the given username. If there is an error, this should be set to null.
+
+Use the request library (https://www.npmjs.com/package/request) to fetch data.
+
+Solution:
+
+```js
+const request = require('request')
+const fetchDataForUser = function (url, username, callback) {
+  request(url, (err, res) => {
+    if (err) {
+      callback(err, null)
+    } else {
+      const data = JSON.parse(res.body)
+      callback(null, data['users'][username])
+    }
+  })
+}
+```
+
+### Question 03
+
+Write a function which takes in two file paths and can **sum** the numbers found in each file.
+
+For example,
+
+Given:
+
+```txt
+filePath1 points to a txt file which contains "42"
+filePath2 points to a txt file which contains "24"
+```
+
+Then call the callback with the number `66`
+
+The callback should be called with two arguments (an error object, followed by data) as is typical in Node. The data passed in should therefore be the second argument, not the first.
+
+The callback should be called with two arguments:
+
+1. `error`: if there is an **fs** error, pass it through to this callback. otherwise set this argument to null
+2. `data`: if there is no error, this should be the sum (number). If there is an error, this should be set to null.
+
+- The function should support negative and decimal point numbers.
+- Don't worry about other edge cases. For example, you can assume that if the given files are there, they WILL contain valid numbers.
+
+Solution:
+
+```js
+const fs = require('fs')
+const sumFileData = function (filePath1, filePath2, callback) {
+  fs.readFile(filePath1, 'utf8', (err, data1) => {
+    if (err) {
+      callback(err, null)
+    } else {
+      fs.readFile(filePath2, 'utf8', (err, data2) => {
+        if (err) {
+          callback(err, null)
+        } else {
+          callback(null, parseFloat(data1) + parseFloat(data2))
+        }
+      })
+    }
+  })
+}
+```
+
+### Question 04
+
+Write a function which creates and returns a **promise**.
+
+Its job will be similar to that of Question 01:
+
+> Run a given (callback) function after a delay.
+
+However:
+
+- if the given callback returns a `falsy` value, the promise should fail (`reject`)
+  the string "Falsy value retrieved" should be sent through to the `reject` function
+- if the given callback returns a `truthy` value, the promise should pass (`resolve`)
+  the return value of the executed callback should be sent through to the resolve function
+
+Solution:
+
+```js
+const doShortlyExpectingTruthy = function (callback, delay, data) {
+  return new Promise((resolve, reject) => {
+    setTimeout(() => {
+      const result = callback(data)
+      if (result) {
+        resolve(result)
+      } else {
+        reject('Falsy value retrieved')
+      }
+    }, delay)
+  })
 }
 ```
