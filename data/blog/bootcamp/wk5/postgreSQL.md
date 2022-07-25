@@ -501,3 +501,134 @@ So the following two queries would produce identical results:
 1. FROM students LEFT JOIN cohorts ON cohorts.id = cohort_id;
 2. FROM cohorts RIGHT JOIN students ON cohorts.id = cohort_id;
 ```
+
+## A Visual Explanation of SQL Joins
+
+See article [here](https://blog.codinghorror.com/a-visual-explanation-of-sql-joins/) for a more in-depth explanation of SQL joins by Coding Horror.
+
+Summary:
+
+Imagine a table:
+
+```sql
+table A        table B
+id name       id  name
+-- ----       --  ----
+1  Pirate     1   Rutabaga
+2  Monkey     2   Pirate
+3  Ninja      3   Darth Vader
+4  Spaghetti  4   Ninja
+```
+
+### Inner Join
+
+```sql
+SELECT * FROM TableA
+INNER JOIN TableB
+ON TableA.name = TableB.name
+
+
+id  name       id   name
+-- ----       --   ----
+1   Pirate     2    Pirate
+
+3   Ninja      4    Ninja
+```
+
+![inner join](https://blog.codinghorror.com/content/images/uploads/2007/10/6a0120a85dcdae970b012877702708970c-pi.png)
+
+- Records must be present in both tables for the join to succeed.
+
+### Full Join
+
+```sql
+SELECT * FROM TableA
+FULL OUTER JOIN TableB
+ON TableA.name = TableB.name
+
+
+id    name       id    name
+--   ----       --    ----
+1     Pirate     2     Pirate
+
+2     Monkey     null  null
+
+3     Ninja      4     Ninja
+
+4     Spaghetti  null  null
+
+null  null       1     Rutabaga
+
+null  null       3     Darth Vader
+```
+
+![full join](https://blog.codinghorror.com/content/images/uploads/2007/10/6a0120a85dcdae970b012877702725970c-pi.png)
+
+- Records can be present in either table for the join to succeed.\
+- If no match is found, the row will be `NULL`.
+
+### Left Join
+
+```sql
+SELECT * FROM TableA
+LEFT OUTER JOIN TableB
+ON TableA.name = TableB.name
+
+id  name       id    name
+--  ----       --    ----
+1   Pirate     2     Pirate
+2   Monkey     null  null
+3   Ninja      4     Ninja
+4   Spaghetti  null  null
+```
+
+![left join](https://blog.codinghorror.com/content/images/uploads/2007/10/6a0120a85dcdae970b01287770273e970c-pi.png)
+
+- Complete set of records from TableA will be returned.
+- If there are matching records in TableB, the matching records will be returned.
+- If no match is found, the row will be `NULL`.
+
+### Excluding Records from a Join
+
+#### Data set is NOT inside of one table
+
+```sql
+SELECT * FROM TableA
+LEFT OUTER JOIN TableB
+ON TableA.name = TableB.name
+WHERE TableB.id IS null
+
+
+id  name       id     name
+--  ----       --     ----
+2   Monkey     null   null
+
+4   Spaghetti  null   null
+```
+
+![not inside](https://blog.codinghorror.com/content/images/uploads/2007/10/6a0120a85dcdae970b012877702754970c-pi.png)
+
+- Can exclude all overlapping records from one table by using a `WHERE` clause.
+
+#### Exclude any common records from a join
+
+```sql
+SELECT * FROM TableA
+FULL OUTER JOIN TableB
+ON TableA.name = TableB.name
+WHERE TableA.id IS null
+OR TableB.id IS null
+
+
+id    name       id    name
+--   ----       --    ----
+2     Monkey     null  null
+
+4     Spaghetti  null  null
+
+null  null       1     Rutabaga
+
+null  null       3     Darth Vader
+```
+
+![not common](https://blog.codinghorror.com/content/images/uploads/2007/10/6a0120a85dcdae970b012877702769970c-pi.png)
