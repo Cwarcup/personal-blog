@@ -593,3 +593,13 @@ select count(*),
 from student_grades
 group by "letter_grade";
 ```
+
+## JOIN
+
+```sql
+SELECT *
+  FROM game JOIN goal ON (id=matchid)
+```
+
+The FROM clause says to merge data from the goal table with that from the game table. The ON says how to figure out which rows in game go with which rows in goal - the matchid from goal must match id from game. (If we wanted to be more clear/specific we could say
+ON (game.id=goal.matchid)

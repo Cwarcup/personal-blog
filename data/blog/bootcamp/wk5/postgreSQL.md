@@ -1,0 +1,62 @@
+---
+title: PostgreSQL
+date: '2022-07-25'
+tags: ['SQL', 'Postgres']
+images: ['/static/images/postImages/atwena-goodman-PB4dNSELi_E-unsplash.jpg']
+draft: true
+summary:
+---
+
+A few weeks ago, we were making an app called "TinyApp", which let a user register and add new urls to their account. This worked great!!! But it had one big problem... When you shut downed the app, we lose ALL of our DATA!!!. That means the users that registered, and the new urls entered are gone gone gone!!
+
+**How do we prevent this this from happening?**
+
+- We can just never ever ever turn off the server ( and make sure it never crashes ) - which maybe impossible ( power surges do happen )
+
+**Or we can use a database**
+
+- A database is a structured set of data held in a computer, especially one that is accessible in various ways.
+- You may say: "Well lets just store all the data into a JSON file and be done with it" but that also poses issues such as:
+  - when do we re-read data from the file (efficiency)
+  - when do we write to a file
+  - How do we make sure data stays consistent ( multi editing or multi relations )
+
+## SQL Intro
+
+### RDBMS (Relational Database Management System) and SQL (Structured Query Language)
+
+- Databases are a service (or another program) that we will be using to store our data
+- We will be using PostgreSQL but there are others as well.
+- Postgres is an SQL type of database which means we can:
+  - access multiple records with a single command
+  - store and organize our data in tables
+  - join our data based on some sort of relationship
+
+### Demo of SQL
+
+1. Open a terminal
+1. Clone the project
+1. Login to your SQL server $ psql
+1. Create a database to load the seed into # CREATE DATABASE w5d1;
+1. Exit psql # \q
+1. Load the seed SQL into the database $ psql -d w5d1 < seed.sql
+
+### Logging into SQL - `psql`
+
+```zsh
+> psql
+```
+
+> `psql` is the command to login to SQL
+
+- `psql` allows us to interact with the database from our terminal.
+
+```zsh
+psql
+\c database_name -- to connect to db
+\i
+```
+
+> You can also log into psql, then use the `-i` flag to navigate to the file you want to execute.
+
+## Basic `SELECT`
