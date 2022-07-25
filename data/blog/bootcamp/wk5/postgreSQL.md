@@ -59,4 +59,70 @@ psql
 
 > You can also log into psql, then use the `-i` flag to navigate to the file you want to execute.
 
+To leave the psql command-line shell we can simply type `\q`.
+
+#### on Mac
+
+Start PostgreSQL
+
+```zsh
+brew services start postgresql
+```
+
+Stop PostgreSQL
+
+```zsh
+brew services stop postgresql
+```
+
+If there is an error about trying to connect to a database named after your user, we can solve that problem by creating one with the following command: `createdb yourusername`.
+
+## Creating a table
+
+```sql
+CREATE TABLE famous_people (
+  id SERIAL PRIMARY KEY,
+  first_name VARCHAR(50),
+  last_name VARCHAR(50),
+  birthdate DATE
+);
+```
+
+Test data:
+
+```sql
+INSERT INTO famous_people (first_name, last_name, birthdate)
+  VALUES ('Abraham', 'Lincoln', '1809-02-12');
+INSERT INTO famous_people (first_name, last_name, birthdate)
+  VALUES ('Mahatma', 'Gandhi', '1869-10-02');
+INSERT INTO famous_people (first_name, last_name, birthdate)
+  VALUES ('Paul', 'Rudd', '1969-04-06');
+INSERT INTO famous_people (first_name, last_name, birthdate)
+  VALUES ('Paul', 'Giamatti', '1967-06-06');
+```
+
 ## Basic `SELECT`
+
+- Select all columns for all rows in the famous_people table.
+
+```sql
+SELECT * FROM famous_people;
+```
+
+- Only return people with a birthday on or after `'1920-01-01'`.
+
+```sql
+SELECT * FROM famous_people WHERE birthdate >= '1920-01-01';
+```
+
+- Only return people with the first name 'Paul'.
+
+```sql
+SELECT * FROM famous_people WHERE first_name = 'Paul';
+```
+
+- Select the total number of people in the famous_people table.
+
+```sql
+SELECT count(*) FROM famous_people;
+```
