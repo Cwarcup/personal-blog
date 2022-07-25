@@ -632,3 +632,85 @@ null  null       3     Darth Vader
 ```
 
 ![not common](https://blog.codinghorror.com/content/images/uploads/2007/10/6a0120a85dcdae970b012877702769970c-pi.png)
+
+## GROUP BY
+
+If we want to calculate the total number of `assignment_submissions` for **all** students, the `count` function works well:
+
+```sql
+SELECT count(assignment_submissions.*) as total_submissions
+FROM assignment_submissions;
+
+--  total_submissions
+-- -------------------
+--              68886
+-- (1 row)
+```
+
+But if we want to calculate the total number of `assignment_submissions` for **only** one student, we need to use the `GROUP BY` clause:
+
+- Here we want to apply the `COUNT` function to **groups** of data. Not an entire query.
+- We can do this by applying the `count()` function for **each** `students.name`.
+
+Steps:
+
+1. Select the students name from the `students` table.
+2. and the total number of `assignment_submissions` for each student.
+
+```sql
+SELECT students.name as student, count(assignment_submissions.*) as total_submissions
+FROM assignment_submissions
+JOIN students ON students.id = student_id;
+```
+
+3. We want `count(assignment_submissions.*)` to be run for _each_ `students.name`, instead of the entire query. To do this, we use the `GROUP BY` clause.
+
+```sql
+-- calculate the total number of assignment_submissions for each student individually, and output the totals next to the student's name?
+
+SELECT students.name as student,
+count(assignment_submissions.*) as total_submissions
+FROM assignment_submissions
+JOIN students ON students.id = student_id
+WHERE students.end_date IS NULL
+GROUP BY students.name;
+
+--        student       | total_submissions
+-- ---------------------+-------------------
+--  Bart Leuschke       |               346
+--  Javonte Ward        |                84
+--  Santino Oberbrunner |               244
+--  Brook Fadel         |               348
+--  Aurore Yundt        |               347
+--  Jacinthe Skiles     |               348
+--  Nola Jerde          |               123
+```
+
+## HAVING
+
+- only return currently enrolled students who's total submissions are less than 100;
+
+```sql
+SELECT students.name as student,
+count(assignment_submissions.*) as total_submissions
+FROM assignment_submissions
+JOIN students ON students.id = student_id
+WHERE students.end_date IS NULL
+GROUP BY students.name
+HAVING count(assignment_submissions.*) < 100;
+
+
+
+--      student      | total_submissions
+-- ------------------+-------------------
+--  Javonte Ward     |                84
+--  Hettie Hettinger |                75
+-- (2 rows)
+```
+
+- `HAVING` is like `WHERE` but it only applies to the `GROUP BY` clause.
+- Must have the `GROUP BY` clause **before** using `HAVING`.
+- Our `WHERE` clause works on normal data like `students.end_date`
+- bBut `HAVING` works on `GROUP BY` data like `count(assignment_submissions.*)`.
+
+> The `HAVING` clause is evaluated **before** the `SELECT` so we can't use the alias `total_submissions` alias that is created in the `SELECT`. We must use the `count(assignment_submissions.*)`.
