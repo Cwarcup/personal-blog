@@ -66,16 +66,18 @@ Is an attribute that references a PRIMARY KEY in another table.
 - Most foreign keys use singular `<table>_id`
 
 - PK should called id for ALL of our tables.
-- FK should be be singular table name of the parent table, followed by id (Eg: customer_id).
-- Example: orders.customer_id pointing to customers.id (I'm using the syntax table. column_name here).
+- FK should be be singular table name of the parent table, followed by id (Eg: `customer_id`).
+- Example: o`rders.customer_id` pointing to customers.id (I'm using the syntax table. `column_name` here).
 
+```
 +----------------+
 | students | <-- Plural
 +----------------+
 | PK | id | <-- Primary Key
 | | name | <-- Singular
-| FK | cohort_id | <-- <table>\_id
+| FK | cohort_id | <-- <table>_id
 +----------------+
+```
 
 ## Data Types
 
@@ -105,7 +107,7 @@ To enforce data integrity reduce duplication, and make it easier to manage our d
 First Normal Form (NF):
 
 - each column has a single value
-  - we do NOT want repeating groups (e.g., computer1, computer2, computer3...)
+  - we do NOT want repeating groups (e.g., `computer1, computer2, computer3...`)
 
 We can take this data and put in it's OWN table.
 
@@ -157,21 +159,9 @@ The relationships between tables are based on primary keys and foreign keys.
   - X has many M and Y has many M (each M belongs to both X and Y)
   - The 3rd table will have **2 foreign keys** to X and Y
 
-           ONE                         MANY                      ONE
-
-    +-----------------+ +-----------------+ +-----------------+
-    | students | | cohorts_students| | cohorts |
-    +-----------------+ +-----------------+ +-----------------+
-    | PK | id |--\ | PK | id |\ /--| PK | id |
-    | | name | \ /| FK | cohort_id |---/ | | name |
-    | | email | \---| FK | student_id |/ | | start_date |
-    | FK | cohort_id | \+-----------------+ | | end_date |
-    | | start_date | +-----------------+
-    | | end_date |
-    +-----------------+
-
 Take a look at the following table:
 
+```
 +----------------------+
 | assistance_requests |
 +----------------------+
@@ -186,6 +176,7 @@ Take a look at the following table:
 | | student_rating |
 | | teacher_rating |
 +----------------------+
+```
 
 This is a join table that represents the _many-to-many_ relationship between students and teachers.
 
