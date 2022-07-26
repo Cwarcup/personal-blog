@@ -684,6 +684,7 @@ GROUP BY students.name;
 --  Aurore Yundt        |               347
 --  Jacinthe Skiles     |               348
 --  Nola Jerde          |               123
+
 ```
 
 ## HAVING
@@ -714,3 +715,164 @@ HAVING count(assignment_submissions.*) < 100;
 - bBut `HAVING` works on `GROUP BY` data like `count(assignment_submissions.*)`.
 
 > The `HAVING` clause is evaluated **before** the `SELECT` so we can't use the alias `total_submissions` alias that is created in the `SELECT`. We must use the `count(assignment_submissions.*)`.
+
+## Sub Queries
+
+We can nest a query inside of another query. Therefore, we can write a `SELECT` inside of a `SELECT`.
+
+### As a column in `SELECT`
+
+What if we want to get the total number of **incomplete** assignments for a specific student.
+
+We would have to use three different tables, `assignment_submissions`, `assignments`, and `students`, and join them together. But this is a lot of extra work. We don't really want to join `assignments`, we just want the total number of `assignments`.
+
+```sql
+SELECT count(*)
+FROM assignments;
+
+-- 424
+```
+
+Use this number in to get the total number of **incomplete** assignments for a specific student.
+
+```sql
+SELECT 424-count(assignment_submissions)
+FROM assignment_submissions
+JOIN students ON students.id = student_id
+WHERE students.name = 'Ibrahim Schimmel';
+```
+
+> But this is bad! We have hard coded the number of assignments. What if the number changes?
+
+We can use a **sub query** instead...
+
+```sql
+SELECT (
+  SELECT count(assignments)
+  FROM assignments
+)-count(assignment_submissions) as total_incomplete
+FROM assignment_submissions
+JOIN students ON students.id = student_id
+WHERE students.name = 'Ibrahim Schimmel';
+```
+
+### `FROM` sub select table
+
+- The result of any `SELECT` is effectively a table.
+- This means we can use a `SELECT` as a **data source** of another `SELECT` statement.
+
+Would look like so:
+
+```sql
+SELECT * FROM (
+  SELECT something_id
+  FROM someTable
+  WHERE something
+) as sub_table;
+```
+
+Now imagine that we want to calculate the average number of students that attend a cohort. We can calculate the total number of students for each cohort with the following query.
+
+```sql
+SELECT count(students)
+FROM students
+JOIN cohorts on cohorts.id = cohort_id
+GROUP BY cohorts;
+```
+
+How could we get an average number of students per cohort?
+
+```sql
+SELECT avg(count(students))
+FROM students
+JOIN cohorts on cohorts.id = cohort_id
+GROUP BY cohorts;
+
+-- ERROR:  aggregate function calls cannot be nested
+-- LINE 1: SELECT avg(count(students))
+--                    ^
+```
+
+We can treat ...
+
+```sql
+SELECT count(students) as total_students
+FROM students
+JOIN cohorts on cohorts.id = cohort_id
+GROUP BY cohorts;
+
+--  total_students
+-- ----------------
+--              18
+--              11
+--              19
+--              14
+--              19
+--  ...
+```
+
+... as its own table!
+
+```sql
+SELECT avg(total_students) as average_students
+FROM (
+  SELECT count(students) as total_students
+  FROM students
+  JOIN cohorts on cohorts.id = cohort_id
+  GROUP BY cohorts
+) as totals_table;
+```
+
+- In this case, the inner query can contain as many columns as we like:
+
+```sql
+SELECT avg(total_students) as average_students
+FROM (
+  SELECT count(students) as total_students, cohorts.name as cohort_name -- we can add more columns here
+  FROM students
+  JOIN cohorts on cohorts.id = cohort_id
+  GROUP BY cohorts.name
+) as totals_table;
+```
+
+### Search within a result set `IN`
+
+- A sub query's **results** can also be used within the `WHERE` clause of a query.
+- Is very common in SQL.
+
+Let's say we wanted to get the _name_ of all **incomplete** assignments for a student. It's a fairly simple query to get all **completed** assignments for a student.
+
+```sql
+-- get all the completed assignments for a student
+SELECT assignment_id
+FROM assignment_submissions
+JOIN students ON students.id = student_id
+WHERE students.name = 'Ibrahim Schimmel';
+```
+
+Doing the opposite is more difficult:
+
+```sql
+SELECT assignments.name
+FROM assignments
+WHERE id NOT IN (1, 2, 3, 4, 5, ...)
+```
+
+> But again, we are hard coding data! NOT GOOD!
+
+If the result of a query returns only **one column**, we can use that sub query in our `WHERE` clause.
+
+```sql
+SELECT assignments.name
+FROM assignments
+WHERE id NOT IN        -- want all incomplete assignments
+(
+                       -- returns all the completed assignments for a student
+  SELECT assignment_id
+  FROM assignment_submissions
+  JOIN students ON students.id = student_id
+  WHERE students.name = 'Ibrahim Schimmel'
+);
+```
+
+### `FROM` sub select table
