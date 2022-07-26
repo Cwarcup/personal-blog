@@ -4,8 +4,10 @@ date: '2022-07-25'
 tags: ['SQL', 'Postgres']
 images: ['/static/images/postImages/atwena-goodman-PB4dNSELi_E-unsplash.jpg']
 draft: false
-summary: Intro to PostgreSQL
+summary: SQL review and intro to PostgreSQL
 ---
+
+<TOCInline toc={props.toc} asDisclosure />
 
 A few weeks ago, we were making an app called "TinyApp", which let a user register and add new urls to their account. This worked great!!! But it had one big problem... When you shut downed the app, we lose ALL of our DATA!!!. That means the users that registered, and the new urls entered are gone gone gone!!
 
@@ -178,7 +180,6 @@ Whenever `objectives.day_id` equals `days.id`, we can combine the data from both
 - allows you to filter the results of a query.
   - it applies to the result of the grouping.
 - with a where clause, we are filtering before we produce the results.
--
 
 ```sql
 SELECT count(day_id)
@@ -874,5 +875,3 @@ WHERE id NOT IN        -- want all incomplete assignments
   WHERE students.name = 'Ibrahim Schimmel'
 );
 ```
-
-### `FROM` sub select table
