@@ -2,9 +2,9 @@
 title: SQL from our Apps and Data Types in Postgres
 date: '2022-07-27'
 tags: ['SQL', 'data types', 'Postgres']
-images: ['/static/images/postImages/erd.jpg']
-draft: true
-summary: How to interact with a postgres database from our apps. We will be using node-postgres (pg) node package to interact with the database.
+images: ['/static/images/postImages/geran-de-klerk-f0oe9P9Yixs-unsplash.jpg']
+draft: false
+summary: Using SQP in JavaScript to create a simple database. Additionally, using Postgres to create a simple database and understanding the various types of data that can be stored in it.
 ---
 
 ## node-postgres
