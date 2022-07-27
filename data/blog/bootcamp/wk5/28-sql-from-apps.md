@@ -7,40 +7,132 @@ draft: false
 summary: Using SQP in JavaScript to create a simple database. Additionally, using Postgres to create a simple database and understanding the various types of data that can be stored in it.
 ---
 
+`psql` is a client, which is used to connect to a Postgres database.
+
+We can use `node-postgres` to connect to a Postgres database instead of `psql`.
+
 ## node-postgres
 
 npm link [here:](https://www.npmjs.com/package/pg)
 
 Documentation: [here](https://node-postgres.com/)
 
+You will notice the docs use `await`. For now, stay clear of this. We want to use **promises** for now.
+
+Use a `pool` of connections to the database instead of `client`
+
 In order to connect with our database, we pass configuration options to the `pg` client:
 
 ```js
-const pg = require('pg')
+const { Pool } = require('pg')
 
-const config = {
-  user: '<user name>',
-  password: '<password>',
-  database: '<db>',
-  host: '<host>',
-}
+const pool = new Pool() // no options
+```
 
-const client = new pg.Client(config)
+Or we can specify options directly:
+
+```js
+const { Pool } = require('pg')
+
+const pool = new Pool({
+  user: 'vagrant',
+  password: '123',
+  host: 'localhost',
+  database: 'bootcampx',
+})
 ```
 
 Tell the client to connect to the database:
 
-```js
-client.connect()
-```
-
-We can execute SQL queries using the `query` method:
-
-```js
-client.query('SELECT * FROM <table>').then((result) => console.log(result))
-```
-
 > **NOTE**: When using callbacks instead of promises: `pg` uses "error first" callbacks meaning that the first argument will always be the error (if any) or null and the second argument will be the return value from our query.
+
+## Querying The Database
+
+Once we have connected to the database, we can use the `query` method to execute a query.
+
+```js
+pool
+  .query(
+    `
+    SELECT id, name, cohort_id
+    FROM students
+    LIMIT 5;
+  `
+  )
+  .then((res) => {
+    console.log(res)
+  })
+  .catch((err) => console.error('query error', err.stack))
+```
+
+> `pool.query` is a function that accepts an SQL query as a JavaScript string. Use backticks (`) to enclose the query so you can have multi-line queries.
+
+When we make the query from our JavaScript application, the results come back as JavaScript **objects**.
+
+That means that once the `.then(res => {})` gets executed, we're not dealing with `SQL` or the database any more, we're just dealing with _JavaScript objects_.
+
+> The result is just an array of JavaScript **objects**.
+
+```js
+pool
+  .query(
+    `
+    SELECT id, name, cohort_id
+    FROM students
+    LIMIT 5;
+  `
+  )
+  .then((res) => {
+    res.rows.forEach((user) => {
+      console.log(`${user.name} has an id of ${user.id} and was in the ${user.cohort_id} cohort`)
+    })
+  })
+  .catch((err) => console.error('query error', err.stack))
+
+// Output:
+// Armand Hilll has an id of 1 and was in the 1 cohort
+// Stephanie Wolff has an id of 2 and was in the 1 cohort
+// Stan Miller has an id of 3 and was in the 1 cohort
+// Elliot Dickinson has an id of 4 and was in the 1 cohort
+// Lloyd Boehm has an id of 5 and was in the 1 cohort
+```
+
+### Query Parameters
+
+We can make our app more dynamic by allowing our users to pass in query parameters.
+
+```js
+const cohortName = process.argv[2]
+const queryLimit = process.argv[3] || 5
+
+pool
+  .query(
+    `
+    SELECT students.id, students.name, cohorts.name AS cohort_name
+    FROM students
+    JOIN cohorts ON cohorts.id = students.cohort_id
+    WHERE cohorts.name LIKE '%${cohortName}%'
+    LIMIT ${queryLimit};
+  `
+  )
+  .then((res) => {
+    res.rows.forEach((user) => {
+      console.log(`${user.name} has an id of ${user.id} and was in the ${user.cohort_name} cohort`)
+    })
+  })
+  .catch((err) => console.error('query error', err.stack))
+  .then(() => pool.end())
+```
+
+In terminal, run:
+
+```bash
+node bootcamp_app/students.js JUL 3
+
+# Coy Will has an id of 95 and was in the JUL02 cohort
+# Raleigh Murazik has an id of 94 and was in the JUL02 cohort
+# Bryce Nader has an id of 93 and was in the JUL02 cohort
+```
 
 ## SQL Syntax Review
 
@@ -76,19 +168,72 @@ INSERT INTO <table> (<column1>, <column2>) VALUES (<value1>, <value2>);
 DELETE FROM <table> WHERE id = <id>;
 ```
 
-## Sanitization
+## SQL injection
 
 We always want to sanitize any user-defined parameters in our SQL before running the query to prevent possible [SQL injections](https://en.wikipedia.org/wiki/SQL_injection).
 
-In `pg`, we use [prepared statements](https://en.wikipedia.org/wiki/Prepared_statement) and pass an array of values as the second argument to `client.query()`:
+## Parameterized query
+
+- separate your SQL into two different parts:
+  - the part dev write, which we have control over
+  - part a user may enter, which we don't control
+
+Part we control:
 
 ```js
-client
-  .query('SELECT * FROM <table> WHERE id = $1', [<id>])
-  .then((result) => console.log(result));
+const queryString = `
+  SELECT students.id as student_id, students.name as name, cohorts.name as cohort
+  FROM students
+  JOIN cohorts ON cohorts.id = cohort_id
+  WHERE cohorts.name LIKE $1
+  LIMIT $2;
+  `
 ```
 
-In the above example, the `id` from the array will be interpolated into the SQL query wherever `$1` appears.
+Each `$`s in our query is a **placeholder** that represents where a value should go but can't because it's coming from somewhere else. This could come from somewhere like `process.argv` or `process.env`.
+
+```js
+const cohortName = process.argv[2]
+const limit = process.argv[3] || 5
+// Store all potentially malicious values in an array.
+const values = [`%${cohortName}%`, limit]
+```
+
+- The `$1` and `$2` placeholders will get replaced with actual data from the values array.
+- The numbering **starts** at `1` instead of `0`
+- so the first value in the **query** `$1` corresponds to the first value in the **array** `values[0]`.
+
+When we are ready to run the query, we can use the `pool.query` method:
+
+```js
+pool.query(queryString, values)
+```
+
+All together:
+
+```js
+const cohortName = process.argv[2]
+const limit = process.argv[3] || 5
+const values = [`%${cohortName}%`, limit]
+
+const queryString = `
+  SELECT students.id as student_id, students.name as name, cohorts.name as cohort
+  FROM students
+  JOIN cohorts ON cohorts.id = cohort_id
+  WHERE cohorts.name LIKE $1
+  LIMIT $2;
+  `
+
+pool
+  .query(queryString, values)
+  .then((res) => {
+    console.log(res.rows[0])
+  })
+  .catch((err) => console.error('query error', err.stack))
+  .then(() => pool.end())
+```
+
+See more on [node-postgres](https://node-postgres.com/features/queries)
 
 ## Environment Variables - Protecting Data
 
@@ -175,7 +320,7 @@ If we already table in our database but need to edit our initial schema, we have
 
 - Add or remove a column.
 - Change an existing column type.
-- Add or remove an index
+- Add or remove an index.
 
 Postgres ALTER TABLE command: [here](https://www.postgresqltutorial.com/postgresql-tutorial/postgresql-alter-table/)
 
@@ -444,3 +589,11 @@ WHERE id = 2;
 - [Postgres Numeric Data Types](https://www.postgresql.org/docs/11/datatype-numeric.html)
 - [Little Bobby Tables](https://xkcd.com/327/)
 - [SQL Injection](https://en.wikipedia.org/wiki/SQL_injection)
+
+---
+
+making a post request from browser...browser is not enough. Can use Insomnia to make a post request.
+
+```
+
+```
