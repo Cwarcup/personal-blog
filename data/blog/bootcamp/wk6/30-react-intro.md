@@ -544,3 +544,65 @@ function MyClickableDiv() {
   )
 }
 ```
+
+> Sometimes developers with pass the `event` object simply as `e` instead of `event`.
+
+#### onClick
+
+- listens for a click event on an element (such as a `button`)
+- will give you access to information such as..
+  - mouse **position**
+  - **time** the event occurred
+
+#### onChange
+
+- listens for a change event on an element such as a...
+  - `<input>`
+  - `<textarea>`
+  - `<select>`
+- will give you access to information such as...
+  - the **value** the user typed in the input
+  - the **type** of the element
+  - the **name** of the input
+
+#### onSubmit
+
+- listens for a `submit` event on an element such as a `<form>`
+- will give you access to information such as...
+  - the **content** of the form
+  - **method** of the form
+    - can be used to prevent the default behavior of the form
+
+#### Preventing Default Behavior
+
+Recall from our Tweeter project that we can prevent the default behavior of an element by using the `.preventDefault()` method of the event object.
+
+Since we can access the `event` object in the callback of the `onClick` event handler, let's add `.preventDefault` to our input.
+
+```jsx
+function TweetForm() {
+  const placeholder = 'What are you humming about?'
+  const characterCount = 140
+
+  function handleSubmit(event) {
+    event.preventDefault()
+    console.log('submit was clicked')
+  }
+  return (
+    <section className="newtweet">
+      <form
+        method="post"
+        action="/tweets"
+        className="newtweet__form"
+        onSubmit={event.preventDefault}
+      >
+        <textarea className="form__textarea" name="text" placeholder={placeholder}></textarea>
+        <input type="submit" value="Tweet" className="form__input" onClick={handleSubmit} />
+        <span className="form__counter">{characterCount}</span>
+      </form>
+    </section>
+  )
+}
+
+export default TweetForm
+```
