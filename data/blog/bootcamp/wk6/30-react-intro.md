@@ -606,3 +606,89 @@ function TweetForm() {
 
 export default TweetForm
 ```
+
+## Expressions vs. Statements in React
+
+**Only** **expressions** are allowed in `JSX` and not statements or declarations.
+
+Statements: think `if` and `for`. This wont work in `JSX`:
+
+```js
+let result = null
+if (someCondition) {
+  result = 'Michael'
+} else {
+  result = 'Bruce'
+}
+```
+
+Here's how we might the same logic using a ternary operator, which is a type of expression because the line of code resolves to a single value for result
+
+```js
+const result = someCondition ? 'Michael' : 'Bruce'
+```
+
+Remember, we can chain expressions together:
+
+```js
+const name = 'michael jackson'
+const first = name.split(' ')[0].toUpperCase()
+
+// We could have even done this:
+const first = 'michael jackson'.split(' ')[0].toUpperCase()
+```
+
+## Functions
+
+We have many ways of creating functions in JavaScript:
+
+```js
+// Function Declaration
+function getName() {
+  return 'Michael'
+}
+
+// Function Expression
+const getName = function () {
+  return 'Michael'
+}
+
+// Arrow Function (Which is also an expression)
+const getName = () => {
+  return 'Michael'
+}
+```
+
+Differences between the three are that **declarations can be hoisted**, while expressions cannot.
+
+Recall, hoisting is the process of moving all declarations to the top of the current scope.
+
+- You can use the function before you declared it
+
+```js
+hoisted() // logs "foo"
+
+function hoisted() {
+  console.log('foo')
+}
+
+// function expression
+notHoisted() // TypeError: notHoisted is not a function
+
+var notHoisted = function () {
+  console.log('bar')
+}
+```
+
+### Arrow functions are special
+
+One of the characteristics of an arrow function is that they **don't create context** so `this` inside the arrow function is the same as the `this` on the outside.
+
+```js
+const getName = () => {
+  return 'Michael'
+}
+
+// Same as above but more compact
+const getName = () => 'Michael'
+```
