@@ -3,7 +3,7 @@ title: AJAX
 date: '2022-07-20'
 tags: ['ajax', 'async']
 images: ['/static/images/postImages/jquery-illustration.jpg']
-draft: true
+draft: false
 summary: Asynchronous JavaScript And XML (AJAX) is a technique for making requests to a server. This post does into to the basics of AJAX and making requests to a server using jQuery.
 ---
 

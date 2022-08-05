@@ -3,7 +3,7 @@ title: Group Projects
 date: '2022-07-29'
 tags: ['Projects']
 images: ['/static/images/postImages/geran-de-klerk-f0oe9P9Yixs-unsplash.jpg']
-draft: false
+draft: true
 summary: How to start a group project.
 ---
 
