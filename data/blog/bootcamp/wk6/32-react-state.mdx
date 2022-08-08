@@ -1,11 +1,13 @@
 ---
 title: React - State
 date: '2022-08-08'
-tags: ['state', 'react']
+tags: ['state', 'hooks', 'react', 'props', 'style']
 images: 'https://miro.medium.com/max/1200/1*hYSKyofnqThnPIsYRfnUUQ.png'
-draft: true
-summary: Passing props to components.
+draft: false
+summary: Understanding state in React, adding state to components, passing state from parent to child, controlled components, and methods of adding styles to components.
 ---
+
+<TOCInline toc={props.toc} asDisclosure />
 
 State is a piece of data that is stored in a component. It represents the current condition, values or contents of a program.
 
@@ -379,3 +381,298 @@ function DisplayWord(props) {
 > As noted above, the `<input>` element becomes a **controlled component** when we provide a `value` prop and an `onChange` event handler that can update the value
 
 Read more about React forms [here](https://reactjs.org/docs/forms.html)
+
+## Fragments
+
+- Rule of JSX: all JSX expressions must have only **one** parent element.
+  - Components can only return JSX with one root element.
+  - Conditional expressions that resolve to JSX must also only have one root element.
+
+```jsx
+// BAD - wont work
+return (
+  <h1>A heading</h1>
+  <p>A paragraph</p>
+)
+
+// OK - will work, but now have an extra div
+return (
+<div>
+	<h1>A heading</h1>
+	<p>A paragraph</p>
+</div>
+)
+
+// GOOD - will work - SHORTHAND
+return (
+	<>
+		<h1>A heading</h1>
+		<p>A paragraph</p>
+	</>
+)
+
+// GOOD - also works fine. Is same as above.
+import React, { Fragment } from 'react';
+
+return (
+  <Fragment>
+    <h1>A heading</h1>
+    <p>A paragraph</p>
+  </Fragment>
+)
+// OR if you don't import Fragment
+return (
+  <React.Fragment>
+    <h1>A heading</h1>
+    <p>A paragraph</p>
+  </React.Fragment>
+)
+```
+
+> Note that the short hand method does not accept attributes (**props**). You need to use `<Fragment>` if you want to pass that fragment any props.
+
+## Conditional Expressions that result in Multiple Elements
+
+- JSX supports conditional expressions using ternary and short circuit operators.
+
+```jsx
+const userLoggedIn = false;
+
+return (
+  <Fragment>
+    {userLoggedIn ?
+      <h1>Success!</h1>
+      <p>You are logged in.</p>
+    :
+      <h1>Warning!</h1>
+      <p>You are not logged in</p>
+    }
+  </Fragment>
+)
+```
+
+> Will error out. The conditional express is returning TWO elements. It must ONLY return one.
+
+We can wrap our conditional expression in a Fragment to fix this.
+
+```jsx
+const userLoggedIn = false;
+
+return (
+  <Fragment>
+    {userLoggedIn ?
+    <>      										// shorthand for <Fragment>
+      <h1>Success!</h1>
+      <p>You are logged in.</p>
+    </>
+    :
+    <>      										// shorthand for <Fragment>
+      <h1>Warning!</h1>
+      <p>You are not logged in</p>
+    </>
+    }
+  </Fragment>
+)
+
+//or
+
+return (
+	 <>
+    {userLoggedIn ?
+    <>
+      <h1>Success!</h1>
+      <p>You are logged in.</p>
+    </>
+    :
+    <>
+      <h1>Warning!</h1>
+      <p>You are not logged in</p>
+    </>
+    }
+  </>
+)
+```
+
+## Exampling props.children, event handlers, Controlled Component
+
+```jsx
+import React, { useState } from 'react'
+import ReactDOM from 'react-dom'
+import './index.css'
+
+const Button = (props) => {
+  const { resetBtn } = props
+  return <button onClick={resetBtn}>{props.children}</button>
+}
+
+const Application = () => {
+  const [name, setName] = useState('')
+
+  const reset = () => {
+    console.log('reset')
+    setName('')
+  }
+
+  return (
+    <main>
+      <input
+        value={name}
+        onChange={(e) => setName(e.target.value)}
+        placeholder="Type your name"
+      ></input>
+      <Button resetBtn={reset}>Reset</Button>
+      {name !== '' && <h1>Hello {name}</h1>}
+    </main>
+  )
+}
+
+ReactDOM.render(<Application />, document.getElementById('root'))
+```
+
+## Styling Components
+
+- There are many ways to style components.
+
+### CSS stylesheets (components.css)
+
+- use when you have a complex style that you want to reuse.
+- simple import the sheet `import './DottedBox.css'`.
+
+```jsx
+import React from 'react'
+import './DottedBox.css'
+
+const DottedBox = () => (
+  <div className="DottedBox">
+    <p className="DottedBox_content">Get started with CSS styling</p>
+  </div>
+)
+
+export default DottedBox
+```
+
+Read more [here](https://create-react-app.dev/docs/adding-a-stylesheet/)
+
+### Inline styles
+
+- specified with an **object**
+- **key** is the `camelCased` version of the (`fontSize`, `textAlign`)
+- **value** is the style’s value, usually a `string`.
+
+```jsx
+import React from 'react'
+
+const divStyle = {
+  margin: '40px',
+  border: '5px solid pink',
+}
+const pStyle = {
+  fontSize: '15px',
+  textAlign: 'center',
+}
+
+const Box = () => (
+  <div style={divStyle}>
+    <p style={pStyle}>Get started with inline style</p>
+  </div>
+)
+
+export default Box
+```
+
+- We can create a **variable** that stores style properties and then pass it to the element like `style={nameOfvariable}`
+  - Like above.
+- We can also pass the styling **directly** `style={{color: 'pink'}}`
+
+### CSS Modules
+
+- CSS Module is a CSS file in which all **class names** and **animation names** are scoped **locally** by default.
+- Similar to css we **import** css file `import styles './DashedBox.css'`
+- we access to `className` as we access to **object**
+
+```jsx
+ :local(.container) {
+   margin: 40px;
+   border: 5px dashed pink;
+ }
+ :local(.content) {
+   font-size: 15px;
+   text-align: center;
+ }
+```
+
+- Use `:local(.className)` when you use `create-react-app` because of webpack configurations
+
+### Styled Components
+
+- **Styled Components** is a library that allows us to create reusable styles.
+
+```jsx
+import React from 'react'
+import styled from 'styled-components'
+
+const Div = styled.div`
+  margin: 40px;
+  border: 5px outset pink;
+  &:hover {
+    background-color: yellow;
+  }
+`
+
+const Paragraph = styled.p`
+  font-size: 15px;
+  text-align: center;
+`
+
+const OutsetBox = () => (
+  <Div>
+    <Paragraph>Get started with styled-components 💅</Paragraph>
+  </Div>
+)
+
+export default OutsetBox
+```
+
+- First we need to install styled-components library: `npm install styled-components --save`
+- Now we can create a variable by selecting a particular html element where we store our style keys `const Div = styled.htmlElemnet"color: pink"`
+- Then we use the name of our variable as a wrapper `<Div></Div>` kind of react component
+
+### Sass
+
+- requires you to install `node-sass` library.
+- rename any `.css` file to `.scss`
+
+Read more [here](https://create-react-app.dev/docs/adding-a-sass-stylesheet/)
+
+### BEM
+
+- BEM is a methodology for naming HTML elements and CSS classes.
+
+With BEM we have three types of CSS classes. The Block, the Element and the Modifier.
+
+- **Block**:
+  - Encapsulates a standalone entity that is meaningful on its own.
+  - In our case this is the `.day-list`.
+- **Element**:
+  - An element that is tied to its block.
+  - In our case this is the `.day-list__item`.
+- **Modifier**:
+  - An modification to a block or an element.
+  - In our case this is `.day-list__item---selected` or `.day-list__item---full`.
+
+We use combinations of these classes to define the different visual states an element can have.
+
+```jsx
+<li class="day-list__item">Default</li>
+<li class="day-list__item day-list__item---selected">Selected</li>
+<li class="day-list__item day-list__item---full">Full</li>
+<li class="day-list__item day-list__item---selected day-list__item---full">Selected & Full</li>
+```
+
+One of the main things to notice about BEM is that it is not tied to the DOM structure.
+
+The specificity is enforced through **naming** rather than **complex** selectors.
+
+### Summary of CSS techniques
+
+![css](https://s3-us-west-2.amazonaws.com/reactv2/figures/a523bbe3-3304-4006-9752-dae2936e1f30.png)
