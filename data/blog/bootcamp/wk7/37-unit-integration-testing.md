@@ -38,7 +38,7 @@ The quality of our tests will directly impact the quality of our software. Cover
 Jest is the framework we use to run our tests. Is built into React by default.
 
 - `npm run test` will start Jest in watch mode and run the tests
-- `npm run test -- --coverage` will start Jest in watch mode and show your coverage status after each test
+- `npm test -- --coverage --watchAll=false` will start Jest in watch mode and show your coverage status after each test
 
 ### JestDOM
 
@@ -224,6 +224,73 @@ const { getByLabelText } = render(<Item item={'buy apples'} done={false} />)
 const input = getByLabelText('item')
 fireEvent.change(input, { target: { value: 'buy oranges' } })
 expect(input.value).toBe('buy oranges')
+```
+
+---
+
+Another example:
+
+- The `render` function is imported from the `react-testing-library`.
+- The `expect` function is injected into the global scope by Jest.
+- The `getByText` **query** function is returned by the render function but is a part of the the `dom-testing-library`.
+- The `toBeInTheDocument` function is a **matcher** provided through Jest by the jest-dom library.
+
+```js
+it('renders its `children` prop as text', () => {
+  const { getByText } = render(<Button>Default</Button>)
+  expect(getByText('Default')).toBeInTheDocument()
+})
+```
+
+> The `toBeInTheDocument` matcher is not provided by default. The project boilerplate is configured to extend the default _matchers_ with more specific matchers that help test the DOM. The `src/setupTests.js` file configures Jest to use jest-dom.
+
+```js
+// src/setupTests.js
+import '@testing-library/react/cleanup-after-each'
+import '@testing-library/jest-dom/extend-expect'
+```
+
+## Jest
+
+- is a framework for testing JavaScript code.
+- provides the default **matchers** (link [here](https://jestjs.io/docs/en/expect) for all matchers)
+- Some of the more common matchers are
+  - [`toBe`](https://jestjs.io/docs/expect#tobevalue)
+  - [`toHaveLength`](https://jestjs.io/docs/expect#tohavelengthvalue)
+  - [`toHaveProperty`](https://jestjs.io/docs/expect#tohavepropertyvalue)
+  - [`toBeGreaterThan`](https://jestjs.io/docs/expect#tobegreaterthanvalue)
+
+## Jest DOM
+
+- provides a set of matchers for testing the DOM.
+- [docs here](https://github.com/testing-library/jest-dom)
+  - `toBeInDocument`
+  - `toHaveClass`
+  - `toHaveValue`
+
+## react-testing-library
+
+- provides React specific helper functions for testing
+- `render`
+- `cleanup`
+- `act`
+
+## dom-testing-library
+
+- where **queries** come from
+  - is a combination of _query variant_ and _query type_
+
+![dom-testing](https://s3-us-west-2.amazonaws.com/reactv2/figures/23300e6b-d342-4dcf-b9ed-343e89f54619.png)
+
+We access these functions by `destructuring` the **object** returned by the render function in react-testing-library.
+
+```js
+it("renders a clickable button", () => {
+  const handleClick = jest.fn();
+  const { getByText } = render(
+    <Button onClick={handleClick}>Clickable</Button>
+  );
+  //...
 ```
 
 ## Additional Resources
