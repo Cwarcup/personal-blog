@@ -220,9 +220,24 @@ beforeEach(() => {
 
 - use the `**` wildcard to match any url that starts with `/api/products`
 
+We can ask Cypress to `wait` for the response like so:
+
+```js
+cy.wait('@products')
+```
+
+> See docs here on [wait](https://docs.cypress.io/api/commands/wait)
+
 ## Useful Links
 
 - [Cypress Docs](https://docs.cypress.io/api/api/table-of-contents.html)
 - [Cypress Best Practices (Official)](https://docs.cypress.io/guides/references/best-practices.html)
 - [Cypress Cheat Sheet](https://cheatography.com/aiqbal/cheat-sheets/cypress-io/)
-- [Cypress Commands](https://docs.cypress.io/api/table-of-contents)
+
+## Useful Cypress Links
+
+- [Cypress Assertions](https://docs.cypress.io/guides/references/assertions#BDD-Assertions)
+- Cypress `should` [assertions](https://docs.cypress.io/api/commands/should#Usage)
+- [Cypress selecting elements data-\*](https://docs.cypress.io/guides/references/best-practices#Selecting-Elements)
+- [Cypress async commands](https://docs.cypress.io/guides/core-concepts/introduction-to-cypress#Commands-Are-Asynchronous)
+- [Commands run serially](https://docs.cypress.io/guides/core-concepts/introduction-to-cypress#Assertions)
