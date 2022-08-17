@@ -2,7 +2,7 @@
 title: A review of React
 date: '2022-08-15'
 tags: ['React']
-images: 'https://github.com/Eliav2/how-react-hooks-work'
+images: 'https://user-images.githubusercontent.com/47307889/116921331-826bbe80-ac5c-11eb-9f48-d8fbde144b04.png'
 draft: True
 summary: Review of React
 ---
