@@ -237,6 +237,7 @@ cy.wait('@products')
 ## Useful Cypress Links
 
 - [Cypress Assertions](https://docs.cypress.io/guides/references/assertions#BDD-Assertions)
+- [Default Assertions](https://docs.cypress.io/guides/core-concepts/introduction-to-cypress#Default-Assertions)
 - Cypress `should` [assertions](https://docs.cypress.io/api/commands/should#Usage)
 - [Cypress selecting elements data-\*](https://docs.cypress.io/guides/references/best-practices#Selecting-Elements)
 - [Cypress async commands](https://docs.cypress.io/guides/core-concepts/introduction-to-cypress#Commands-Are-Asynchronous)
