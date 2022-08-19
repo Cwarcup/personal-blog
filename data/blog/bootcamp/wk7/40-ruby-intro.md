@@ -2,7 +2,7 @@
 title: Intro to Ruby
 date: '2022-08-19'
 tags: ['Ruby']
-images: 'https://res.cloudinary.com/practicaldev/image/fetch/s--CnvKphAJ--/c_imagga_scale,f_auto,fl_progressive,h_500,q_auto,w_1000/https://dev-to-uploads.s3.amazonaws.com/i/i5dm7hap45ice8wwigi7.png'
+images: 'https://miro.medium.com/max/1200/1*9hd_8qR0CMZ8L0pVbFLjDw.png'
 draft: false
 summary: Ruby waws created by Yukihiro Matsumoto (Matz) in 1995. It is a dynamic, open source programming language with a focus on simplicity and productivity. It has an elegant syntax that is natural to read and easy to write.
 ---
