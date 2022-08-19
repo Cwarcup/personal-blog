@@ -1,6 +1,6 @@
 ---
 title: Intro to Ruby
-date: '2022-08-1'
+date: '2022-08-19'
 tags: ['Ruby']
 images: 'https://res.cloudinary.com/practicaldev/image/fetch/s--CnvKphAJ--/c_imagga_scale,f_auto,fl_progressive,h_500,q_auto,w_1000/https://dev-to-uploads.s3.amazonaws.com/i/i5dm7hap45ice8wwigi7.png'
 draft: false
