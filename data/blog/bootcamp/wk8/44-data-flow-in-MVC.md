@@ -184,4 +184,84 @@ app/views/users/index.html.erb
 
 - converts its contents into HTML
 - gets returned by the controller to the browser
--
+
+## KV Video on MVC
+
+Model => Database => ActiveRecord
+View => ERB Templates => HTML
+Controller => Project Manager
+
+The controller is the one dealing with the user. It interacts with the model and the view.
+
+![mvc](https://miro.medium.com/max/666/1*eDPWR3lYGm1ogbef2beyHA.png)
+
+- view produces the thing the user sees
+- controller makes it all happen
+  - it uses the model and view as it needs
+  - then sends the response to the browser
+
+Another big component of MVC is the router. It takes the URL and decides which controller and action to use.
+
+---
+
+In the `routes`, we have the `resources :users` line. This line tells Rails to create all the routes for the `users` resource.
+
+It says there should be an endpoint for the `index` and `shows`
+
+```rb
+  resources :products, only: [:index, :show]
+```
+
+We have a more explicit line:
+
+```rb
+  root to: 'products#index'
+```
+
+- `products` is the controller
+- `index` is the action
+
+> this is saying, if there's a request to the root of the site, use the `products` controller and the `index` action.
+
+```rb
+get '/' => 'products#index'
+```
+
+> but this is the same thing and not very common.
+
+---
+
+According the the log stack, we know we make a GET request to the `ProductsController#index`
+
+In the `products_controller.rb` file, we have the `index` action.
+
+```rb
+class ProductsController < ApplicationController
+
+  def index
+    @products = Product.all.order(created_at: :desc)
+  end
+
+  def show
+    @product = Product.find params[:id]
+  end
+
+end
+```
+
+The `index` `action takes over and does the following:
+
+```rb
+@products = Product.all.order(created_at: :desc)
+```
+
+- it knows it needs to get all the products from the database
+- then render the `index.html.erb` view
+  - this part is implicit
+
+```rb
+def index
+  @products = Product.all.order(created_at: :desc)
+  render :index # this is implicit
+end
+```
