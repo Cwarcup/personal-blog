@@ -2,8 +2,7 @@ const projectsData = [
   {
     title: 'TwO-O-Player Math Game',
     description: `Two player CLI math game created with Ruby.`,
-    imgSrc:
-      'https://cdn.cloudflare.steamstatic.com/steam/apps/1872730/capsule_616x353.jpg?t=1643367072',
+    imgSrc: '/static/images/onyourmental.png',
     href: 'https://github.com/Cwarcup/TwO-O-Player',
   },
   {
