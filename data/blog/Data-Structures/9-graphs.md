@@ -1,9 +1,9 @@
 ---
-title: Doubly Linked List
+title: Graphs
 date: '2022-02-26'
-tags: ['Data Structures', 'Single Linked List']
+tags: ['Data Structures', 'Graphs']
 draft: true
-summary: Methods and implementation of a doubly linked list.
+summary: Methods and implementation of a graph.
 ---
 
 A graph data structure consists of a finite (and possibly mutable) set of vertices or nodes or points, together with a set of unordered pairs of these vertices for an undirected graph or a set of ordered pairs for a directed graph.

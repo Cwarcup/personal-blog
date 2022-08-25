@@ -1,9 +1,9 @@
 ---
-title: Doubly Linked List
+title: Heaps
 date: '2022-02-26'
-tags: ['Data Structures', 'Single Linked List']
+tags: ['Data Structures', 'Heap']
 draft: true
-summary: Methods and implementation of a doubly linked list.
+summary: Methods and implementation of a heap data structure.
 ---
 
 Are another category of trees. All the rules that apply to trees will also apply to heaps.

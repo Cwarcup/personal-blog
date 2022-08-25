@@ -1,9 +1,9 @@
 ---
-title: Doubly Linked List
+title: Hash Tables
 date: '2022-02-26'
-tags: ['Data Structures', 'Single Linked List']
+tags: ['Data Structures', 'Hash Tables']
 draft: true
-summary: Methods and implementation of a doubly linked list.
+summary: Methods and implementation of a hash table.
 ---
 
 [Slides](https://cs.slides.com/colt_steele/hash-tables)

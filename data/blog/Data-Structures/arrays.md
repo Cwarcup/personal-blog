@@ -1,9 +1,9 @@
 ---
 title: Arrays
 date: '2022-02-26'
-tags: ['Data Structures', 'Single Linked List']
+tags: ['Data Structures', 'Arrays']
 draft: true
-summary: Arrays
+summary: Methods and implementation of an array.
 ---
 
 Sometimes called lists and orders data sequentially. If you need to iterate over some data, one by one, arrays are the best choice.
