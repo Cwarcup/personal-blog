@@ -27,10 +27,10 @@ Each node has the ability to store some piece of data, commonly referred to as a
 
 For example, if we wanted to store a linked list of values ranging from 1 to 3, we would have a linked list that looks like this:
 
-<div>
+<div className="flex justify-center overflow-hidden">
   <Image
-    src={'/public/static/images/linked-list/linked-list.png'}
-    className="object-cover object-center md:h-36 lg:h-48"
+    src={'/static/images/linked-list/linked-list.png'}
+    class="img-fluid "
     width={544}
     height={306}
   />
@@ -40,7 +40,16 @@ Each node has a value and a pointer to the next node in the list.
 
 A metaphor for a linked list may be a treasure/scavenger hunt. You are given the first clue (the head) and you follow the clue (the pointer) to the next clue (the next node) and so on until you reach the end of the list (the tail).
 
-![treasure hunt image](https://unsplash.com/photos/RFId0_7kep4)
+<div className="flex justify-center overflow-hidden">
+  <Image
+    src={'/static/images/linked-list/n-RFId0_7kep4-unsplash.jpg'}
+    class="img-fluid "
+    width={544}
+    height={306}
+  />
+</div>
+
+> Photo by [N](https://unsplash.com/@ellladee?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText) on [Unsplash](https://unsplash.com/s/photos/linked-list?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText)
 
 # What's unique about Linked Lists?
 
@@ -62,13 +71,17 @@ However, arrays and linked lists differ in how they are stored in memory, and th
 
 Arrays are stored in **contiguous** memory. This means that the memory is allocated in a block and the elements are stored in that block. I like to think of this as a group of friends going to a movie. The group was smart and bought tickets in **the same row, next to each other.** Because they are all sitting together, we can clearly see who is siting in which seat and how many seats they have taken up.
 
-![contiguous memory](/public/static/images/linked-list/array-seating.png)
+<div className="flex justify-center overflow-hidden">
+  <Image src={'/static/images/linked-list/array-seating.png'} width={438} height={372} />
+</div>
 
 By being arranged in contiguous memory (the same row), we can access the elements in the array very quickly because we know exactly where they are. This is much like the **index** of an array!
 
 In contrast, linked lists are stored in **non-contiguous** memory. This means that the memory is allocated in a block, but the _elements_ are not stored in that block. Instead, each element is stored in a different block of memory.
 
-![non-contiguous memory](/public/static/images/linked-list/linkedlist-seating.png)
+<div className="flex justify-center overflow-hidden">
+  <Image src={'/static/images/linked-list/linkedlist-seating.png'} width={438} height={372} />
+</div>
 
 Because the elements are not stored in contiguous memory, we cannot access them as quickly as we can with an array. Instead, we have to traverse the list by following the pointers to the next node until we reach the tail. We **don't** have an index like we do with an array. We can not easily tell how many elements are in the list, or where a specific element is in the list. We have to traverse the list to find that information.
 
