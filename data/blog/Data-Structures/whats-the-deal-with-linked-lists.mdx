@@ -9,7 +9,7 @@ summary: Dive into the data structure that is the Linked List using JavaScript.
 
 # Data Structures
 
-There will be a time where you start to hear more and more about data structures. You may have heard of them before, but you may not have known what they were. Before we get into linked lists, let's talk about data structures.
+For some, just reading the words _data structures_ and _algorithms_ invoke your “fight-or-flight” response. You notice your hands are a bit more clammy, your heart rate has increased, and for some reason, you feel like crying. While I can't help you with algorithms (yet), I can help you with one type of data structure; the linked list!
 
 Data structures represent a way of organizing data. Depending on the type of data you are working with, you may need to organize it in a specific way. For example, if you are working on a list of names, you may want to store them in alphabetical order.
 
@@ -17,13 +17,13 @@ Depending on the data you are working with, you may need to organize it in a spe
 
 # So what are Linked Lists?
 
-Linked lists are nice because they actually have a structure to them.
+Linked lists are nice because they have a structure to them.
 
 Essentially, a linked list is a collection of **nodes** that are linked together. Each node has a value and a pointer to the next node in the list.
 
 So this raises another question: what is a node?
 
-Each node has the ability to store some piece of data, commonly referred to as a **value**. Additionally each node also has a **pointer** which is a reference to the next node in the list.
+Each node can store some piece of data, commonly referred to as a **value**. Additionally each node also has a **pointer** which is a reference to the next node in the list.
 
 For example, if we wanted to store a linked list of values ranging from 1 to 3, we would have a linked list that looks like this:
 
@@ -189,7 +189,7 @@ console.log(linkedList)
 //                 next: null } } } } }
 ```
 
-Remember that the `insertFirst` method will create a new node and set the **head** to that new node. The new node will have a pointer to the previous head node. This is how we are able to link the nodes together.
+Remember that the `insertFirst` method will create a new node and set the **head** to that new node. The new node will have a pointer to the previous head node. This is how we can link the nodes together.
 
 Inserting first into our linked list looks something like this: node looks like this:
 
@@ -213,11 +213,11 @@ Now that we have a basic understanding of how to implement a linked list, let's 
 
 What if we want to know how long our linked list is? We can implement a method called `size` that will return the number of nodes in the linked list.
 
-Before we write the code, lets go over the plan:
+Before we write the code, let's go over the plan:
 
 - We will create a variable called `size` and set it to `0`.
 - We are going to traverse the list and increment the `size` variable by `1` for each node we traverse.
-- When we reach the tail node (a node with a `.next` value of `null`) we know we have reached the end of out list.
+- When we reach the tail node (a node with a `.next` value of `null`) we know we have reached the end of our list.
 - Lastly, return the `size` variable.
 
 ```js
@@ -263,7 +263,7 @@ It's actually very easy to get the first node in the linked list. We can simply 
 
 ```js
 class LinkedList {
-  // see above examples for full code
+  // see the above examples for full code
 
   getFirst() {
     return this.head
@@ -287,16 +287,16 @@ Before we wrap up, let's take a look at some practical applications of linked li
 
 Linked lists are cool and all, but I see no practical use for them. Well, you would be surprised. Linked lists are used in many different applications. Here are some examples:
 
-- **Undo/Redo** - When you undo or redo an action in a program, the program is actually keeping track of the changes you made in a linked list. When you undo an action, the program will remove the last change from the linked list. When you redo an action, the program will add the last change back to the linked list.
+- **Undo/Redo** - When you undo or redo an action in a program, the program is keeping track of the changes you made in a linked list. When you undo an action, the program will remove the last change from the linked list. When you redo an action, the program will add the last change back to the linked list.
 - Music player - When playing a song, the music player will keep track of the next song to play in a linked list. When the song ends, the music player will play the next song in the linked list.
 
 # Conclusion
 
 In this article, we learned about linked lists. We learned about the node class and how to create a linked list. We also learned about some of the methods we can implement on a linked list. Lastly, we learned about some practical applications of linked lists.
 
-There's many more things we can learn about linked lists. I will leave you with the invitation to research the various types of linked lists and their associated methods. Here are some types of linked lists you can research:
+There are many more things we can learn about linked lists. I will leave you with the invitation to research the various types of linked lists and their associated methods. Here are some types of linked lists you can research:
 
-- Singly linked list (partly covered in this article)
-- Doubly linked list (points to the next and previous node)
-- Circular linked list (the tail node points to a node in the list)
+- Singly-linked list (partly covered in this article)
+- Doubly-linked list (points to the next and previous node)
+- Circular-linked list (the tail node points to a node in the list)
 - and more!
