@@ -1,0 +1,281 @@
+---
+title: What's the Deal with Linked Lists?
+date: '2022-08-27'
+tags: ['Linked Lists']
+draft: false
+summary: Dive into the data structure that is the Linked List using JavaScript.
+---
+
+# Data Structures
+
+There will be a time where you start to hear more and more about data structures. You may have heard of them before, but you may not have known what they were. Before we get into linked lists, let's talk about data structures.
+
+Data structures represent a way of organizing data. Depending on the type of data you are working with, you may need to organize it in a specific way. For example, if you are working on a list of names, you may want to store them in alphabetical order.
+
+Depending on the data you are working with, you may need to organize it in a specific way.
+
+# So what are Linked Lists?
+
+Linked lists are nice because they actually have a structure to them.
+
+Essentially, a linked list is a collection of **nodes** that are linked together. Each node has a value and a pointer to the next node in the list.
+
+So this raises another question: what is a node?
+
+Each node has the ability to store some piece of data, commonly referred to as a **value**. Additionally each node also has a **pointer** which is a reference to the next node in the list.
+
+For example, if we wanted to store a linked list of values ranging from 1 to 3, we would have a linked list that looks like this:
+
+![linked list](/public/static/images/linked-list/linked-list.png)
+
+Each node has a value and a pointer to the next node in the list.
+
+A metaphor for a linked list may be a treasure/scavenger hunt. You are given the first clue (the head) and you follow the clue (the pointer) to the next clue (the next node) and so on until you reach the end of the list (the tail).
+
+![treasure hunt image](https://unsplash.com/photos/RFId0_7kep4)
+
+# What's unique about Linked Lists?
+
+Linked lists are unique because they are a **linear data structure**. This means that there is a sequence and an order to how they are constructed and traversed.
+
+In memory, we only have to keep track of two nodes in a list - the **head** and the **tail** node. The tail is technically optional, but it is helpful to have it. We will go into more detail about this later.
+
+The head is the first node in the list and points to everything else.
+
+From there, we can traverse the list by following the pointers to the next node until we reach the **tail**, which is the last node in the list and has a pointer to nowhere. We typically point the tail to `null` to indicate that it is the end of the list.
+
+Wait, this kind of sounds like an array. What's the difference?
+
+### Arrays vs Linked Lists
+
+Arrays and linked lists are both linear data structures. They both have a sequence and an order to how they are constructed and traversed.
+
+However, arrays and linked lists differ in how they are stored in memory, and therefore, how they are accessed.
+
+Arrays are stored in **contiguous** memory. This means that the memory is allocated in a block and the elements are stored in that block. I like to think of this as a group of friends going to a movie. The group was smart and bought tickets in **the same row, next to each other.** Because they are all sitting together, we can clearly see who is siting in which seat and how many seats they have taken up.
+
+![contiguous memory](/public/static/images/linked-list/array-seating.png)
+
+By being arranged in contiguous memory (the same row), we can access the elements in the array very quickly because we know exactly where they are. This is much like the **index** of an array!
+
+In contrast, linked lists are stored in **non-contiguous** memory. This means that the memory is allocated in a block, but the _elements_ are not stored in that block. Instead, each element is stored in a different block of memory.
+
+![non-contiguous memory](/public/static/images/linked-list/linkedlist-seating.png)
+
+Because the elements are not stored in contiguous memory, we cannot access them as quickly as we can with an array. Instead, we have to traverse the list by following the pointers to the next node until we reach the tail. We **don't** have an index like we do with an array. We can not easily tell how many elements are in the list, or where a specific element is in the list. We have to traverse the list to find that information.
+
+# What are the benefits of Linked Lists?
+
+Now you may be wondering, why would we use a linked list if it is so much more complicated than an array? Well, there are a few reasons why we would use a linked list over an array.
+
+Linked lists have better performance when it comes to adding and removing elements from the beginning of the list. This is because we don't have to shift the elements in the array like we do with an array. We just have to change the pointer of the head node. As we know, when we add or remove elements from the beginning of an array, we have to shift **all** of the other elements in the array. This is a costly operation, especially if the array is large.
+
+The time complexity of adding or removing elements from the beginning of an array is `O(n)`. However, the time complexity of adding or removing elements from the beginning of a linked list is `O(1)`. This is because we don't have to shift any elements in the list.
+
+# What are the drawbacks of Linked Lists?
+
+If we needed to access an element in the middle of the list we would have to traverse the list until we reach that element. This is because we don't have an index like we do with an array. We can not easily tell how many elements are in the list, or where a specific element is in the list. We have to traverse the list to find that information.
+
+This long traversal is also true if we wanted to determine if an element is in the list. We would have to traverse the list until we reach the tail. If we reach the tail and the element is not there, then we know that the element is not in the list.
+
+# How do we implement a Linked List?
+
+We have talked about what a linked list is, but how do we actually implement one? Recall that a linked list is a collection of nodes that are linked together. Each node has a value and a pointer to the next node in the list. Let's take a look at how we can implement a linked list in JavaScript.
+
+> This will require some knowledge of JavaScript classes. If you are unfamiliar with classes, I recommend reading [this article](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes) on MDN.
+
+```js
+// creating the node class
+
+class Node {
+  constructor(data, next = null) {
+    this.data = data // the value of the node
+    this.next = next // the pointer to the next node
+  }
+}
+```
+
+> `next` has the default value of `null` because it is optional since a node may not have a next node. This would be the case for the tail node or a linked list with only one node.
+
+```js
+// creating the linked list class
+class LinkedList {
+  constructor() {
+    this.head = null
+  }
+}
+```
+
+Now this alone doesn't do much. We have a node class and a linked list class, but we haven't actually created any nodes or linked them together. Let's take a look at how we can do that.
+
+Within the linked list class, we will create a method called `insertFirst` that will allow us to insert a node at the beginning of the list.
+
+```js
+// recall out node class
+class Node {
+  constructor(data, next = null) {
+    this.data = data
+    this.next = next
+  }
+}
+
+class LinkedList {
+  constructor() {
+    this.head = null
+  }
+
+  insertFirst(data) {
+    this.head = new Node(data, this.head)
+  }
+}
+```
+
+Let's see how this works. We will create a new linked list and insert a node with the value of `1` at the beginning of the list.
+
+```js
+const linkedList = new LinkedList()
+linkedList.insertFirst(1)
+
+// log the linked list
+console.log(linkedList)
+
+// LinkedList {
+//   head: Node { data: 1, next: Node { data: 1, next: null } }
+// }
+```
+
+We can see that the linked list has a head node with a value of `1`. The head node also has a pointer to another node with a value of `null`.
+
+We can add some more nodes to the list by calling the `insertFirst` method again.
+
+```js
+linkedList.insertFirst(2)
+linkedList.insertFirst(3)
+linkedList.insertFirst(4)
+
+// log the linked list
+console.log(linkedList)
+
+// head:
+//    Node { data: 4,
+//      next:
+//       Node { data: 3,
+//         next:
+//          Node { data: 2,
+//            next: Node { data: 1,
+//             next:
+//               Node { data: 1,
+//                 next: null } } } } }
+```
+
+Remember that the `insertFirst` method will create a new node and set the **head** to that new node. The new node will have a pointer to the previous head node. This is how we are able to link the nodes together.
+
+Inserting first into our linked list looks something like this: node looks like this:
+
+```js
+// initialize a new, empty linked list
+const linkedList = new LinkedList()
+
+// insert a node with the value of 1
+linkedList.insertFirst(1) // 1 -> null
+linkedList.insertFirst(2) // 2 -> 1 -> null
+linkedList.insertFirst(3) // 3 -> 2 -> 1 -> null
+linkedList.insertFirst(4) // 4 -> 3 -> 2 -> 1 -> null\
+// head           tail
+```
+
+# What are some other methods we can implement?
+
+Now that we have a basic understanding of how to implement a linked list, let's take a look at some other methods we can implement.
+
+## `size()`
+
+What if we want to know how long our linked list is? We can implement a method called `size` that will return the number of nodes in the linked list.
+
+Before we write the code, lets go over the plan:
+
+- We will create a variable called `size` and set it to `0`.
+- We are going to traverse the list and increment the `size` variable by `1` for each node we traverse.
+- When we reach the tail node (a node with a `.next` value of `null`) we know we have reached the end of out list.
+- Lastly, return the `size` variable.
+
+```js
+class LinkedList {
+  constructor() {
+    this.head = null
+  }
+
+  insertFirst(data) {
+    this.head = new Node(data, this.head)
+  }
+
+  size() {
+    let size = 0 // initialize the size variable
+    let node = this.head // set initial note to the head node
+
+    while (node) {
+      // while there is a node
+      size++ // increment the size variable
+      node = node.next // set the node variable to the next node
+    }
+
+    return size
+  }
+}
+```
+
+Let's test it out.
+
+```js
+const linkedList = new LinkedList() // initialize a new, empty linked list
+linkedList.insertFirst(1) // insert a node with the value of 1
+linkedList.insertFirst(2)
+linkedList.insertFirst(3)
+linkedList.insertFirst(4)
+
+linkedList.size() // 4
+```
+
+## `getFirst()`
+
+It's actually very easy to get the first node in the linked list. We can simply return the head node.
+
+```js
+class LinkedList {
+  // see above examples for full code
+
+  getFirst() {
+    return this.head
+  }
+}
+```
+
+---
+
+There are many more methods we can implement. I will leave that as an exercise for you to do on your own. Here are some methods you can implement:
+
+- `getLast()` to get the last node
+- `insertAt(data, position)` to insert a node at a specific position
+- `insertLast(data)` to insert a node at the end of the linked list
+- `removeAt(position)` to remove a node at a specific position
+- `getAt(position)` to get a node value at a specific position
+
+# Practical Applications
+
+Before we wrap up, let's take a look at some practical applications of linked lists.
+
+Linked lists are cool and all, but I see no practical use for them. Well, you would be surprised. Linked lists are used in many different applications. Here are some examples:
+
+- **Undo/Redo** - When you undo or redo an action in a program, the program is actually keeping track of the changes you made in a linked list. When you undo an action, the program will remove the last change from the linked list. When you redo an action, the program will add the last change back to the linked list.
+- Music player - When playing a song, the music player will keep track of the next song to play in a linked list. When the song ends, the music player will play the next song in the linked list.
+
+# Conclusion
+
+In this article, we learned about linked lists. We learned about the node class and how to create a linked list. We also learned about some of the methods we can implement on a linked list. Lastly, we learned about some practical applications of linked lists.
+
+There's many more things we can learn about linked lists. I will leave you with the invitation to research the various types of linked lists and their associated methods. Here are some types of linked lists you can research:
+
+- Singly linked list (partly covered in this article)
+- Doubly linked list (points to the next and previous node)
+- Circular linked list (the tail node points to a node in the list)
+- and more!
