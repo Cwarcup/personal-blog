@@ -21,24 +21,39 @@ gem install rspec
 
 ## Writing Tests
 
+### `Describe` Blocks
+
 - use `describe` to _describe_ a method or class
+  - `describe` tells Rspec what code you're testing
+  - you'll see these messages when you run your tests
+  - the actual test code goes inside the `describe` block between the `do` and `end`
 
 ```rb
 # inside spec/example_spec.rb
-describe 'some method' do
+describe 'some class' do
 	# some code
 end
 ```
 
+### `It` Method
+
 - Similar to other testing frameworks, we can use `it` to _describe_ a test
+- `it` is a **single** test
+- we can have multiple `it` blocks inside a `describe` block
+- `it` accepts a `String` as an argument
+  - the string should describe what the test is doing (e.g. "returns true when given a positive number")
 
 ```rb
-describe Hash do
-	it 'should do something cool' do
-		Hash.new.should == {}
-	end
+require_relative 'boat'
+
+describe Boat do
+  it 'should create boats' do
+    expect(Boat.new).to be_a Boat
+  end
 end
 ```
+
+### Running a test
 
 Run your test with `rspec`:
 
@@ -49,104 +64,146 @@ Run your test with `rspec`:
 You should see something like this in your terminal as a result:
 
 ```bash
-Finished in 0.11021 seconds
+.
+
+Finished in 0.00144 seconds (files took 0.06003 seconds to load)
 1 example, 0 failures
 ```
 
-## Setting up Tests
+### `Expect` Method
 
-- We can use `before` to run some code before each test.
-  - Use this to set up **state** before the test runs.
+- `expect` is used to _expect_ a result from a test
+- it marks an **assertion** that we expect to be true
 
 ```rb
-describe Hash do
-  before do
-    @hash = Hash.new({:hello => 'world'})
+describe Boat do
+  it 'should create boats' do
+    expect(Boat.new).to be_a Boat
   end
 
-  it "should return a blank instance" do
-    Hash.new.should == {}
-  end
-
-  it "hash the correct information in a key" do
-    @hash[:hello].should == 'world'
+  it 'should have a name' do
+    expect(Boat.new.name).to eq 'Boaty McBoatface'
   end
 end
 ```
 
-> This code will create the `@hash` variable before each test runs.
+### `to` Method
 
-When using the `describe` method, we can pass in a string or a class.
+- use the `to` method to complete the assertion (e.g. `expect(Boat.new).to be_a Boat`)
+- after `to` we can use a **matcher** to check for a specific result
 
-- use the `#` symbol to describe a **class** method
-- use the `.` symbol to describe an **instance** method.
+### Matchers
+
+- Matchers are used to check for specific results
+
+Common matchers:
+
+- `eq` - checks for equality
+- `be_a` - checks for a specific class
+- `be_empty` - checks for an empty array
+- `be_truthy` - checks for a truthy value
+- `be_falsey` - checks for a falsy value
+- `include` - checks if an array includes a specific value
+
+## Test-Driven Development
+
+Let's add some methods on our Boat class and write some tests for them.
+
+We are going to write our **tests** first, then write the code to make the tests pass.
 
 ```rb
-describe MyClass do
-  describe ".class_method_1" do
+describe Boat do
+  it 'should create boats' do
+    expect(Boat.new).to be_a Boat
   end
-
-  describe "#instance_method_1" do
+  describe '#allowed_aboard?' do   # describe block inside a describe block
   end
 end
 ```
 
-### `context` method
+It is valid to nest `describe` blocks inside other `describe` blocks. This is useful for grouping tests together.
 
-We also have access to the `context` method, which is similar to `describe`, but is used to describe a **context**. We can use `context` to describe a **state**. It allows us to group similar tests together.
+Notice the `#` before `allowed_aboard?`. This is a convention to indicate that we are testing an **instance method**.
 
-```rb
-describe Hash do
-	context "when empty" do
-		before do
-			@hash = Hash.new
-		end
-
-		it "should return a blank instance" do
-			Hash.new.should == {}
-		end
-	end
-
-	context "when not empty" do
-		before do
-			@hash = Hash.new({:hello => 'world'})
-		end
-
-		it "hash the correct information in a key" do
-			@hash[:hello].should == 'world'
-		end
-	end
-end
-```
-
-## Repetitive Tests
-
-If we have similar tests, that use the same setup, we can use the `let` method to create a variable that can be used in multiple tests.
+Let's finish the test for the `allowed_aboard?` method:
 
 ```rb
-describe Burger do
-  describe "#apply_ketchup" do
-    context "with ketchup" do
-      let(:burger) { Burger.new(:ketchup => true) }
-      before  { burger.apply_ketchup }
-
-      it "sets the ketchup flag to true" do
-        burger.has_ketchup_on_it?.should be_true
-      end
-    end
-
-    context "without ketchup" do
-      let(:burger) { Burger.new(:ketchup => false) }
-      before  { burger.apply_ketchup }
-
-      it "sets the ketchup flag to false" do
-        burger.has_ketchup_on_it?.should be_false
-      end
+describe Boat do
+  it 'should create boats' do
+    expect(Boat.new).to be_a Boat
+  end
+  describe '#allowed_aboard?' do
+    it 'returns true if inventory includes a life jacket' do
+      a_boat = Boat.new
+      allowed = a_boat.allowed_aboard?(['life jacket', 'sun glasses'])
+      expect(allowed).to be true
     end
   end
 end
 ```
 
----
+- the `allowed_aboard?` method takes an array of inventory as an argument
+- returns `true` if the inventory includes a `life jacket`.
+- use the `to` matcher to check if the result is `true`
 
-Beware that it uses the old should syntax instead of the newer expect syntax.
+> If we run this test we will get the following error:
+
+```bash
+rspec boat_spec.rb
+.F
+
+Failures:
+
+  1) Boat#allowed_aboard? returns true if inventory includes a life jacket
+     Failure/Error: allowed = a_boat.allowed_aboard?(['life jacket', 'sun glasses'])
+
+     NoMethodError:
+       undefined method `allowed_aboard?' for #<Boat:0x000000010298e420>
+
+             allowed = a_boat.allowed_aboard?(['life jacket', 'sun glasses'])
+                             ^^^^^^^^^^^^^^^^
+     # ./boat_spec.rb:10:in `block (3 levels) in <top (required)>'
+
+Finished in 0.00158 seconds (files took 0.06525 seconds to load)
+2 examples, 1 failure
+
+Failed examples:
+
+rspec ./boat_spec.rb:8 # Boat#allowed_aboard? returns true if inventory includes a life jacket
+```
+
+This tells us:
+
+- we have an `undefined method` called `allowed_aboard?` for the `Boat` class
+
+Let's write the code to make this test pass:
+
+```rb
+class Boat
+  def allowed_aboard?(inventory)
+    inventory.include?('life jacket')
+  end
+end
+```
+
+We should also test out the `false` case:
+
+```rb
+describe Boat do
+  it 'should create boats' do
+    expect(Boat.new).to be_a Boat
+  end
+  describe '#allowed_aboard?' do
+    it 'returns true if inventory includes a life jacket' do
+      a_boat = Boat.new
+      allowed = a_boat.allowed_aboard?(['life jacket', 'sun glasses'])
+      expect(allowed).to be true
+    end
+    it 'returns false if inventory does not include a life jacket' do
+      a_boat = Boat.new
+      allowed = a_boat.allowed_aboard?(['sun glasses'])
+      expect(allowed).to be false
+    end
+  end
+end
+```
