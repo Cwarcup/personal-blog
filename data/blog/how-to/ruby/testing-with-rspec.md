@@ -207,3 +207,17 @@ describe Boat do
   end
 end
 ```
+
+## Setting up a project for RSpec
+
+```rb
+group :development, :test do
+  gem 'rspec-rails', '~> 5.1'
+  gem 'net-smtp', require: false
+  # ...
+end
+```
+
+- Add the `rspec-rails` gem to your `Gemfile`
+- Add the `net-smtp` gem to your `Gemfile`
+- if you have a current `/spec` folder, remove it `rm -rf spec`
