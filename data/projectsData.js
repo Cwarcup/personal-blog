@@ -1,14 +1,20 @@
 const projectsData = [
   {
-    title: 'TwO-O-Player Math Game',
-    description: `Two player CLI math game created with Ruby.`,
-    imgSrc: '/static/images/onyourmental.png',
-    href: 'https://github.com/Cwarcup/TwO-O-Player',
+    title: 'Cthulhu Teaches Typing',
+    description: `TCthulhu Teaches Typing is a typing game for learning to type. Our goal was to target the keyboard enthusiast market with a minimal, yet customizable application to track and compare typing statistics. We also wanted to create a fun and engaging typing game that would help users learn to type faster and more accurately.`,
+    imgSrc: '/static/images/CTT.jpg',
+    href: 'https://github.com/Cwarcup/ctt-front-end',
+  },
+  {
+    title: 'Jungle - E-Commerce Application',
+    description: `A mini e-commerce application built with Rails 6.1. This project was completed as part of the Lighthouse Labs Web Development Bootcamp. Jungle allows visitors to browse products, add them to their cart, and purchase them using Stripe. Admins can add and remove products and categories, and view sales data.`,
+    imgSrc: '/static/images/jungle.jpg',
+    href: 'https://github.com/Cwarcup/jungle-rails',
   },
   {
     title: 'On Your Mental Podcast',
-    description: `Website for Reuben's podcast On Your Mental. This was a great learning experience to teach me about Tailwind CSS and Nextjs.`,
-    imgSrc: '/static/images/onyourmental.png',
+    description: `Website for the On Your Mental Podcast. On Your Mental focuses on mental health and wellness. The website was built using Next.js and Tailwind CSS. The website is hosted on Vercel. Content is updated automatically when new episodes are published using the RSS feed and Youtube API.`,
+    imgSrc: '/static/images/OnYourMental.jpg',
     href: 'https://github.com/Cwarcup/on-your-mental',
   },
   {
@@ -22,12 +28,6 @@ const projectsData = [
     description: `A library similar to lodash for JavaScript. This project was created and published by me as part of my learnings at Lighthouse Labs. The library provides utilities that are not built into native JavaScript such as 'flatten()' to convert nested arrays into a single array.`,
     imgSrc: '/static/images/lotide.jpg',
     href: 'https://www.npmjs.com/package/@cwarcup/lotide',
-  },
-  {
-    title: 'Snake Client Game',
-    description: `The goal of this project was to better understand how networking works from the perspective of the client. This project covers concepts including: callbacks, asynchronous programming, importing/exporting modules , refactoring code, and working with stdin`,
-    imgSrc: '/static/images/snake.png',
-    href: 'https://github.com/Cwarcup/snake-client',
   },
   {
     title: 'jsBooks - Interactive Notes and Code Cells',
