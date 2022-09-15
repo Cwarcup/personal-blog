@@ -13,8 +13,9 @@ export default function Hero() {
           </span>
         </PageTitle>
         <p className=" prose max-w-none pb-4 text-lg leading-7 text-gray-400">
-          I'm a self taught developer looking to improve my coding abilities everyday. Here is a
-          look into my personal note, projects and passions.{' '}
+          Full stack developer and technology enthusiast experienced in consumer electronics
+          industry transitioning to web development. I believe the optimal code is achieved when the
+          user and development experience is frictionless and intuitive.{' '}
           <Link href={`mailto:${siteMetadata.email}`}>
             <a
               className="font-medium leading-6 "
