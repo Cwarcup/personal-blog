@@ -1,0 +1,167 @@
+---
+title: Setting up Terminal for Web Development
+date: '2022-09-20'
+tags: ['Terminal', 'zsh', 'oh-my-zsh', 'web development']
+images: 'https://blog.logrocket.com/wp-content/uploads/2018/05/websockets-two-way-communication-react-app-nocdn.jpg'
+draft: false
+summary: Little guide to getting your Mac terminal set up for web development - recommended plugins, themes, fonts, etc.
+---
+
+<div className="flex justify-center  mx-5">
+	<img src="https://images.unsplash.com/photo-1616763355548-1b606f439f86?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=3270&q=80" />
+	<p className="text-sm"> Photo by Cafer Mert Ceyhan</p>
+</div>
+
+What an exiting day, you got a new Macbook Pro and you are ready to start your new job as a web developer. You are ready to start coding, but you are not sure how to set up your terminal. You have heard about all these cool plugins and themes, but you don't know where to start. Well, you are in the right place. In this article, I will show you how to set up your terminal for web development.
+
+<TOCInline toc={props.toc} asDisclosure toHeading={3} />
+
+## Homebrew
+
+Think of [Homebrew](https://docs.brew.sh/) as a package manager for MacOS. It is a command line tool that allows you to install software on your Mac. It is very easy to use and it is a must-have for any developer. You can install it by running the following command in your terminal:
+
+```bash
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"
+```
+
+During the installation, you will probably be prompted to install Xcode Command Line Tools. If you don't have it installed, follow the prompts and install it. You will also be prompted to enter your password. This is because Homebrew will install itself in the `/usr/local` directory, which is protected by the system.
+
+It's not a bad idea to run `brew doctor` after the installation to make sure everything is working as expected.
+
+Some of the most useful Homebrew commands are:
+
+```bash
+brew install <package> # install a package
+brew uninstall <package> # uninstall a package
+brew update # update Homebrew
+brew upgrade # upgrade all packages
+brew search <package> # search for a package
+brew list # list all installed packages
+```
+
+## iTerm2
+
+The first thing you need to do is to install iTerm2. iTerm2 is a replacement for the default terminal app. It has a lot of cool features, such as tabs, split panes, and more. You can download it from [here](https://iterm2.com/) or install it using Homebrew:
+
+```bash
+brew install --cask iterm2
+```
+
+### Hotkey to open iTerm2
+
+Sometimes you'll want to open terminal but it's hidden behind other windows. You can set up a hotkey to bring focus to iTerm2 with a simple shortcut. To do this, go to `Preferences > Keys > Hotkey > ☑️ Show/hide all windows with a system-wide hotkey` and set a hotkey of your choice. I use `⌘`` as my hotkey.
+
+## zsh
+
+Since we are using iTerm2, we can take advantage of its features and use zsh instead of the default bash shell. zsh is a shell that is similar to bash, but it has a lot of cool features. You can install it using Homebrew:
+
+```bash
+brew install zsh
+```
+
+We also need to update our default shell to use zsh. To do this, we need to run the following command:
+
+```bash
+chsh -s /bin/zsh
+```
+
+You can check if zsh is your default shell by running the following command:
+
+```bash
+echo $SHELL
+```
+
+This should return `/bin/zsh`.
+
+### Oh My Zsh
+
+[Oh My Zsh](https://ohmyz.sh/) is a framework for zsh that makes the terminal more user-friendly. It comes with a lot of useful plugins and themes. You can install it by running the following command:
+
+```bash
+sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+```
+
+In order to configure Oh My Zsh, you need to edit the `~/.zshrc` file. You can do this by running the following command:
+
+```bash
+open ~/.zshrc
+```
+
+This will open the `~/.zshrc` file in your default text editor. You can also open this in vim by running `vim ~/.zshrc`. If you completely mess up your `.zshrc` file, you can always restore the default `oh-my-zsh` configuration by running `cp ~/.oh-my-zsh/templates/zshrc.zsh-template ~/.zshrc`. It's not a bad idea to backup your `.zshrc` file before making any changes.
+
+The benefits of using Oh My Zsh are the ability to add themes and plugins.
+
+By far my favorite theme is [Powerlevel10k](https://github.com/romkatv/powerlevel10k). The theme supports a lot of different icons and it is very customizable. In order to install it, you need to run the following command:
+
+```bash
+git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k
+```
+
+Open up your `~/.zshrc` file and set `ZSH_THEME="powerlevel10k/powerlevel10k"`.
+
+Restart your terminal and you should see the new theme. You can also customize the theme by running `p10k configure` and following the prompts. The configurator will guide you through the process of customizing the theme. If you ever want to change it in the future, you can run `p10k configure` again.
+
+### Plugins
+
+There is a lot of plugins available for Oh My Zsh. You can find a list of all the plugins [here](https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins). In this article, I will show you how to install my most used plugins.
+
+#### zsh-syntax-highlighting
+
+[zsh-syntax-highlighting](https://github.com/zsh-users/zsh-syntax-highlighting) is a plugin that highlights commands as you type them. It is very useful because it helps you spot typos and mistakes. You can install it by running the following command:
+
+```bash
+git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
+```
+
+Open up your `~/.zshrc` file and add `zsh-syntax-highlighting` to the `plugins` array.
+
+```bash
+plugins=(
+	# other plugins...
+	zsh-syntax-highlighting
+)
+```
+
+Add the following line to the end of your `~/.zshrc` file:
+
+```bash
+source ./zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+```
+
+> This must at the very end of the file to work correctly.
+
+<div className="flex flex-wrap -mx-2 overflow-hidden xl:-mx-2">
+  <div className="my-1 px-2 w-full overflow-hidden xl:my-1 xl:px-2 xl:w-1/2">
+    ![zsh-syntax-highlighting-1](https://github.com/zsh-users/zsh-syntax-highlighting/raw/master/images/before1-smaller.png)
+  </div>
+  <div className="my-1 px-2 w-full overflow-hidden xl:my-1 xl:px-2 xl:w-1/2">
+    ![zsh-syntax-highlighting-2](https://github.com/zsh-users/zsh-syntax-highlighting/raw/master/images/after1-smaller.png)
+  </div>
+  <div className="my-1 px-2 w-full overflow-hidden xl:my-1 xl:px-2 xl:w-1/2">
+   ![zsh-syntax-highlighting-3](https://github.com/zsh-users/zsh-syntax-highlighting/raw/master/images/before2-smaller.png)
+  </div>
+  <div className="my-1 px-2 w-full overflow-hidden xl:my-1 xl:px-2 xl:w-1/2">
+    ![zsh-syntax-highlighting-4](https://github.com/zsh-users/zsh-syntax-highlighting/raw/master/images/after2-smaller.png)
+  </div>
+</div>
+
+#### zsh-autosuggestions
+
+[zsh-autosuggestions](https://github.com/zsh-users/zsh-autosuggestions) is like intelisense for your terminal. It suggests commands based on your history. You can install it by running the following command:
+
+```bash
+git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
+```
+
+Open up your `~/.zshrc` file and add `zsh-autosuggestions` to the `plugins` array.
+
+```bash
+plugins=(
+  # other plugins...
+  zsh-autosuggestions
+)
+```
+
+## Conclusion
+
+Thanks for reading! Hopefully you learned something new.

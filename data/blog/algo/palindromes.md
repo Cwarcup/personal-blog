@@ -54,11 +54,64 @@ function palindrome(str) {
 }
 ```
 
-## With Spead Operator
+## With Spread Operator
 
 ```js
 const palindrome = (str) => {
   const s = str.toLowerCase().replace(/[\W_]/g, '')
   return s === [...s].reverse().join('')
 }
+```
+
+## Reverse an integer
+
+```js
+const reverseInt = (num) => {
+  let reversed = Math.abs(num).toString().split('').reverse().join('')
+  console.log(reversed)
+
+  return Math.sign(num) * parseInt(reversed)
+}
+```
+
+## maxChar
+
+Return the most common character in a string.
+
+```js
+const maxChar = (str) => {
+  // create an object to store frequency of each character
+  let result = {}
+
+  // iterate through the string
+  // use regex to remove spaces, lowercase all characters
+  for (let char of str.toLowerCase().replace(/[\s]/g, '')) {
+    // if it does not exists, set its value to 1
+    if (!result[char]) {
+      result[char] = 1
+    }
+
+    // if the character exists in the object, +1 to its value
+    result[char]++
+  }
+
+  // now have an object with keys of each char in the string
+  // and values of their respective frequency
+
+  // return the key with the highest value
+  let highestVal = 0
+  let highestValsKey
+
+  for (let key in result) {
+    if (result[key] > highestVal) {
+      highestVal = result[key]
+      highestValsKey = key
+    }
+  }
+
+  return highestValsKey
+}
+
+maxChar('abccc   ccccd') // === // "c"
+maxChar('apple 1231111') // === "1"
 ```
