@@ -12,13 +12,13 @@ summary: Little guide to getting your Mac terminal set up for web development - 
   <p className="text-sm"> Photo by Cafer Mert Ceyhan</p>
 </div>
 
-What an exiting day, you got a new Macbook Pro and you are ready to start your new job as a web developer. You are ready to start coding, but you are not sure how to set up your terminal. You have heard about all these cool plugins and themes, but you don't know where to start. Well, you are in the right place. In this article, I will show you how to set up your terminal for web development.
+What an exciting day, you got a new Macbook Pro and you are ready to start your new job as a web developer. You are ready to start coding, but you are not sure how to set up your terminal. You have heard about all these cool plugins and themes, but you don't know where to start. Well, you are in the right place. In this article, I will show you how to set up your terminal for web development.
 
 <TOCInline toc={props.toc} asDisclosure toHeading={3} />
 
 ## Homebrew
 
-Think of [Homebrew](https://docs.brew.sh/) as a package manager for MacOS. It is a command line tool that allows you to install software on your Mac. It is very easy to use and it is a must-have for any developer. You can install it by running the following command in your terminal:
+Think of [Homebrew](https://docs.brew.sh/) as a package manager for macOS. It is a command line tool that allows you to install software on your Mac. It is very easy to use and it is a must-have for any developer. You can install it by running the following command in your terminal:
 
 ```bash
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"
@@ -49,7 +49,7 @@ brew install --cask iterm2
 
 ### Hotkey to open iTerm2
 
-Sometimes you'll want to open terminal but it's hidden behind other windows. You can set up a hotkey to bring focus to iTerm2 with a simple shortcut. To do this, go to `Preferences > Keys > Hotkey > ☑️ Show/hide all windows with a system-wide hotkey` and set a hotkey of your choice. I use `⌘`` as my hotkey.
+Sometimes you'll want to open terminal but it's hidden behind other windows. You can set up a hotkey to bring focus to iTerm2 with a simple shortcut. To do this, go to `Preferences > Keys > Hotkey > ☑️ Show/hide all windows with a system-wide hotkey` and set a hotkey of your choice. I use`⌘~` as my hotkey.
 
 ## zsh
 
@@ -87,11 +87,11 @@ In order to configure Oh My Zsh, you need to edit the `~/.zshrc` file. You can d
 open ~/.zshrc
 ```
 
-This will open the `~/.zshrc` file in your default text editor. You can also open this in vim by running `vim ~/.zshrc`. If you completely mess up your `.zshrc` file, you can always restore the default `oh-my-zsh` configuration by running `cp ~/.oh-my-zsh/templates/zshrc.zsh-template ~/.zshrc`. It's not a bad idea to backup your `.zshrc` file before making any changes.
+This will open the `~/.zshrc` file in your default text editor. You can also open this in vim by running `vim ~/.zshrc`. If you completely mess up your `.zshrc` file, you can always restore the default `oh-my-zsh` configuration by running `cp ~/.oh-my-zsh/templates/zshrc.zsh-template ~/.zshrc`. It's not a bad idea to back up your `.zshrc` file before making any changes.
 
 The benefits of using Oh My Zsh are the ability to add themes and plugins.
 
-By far my favorite theme is [Powerlevel10k](https://github.com/romkatv/powerlevel10k). The theme supports a lot of different icons and it is very customizable. In order to install it, you need to run the following command:
+By far my favourite theme is [Powerlevel10k](https://github.com/romkatv/powerlevel10k). The theme supports a lot of different icons and it is very customizable. To install it, you need to run the following command:
 
 ```bash
 git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k
@@ -103,7 +103,7 @@ Restart your terminal and you should see the new theme. You can also customize t
 
 ### Plugins
 
-There is a lot of plugins available for Oh My Zsh. You can find a list of all the plugins [here](https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins). In this article, I will show you how to install my most used plugins.
+There are a lot of plugins available for Oh My Zsh. You can find a list of all the plugins [here](https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins). In this article, I will show you how to install my most used plugins.
 
 #### zsh-syntax-highlighting
 
@@ -128,11 +128,11 @@ Add the following line to the end of your `~/.zshrc` file:
 source ./zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 ```
 
-> This must at the very end of the file to work correctly.
+> This must be at the very end of the file to work correctly.
 
 #### zsh-autosuggestions
 
-[zsh-autosuggestions](https://github.com/zsh-users/zsh-autosuggestions) is like intelisense for your terminal. It suggests commands based on your history. You can install it by running the following command:
+[zsh-autosuggestions](https://github.com/zsh-users/zsh-autosuggestions) is like IntelliSense for your terminal. It suggests commands based on your history. You can install it by running the following command:
 
 ```bash
 git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
@@ -149,4 +149,4 @@ plugins=(
 
 ## Conclusion
 
-Thanks for reading! Hopefully you learned something new.
+Thanks for reading! Hopefully, you learned something new.
