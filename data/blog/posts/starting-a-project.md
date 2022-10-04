@@ -4,7 +4,7 @@ date: '2022-10-04'
 tags: ['Project', 'Journey']
 images: '/static/images/individualBlogPostImages/new-project.jpg'
 draft: false
-summary: After finishing a projects, it was time to start a new one. But where do I begin? What do I build? These are the questions I asked myself. This post is about my journey creating a new project and the steps I took to get started.
+summary: After finishing a project, it was time to start a new one. But where do I begin? What do I build? These are the questions I asked myself. This post is about my journey in creating a new project and the steps I took to get started.
 ---
 
 # The Journey
@@ -21,17 +21,17 @@ There were a few things I considered when deciding what to build:
 
 ## What am I interested in?
 
-The common response to "What should I build?" is to build something that you are interested in. Maybe this is easy for some, but for me it was a little more difficult. I have a lot of interests, but I wasn't sure which one to focus on.
+The common response to "What should I build?" is to build something that you are interested in. Maybe this is easy for some, but for me, it was a little more difficult. I have a lot of interests, but I wasn't sure which one to focus on.
 
-I started to by creating a list of things I enjoy doing, some hobbies and interests. I also included some things I wanted to learn more about. I wanted to make sure I was building something that I would enjoy working on.
+I started by creating a list of things I enjoy doing, some hobbies and interests. I also included some things I wanted to learn more about. I wanted to make sure I was building something that I would enjoy working on.
 
-For example, I like to eat and try new places. My partner and I are always looking for new restaurants to try. I wrote this down as a project idea, but had no idea where I was going with it. But that's okay.
+For example, I like to eat and try new places. My partner and I are always looking for new restaurants to try. I wrote this down as a project idea but had no idea where I was going with it. But that's okay.
 
 ## What problems do I have?
 
-I also wanted to build something that would solve a problem I had. I feel like this is a good way of building something that is useful to me and potentially others.
+I also wanted to build something that would solve a problem I had. I feel like this is a good way of building something useful to me and potentially others.
 
-While visiting a new restaurant, I often find myself parking in unfamiliar areas. I don't know the area well, so I don't know where I can park. I also don't know how long I can park for or the cost. I wrote this down as a problem I have.
+While visiting a new restaurant, I often find myself parking in unfamiliar areas. I don't know the area well, so I don't know where I can park. I also don't know how long I can park or the cost. I wrote this down as a problem I have.
 
 ## What do I want to learn from this project?
 
@@ -57,7 +57,7 @@ I kept thinking about this parking ticket I received. I couldn't let it go. I ci
 
 # The Solution
 
-I decided to build a parking app. I wanted to build something that would help me find parking in unfamiliar areas. I wanted to know how much it would cost, how long I could park for, and if I could pay for it online.
+I decided to build a parking app. I wanted to build something that would help me find parking in unfamiliar areas. I wanted to know how much it would cost, how long I could park, and if I could pay for it online.
 
 I also wanted to build something that would help me learn more about React and APIs. I wanted to build something that would challenge me and help me grow as a developer.
 
