@@ -3,7 +3,7 @@ title: Getting Started with Python
 date: '2022-10-06'
 tags: ['Python', 'Basics']
 images: 'https://miro.medium.com/max/1400/1*RJMxLdTHqVBSijKmOO5MAg.jpeg'
-draft: false
+draft: true
 summary: Basics of Python
 ---
 
@@ -173,4 +173,55 @@ print(quote)
 quote2 = quote.upper()
 print(quote2)
 # TO BE OR NOT TO BE
+```
+
+### Lists
+
+Are similar to arrays in other languages. They are a collection of items.
+
+- They are mutable.
+- are denoted by square brackets `[]`
+- can access items by using the index
+
+```python
+friends = ["Kevin", "Karen", "Jim", "Oscar", "Toby"]
+print(friends[0])  # Kevin
+print(friends[1])  # Karen
+```
+
+### Matrix
+
+A matrix is a 2D list. It is a list of lists.
+
+```python
+matrix = [
+    [1, 2, 3],
+    [4, 5, 6],
+    [7, 8, 9]
+]
+
+print(matrix[0][1])  # 2
+```
+
+We can access the values in the matrix by using the indexes.
+
+### List Methods
+
+List of list methods: https://www.w3schools.com/python/python_ref_list.asp
+
+We can use methods like `reverse()` to reverse a list.
+
+```python
+matrix = [
+    [1, 2, 3],
+    [4, 5, 6],
+    [7, 8, 9]
+]
+
+matrix.reverse()
+
+new_matrix = matrix
+
+print(new_matrix)
+# [[7, 8, 9], [4, 5, 6], [1, 2, 3]]
 ```
