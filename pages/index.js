@@ -8,7 +8,7 @@ import Image from '@/components/Image'
 import Hero from '@/components/Hero'
 import RecentProjects from '@/components/RecentProjects'
 
-const MAX_DISPLAY = 6
+const MAX_DISPLAY = 3
 
 export async function getStaticProps() {
   const posts = await getAllFilesFrontMatter('blog')
@@ -21,6 +21,8 @@ export default function Home({ posts }) {
     <>
       <PageSEO title={siteMetadata.title} description={siteMetadata.description} />
       <Hero />
+      <RecentProjects MAX_PROJECTS="4" />
+
       <div className="container mx-auto divide-y divide-gray-700">
         <div className="my-4 flex flex-col">
           <span className="font-poppins title-font  text-3xl font-bold">Recent Posts</span>
@@ -43,7 +45,7 @@ export default function Home({ posts }) {
                         <img
                           alt={title}
                           src={images}
-                          className="absolute inset-0 h-full w-full  object-cover "
+                          className="absolute inset-0 h-full w-full object-cover"
                         />
                       </span>
                     </Link>
@@ -78,7 +80,6 @@ export default function Home({ posts }) {
           </div>
         )}
       </div>
-      <RecentProjects MAX_PROJECTS="4" />
     </>
   )
 }

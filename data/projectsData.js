@@ -1,5 +1,11 @@
 const projectsData = [
   {
+    title: 'Supa Snacks',
+    description: `Supa Snacks is a mini-project to learn Supabase and introduce myself to React-Query. It's a simple app that allows you to add snacks to a list, edit and delete from. Users can also change the order of the snacks in the list. It is built using TypeScript, React, React-Query, Supabase and React Router Dom.`,
+    imgSrc: '/static/images/projectCards/supa-snacks.jpg',
+    href: 'https://github.com/Cwarcup/supa-snacks',
+  },
+  {
     title: 'PayByFonie',
     description: `PayByFonie is a play on the app PayByPhone, a parking app that allows you to pay for parking via your phone. PayByFonie is a similar app, but allows you to search a destination and view parking meter data near that location. Users can search a location using the MapBox API, view the price and time limit of parking meters near that location, and obtain the PayByPhone meter number to pay for that meter. The app was built using React, and Node.js.`,
     imgSrc: '/static/images/projectCards/paybyfonie.jpg',
