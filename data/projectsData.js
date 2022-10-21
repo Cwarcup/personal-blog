@@ -1,5 +1,11 @@
 const projectsData = [
   {
+    title: 'Is this a banana?',
+    description: `Is this a banana? No. Maybe? I don't know. Use this app to find out. I wanted to learn more about machine learning and how to use TensorFlow.js. I explored the TensorFlow.js website and found a pre-trained image classification model called MobileNet. I used this model to classify images of bananas and other objects.`,
+    imgSrc: '/static/images/projectCards/banana.jpg',
+    href: 'https://github.com/Cwarcup/wtf_is_this',
+  },
+  {
     title: 'Supa Snacks',
     description: `Supa Snacks is a mini-project to learn Supabase and introduce myself to React-Query. It's a simple app that allows you to add snacks to a list, edit and delete from. Users can also change the order of the snacks in the list. It is built using TypeScript, React, React-Query, Supabase and React Router Dom.`,
     imgSrc: '/static/images/projectCards/supa-snacks.jpg',
