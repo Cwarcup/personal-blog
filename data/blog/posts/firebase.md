@@ -2,8 +2,8 @@
 title: Firebase - Authentication and Database
 date: '2022-10-27'
 tags: ['Firebase', 'Database', 'Authentication']
-images: '/static/images/individualBlogPostImages/new-project.jpg'
-draft: true
+images: '/static/images/individualBlogPostImages/firebase.jpg'
+draft: false
 summary: Basics of using Firebase for authentication and database storage. Covers how to set up a project, create a database, and authenticate users in a React app.
 ---
 
@@ -230,4 +230,103 @@ const handleSubmit = async (e) => {
     console.error(error)
   }
 }
+```
+
+## Observable Listener
+
+Is a function that listens for changes in the authentication state. It will be called every time the authentication state changes. Our code is getting a little messy.
+
+We can use the `onAuthStateChanged` function to listen for changes in the authentication state. This function will be called every time the authentication state changes.
+
+Read more about the `onAuthStateChanged` function [here](https://firebase.google.com/docs/reference/js/firebase.auth.Auth#onauthstatechanged).
+
+```js
+// inside firebaseUtils.js
+// observer - Adds an observer for changes to the user's sign-in state.
+export const onAuthStateChangedListener = (callback) => onAuthStateChanged(auth, callback)
+```
+
+Will import this in our `userContext` file. We want to run the `onAuthStateChangedListener` function when the app loads. We will do this in the `UserProvider` component by using the `useEffect` hook.
+
+We use can run the callback method whenever out `auth` state changes. This will be called every time the authentication state changes. So when a user signs in or signs out, this callback function will be called.
+
+The `onAuthStateChanged` is **always** listening for changes in the authentication state. You need this to unmount
+
+```js
+// inside userContext.js
+
+import { createContext, useState, useEffect } from 'react'
+import { onAuthStateChangedListener } from '../utils/firebase/firebaseUtils'
+
+// the actual value of the context is an object
+export const UserContext = createContext({
+  currentUser: null,
+  setCurrentUser: () => null,
+})
+
+// provider component
+export const UserProvider = ({ children }) => {
+  // the initial state of the user context, base, empty state
+  const [currentUser, setCurrentUser] = useState(null)
+  // allows you to pass the getter and setter functions to the children components
+  const value = { currentUser, setCurrentUser }
+
+  useEffect(() => {
+    // onAuthStateChangedListener() is a function that returns an unsubscribe function
+    const unsubscribe = onAuthStateChangedListener((user) => {
+      setCurrentUser(user)
+    })
+
+    return unsubscribe // unsubscribe from the listener when the component unmounts
+  }, [])
+  return <UserContext.Provider value={value}>{children}</UserContext.Provider>
+}
+```
+
+We are going to modify our code to use the `onAuthStateChangedListener` function. We will use the `onAuthStateChangedListener` function to set the current user in the `UserContext`.
+
+We can remove all references to the `setCurrentUser` function from our `Authenticate.jsx` and `SignUp.jsx` components because we are using the `onAuthStateChangedListener` function to set the current user in the `UserContext`.
+
+We know when a user signs in, the `onAuthStateChangedListener` function will be called, the callback `(user) => {setCurrentUser(user)}` will be called. This will set the current user in the `UserContext`.
+
+If a user signs out, the `onAuthStateChangedListener` function will be called, the callback `(user) => {setCurrentUser(user)}` will be called. This will set the current user in the `UserContext` to `null`.
+
+Why would you do this?
+
+You can use the `onAuthStateChanged` function to centralize all the user authentication logic into the `UserContext` file. This will make your code cleaner and easier to maintain. We are not needing to pass the `setCurrentUser` function down to the child components. We simply use the `onAuthStateChanged` function to set the current user in the `UserContext`.
+
+#### Observer Pattern
+
+Think of the `onAuthStateChanged` as a stream, a sequence of events in order of time. There is a variable, unknown number of time between events.
+
+We can use a listener to listen for changes in the authentication state. We can use the `onAuthStateChanged` function to listen for changes in the authentication state. This function will be called every time the authentication state changes.
+
+The listener has three key methods:
+
+- `next` - is called every time a new event is emitted. It points to the callback function.
+- `error` - is called when an error occurs. It points to the error callback function.
+- `complete` - is called when the stream is has ended. You can use this to do something when finished.
+
+So, we need a way to subscribe the listener to the stream. We want to run the `next` method every time a new event is emitted. However, by the time we subscribe to the stream, the stream may have already emitted some events.
+
+![streams](../../../public/static/images/individualBlogPostImages/steams.svg)
+
+This is a pretty simple logic. Once we get an event, we fire `next`. Once we run the `complete` method, we unsubscribe from the stream.
+
+We see this in our `UserContext` file. We are using the `useEffect` hook to run the `onAuthStateChangedListener` function. This function will be called every time the authentication state changes.
+
+```js
+useEffect(() => {
+  // onAuthStateChangedListener() is a function that returns an unsubscribe function
+  const unsubscribe = onAuthStateChangedListener((user) => {
+    if (user) {
+      createUserDocumentFromAuth(user)
+    }
+    // set the current user in the UserContext
+    setCurrentUser(user)
+  })
+
+  // clean up function
+  return unsubscribe // unsubscribe from the listener when the component unmounts
+}, [])
 ```
