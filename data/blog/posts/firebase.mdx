@@ -309,7 +309,9 @@ The listener has three key methods:
 
 So, we need a way to subscribe the listener to the stream. We want to run the `next` method every time a new event is emitted. However, by the time we subscribe to the stream, the stream may have already emitted some events.
 
-![streams](../../../public/static/images/individualBlogPostImages/steams.svg)
+<div className="flex justify-center">
+  ![streams](/static/images/individualBlogPostImages/steams.svg)
+</div>
 
 This is a pretty simple logic. Once we get an event, we fire `next`. Once we run the `complete` method, we unsubscribe from the stream.
 
