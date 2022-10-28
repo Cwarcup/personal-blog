@@ -332,3 +332,162 @@ useEffect(() => {
   return unsubscribe // unsubscribe from the listener when the component unmounts
 }, [])
 ```
+
+# Firestore Database
+
+It's a bad idea to store large amounts of data on the front end. We can use Firestore, a NoSQL database, to store our data.
+
+## General Structure of a Firestore Database
+
+In general, we have two types of databases:
+
+| Relational Database (SQL)                                          | NoSQL Database                                               |
+| ------------------------------------------------------------------ | ------------------------------------------------------------ |
+| Data is stored in tables                                           | Data is stored in collections                                |
+| Data is related to each                                            | Data is not related to each other                            |
+| Data is structured. Each item in a table will have the same shape. | Data is not structured. Documents can have different shapes. |
+| PostgreSQL, MySQL, Supabase                                        | MongoDB, Firestore                                           |
+
+In a NoSQL database, we have collections and documents. A collection is a group of documents. A document is a single record.
+
+We can easily add any property to a document. We can add a new property to a document without having to change the structure of the document.
+
+<div className="flex justify-center">
+  ![adding to NoSQL](/static/images/postImages/firestore-1.png)
+</div>
+
+WHen using a NoSQL database you need to think about how you are going to structure your data. You need to think about how you are going to query your data.For example, in order to predictably map over a collection of documents, you need to ensure the documents have the same shape. If you don't have the same shape, you will need to do some extra work to map over the collection.
+
+## Uploading Data to Firestore
+
+We can create a method in the `firebaseUtils` file to upload data to Firestore.
+
+See docs here: https://firebase.google.com/docs/firestore/manage-data/add-data
+
+Start off by importing the `collection` and `writeBatch` functions from the `firebase` package.
+
+- `collection` - gets a reference to a collection
+- `writeBatch` - allows you to write multiple documents to a collection in a single batch
+
+```js
+import { getFirestore, doc, setDoc, getDoc, collection, writeBatch } from 'firebase/firestore'
+
+export const addCollectionAndDocuments = async (collectionKey, objectsToAdd) => {
+  //...
+}
+```
+
+`collectionKey` is the name of the collection. `objectsToAdd` is an array of objects. We want to add each object to the collection.
+
+When we write to the database, we are completing a _transaction_. Think of a transaction as a series of steps, writing each collection to the db. There are numerous writes in a single transaction.
+
+We can use the `writeBatch` function to write multiple documents to a collection in a single batch. This would be a single transaction.
+
+If a single write fails, the entire transaction **fails**. We need to make sure all the writes are successful.
+
+more on [writeBatch](https://firebase.google.com/docs/reference/js/v8/firebase.firestore.WriteBatch?hl=en)
+
+```js
+// firestore - database
+export const db = getFirestore()
+
+// adding a collection to firestore
+export const addCollectionAndDocuments = async (collectionKey, objectsToAdd) => {
+  // create a collection reference using the db we created above
+  const collectionRef = collection(db, collectionKey)
+
+  // use a batch to write multiple documents at once
+  const batch = writeBatch(db)
+
+  objectsToAdd.forEach((obj) => {
+    // create a new document reference
+    const newDocRef = doc(collectionRef, obj.title.toLowerCase())
+    // add the object to the batch
+    batch.set(newDocRef, obj)
+  })
+
+  // begins the batch write
+  await batch.commit()
+  console.log('batch write complete')
+}
+```
+
+We can do a `forEach` loop over the `objectsToAdd` array. For each object, we create a new document reference. We add the object to the batch. Once we have added all the objects to the batch, we can commit the batch.
+
+You can import the `addCollectionAndDocuments` into the `App.js` file and call it. Only call it once and delete it afterwards.
+
+```js
+import SOME_DATA from './data/some-data.js'
+// SOME_DATA is an array of objects
+import { addCollectionAndDocuments } from './firebase/firebase.utils'
+
+export default function App() {
+  useEffect(() => {
+    addCollectionAndDocuments('collections', SOME_DATA)
+  }, [])
+}
+```
+
+## Reading Data from Firestore
+
+Now we need to pull data from Firestore and use them in our app.
+
+We need the `query` and `getDocs` functions from the `firebase/firestore` package.
+
+- `query` - creates a query against a collection or collection group.
+- `getDocs` - gets all the documents from a collection that match the query.
+
+The object we get back from `getDocs` is a `QuerySnapshot`. We can use the `docs` property to get an array of documents.
+
+```js
+// get a document from firestore
+export const getCategoriesAndDocuments = async () => {
+  const collectionRef = collection(db, 'categories')
+  const q = query(collectionRef)
+
+  const querySnapshot = await getDocs(q) // can use this to access the data
+
+  console.log('querySnapshot', querySnapshot.docs[0].data())
+  // {
+  //   "items": [
+  //       {
+  //           "id": 1,
+  //           "name": "Brown Brim",
+  //           "price": 25,
+  //           "imageUrl": "https://i.ibb.co/ZYW3VTp/brown-brim.png"
+  //       },
+  //       {
+  //           "name": "Blue Beanie",
+  //           "id": 2,
+  //           "imageUrl": "https://i.ibb.co/ypkgK0X/blue-beanie.png",
+  //           "price": 18
+  //       },
+  //       //...
+  //   ],
+  //   "title": "Hats"
+  // }
+}
+```
+
+Completed:
+
+```js
+// get a document from firestore
+export const getCategoriesAndDocuments = async () => {
+  const collectionRef = collection(db, 'categories')
+  const q = query(collectionRef)
+
+  const querySnapshot = await getDocs(q) // can use this to access the data
+  const categoryMap = querySnapshot.docs.reduce((acc, docSnapshot) => {
+    const { title, items } = docSnapshot.data()
+    acc[title.toLowerCase()] = items
+    return acc
+  })
+
+  return categoryMap
+}
+```
+
+> The main purpose of this helper function is to get the data from Firestore and convert it into the shape we need.
+
+This allows us to have a single source of truth for our data. We can use the data from Firestore in our app.
