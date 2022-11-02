@@ -43,7 +43,7 @@ const LayoutWrapper = ({ children }) => {
           </Link>
           <div className="flex items-center text-base leading-5">
             <div className="hidden sm:block">
-              {headerNavLinks.map((link) => {
+              {headerNavLinks.map((link, index) => {
                 if (link.type !== 'dropdown') {
                   return (
                     <Link
@@ -57,7 +57,7 @@ const LayoutWrapper = ({ children }) => {
                 }
                 if (link.type === 'dropdown') {
                   return (
-                    <Menu as="a" className="relative inline-block p-1 sm:p-4">
+                    <Menu as="a" className="relative inline-block p-1 sm:p-4" key={index}>
                       <div>
                         <Menu.Button className="inline-flex justify-center rounded-md bg-transparent font-bold text-gray-100 hover:text-primary-400 focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75">
                           Other
