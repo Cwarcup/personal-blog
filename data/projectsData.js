@@ -1,5 +1,11 @@
 const projectsData = [
   {
+    title: 'E-commerce Website with TypeScript, React, Redux and Firebase',
+    description: `This is a project that I built while learning React and Redux. It is a fully functional e-commerce website that allows users to sign in with their Google account, add items to their cart, and make payments with Stripe. It is built with TypeScript, React, Redux, Firebase, Stripe, and Tailwind.`,
+    imgSrc: '/static/images/projectCards/twitter-card.jpg',
+    href: 'https://github.com/Cwarcup/ecom-firebase',
+  },
+  {
     title: 'Is this a banana?',
     description: `Is this a banana? No. Maybe? I don't know. Use this app to find out. I wanted to learn more about machine learning and how to use TensorFlow.js. I explored the TensorFlow.js website and found a pre-trained image classification model called MobileNet. I used this model to classify images of bananas and other objects.`,
     imgSrc: '/static/images/projectCards/banana.jpg',
