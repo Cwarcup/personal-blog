@@ -1,0 +1,383 @@
+---
+title: Basics of Go
+date: '2022-11-7'
+tags: ['Go']
+images: '/static/images/individualBlogPostImages/learning-go.jpg'
+draft: false
+summary: 'Go is a programming language that is gaining popularity. It is a statically typed language that is compiled and has a garbage collector. It is a language that is easy to learn and has a lot of resources available for learning. In this article, we will learn the basics of Go.'
+---
+
+# Basics of Go
+
+## Running a Go program
+
+We can use the `go` cli to perform a variety of tasks:
+
+| Command      | Description                                                    |
+| ------------ | -------------------------------------------------------------- |
+| `go build`   | **Compiles** a bunch of go source code files                   |
+| `go run`     | **Compiles** and **executes** one or two files                 |
+| `go fmt`     | **Formats** all the code in each file in the current directory |
+| `go install` | Compiles and "installs" a package                              |
+| `go get`     | Downloads the raw source code of someone else's package        |
+| `go test`    | Runs any tests associated with the current project             |
+
+## Go Packages
+
+Think of a package as a collection of code files each ending in `.go`. A package is a way to group together related code. For example, the `fmt` package contains code for formatting text. The `math` package contains code for mathematical operations. The `net/http` package contains code for making HTTP requests.
+
+In order for a file to be part of a package, it must start with a line of code that looks like this:
+
+```go
+package main
+```
+
+### Types of Go Packages
+
+There are two types of packages:
+
+- Executable: Generates a file that we can run. Are used for 'doing things' like running a server or a command line tool.
+- Reusable: Code used as 'helpers'. Good place to put reusable logic. Think of these are libraries.
+
+How do we know if we are making a reusable or executable package? We can tell by the package name. If the package name is `main`, then it is an executable package. If the package name is anything else, then it is a reusable package.
+
+`main` is a special package name. It tells the Go compiler that the package should compile as an executable program instead of a reusable package.
+
+Anytime we create an executable package, we need to have a function called `main` with no arguments and no return values. This is the entry point for our program.
+
+```go
+package main
+
+import "fmt"
+
+func main() {
+    fmt.Println("Hello, World!")
+}
+```
+
+## Imports and Packages
+
+We use the `import "fmt"` package to give `main` access to the `fmt` package. The `fmt` package contains functions for formatting text. We use the `fmt.Println` function to print the string `"Hello, World!"` to the terminal.
+
+Think of our `main` package as a separate program. In order to give it access to the `fmt` package, we need to import it. We have other packages that we can import as well. For example, the `math` package contains functions for mathematical operations.
+
+We are not limited to importing packages that are part of the standard library. We can also import packages that are written by other people. These are called third-party packages. We can import third-party packages by using the `go get` command.
+
+```go
+package main
+
+import (
+    "fmt"
+    "math"
+    "calculator"
+    "uploader"
+)
+```
+
+### Standard Library Packages
+
+We can see a list of all the standard library packages [here](https://pkg.go.dev/std).
+
+## Functions
+
+We can define a function by using the `func` keyword. We can define a function that takes zero or more arguments and returns zero or more values.
+
+### Receivers
+
+We can define a function that is associated with a particular type. We do this by creating a receiver. A receiver is just a parameter that is defined in our function definition with a type. The receiver is defined before the function name.
+
+```go
+// create a new type of 'deck'
+// which is a slice of strings
+
+type deck []string
+
+// loop through the deck and print each card
+func (d deck) print() {
+	for i, card := range d {
+		fmt.Println(i, card)
+	}
+}
+```
+
+Any variable of type `deck` now gets access top the `print` method.
+
+```go
+cards := deck{"Ace of Diamonds", newCard()}
+cards.print()
+
+// Output:
+// 0 Ace of Diamonds
+// 1 Five of Diamonds
+```
+
+### Multiple Return Values
+
+We can return multiple values from a function. We can do this by separating the return types with a **comma**.
+
+```go
+// pass in a deck and the number of cards you want to deal
+// returns two decks, the first is the hand and the second is the remaining deck
+func deal(d deck, handSize int) (deck deck) {
+	// return everything from the start of the deck to the handSize
+	// and everything from the handSize to the end of the deck
+	return d[:handSize], d[handSize:]
+}
+```
+
+We can use this in our main function to deal a hand of cards. However, the `deal` function returns two values.
+
+<div className="flex justify-center">
+  <Image
+    src="/static/images/individualBlogPostImages/go-returning-two-values.svg"
+    alt="two return values"
+    width={500}
+    height={250}
+  />
+</div>
+
+If we do not want to use one of the return values, we can use the **blank identifier**. The blank identifier is an underscore (`_`). We can use the blank identifier to tell Go that we are intentionally not using a value.
+
+```go
+func main() {
+	cards := newDeck()
+	hand, _ := deal(cards, 5)
+	hand.print()
+}
+```
+
+## Creating a Variable
+
+We can create a variable by using the `var` keyword. We can create a variable that is set to a specific value or we can create a variable without a value and then later assign a value to it.
+
+The syntax for creating a variable is:
+
+```go
+var name type = value
+```
+
+```go
+var name string = "Todd"
+var age int = 45
+var isCool bool = true
+var size float32 = 2.3
+```
+
+> These are the basic types in Go. There are more.
+
+Go is a **statically typed** language. This means that once a variable is declared with a certain type, it can only ever be that type. We cannot change the type of the variable later on.
+
+| Dynamic Typing | Static Typing |
+| -------------- | ------------- |
+| JavaScript     | Go            |
+| Python         | C++           |
+| Ruby           | Java          |
+
+### Functions and Return Types
+
+We need to tell the Go compiler what type of value we are returning from a function. We do this by adding the type after the closing parenthesis of the function parameters.
+
+```go
+func newCard() string {
+  return "Five of Diamonds"
+}
+```
+
+> If we do not return a value, the function will return nothing.
+
+## Shorthand with inferred types
+
+We can depend on the Go compiler to **infer** the type of the variable based on the value that we assign to it. We can use the shorthand syntax to create a variable.
+
+```go
+name := "Todd"
+age := 45
+isCool := true
+size := 2.3
+```
+
+Only have to use the `:=` when we first initialize a variable. After that, we can use the `=` operator.
+
+```go
+name := "Gilligan"
+name = "Skipper"
+```
+
+## Slices and For Loops
+
+Go has two data types for storing multiple values: arrays and slices. Arrays are fixed length. Slices are dynamic length.
+
+Every `slice` must be the same data type.
+
+### Creating a Slice
+
+We can create a slice by using `[]` and specifying the type of the slice.
+
+```go
+func main() {
+  cards := []string{"Ace of Diamonds", newCard()}
+
+	fmt.Println(cards)
+}
+
+// function that will return the name and type of a card
+func newCard() string {
+  return "Five of Diamonds"
+}
+```
+
+### Iterating Over a Slice
+
+```go
+func main() {
+  cards := []string{"Ace of Diamonds", newCard()}
+  cards = append(cards, "Six of Spades")
+
+  for i, card := range cards {
+    fmt.Println(i, card)
+  }
+}
+
+// function that will return the name and type of a card
+func newCard() string {
+  return "Five of Diamonds"
+}
+
+// Output
+// 0 Ace of Diamonds
+// 1 Five of Diamonds
+// 2 Six of Spades
+```
+
+The syntax for a `for` loop is:
+
+```go
+for index, card := range cards {
+  fmt.Println(index, card)
+}
+```
+
+`range` is a keyword that allows us to iterate over a slice. It returns two values: the index of the current item and a copy of the item itself. We also used `:=` to create a new variable called `card` inside of the `for` loop. This variable is only available inside of the `for` loop.
+
+If we are not using the index, we can use the underscore `_` to tell the Go compiler that we don't want to use this variable.
+
+```go
+for _, card := range cards {
+  fmt.Println(card)
+}
+```
+
+### Selecting Items from a Slice
+
+We can simply access item on a slice by using the index.
+
+```go
+// example slice
+fruits := []string{"apple", "orange", "banana"}
+
+// access the first item
+fmt.Println(fruits[0])
+
+// output
+// apple
+```
+
+We also have access to some special functions built into Go:
+
+#### Specifying a Range
+
+```go
+fruits[startIndexIncluding : upToNotIncluding]
+```
+
+```go
+// example slice
+fruits := []string{"apple", "orange", "banana", "kiwi"}
+
+// access the first two items
+fmt.Println(fruits[0:2])
+
+// output
+// [apple orange]
+```
+
+We can optionally leave out the starting index or the ending index. If we leave out the starting index, it will start at the beginning of the slice. If we leave out the ending index, it will go all the way to the end of the slice.
+
+```go
+// example slice
+fruits := []string{"apple", "orange", "banana", "kiwi"}
+
+// access the first two items
+fmt.Println(fruits[:2]) // [apple orange]
+
+// access the last two items
+fmt.Println(fruits[2:]) // [banana kiwi]
+```
+
+## Saving Data to a File
+
+How do we interact with the file system? We can use the `os` package. Learn more [here](https://pkg.go.dev/os@go1.19.3#WriteFile)
+
+```go
+func WriteFile(name string, data []byte, perm FileMode) error
+```
+
+```go
+package main
+
+import (
+  "fmt"
+  "io/ioutil"
+  "os"
+)
+
+func main() {
+  cards := []string{"Ace of Diamonds", newCard()}
+  cards = append(cards, "Six of Spades")
+
+  // create a file
+  file, err := os.Create("my_cards.txt")
+
+  // check for errors
+  if err != nil {
+    fmt.Println("Error:", err)
+    return
+  }
+
+  // write to the file
+  fmt.Fprint(file, cards)
+
+  // close the file
+  file.Close()
+}
+
+```
+
+### Type `[]byte`
+
+```go
+func WriteFile(name string, data []byte, perm FileMode) error
+```
+
+The `WriteFile` function takes in a `[]byte` as the second parameter. What is a `[]byte`? It is a slice of bytes. A byte is a unit of data that is 8 bits long. A byte can hold a number between 0 and 255.
+
+Go uses the decimal system. The number 255 is the largest number that can be represented by a single byte. The number 256 is the smallest number that cannot be represented by a single byte. It is essentially a more efficient way of storing data.
+
+## Type Conversion
+
+We can convert a `[]string` to a `[]byte` by using the `[]byte` function.
+
+```go
+[]typeWeWant("value we have")
+```
+
+```go
+package main
+
+import "fmt"
+
+func main() {
+	greeting := "hi there!"
+	fmt.Println([]byte(greeting)) //[104 105 32 116 104 101 114 101 33]
+}
+```
