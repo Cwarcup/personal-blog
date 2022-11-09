@@ -1,7 +1,7 @@
 ---
 title: Queues - JavaScript Data Structures
 date: '2022-04-24'
-tags: ['Data Structures', 'JavaScript', 'Queues']
+tags: ['Data Structures', 'Queues']
 draft: false
 summary: Implementation and methods of a queue.
 ---
@@ -17,7 +17,7 @@ Queues are a data type or collection in which the collection maintains a particu
 | Remove the element from the front of the queue | `queue.remove();`            |
 | Check if a queue is empty                      | `isEmpty()`                  |
 
-# Implementation
+# Queue With Arrays
 
 ```js
 class Queue {
@@ -67,3 +67,60 @@ queue.dequeue() // 'C'
 - Define a `dequeue()` method to remove an element from the _start_ of the `data` array.
 - Define a `peek()` method, which retrieves the value of the first element in the `data` array, _without_ removing it.
 - Define an `isEmpty()` method to determine if the `data` array is empty.
+
+# Queues without Arrays
+
+```js
+class Node {
+  constructor(value) {
+    this.value = value
+    this.next = null
+  }
+}
+
+// first in, first out
+class Queue {
+  constructor() {
+    this.first = null
+    this.last = null
+    this.length = 0
+  }
+
+  peek() {
+    return this.first
+  }
+
+  enqueue(value) {
+    const newItem = new Node(value)
+
+    if (this.length === 0) {
+      this.first = newItem
+      this.last = newItem
+    } else {
+      this.last.next = newItem
+      this.last = newItem
+    }
+    this.length++
+    return this
+  }
+
+  dequeue() {
+    if (!this.first) {
+      return null
+    }
+
+    if (this.first === this.last) {
+      this.last = null
+    }
+
+    const temp = this.first
+    this.first = this.first.next
+    this.length--
+    return temp
+  }
+
+  isEmpty() {
+    return this.length ? false : true
+  }
+}
+```

@@ -6,7 +6,7 @@ draft: false
 summary: Creating a queue from a stack.
 ---
 
-<TOCInline toc={props.toc} asDisclosure toHeading={3} />
+<TOCInline toc={props.toc} toHeading={3} indentDepth={3} />
 
 Recall that a **queue** is a data structure that follows the **FIFO (first in, first out)** principle.
 
@@ -100,4 +100,98 @@ console.log(qfs.dequeue()) // B
 console.log(qfs.dequeue()) // C
 console.log(qfs.dequeue()) // D
 console.log(qfs.isEmpty()) // true
+```
+
+# Using a Stack that does not use arrays
+
+```js
+class Node {
+  constructor(value) {
+    this.value = value
+    this.next = null
+  }
+}
+
+// Last in, first out
+
+class Stack {
+  constructor() {
+    this.top = null
+    this.bottom = null
+    this.length = 0
+  }
+
+  peek() {
+    return this.top
+  }
+
+  push(val) {
+    const newNode = new Node(val)
+
+    // check if this is the first item in the stack
+    if (this.length === 0) {
+      this.top = newNode
+      this.bottom = newNode
+    } else {
+      // if we have items...
+      const temp = this.top
+      this.top = newNode
+      this.top.next = temp
+    }
+
+    this.length++
+    return this
+  }
+
+  pop() {
+    // if there is no top
+    if (!this.top) {
+      return null
+    }
+
+    if (this.top === this.bottom) {
+      this.bottom = null
+    }
+
+    // hold the top
+    const result = this.top
+    // make the second node the first
+    this.top = this.top.next
+    this.length--
+    return result
+  }
+
+  isEmpty() {
+    // return true or false
+    if (this.length === 0) {
+      return true
+    }
+    return false
+  }
+}
+
+class QueueFromStack {
+  constructor() {
+    this.first = new Stack()
+    this.last = new Stack()
+    this.length = 0
+  }
+
+  enqueue(value) {
+    this.first.push(value)
+  }
+
+  dequeue() {
+    while (this.first.peek()) {
+      this.last.push(this.first.pop())
+    }
+
+    let result = this.last.pop()
+
+    while (this.last.peek()) {
+      this.first.push(this.last.pop())
+    }
+    return result
+  }
+}
 ```

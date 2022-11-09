@@ -58,3 +58,72 @@ class Stack {
 - Define a `pop` method which **removes** an element from the top of the stack. Can use `shift` to remove from the beginning of an array.
 - Define a `peek` method which **returns** the element at the top of the stack, without removing it. Can refer to the first element in an array with `[0]` since arrays are zero-indexed.
 - Define a `isEmpty` method which **checks** if the stack is empty. Uses the `length` property of an array to check if the array is empty.
+
+# Can also be implemented without an array
+
+```js
+class Node {
+  constructor(value) {
+    this.value = value
+    this.next = null
+  }
+}
+
+// Last in, first out
+
+class Stack {
+  constructor() {
+    this.top = null
+    this.bottom = null
+    this.length = 0
+  }
+
+  peek() {
+    return this.top
+  }
+
+  push(val) {
+    const newNode = new Node(val)
+
+    // check if this is the first item in the stack
+    if (this.length === 0) {
+      this.top = newNode
+      this.bottom = newNode
+    } else {
+      // if we have items...
+      const temp = this.top
+      this.top = newNode
+      this.top.next = temp
+    }
+
+    this.length++
+    return this
+  }
+
+  pop() {
+    // if there is no top
+    if (!this.top) {
+      return null
+    }
+
+    if (this.top === this.bottom) {
+      this.bottom = null
+    }
+
+    // hold the top
+    const result = this.top
+    // make the second node the first
+    this.top = this.top.next
+    this.length--
+    return result
+  }
+
+  isEmpty() {
+    // return true or false
+    if (this.length === 0) {
+      return true
+    }
+    return false
+  }
+}
+```
