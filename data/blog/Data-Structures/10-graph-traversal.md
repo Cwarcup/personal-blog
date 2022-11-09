@@ -2,7 +2,7 @@
 title: Doubly Linked List
 date: '2022-02-26'
 tags: ['Data Structures', 'Single Linked List']
-draft: true
+draft: false
 summary: Methods and implementation of a doubly linked list.
 ---
 
