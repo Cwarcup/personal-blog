@@ -27,7 +27,19 @@ s.pop() // returns 2
 s.pop() // returns 1
 ```
 
-# Making a Stack
+# Runtime
+
+| Method    | Time Complexity |
+| --------- | --------------- |
+| `push`    | O(1)            |
+| `pop`     | O(1)            |
+| `peek`    | O(1)            |
+| `isEmpty` | O(1)            |
+| `lookup`  | O(n)            |
+
+[big o](https://res.cloudinary.com/practicaldev/image/fetch/s--cCSlyRS8--/c_imagga_scale,f_auto,fl_progressive,h_900,q_auto,w_1600/https://dev-to-uploads.s3.amazonaws.com/i/d155tk2ttynxoehhz39k.jpeg)
+
+# Making a Stack with an array
 
 ```js
 class Stack {
@@ -59,7 +71,7 @@ class Stack {
 - Define a `peek` method which **returns** the element at the top of the stack, without removing it. Can refer to the first element in an array with `[0]` since arrays are zero-indexed.
 - Define a `isEmpty` method which **checks** if the stack is empty. Uses the `length` property of an array to check if the array is empty.
 
-# Can also be implemented without an array
+# Stack without an array
 
 ```js
 class Node {
@@ -68,8 +80,6 @@ class Node {
     this.next = null
   }
 }
-
-// Last in, first out
 
 class Stack {
   constructor() {

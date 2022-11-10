@@ -17,6 +17,18 @@ Queues are a data type or collection in which the collection maintains a particu
 | Remove the element from the front of the queue | `queue.remove();`            |
 | Check if a queue is empty                      | `isEmpty()`                  |
 
+# Runtime
+
+| Method    | Time Complexity |
+| --------- | --------------- |
+| `lookup`  | O(n)            |
+| `enqueue` | O(1)            |
+| `dequeue` | O(1)            |
+| `isEmpty` | O(1)            |
+| `peek`    | O(1)            |
+
+[big o](https://res.cloudinary.com/practicaldev/image/fetch/s--cCSlyRS8--/c_imagga_scale,f_auto,fl_progressive,h_900,q_auto,w_1600/https://dev-to-uploads.s3.amazonaws.com/i/d155tk2ttynxoehhz39k.jpeg)
+
 # Queue With Arrays
 
 ```js

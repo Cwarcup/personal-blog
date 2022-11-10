@@ -12,14 +12,37 @@ Is a collection of nodes and connections between these nodes.
 
 There is no parent node, starting place.
 
-## Types of Graphs
+# Types of Graphs
 
-### Terminology
+## Undirected Graph
 
-- Vertex - a node
-- Edge - connection between nodes
-- Weighted/Unweighted - values assigned to distances between vertices
-- Directed/Undirected - directions assigned to distances between vertices
+- No direction to the edges.
+- think of a highway system, you can drive both ways on the highway.
+-
+
+## Directed Graph
+
+- useful for modeling relationships where the direction matters.
+  - traffic flow
+  - Twitter
+
+## Weighted Graph
+
+- You can have information about the edges.
+- Useful for modeling things like roads, where you might want to know the distance between two cities.
+- used a lot for calculating optimal paths.
+
+## Cyclic Graph
+
+- when you can get back to the same node you started at.
+- common in weighted graphs.
+
+# Terminology
+
+- Vertex: a node
+- Edge: connection between nodes
+- Weighted/Unweighted: values assigned to distances between vertices
+- Directed/Undirected: directions assigned to distances between vertices
 
 ![direction](https://sites.google.com/a/cs.christuniversity.in/discrete-mathematics-lectures/_/rsrc/1409480658489/graphs/directed-and-undirected-graph/dir.png)
 

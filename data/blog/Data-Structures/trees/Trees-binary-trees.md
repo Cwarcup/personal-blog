@@ -41,7 +41,17 @@ There are [many types](https://en.wikipedia.org/wiki/List_of_data_structures#Tre
 
 ![BinaryTree](https://www.30secondsofcode.org/assets/blog_images/ds-tree.webp)
 
-## Binary Search Trees (BST)
+### Runtime
+
+| Operation | Big O    |
+| :-------- | :------- |
+| Insert    | O(log n) |
+| Lookup    | O(log n) |
+| Delete    | O(log n) |
+
+[big o](https://res.cloudinary.com/practicaldev/image/fetch/s--cCSlyRS8--/c_imagga_scale,f_auto,fl_progressive,h_900,q_auto,w_1600/https://dev-to-uploads.s3.amazonaws.com/i/d155tk2ttynxoehhz39k.jpeg)
+
+### Binary Search Trees (BST)
 
 - Is a special type of binary tree.
 - Has either 0, 1, or 2 children.
@@ -56,7 +66,7 @@ There are [many types](https://en.wikipedia.org/wiki/List_of_data_structures#Tre
 - if `val > node`: go left
 - if `val < node`: go right
 
-# Binary Search Tree (BST) Node
+### Binary Search Tree (BST) Node
 
 ```js
 class Node {
@@ -68,32 +78,7 @@ class Node {
 }
 ```
 
-# Binary Search Tree (BST) Class
-
-```js
-class BinarySearchTree {
-  constructor() {
-    this.root = null
-  }
-}
-```
-
-Can construct a very basic BST:
-
-```js
-const tree = new BinarySearchTree()
-tree.root = new Node(10)
-tree.root.right = new Node(15)
-tree.root.left = new Node(7)
-tree.root.left.right = new Node(9)
-
-console.log(tree)
-// Node { value: 10,
-//      left: Node { value: 7, left: null, right: [Object] },
-//      right: Node { value: 15, left: null, right: null } }
-```
-
-## BST Insert()
+### BST Insert()
 
 Should be able to call `insert(value)` on a BST and it will insert the value into the tree in the correct spot. Recall, the **left** side of the tree is always less than the parent node. The **right** side of the tree is always greater than the parent node.
 
@@ -127,12 +112,12 @@ class BinarySearchTree {
   }
 
   insert(value) {
-    var newNode = new Node(value)
+    const newNode = new Node(value)
     if (this.root === null) {
       this.root = newNode
       return this
     }
-    var current = this.root
+    let current = this.root
     while (true) {
       if (value === current.value) return undefined
       if (value < current.value) {
@@ -165,7 +150,7 @@ tree.insert(20)
 //  3    8     20
 ```
 
-## BST Find()
+### BST Find()
 
 Searching a binary tree to see if a particular value is within the tree.
 
@@ -213,7 +198,7 @@ console.log(tree.find(100)); // false
 //  3    8     20
 ```
 
-## BST Contains()
+### BST Contains()
 
 Returns a boolean if the value is in the tree.
 
@@ -249,16 +234,7 @@ console.log(tree.contains(100)); // false
 //  3    8     20
 ```
 
-## Big O of BST
-
-| Operation | Time Complexity |
-| --------- | --------------- |
-| Insertion | O(log n)        |
-| Searching | O(log n)        |
-
-[big o](https://res.cloudinary.com/practicaldev/image/fetch/s--cCSlyRS8--/c_imagga_scale,f_auto,fl_progressive,h_900,q_auto,w_1600/https://dev-to-uploads.s3.amazonaws.com/i/d155tk2ttynxoehhz39k.jpeg)
-
-# Complete Code for BST
+## Complete Code for BST
 
 ```js
 class Node {
@@ -391,4 +367,115 @@ tree.insert(20)
 // console.log(tree.DFSPreOrder());
 // console.log(tree.DFSPostOrder());
 // console.log(tree.DFSInOrder());
+```
+
+# Alternative Code for BST
+
+```js
+class Node {
+  constructor(value) {
+    this.left = null
+    this.right = null
+    this.value = value
+  }
+}
+
+class BinarySearchTree {
+  constructor() {
+    this.root = null
+  }
+
+  insert(value) {
+    const newNode = new Node(value)
+
+    // check to see if there are any nodes in the existing tree
+    if (!this.root) {
+      this.root = newNode
+      return this
+    }
+
+    // start at the root node
+    let current = this.root
+    // traverse the tree
+    while (true) {
+      if (value === current.value) return undefined
+
+      // check the left side
+      if (value < current.value) {
+        // check to see if there is a node to the left
+        if (!current.left) {
+          // if there is not, then add the new node
+          current.left = newNode
+          return this
+        }
+        // if there is something to the left...
+        // update the current node to be the left node
+        // keep looping
+        current = current.left
+      } else {
+        // check the right side
+        // if there is no right node
+        // make new node the right node
+        if (!current.right) {
+          current.right = newNode
+          return this
+        }
+        // if there is a right node
+        // make current node the right node
+        // keep looping
+        current = current.right
+      }
+    }
+  }
+
+  lookup(value) {
+    if (!this.root) {
+      return false
+    }
+
+    let current = this.root
+
+    while (current) {
+      // compare current to value
+      if (value < current.value) {
+        // if value is less than current, go left
+        current = current.left
+      } else if (value > current.value) {
+        // if value is greater than current, go right
+        current = current.right
+      } else if (value === current.value) {
+        // if value is equal to current, return current
+        // means we got a match
+        return current
+      }
+    }
+
+    // if we get to the end of the tree and we haven't found the value
+    return false
+  }
+}
+
+const bst = new BinarySearchTree()
+
+//            9
+//     4           20
+//  1     6     15    170
+
+bst.insert(9)
+bst.insert(4)
+bst.insert(20)
+bst.insert(1)
+bst.insert(6)
+bst.insert(15)
+bst.insert(170)
+
+// function to traverse the tree and print out the values
+function traverse(node) {
+  const tree = { value: node.value }
+  tree.left = node.left === null ? null : traverse(node.left)
+  tree.right = node.right === null ? null : traverse(node.right)
+  return tree
+}
+
+console.log(JSON.stringify(traverse(bst.root)))
 ```

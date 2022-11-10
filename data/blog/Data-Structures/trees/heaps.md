@@ -8,32 +8,49 @@ summary: Methods and implementation of a heap data structure.
 
 Are another category of trees. All the rules that apply to trees will also apply to heaps.
 
-In a _min heap_, if `P` is a parent node of `C`, then the key (the value) of `P` is **less** than or **equal** to the key of `C`. `Parents` nodes are always **smaller** than `child` nodes.
-P < C
+# Types of Heaps
 
-![min binart heap](https://camo.githubusercontent.com/065e525a8985291e9506599ebaeb6e39e635f204bcfe98a121ff5b1e662c16ea/68747470733a2f2f75706c6f61642e77696b696d656469612e6f72672f77696b6970656469612f636f6d6d6f6e732f362f36392f4d696e2d686561702e706e67)
+Every child belongs to a parent node.
+
+## Min Binary Heap
+
+In a _min heap_, if `P` is a parent node of `C`, then the key (the value) of `P` is **less** than or **equal** to the key of `C`.
+
+`Parents` nodes are always **smaller** than `child` nodes.
+
+```
+            9
+        12     10
+      17  19  36  25
+```
+
+## Max Heap
 
 In a _max heap_, the key of `P` is **greater** than or **equal** to the key of `C`. `Parent` node is always **larger** than `children`.
-P > C
 
-There is no order when comparing the left and right. They are just **SMALLER** than the parent.
+- `Parent` nodes are always **larger** than `child` nodes.
 
-![Max Binary Heap](https://camo.githubusercontent.com/17a30e96c4edcf08f01638861728ff8c6f0391e4eba9a757a8cf310298ac2a05/68747470733a2f2f75706c6f61642e77696b696d656469612e6f72672f77696b6970656469612f636f6d6d6f6e732f332f33382f4d61782d486561702e737667)
+```
+          101
+      72        33
+    27  18    12   9
+```
 
-#### Max Heap
+# About Heaps (max heaps)
 
-- Each parent has at most **two** child nodes
-- The value of each parent node is always greater than its child nodes
-- In a **max** Binary Heap the **parent** is **greater** than the **children**, but there are no guarantees between sibling nodes.
-- A binary heap is as compact as possible. All the children of each node are as full as they can be and left children are filled out first
+- Each parent has at most **two** child nodes.
+- Parent nodes are always **larger** than `child` nodes.
+- Binary Heaps are used to implement **Priority Queues**, which are very commonly used data structures.
 
-Binary Heaps are used to implement **Priority Queues**, which are very commonly used data structures
+`lookup` is O(n) because we have to traverse the entire tree. The only _order_ to a heap is that the parent is always larger than the child. Nothing else.
 
-They are also used quite a bit, with **graph traversal algorithms**
+# Runtime
 
-Left child is added first, then the right child.
-
----
+| Method   | Time Complexity |
+| -------- | --------------- |
+| `lookup` | O(n)            |
+| `insert` | O(log n)        |
+| `remove` | O(log n)        |
 
 ### Find the child using the parent node
 
@@ -241,6 +258,8 @@ console.log(heap)
 ```
 
 # Priority Queue
+
+remin
 
 #### What is a priority queue?
 
