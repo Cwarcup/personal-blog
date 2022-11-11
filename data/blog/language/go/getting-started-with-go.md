@@ -1004,3 +1004,213 @@ func printMap(c map[string]string) {
 When to use a `map` vs a `struct`?
 
 - use a `map` when you have a **very** closely related set of values.
+
+## Interfaces
+
+So we know that...
+
+- every **value** has a **type** assigned to it.
+- every **function** has to specify the type of its **arguments** and **return values**.
+
+So does this mean that every function we ever write be rewritten to accommodate every type of value we ever want to pass into it?
+
+Take for example the following code:
+
+```go
+package main
+
+import "fmt"
+
+type englishBot struct{}
+
+type spanishBot struct{}
+
+func main() {
+
+	eb := englishBot{}
+	sp := spanishBot{}
+
+	printGreeting(eb)
+	printGreetingSpanish(sp)
+
+}
+
+func (eb englishBot) getGreeting() string {
+	// unique logic for generating an english greeting
+	return "Hi There!"
+}
+
+func (sb spanishBot) getGreeting() string {
+	// unique logic for generating a spanish greeting
+	return "Hola!"
+}
+
+func printGreeting(eb englishBot) {
+	fmt.Println(eb.getGreeting())
+}
+
+func printGreetingSpanish(sb spanishBot) {
+	fmt.Println(sb.getGreeting())
+}
+```
+
+This is **very** repetitive. We have to write two functions that do the same thing. We have to write two functions that take in two different types of arguments. We have to write two functions that return two different types of values.
+
+How can we make this more **DRY**? We can do this by using an `interface`.
+
+```go
+package main
+
+import "fmt"
+
+// bot is an interface
+type bot interface {
+	getGreeting() string
+}
+
+type englishBot struct{}
+
+type spanishBot struct{}
+
+func main() {
+
+	eb := englishBot{}
+	sp := spanishBot{}
+
+	printGreeting(eb)
+	printGreeting(sp)
+
+}
+
+// printGreeting is a function that takes in a bot, NOT an englishBot or spanishBot
+func printGreeting(b bot) {
+	fmt.Println(b.getGreeting())
+}
+
+func (eb englishBot) getGreeting() string {
+	// unique logic for generating an english greeting
+	return "Hi There!"
+}
+
+func (sb spanishBot) getGreeting() string {
+	// unique logic for generating a spanish greeting
+	return "Hola!"
+}
+```
+
+### Creating an interface
+
+```go
+type bot interface {
+	getGreeting() string
+}
+```
+
+What this is doing is saying anything with a function called `getGreeting` that returns a `string` is a `bot`. Since `englishBot` and `spanishBot` both have a function called `getGreeting` that returns a `string` they are both `bot`s.
+
+<div className="flex justify-center">
+  <Image
+    src="/static/images/individualBlogPostImages/go-interfaces.svg"
+    alt="two return values"
+    width={500}
+    height={250}
+  />
+</div>
+
+For example, this would **NOT** work:
+
+```go
+package main
+
+import "fmt"
+
+type bot interface {
+	getGreeting() string
+}
+
+type englishBot struct{}
+
+type spanishBot struct{}
+
+func main() {
+
+	eb := englishBot{}
+	sp := spanishBot{}
+
+	printGreeting(eb)
+	printGreeting(sp) // ERROR!
+
+}
+
+func printGreeting(b bot) {
+	fmt.Println(b.getGreeting())
+}
+
+func (eb englishBot) getGreeting() string {
+	// unique logic for generating an english greeting
+	return "Hi There!"
+}
+
+func (sb spanishBot) getGreetingSpanish() string {  // this is not getGreeting
+	// unique logic for generating a spanish greeting
+	return "Hola!"
+}
+```
+
+### Rules of interfaces
+
+We can also have some more complex interfaces. For example:
+
+```go
+type bot interface {
+	//  				⬇️ list of arg types
+	getGreeting(string, int) (string, error)
+	// ⬆️ func name 						 ⬆️ arg return types
+}
+```
+
+You can also have functions that take in interfaces as arguments:
+
+```go
+type bot interface {
+	getGreeting(string, int) (string, error)
+	getBotVersion() float64
+	respondToUser(string) string
+}
+```
+
+---
+
+- Interfaces are **not** generic types.
+  - _Some other languages have 'generic' types_.
+- Interfaces are **implicit**.
+  - _We don't manually have to say that our custom type satisfies some interface._
+  - _At no point in our code do we say that `englishBot` satisfies the `bot` interface._
+  - _All we did was declare that `englishBot` has a function called `getGreeting` that returns a `string`._
+- Interfaces are a **contract** to help us manage types.
+  - _If you have a function that takes in an interface, you can pass in any type that satisfies that interface._
+
+### Concrete types vs Interface types
+
+Concrete types are types that we can create instances of. We can create instances of `englishBot` and `spanishBot` because they are concrete types.
+
+```go
+type englishBot struct {
+}
+
+func main() {
+	eb := englishBot{} // this is a concrete type
+}
+```
+
+Interface types are types that we cannot create instances of. We cannot create instances of `bot` because it is an interface type.
+
+| Concrete type | Interface type |
+| :------------ | :------------- |
+| map           | bot            |
+| struct        |                |
+| int           |                |
+| string        |                |
+| englishBot    |                |
+
+There is no way to create an instance of `bot` because it is an interface type. We can only create instances of concrete types.
