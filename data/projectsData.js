@@ -1,5 +1,12 @@
 const projectsData = [
   {
+    title: 'Nextjs Tailwind Template',
+    description:
+      "This is a Next.js, Tailwind CSS starter template intended to be used as a portfolio or personal website. It comes out of the box configured with the latest technologies, tools, and best practices. It's built to be easily configured, customized and extended. It's also fully responsive and mobile friendly.",
+    imgSrc: '/static/images/projectCards/next-tw.jpg',
+    href: 'https://github.com/Cwarcup/nextjs-tailwind-portfolio',
+  },
+  {
     title: 'E-commerce Website with TypeScript, React, Redux and Firebase',
     description: `This is a project that I built while learning React and Redux. It is a fully functional e-commerce website that allows users to sign in with their Google account, add items to their cart, and make payments with Stripe. It is built with TypeScript, React, Redux, Firebase, Stripe, and Tailwind.`,
     imgSrc: '/static/images/projectCards/twitter-card.jpg',
