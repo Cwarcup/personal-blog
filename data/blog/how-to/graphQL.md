@@ -2,8 +2,8 @@
 title: 'GraphQL Basics'
 date: '2022-11-22'
 tags: ['GraphQL']
-images: 'https://blog.logrocket.com/wp-content/uploads/2018/05/websockets-two-way-communication-react-app-nocdn.jpg'
-draft: true
+images: '/static/images/individualBlogPostImages/graphql-basics.jpg'
+draft: false
 summary: 'This article will help you get started making GraphQL queries and mutations. It covers the basics of creating a schema, queries, and mutations.'
 ---
 
