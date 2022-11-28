@@ -3,7 +3,7 @@ const projectsData = [
     title: 'Nextjs Tailwind Template',
     description:
       "This is a Next.js, Tailwind CSS starter template intended to be used as a portfolio or personal website. It comes out of the box configured with the latest technologies, tools, and best practices. It's built to be easily configured, customized and extended. It's also fully responsive and mobile friendly.",
-    imgSrc: '/static/images/projectCards/next-tw.jpg',
+    imgSrc: '/static/images/projectCards/nextjstailwind.jpg',
     href: 'https://github.com/Cwarcup/nextjs-tailwind-portfolio',
   },
   {

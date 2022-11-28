@@ -2,9 +2,9 @@
 title: 'React Hooks: useRef & forwardRef'
 date: '2022-11-27'
 tags: ['Hooks']
-images: '/static/images/individualBlogPostImages/useRefHook.jpg'
-draft: true
-summary: 'A quick guide to useRef and forwardRef hooks in React'
+images: '/static/images/individualBlogPostImages/useRef.jpg'
+draft: false
+summary: 'I never truly understood when I should use Reacts useRef hook. It felt similar to useState, but I never really understood the difference. I also never understood when I should use forwardRef. I will explain both of these hooks and when you should use them.'
 ---
 
 # Beyond the Basic React Hooks
@@ -24,7 +24,7 @@ Examples include:
 
 ### Using useRef to store a value
 
-- import `useRef` from reac
+- import `useRef` from react
 
   t
 
@@ -358,7 +358,7 @@ It is common to use `forwardRef` in components like buttons, inputs, and other c
 
 ## Best Practices for Refs
 
-- Only use `ref`'s wjen you need to access the DOM node directly. Don't use it to store data.
+- Only use `ref`'s when you need to access the DOM node directly. Don't use it to store data.
   - examples of when you need to access the DOM node directly:
     - focus on an input element
     - measure the size of an element
