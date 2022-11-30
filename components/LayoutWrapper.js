@@ -7,13 +7,8 @@ import MobileNav from './MobileNav'
 import { Menu, Transition } from '@headlessui/react'
 import { ChevronDownIcon } from '@heroicons/react/solid'
 import { Fragment, useEffect, useRef, useState } from 'react'
-import { motion, useAnimation, AnimatePresence } from 'framer-motion'
-import {
-  FadeContainer,
-  hamFastFadeContainer,
-  mobileNavItemSideways,
-  popUp,
-} from '../lib/FramerMotionVariants'
+import { motion } from 'framer-motion'
+import { FadeContainer, popUp } from '../lib/FramerMotionVariants'
 
 const LayoutWrapper = ({ children }) => {
   const [stuck, setStuck] = useState(false)
