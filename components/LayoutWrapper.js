@@ -1,4 +1,3 @@
-import siteMetadata from '@/data/siteMetadata'
 import headerNavLinks from '@/data/headerNavLinks'
 import Logo from '@/data/logo-header.svg'
 import Link from './Link'
