@@ -1,12 +1,15 @@
+/* eslint-disable prettier/prettier */
+
 import Link from '@/components/Link'
 import { PageSEO } from '@/components/SEO'
 import Tag from '@/components/Tag'
 import siteMetadata from '@/data/siteMetadata'
 import { getAllFilesFrontMatter } from '@/lib/mdx'
 import formatDate from '@/lib/utils/formatDate'
-import Image from '@/components/Image'
 import Hero from '@/components/Hero'
 import RecentProjects from '@/components/RecentProjects'
+import Skills from '@/components/Skills'
+import Image from 'next/image'
 
 const MAX_DISPLAY = 3
 
@@ -21,11 +24,12 @@ export default function Home({ posts }) {
     <>
       <PageSEO title={siteMetadata.title} description={siteMetadata.description} />
       <Hero />
+      <Skills />
       <RecentProjects MAX_PROJECTS="4" />
 
       <div className="container mx-auto divide-y divide-gray-700">
         <div className="my-4 flex flex-col">
-          <span className="font-poppins title-font  text-3xl font-bold">Recent Posts</span>
+          <span className="font-poppins title-font text-3xl font-bold">Recent Posts</span>
         </div>
         <div className="grid grid-cols-1 gap-8 pt-10 md:grid-cols-2 xl:grid-cols-3">
           {!posts.length && 'No posts found.'}
@@ -42,17 +46,19 @@ export default function Home({ posts }) {
                   <div className="group relative max-h-4 overflow-hidden rounded-lg pb-60">
                     <Link href={`/blog/${slug}`}>
                       <span>
-                        <img
+                        <Image
                           alt={title}
                           src={images}
                           className="absolute inset-0 h-full w-full object-cover"
+                          height={500}
+                          width={500}
                         />
                       </span>
                     </Link>
                   </div>
-                  <div className="h-full py-4 px-2">
+                  <div className="h-full px-2 py-4">
                     <span className="inline-flex w-full items-center justify-between">
-                      <span className="inline-block rounded border border-gray-700 py-1 px-2 text-xs font-medium">
+                      <span className="inline-block rounded border border-gray-700 px-2 py-1 text-xs font-medium">
                         {firstTwoTags.map((tag) => (
                           <Tag key={tag} text={tag} />
                         ))}
