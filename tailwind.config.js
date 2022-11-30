@@ -14,6 +14,20 @@ module.exports = {
   ],
   darkMode: 'class',
   theme: {
+    animation: {
+      wiggle: 'wiggle 1s ease-in-out infinite',
+      'photo-spin': 'photo-spin 2s 1 linear forwards',
+    },
+    keyframes: {
+      wiggle: {
+        '0%, 100%': { transform: 'rotate(-3deg)' },
+        '50%': { transform: 'rotate(3deg)' },
+      },
+      'photo-spin': {
+        '0%': { transform: 'rotate(0deg)' },
+        '100%': { transform: 'rotate(360deg)' },
+      },
+    },
     extend: {
       spacing: {
         '9/16': '56.25%',
@@ -172,5 +186,9 @@ module.exports = {
       }),
     },
   },
-  plugins: [require('@tailwindcss/forms'), require('@tailwindcss/typography')],
+  plugins: [
+    require('@tailwindcss/forms'),
+    require('@tailwindcss/typography'),
+    require('tailwind-scrollbar-hide'),
+  ],
 }

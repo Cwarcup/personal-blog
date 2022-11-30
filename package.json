@@ -46,6 +46,7 @@
     "sharp": "^0.28.3",
     "smoothscroll-polyfill": "^0.4.4",
     "superagent": "^7.1.1",
+    "tailwind-scrollbar-hide": "^1.1.7",
     "tailwindcss": "^3.0.23",
     "unist-util-visit": "^4.0.0"
   },
