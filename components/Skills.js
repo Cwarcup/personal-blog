@@ -7,22 +7,18 @@ import {
   SiTypescript,
   SiNextdotjs,
   SiNodedotjs,
-  SiExpress,
   SiPostgresql,
-  SiPython,
-  SiGo,
   SiTailwindcss,
-  SiRubyonrails,
-  SiSass,
-  SiGraphql,
   SiRedux,
-  SiCypress,
-  SiSupabase,
   SiFirebase,
-  SiStorybook,
+  SiGit,
 } from 'react-icons/si'
 
-const languages = [
+import { motion } from 'framer-motion'
+import * as WindowAnimation from '../lib/WindowAnimation'
+import { FadeContainer, popUp } from '../lib/FramerMotionVariants'
+
+const skills = [
   {
     name: 'TypeScript',
     logo: SiTypescript,
@@ -56,80 +52,56 @@ const languages = [
     logo: SiNodedotjs,
   },
   {
-    name: 'Express',
-    logo: SiExpress,
-  },
-  {
     name: 'PostgreSQL',
     logo: SiPostgresql,
-  },
-  {
-    name: 'Python',
-    logo: SiPython,
-  },
-  {
-    name: 'Go',
-    logo: SiGo,
-  },
-  {
-    name: 'Ruby on Rails',
-    logo: SiRubyonrails,
-  },
-  {
-    name: 'Sass',
-    logo: SiSass,
-  },
-  {
-    name: 'GraphQL',
-    logo: SiGraphql,
   },
   {
     name: 'Redux',
     logo: SiRedux,
   },
-  {
-    name: 'Cypress',
-    logo: SiCypress,
-  },
-  {
-    name: 'Supabase',
-    logo: SiSupabase,
-  },
+
   {
     name: 'Firebase',
     logo: SiFirebase,
   },
   {
-    name: 'Storybook',
-    logo: SiStorybook,
+    name: 'Git',
+    logo: SiGit,
   },
 ]
 
 const Skills = () => {
   return (
-    <div className="mx-auto max-w-screen-lg pt-8 md:pb-10">
-      <div className="flex flex-wrap">
-        <div className="w-full max-w-full flex-shrink-0 lg:mt-2 lg:w-1/3 lg:flex-none">
-          <h3 className="mb-3 text-3xl font-bold text-gray-200 xl:text-4xl">
-            I'm a full-stack developer with a passion for building beautiful, intuitive, and
-            accessible web applications.
-          </h3>
-          <p className="text-gray-400">Here are some of the tools I enjoying building with.</p>
-        </div>
-        <div className="w-full max-w-full py-10 lg:w-2/3 lg:flex-none lg:px-8 lg:py-0">
-          <div className="grid grid-cols-4 gap-4 sm:grid-cols-5">
-            {languages.map((language) => (
-              <div className="group flex flex-col items-center justify-center" key={language.name}>
-                <language.logo className="h-12 w-12 text-gray-200 group-hover:text-primary-600" />
-                <p className="mt-2 text-center text-sm font-medium text-gray-200 group-hover:text-primary-600">
-                  {language.name}
-                </p>
+    <>
+      <span className="font-poppins title-font text-3xl font-bold">My Top Skills</span>
+      <motion.div
+        initial="hidden"
+        whileInView="visible"
+        variants={FadeContainer}
+        viewport={{ once: true }}
+        className="my-10 grid grid-cols-3 gap-4"
+      >
+        {skills.map((skill, index) => {
+          return (
+            <motion.div
+              variants={popUp}
+              key={index}
+              title={skill.name}
+              onMouseMove={(e) => WindowAnimation.showHoverAnimation(e)}
+              onMouseLeave={(e) => WindowAnimation.removeHoverAnimation(e)}
+              className="dark:bg-darkPrimary hover:dark:bg-darkSecondary group flex origin-center transform items-center justify-center gap-4 rounded-sm border border-gray-300 p-4 dark:border-neutral-700 sm:justify-start md:origin-top"
+            >
+              <div className="pointer-events-none relative select-none transition group-hover:scale-110 sm:group-hover:scale-100">
+                <skill.logo className="h-8 w-8" />
               </div>
-            ))}
-          </div>
-        </div>
-      </div>
-    </div>
+              <p className="pointer-events-none hidden select-none text-sm font-semibold sm:inline-flex md:text-base">
+                {skill.name}
+              </p>
+            </motion.div>
+          )
+        })}
+      </motion.div>
+    </>
   )
 }
 
