@@ -15,7 +15,7 @@ import {
 } from 'react-icons/si'
 
 import { motion } from 'framer-motion'
-import { showHoverAnimation, removeHoverAnimation } from '../lib/WindowAnimation'
+import { showHoverAnimation, removeHoverAnimation } from '../lib/windowAnimation'
 import { FadeContainer, popUp } from '../lib/FramerMotionVariants'
 
 const skills = [
