@@ -30,32 +30,24 @@ export default function Home({ posts }) {
           <span className="font-poppins title-font text-3xl font-bold">Recent Posts</span>
         </div>
 
-        <div className="mt-6 grid gap-16 pt-10 lg:grid-cols-2 lg:gap-x-5 lg:gap-y-12">
+        <div className="grid gap-5 sm:mt-6 sm:pt-10 lg:grid-cols-2 lg:gap-x-5 lg:gap-y-5">
           {!posts.length && 'No posts found.'}
           {posts.slice(0, MAX_DISPLAY).map((frontMatter) => {
-            const { slug, date, title, summary, tags, images } = frontMatter
+            const { slug, date, title, summary, tags } = frontMatter
             const firstTwoTags = tags.slice(0, 2)
             return (
-              <div
-                key={slug}
-                className="group relative h-full transform rounded-lg transition duration-500 hover:scale-105"
-              >
-                <div className="animate-tilt absolute -inset-0.5 rounded-lg bg-gradient-to-r from-green-600 to-amber-500 opacity-25 blur transition duration-1000 group-hover:opacity-100 group-hover:duration-200"></div>
+              <div key={slug} className="relative h-full rounded-lg">
                 <Link
                   href={`/blog/${slug}`}
-                  className="relative block h-full overflow-hidden rounded-lg bg-cardBg p-4"
+                  className="relative block h-full overflow-hidden rounded-lg bg-darkSecondary p-4"
                 >
                   <div className="h-full">
                     <p className="text-sm text-gray-500">
                       <time dateTime={date}>{formatDate(date)}</time>
                     </p>
-                    <div className="mt-2 mb-2 block font-bold md:text-xl">
-                      <Link href={`/blog/${slug}`} className="font-semibold text-gray-100">
-                        {title}
-                      </Link>
-                    </div>
+                    <h1 className="mt-2 mb-2 block font-bold text-gray-100">{title}</h1>
 
-                    <p className="mt-3 h-auto text-sm tracking-wider text-gray-300">{summary}</p>
+                    <p className="mt-3 h-auto text-sm text-gray-300">{summary}</p>
                   </div>
                 </Link>
               </div>
