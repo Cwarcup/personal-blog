@@ -62,10 +62,10 @@ const MobileNav = () => {
           onClick={onToggleNav}
         ></button>
         <nav className="fixed mt-8 h-full">
-          {headerNavLinks.map((link) => {
+          {headerNavLinks.map((link, i) => {
             if (link.type !== 'dropdown') {
               return (
-                <div key={link.title} className="flex items-center px-12 py-4">
+                <div key={`${link}-${i}`} className="flex items-center px-12 py-4">
                   <Link
                     href={link.href}
                     className="mono-type text-2xl font-bold tracking-widest text-gray-100"
@@ -84,9 +84,9 @@ const MobileNav = () => {
             }
 
             return (
-              <>
-                {link.links.map((item, index) => (
-                  <div key={index} className="flex items-center px-12 py-4">
+              <div key={`${link}-${i}`}>
+                {link.links.map((item, i) => (
+                  <div key={`${item.href}-${i}`} className="flex items-center px-12 py-4">
                     <Link
                       href={item.href}
                       className="mono-type text-2xl font-bold tracking-widest text-gray-100"
@@ -102,7 +102,7 @@ const MobileNav = () => {
                     </Link>
                   </div>
                 ))}
-              </>
+              </div>
             )
           })}
         </nav>

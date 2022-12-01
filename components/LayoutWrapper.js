@@ -56,7 +56,7 @@ const LayoutWrapper = ({ children }) => {
                 }
                 if (link.type === 'dropdown') {
                   return (
-                    <Menu as="a" className="relative inline-block p-1 sm:p-4">
+                    <Menu key={link.title} as="a" className="relative inline-block p-1 sm:p-4">
                       <div>
                         <Menu.Button className="inline-flex justify-center rounded-md bg-transparent font-bold text-gray-100 hover:text-primary-400 focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75">
                           Other
