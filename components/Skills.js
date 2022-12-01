@@ -84,9 +84,9 @@ const Skills = () => {
         {skills.map((skill, index) => {
           return (
             <motion.div
-              variants={popUp}
-              key={index}
               title={skill.name}
+              variants={popUp}
+              key={skill.name}
               onMouseMove={(e) => WindowAnimation.showHoverAnimation(e)}
               onMouseLeave={(e) => WindowAnimation.removeHoverAnimation(e)}
               className="dark:bg-darkPrimary hover:dark:bg-darkSecondary group flex origin-center transform items-center justify-center gap-4 rounded-sm border border-gray-300 p-4 dark:border-neutral-700 sm:justify-start md:origin-top"

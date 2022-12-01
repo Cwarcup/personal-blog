@@ -38,7 +38,7 @@ export default function Home({ posts }) {
             return (
               <div
                 key={slug}
-                className="group bg-day relative h-full transform rounded-lg transition duration-500 hover:scale-105"
+                className="group relative h-full transform rounded-lg transition duration-500 hover:scale-105"
               >
                 <div className="animate-tilt absolute -inset-0.5 rounded-lg bg-gradient-to-r from-green-600 to-amber-500 opacity-25 blur transition duration-1000 group-hover:opacity-100 group-hover:duration-200"></div>
                 <Link
