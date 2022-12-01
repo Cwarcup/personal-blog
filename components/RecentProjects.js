@@ -19,17 +19,7 @@ const RecentProjects = ({ MAX_PROJECTS }) => {
             variants={FadeContainer}
             className="mx-auto grid grid-cols-1 gap-4 md:ml-[20%] xl:ml-[24%]"
           >
-            {/* <AnimatePresence>
-              {projectsList.map((project) => (
-                <ProjectCard
-                  key={project.title}
-                  title={project.title}
-                  description={project.description}
-                  imgSrc={project.imgSrc}
-                />
-              ))}
-            </AnimatePresence> */}
-            {projectsList.map((d, index) => (
+            {projectsList.map((d) => (
               <ProjectCard
                 key={d.title}
                 title={d.title}
@@ -37,6 +27,7 @@ const RecentProjects = ({ MAX_PROJECTS }) => {
                 imgSrc={d.imgSrc}
                 href={d.href}
                 tools={d.tools}
+                deployed={d.deployed}
               />
             ))}
           </AnimatedDiv>

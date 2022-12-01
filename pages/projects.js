@@ -24,6 +24,7 @@ export default function Projects() {
                 imgSrc={d.imgSrc}
                 href={d.href}
                 tools={d.tools}
+                deployed={d.deployed}
               />
             ))}
           </div>
