@@ -52,6 +52,7 @@ module.exports = {
         gray: colors.neutral,
         cardBg: '#0F141A',
         logoColor: '#46CDCF',
+        darkSecondary: '#25282A',
       },
       typography: (theme) => ({
         DEFAULT: {
