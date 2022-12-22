@@ -11,6 +11,7 @@ import { Fragment, useEffect, useRef, useState } from 'react'
 const LayoutWrapper = ({ children }) => {
   const [stuck, setStuck] = useState(false)
   const ref = useRef()
+  console.log(ref)
 
   const stuckClasses =
     'py-2 sticky top-n-1 z-50 transition-all backdrop isSticky mx-auto border-b border-slate-300/10 mb-8 w-full'
