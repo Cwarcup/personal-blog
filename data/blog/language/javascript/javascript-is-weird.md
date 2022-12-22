@@ -3,7 +3,7 @@ title: JavaScript is weird, but TypeScript can help
 date: '2022-12-21'
 tags: ['JavaScript', 'TypeScript']
 draft: false
-summary: 'JavaScript is weird, but TypeScript can help you avoid some of its quirks. In this post, we'll take a look at some of the weird things that can happen in JavaScript, and how TypeScript can help you avoid them.
+summary: "JavaScript is weird, but TypeScript can help you avoid some of its quirks. In this post, we'll take a look at some of the weird things that can happen in JavaScript, and how TypeScript can help you avoid them."
 ---
 
 Hey everyone,
