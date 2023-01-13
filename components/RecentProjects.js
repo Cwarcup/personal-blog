@@ -3,7 +3,7 @@ import projectsData from '@/data/projectsData'
 import ProjectCard from '@/components/ProjectCard'
 import AnimatedDiv from '@/components/framer-motion/AnimatedDiv'
 import { FadeContainer } from '../lib/FramerMotionVariants'
-import AnimatePresence from 'framer-motion'
+import Link from '@/components/Link'
 
 const RecentProjects = ({ MAX_PROJECTS }) => {
   const projectsList = projectsData.slice(0, MAX_PROJECTS)
@@ -31,6 +31,11 @@ const RecentProjects = ({ MAX_PROJECTS }) => {
               />
             ))}
           </AnimatedDiv>
+        </div>
+        <div className="mt-5 flex justify-end text-base font-medium leading-6">
+          <Link href="/projects" className="mt-5 hover:text-primary-400" aria-label="all posts">
+            All Projects &rarr;
+          </Link>
         </div>
       </div>
     </>
