@@ -4,6 +4,7 @@ import siteMetadata from '/data/siteMetadata'
 import { HeartIcon } from '@heroicons/react/solid'
 import { AiFillApple, AiOutlineMacCommand, AiFillWindows, AiOutlineDesktop } from 'react-icons/ai'
 import { Tab } from '@headlessui/react'
+import { Analytics } from '@vercel/analytics/react'
 
 export default function Tools() {
   return (
@@ -20,12 +21,7 @@ export default function Tools() {
             Some tools that I find useful
             <HeartIcon className="ml-2 -mr-1 h-5 w-5 text-logoColor" aria-hidden="true" />
           </p>
-          <Tab.Group
-            defaultIndex={0}
-            onChange={(index) => {
-              console.log(index)
-            }}
-          >
+          <Tab.Group defaultIndex={0}>
             <Tab.List className="flex flex-wrap content-center justify-around gap-12">
               <Tab
                 className={({ selected }) =>
@@ -84,6 +80,7 @@ export default function Tools() {
           </Tab.Group>
         </div>
       </div>
+      <Analytics />
     </>
   )
 }

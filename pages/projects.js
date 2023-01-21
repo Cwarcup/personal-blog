@@ -1,8 +1,8 @@
 import siteMetadata from '@/data/siteMetadata'
 import projectsData from '@/data/projectsData'
-import Card from '@/components/Card'
 import { PageSEO } from '@/components/SEO'
 import ProjectCard from '@/components/ProjectCard'
+import { Analytics } from '@vercel/analytics/react'
 
 export default function Projects() {
   return (
@@ -30,6 +30,7 @@ export default function Projects() {
           </div>
         </div>
       </div>
+      <Analytics />
     </>
   )
 }

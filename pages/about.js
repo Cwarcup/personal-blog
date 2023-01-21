@@ -2,6 +2,7 @@ import Image from 'next/image'
 import Head from 'next/head'
 import siteMetadata from '@/data/siteMetadata'
 import Link from '@/components/Link'
+import { Analytics } from '@vercel/analytics/react'
 
 import { Container } from '@/components/Container'
 import { GitHubIcon, LinkedInIcon, MailIcon } from '@/components/social-icons'
@@ -93,6 +94,7 @@ export default function About() {
           </div>
         </div>
       </Container>
+      <Analytics />
     </>
   )
 }
