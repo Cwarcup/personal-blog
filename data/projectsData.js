@@ -1,5 +1,14 @@
 const projectsData = [
   {
+    title: 'Netflix Clone',
+    description:
+      'This project is a Netflix clone that was built using cutting-edge technologies such as TypeScript, Next.js, React, Hasura, Supabase, GraphQL, Magic, and more.',
+    imgSrc: '/static/images/projectCards/netflix-clone.png',
+    href: 'https://github.com/Cwarcup/netflix-clone',
+    deployed: 'https://netflix-clone-cwarcup.vercel.app/',
+    tools: ['TypeScript', 'Next.js', 'GraphQL', 'Supabase', 'Magic', 'Hasura'],
+  },
+  {
     title: 'Coffee Shops - Discover and Favourite Coffee Shops near you!',
     description:
       'This project served as a learning tool for me to get more familiar with the advanced features of Next.js and to learn more about the use of Airtable as a database. I also wanted to learn more about the use of SWR to handle data fetching and caching. I wanted to learn about creating API routes and using Airtable to store data.',
@@ -92,68 +101,6 @@ const projectsData = [
     imgSrc: '/static/images/projectCards/jsBooks.jpg',
     href: 'https://github.com/Cwarcup/jbook',
     tools: ['React', 'TypeScript', 'Babel', 'Webpack', 'Monaco Editor', 'NPM', 'Lerna'],
-  },
-  {
-    title: 'Youtube Search',
-    description: `Created a React app to search YouTube and return list of popular videos. This app served as an introduction to using Redux and Redux Thunk to manage state.`,
-    imgSrc: '/static/images/projectCards/react-redux-search.jpg',
-    href: 'https://yt-video-player.vercel.app/',
-    tools: ['React', 'Redux', 'Redux Thunk', 'Semantic UI'],
-  },
-  {
-    title: 'Bar Chart Generator',
-    description: `Create bar charts with custom data, labels and colors. Bars can display up to two data fields to produce a stacked bar chart. Created with vanilla HTML, CSS, JS with a touch of jQuery.`,
-    imgSrc: '/static/images/projectCards/barChartApp.png',
-    href: 'https://github.com/Cwarcup/stretch-project-1',
-    tools: ['HTML', 'CSS', 'JavaScript', 'jQuery'],
-  },
-  {
-    title: 'CSS Toggle Theme',
-    description: `Toggle theme created with pure CSS. App includes a toggle button that changes the theme of the app from light to dark and then solar. Created with vanilla HTML, CSS, JS.`,
-    imgSrc: '/static/images/projectCards/toggle-theme-css.png',
-    href: 'https://github.com/Cwarcup/css-toggle-theme',
-    deployed: 'https://cwarcup.github.io/css-toggle-theme/',
-    tools: ['HTML', 'CSS'],
-  },
-  {
-    title: 'Responsive Icon Navbar',
-    description: `Created a responsive icon navbar with pure CSS. The navbar is responsive and will collapse into a hamburger menu on smaller screens. Created with vanilla HTML, CSS, JS. Icons provided by Font Awesome.`,
-    imgSrc: '/static/images/projectCards/icon-navbar.png',
-    href: 'https://github.com/Cwarcup/responsive-icon-navbar',
-    deployed: 'https://cwarcup.github.io/responsive-icon-navbar/',
-    tools: ['HTML', 'CSS', 'JavaScript'],
-  },
-  {
-    title: 'Search NPM Modules',
-    description: `Want to search NPM for a module? Here's a quick and easy example using the NPM Registry API to search NPM modules. This was my first time using the TypeScript with Redux.`,
-    imgSrc: '/static/images/projectCards/searchNPM.png',
-    href: 'https://github.com/Cwarcup/redux-ts-react',
-    deployed: 'https://cwarcup.github.io/redux-ts-react/',
-    tools: ['TypeScript', 'Redux', 'React', 'NPM Registry API'],
-  },
-  {
-    title: 'Infinite Scroll',
-    description: `Infinite scroll website with images generated using Unsplash API. Created with vanilla HTML, CSS, JS.`,
-    imgSrc: '/static/images/projectCards/infiniteScroll.png',
-    href: 'https://github.com/Cwarcup/infinite_scroll',
-    deployed: 'https://cwarcup.github.io/infinite_scroll/',
-    tools: ['HTML', 'CSS', 'JavaScript'],
-  },
-
-  {
-    title: 'Wavy Website',
-    description: `Some fun with CSS to create a wavy website.`,
-    imgSrc: '/static/images/projectCards/wavy-website.png',
-    href: 'https://github.com/Cwarcup/wavy-website',
-    deployed: 'https://cwarcup.github.io/wavy-website/',
-    tools: ['HTML', 'CSS'],
-  },
-  {
-    title: 'Dad Quotes',
-    description: `First time using the Fetch API to get data from an API. This app displays random dad jokes from the icanhazdadjoke API.`,
-    imgSrc: '/static/images/projectCards/dad-quotes.png',
-    href: 'https://cwarcup.github.io/dad-quotes/',
-    tools: ['HTML', 'CSS', 'JavaScript'],
   },
 ]
 
