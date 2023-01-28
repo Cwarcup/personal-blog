@@ -160,8 +160,8 @@ export default function PostLayout({ frontMatter, authorDetails, next, prev, chi
                 )}
               </div>
               <div className="sticky top-0 pt-4 xl:pt-8">
-                <Link href="/blog" className="text-primary-500 hover:text-primary-400">
-                  &larr; Back to the blog
+                <Link href="/posts" className="text-primary-500 hover:text-primary-400">
+                  &larr; Back to the all posts
                 </Link>
                 <div className="hidden md:block">
                   <TocComponent toc={toc} />
