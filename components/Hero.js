@@ -59,22 +59,22 @@ export default function Hero() {
       </p>
       <div className="mt-6 flex gap-6">
         <SocialLink
-          href="https://github.com/Cwarcup"
+          href="https://github.com/musyokamuasya"
           aria-label="Check out my Github"
           icon={IoLogoGithub}
         />
         <SocialLink
-          href="https://www.linkedin.com/in/curtiswarcup/"
+          href="https://www.linkedin.com/in/musyokamuasya/"
           aria-label="Connect with me on LinkedIn"
           icon={IoLogoLinkedin}
         />
         <CopyToClipboard
-          text={{ contact: 'curtis.gwarcup@gmail.com', type: 'Email' }}
+          text={{ contact: 'musyokamuasya@gmail.com', type: 'Email' }}
           aria-label="Send me an email"
           icon={IoMail}
         />
         <CopyToClipboard
-          text={{ contact: '+1 (604) 374-4652', type: 'Phone number' }}
+          text={{ contact: '+254 727 169139', type: 'Phone number' }}
           aria-label="Give me a call"
           icon={IoCall}
         />
