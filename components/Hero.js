@@ -49,13 +49,10 @@ export default function Hero() {
         backend APIs and a focus on user experience, I strive to deliver cutting-edge mobile
         solutions that exceed expectations.
         <br />
-        <br />
-        As a dedicated developer at Andela, I am working on solutions that have the power to impact
-        millions of people around the world. Through my work, I'm constantly pushing the boundaries
-        of what's possible, leveraging cutting-edge technologies to build software that is both
-        innovative and impactful. I take pride in the fact that my work is helping to make a real
-        difference in people's lives, and I'm excited to continue doing so as part of the Andela
-        team.
+        <br />I am working on solutions that have the power to impact millions of people around the
+        world. Through my work, I'm constantly pushing the boundaries of what's possible, leveraging
+        cutting-edge technologies to build software that is both innovative and impactful. I take
+        pride in the fact that my work is helping to make a real difference in people's lives.
       </p>
       <div className="mt-6 flex gap-6">
         <SocialLink
