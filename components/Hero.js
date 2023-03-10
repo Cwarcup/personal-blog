@@ -38,12 +38,24 @@ export default function Hero() {
   return (
     <div className="mb-5 max-w-2xl">
       <h1 className="text-4xl font-bold tracking-tight text-gray-800 dark:text-zinc-100 sm:text-5xl">
-        Web developer, tech enthusiast, and fitness junkie
+        Android developer, building high quality android apps.
       </h1>
       <p className="mt-6 text-base text-gray-600 dark:text-gray-400">
-        I'm Curtis, a web developer based in Vancouver BC. As a Lead at Apple, I keep the store
-        running smoothly on a daily basis. I've coordinated product launches, repair programs, and
-        store openings. I enjoy working with a team to solve problems and build solutions.
+        Hi, I'm Musyoka Muasya, a software engineer (mobile heavy).
+        <br />
+        <br />
+        As an Android developer with a passion for creating sleek, functional apps, I've crafted
+        intuitive interfaces for Immicart, BossLady, ewave, and more. With a deep understanding of
+        backend APIs and a focus on user experience, I strive to deliver cutting-edge mobile
+        solutions that exceed expectations.
+        <br />
+        <br />
+        As a dedicated developer at Andela, I am working on solutions that have the power to impact
+        millions of people around the world. Through my work, I'm constantly pushing the boundaries
+        of what's possible, leveraging cutting-edge technologies to build software that is both
+        innovative and impactful. I take pride in the fact that my work is helping to make a real
+        difference in people's lives, and I'm excited to continue doing so as part of the Andela
+        team.
       </p>
       <div className="mt-6 flex gap-6">
         <SocialLink
