@@ -12,6 +12,13 @@ import {
   SiRedux,
   SiFirebase,
   SiGit,
+  SiJava,
+  SiKotlin,
+  SiAndroid,
+  SiNestjs,
+  SiMongodb,
+  SiDocker,
+  SiWritedotas,
 } from 'react-icons/si'
 
 import { motion } from 'framer-motion'
@@ -20,49 +27,49 @@ import { FadeContainer, popUp } from '../lib/FramerMotionVariants'
 
 const skills = [
   {
-    name: 'TypeScript',
-    logo: SiTypescript,
+    name: 'Kotlin',
+    logo: SiKotlin,
   },
   {
-    name: 'HTML',
-    logo: SiHtml5,
+    name: 'Android',
+    logo: SiAndroid,
   },
   {
-    name: 'CSS',
-    logo: SiCss3,
+    name: 'Java',
+    logo: SiJava,
   },
   {
     name: 'JavaScript',
     logo: SiJavascript,
   },
   {
-    name: 'React',
-    logo: SiReact,
+    name: 'Node.js',
+    logo: SiNodedotjs,
   },
   {
-    name: 'Tailwind CSS',
-    logo: SiTailwindcss,
+    name: 'Nest.js',
+    logo: SiNestjs,
   },
   {
     name: 'Nextjs',
     logo: SiNextdotjs,
   },
   {
-    name: 'Node.js',
-    logo: SiNodedotjs,
+    name: 'Mongodb',
+    logo: SiMongodb,
   },
   {
-    name: 'PostgreSQL',
-    logo: SiPostgresql,
+    name: 'Docker',
+    logo: SiDocker,
   },
   {
-    name: 'Redux',
-    logo: SiRedux,
+    name: 'Typescript',
+    logo: SiTypescript,
   },
 
   {
-    name: 'Firebase',
-    logo: SiFirebase,
+    name: 'Technical Writing',
+    logo: SiWritedotas,
   },
   {
     name: 'Git',
