@@ -6,7 +6,7 @@ import { Analytics } from '@vercel/analytics/react'
 
 import { Container } from '@/components/Container'
 import { GitHubIcon, LinkedInIcon, MailIcon } from '@/components/social-icons'
-import portraitImage from '../public/static/images/avatar.jpg'
+import portraitImage from '../public/static/images/avatar.png'
 
 function SocialLink({ className, href, children, icon: Icon }) {
   return (
