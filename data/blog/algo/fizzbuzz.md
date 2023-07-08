@@ -2,7 +2,7 @@
 title: FizzBuzz - JavaScript Algorithms
 date: '2022-05-01'
 tags: ['FizzBuzz', 'Algorithms']
-draft: false
+draft: true
 summary: FizzBuzz is a classic programming problem. The goal is to print the numbers from 1 to n. For multiples of three print "Fizz" instead of the number and for the multiples of five print "Buzz". For numbers which are multiples of both three and five print "FizzBuzz".
 ---
 

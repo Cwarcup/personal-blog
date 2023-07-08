@@ -8,8 +8,8 @@ const headerNavLinks = [
     title: 'Other',
     links: [
       { href: '/tags', title: 'Tags' },
-      { href: '/tools', title: 'Tools' },
-      { href: '/policy', title: 'Policy' },
+      // { href: '/tools', title: 'Tools' },
+      // { href: '/policy', title: 'Policy' },
     ],
   },
 ]

@@ -2,7 +2,7 @@
 title: Printing a Pyramid Pattern - JavaScript Algorithms
 date: '2022-04-29'
 tags: ['Pyramid', 'JavaScript', 'algorithms']
-draft: false
+draft: true
 summary: Printing a series of "#" characters in the shape of a pyramid.
 ---
 

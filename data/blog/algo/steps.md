@@ -2,7 +2,7 @@
 title: Printing Steps - JavaScript Algorithms
 date: '2022-05-02'
 tags: ['steps', 'Algorithms']
-draft: false
+draft: true
 summary: Console log a step shape with N levels using the "#" character.
 ---
 
