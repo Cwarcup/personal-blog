@@ -41,13 +41,12 @@ export default function Hero() {
         Android developer, building high quality android apps.
       </h1>
       <p className="mt-6 text-base text-gray-600 dark:text-gray-400">
-        Hi, I'm Musyoka Muasya, a software engineer (mobile heavy).
+        Hi, I'm Musyoka Muasya, Android developer.
         <br />
         <br />
-        As an Android developer with a passion for creating sleek, functional apps, I've crafted
-        intuitive interfaces for Immicart, BossLady, ewave, and more. With a deep understanding of
-        backend APIs and a focus on user experience, I strive to deliver cutting-edge mobile
-        solutions that exceed expectations.
+        I am an Android developer with a passion for creating sleek, functional apps Android apps.
+        I've crafted intuitive interfaces for Immicart, BossLady, Ewave, and more. I strive to
+        deliver cutting-edge mobile solutions that exceed expectations.
         <br />
         <br />I am working on solutions that have the power to impact millions of people around the
         world. Through my work, I'm constantly pushing the boundaries of what's possible, leveraging
@@ -66,15 +65,15 @@ export default function Hero() {
           icon={IoLogoLinkedin}
         />
         <CopyToClipboard
-          text={{ contact: 'musyokamuasya@gmail.com', type: 'Email' }}
+          text={{ contact: 'muasyajmusyoka@gmail.com', type: 'Email' }}
           aria-label="Send me an email"
           icon={IoMail}
         />
-        <CopyToClipboard
+        {/* <CopyToClipboard
           text={{ contact: '+254 727 169139', type: 'Phone number' }}
           aria-label="Give me a call"
           icon={IoCall}
-        />
+        /> */}
       </div>
     </div>
   )
