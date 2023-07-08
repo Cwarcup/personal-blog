@@ -47,31 +47,31 @@ export default function About() {
           </div>
           <div className="lg:order-first lg:row-span-2">
             <h1 className="text-4xl font-bold tracking-tight text-zinc-800 dark:text-zinc-100 sm:text-5xl">
-              I’m Musyoka Muasya. Software Engineer.
+              I’m Musyoka Muasya. I build Android apps.
             </h1>
             <div className="mt-6 space-y-7 text-base text-zinc-600 dark:text-zinc-400">
               <p>
-                I've always loved taking apart things, figuring out how they work, and putting them
-                back together (or not, sorry Mom & Dad). I've been a lifelong learner, and I'm
-                passionate about building great websites and sharing what I learn along the way.
+                I love building mobile applications and sharing my learnings. I have been involved
+                in making a number of Android apps, and in some cases, building applications
+                end-to-end as the sole mobile developer. I am keen on developing crafty mobile
+                applications which run on multiple device types.
               </p>
               <p>
-                During my time at the University of British Columbia, I studied Kinesiology (the
-                study of human movement) while I worked towards applying to medical school. After an
-                unsuccessful application cycle, I decided to take a year off and work at Apple as an
-                iPhone repair technician. This was an exciting time since Apple was offering their
-                iPhone battery replacement program for $29, and I was able to help hundreds of
-                customers save hundreds of dollars. I also got to work with some of the most
-                talented people I've ever met, and I learned a lot about customer service and how to
-                work with a team.
+                I first encountered Android applications in 2016, when a friend developed an
+                ecommerce mobile application. I was already learning Java, so I quickly picked
+                developing Android apps with Java. I was interested in developing apps that solve
+                critical issues we have in Africa. The first app I participated in shipped on
+                November 28, 2018. Since then, I have been involved in multiple applications,
+                evolving with Android infrastructure to date.
               </p>
               <p>
-                I fell in love with the fast-paced environment of Apple and moved into a role as a
-                Genius where I learnt how to handle complex technical issues and navigate difficult
-                customer interactions. I quickly moved into a middle management role as a Lead and
-                was responsible for all the daily operations of the store. I was able to learn a lot
-                about how to manage a team, manage a budget, prioritize effectively and deal with
-                ambiguity.
+                Building Android applications has been exhilarating and challenging. I have been
+                able to transition from Java to Kotlin, MVC, MVVM, and now MVI. I have used
+                View-based architecture, and I just shipped an app fully in Jetpack compose. I have
+                been challenged and I continue to grow. I can’t say I know everything about Android,
+                but I know well enough to build performant Android apps that others can use. I write
+                articles on my learning on this platform which I share on Medium, Dev.to and
+                Hashnode.
               </p>
             </div>
           </div>
