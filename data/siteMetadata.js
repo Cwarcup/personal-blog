@@ -1,12 +1,12 @@
 const siteMetadata = {
-  title: 'ciox - Musyoka Muasya',
+  title: 'Musyoka Muasya',
   author: 'Musyoka Muasya',
   headerTitle: 'Musyoka Muasya - Software engineer',
   description:
     'Personal blog and android and web development notes developed by Musyoka Muasya. Also contains projects and personal interests.',
   language: 'en-us',
   theme: 'dark', // system, dark or light
-  siteUrl: 'https://ciox.dev',
+  siteUrl: 'https://android.ciox.ninja',
   siteRepo: 'https://github.com/musyokamuasya/personal-blog',
   siteLogo: '/static/images/logo.png',
   image: '/static/images/avatar.png',
