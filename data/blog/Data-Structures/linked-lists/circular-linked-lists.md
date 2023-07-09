@@ -2,7 +2,7 @@
 title: Detecting Linked List Loops
 date: '2022-05-02'
 tags: ['Data Structures', 'Singly Linked List']
-draft: false
+draft: true
 summary: In a circular or linked list which loops, we do not have a tail. The 'last' node in the list will point to a node in the list. This algorithm will detect if this has occurred.
 ---
 

@@ -2,7 +2,7 @@
 title: Capitalize First Letter - JavaScript Algorithms
 date: '2022-04-30'
 tags: ['capitalize', 'javascript', 'algorithms']
-draft: false
+draft: true
 summary: Capitalize the first letter of a string.
 ---
 

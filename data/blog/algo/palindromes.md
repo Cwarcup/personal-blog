@@ -2,7 +2,7 @@
 title: Palindromes - JavaScript Algorithms
 date: '2022-05-06'
 tags: ['Palindromes', 'algorithms']
-draft: false
+draft: true
 summary: Palindromes are words that are the same backwards and forwards. Here are a few examples that determine if a given string is a palindrome.
 ---
 

@@ -2,7 +2,7 @@
 title: Traversing Binary Search Trees
 date: '2022-04-27'
 tags: ['Data Structures', 'Binary Search Trees', 'Traversal']
-draft: false
+draft: true
 summary: How can we visit every node one time? There are many ways to print out the nodes of a tree.
 ---
 

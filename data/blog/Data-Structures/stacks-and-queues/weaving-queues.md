@@ -2,7 +2,7 @@
 title: Weaving Two Queues Together - JavaScript Data Structures
 date: '2022-04-25'
 tags: ['Data Structures', 'JavaScript', 'Queues', 'Weaving']
-draft: false
+draft: true
 summary: Weave receives two queues as arguments and combines the contents of each into new, third queue.
 ---
 

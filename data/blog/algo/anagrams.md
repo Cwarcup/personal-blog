@@ -2,7 +2,7 @@
 title: Anagrams - JavaScript Algorithms
 date: '2022-04-30'
 tags: ['anagrams', 'javascript', 'algorithms']
-draft: false
+draft: true
 summary: Anagrams are words that contain the same letters, but in a different order.
 ---
 

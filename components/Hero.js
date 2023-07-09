@@ -38,34 +38,42 @@ export default function Hero() {
   return (
     <div className="mb-5 max-w-2xl">
       <h1 className="text-4xl font-bold tracking-tight text-gray-800 dark:text-zinc-100 sm:text-5xl">
-        Web developer, tech enthusiast, and fitness junkie
+        Android developer, building high quality android apps.
       </h1>
       <p className="mt-6 text-base text-gray-600 dark:text-gray-400">
-        I'm Curtis, a web developer based in Vancouver BC. As a Lead at Apple, I keep the store
-        running smoothly on a daily basis. I've coordinated product launches, repair programs, and
-        store openings. I enjoy working with a team to solve problems and build solutions.
+        Hi, I'm Musyoka Muasya, Android developer.
+        <br />
+        <br />
+        I am an Android developer with a passion for creating sleek, functional apps Android apps.
+        I've crafted intuitive interfaces for Immicart, BossLady, Ewave, and more. I strive to
+        deliver cutting-edge mobile solutions that exceed expectations.
+        <br />
+        <br />I am working on solutions that have the power to impact millions of people around the
+        world. Through my work, I'm constantly pushing the boundaries of what's possible, leveraging
+        cutting-edge technologies to build software that is both innovative and impactful. I take
+        pride in the fact that my work is helping to make a real difference in people's lives.
       </p>
       <div className="mt-6 flex gap-6">
         <SocialLink
-          href="https://github.com/Cwarcup"
+          href="https://github.com/musyokamuasya"
           aria-label="Check out my Github"
           icon={IoLogoGithub}
         />
         <SocialLink
-          href="https://www.linkedin.com/in/curtiswarcup/"
+          href="https://www.linkedin.com/in/musyokamuasya/"
           aria-label="Connect with me on LinkedIn"
           icon={IoLogoLinkedin}
         />
         <CopyToClipboard
-          text={{ contact: 'curtis.gwarcup@gmail.com', type: 'Email' }}
+          text={{ contact: 'muasyajmusyoka@gmail.com', type: 'Email' }}
           aria-label="Send me an email"
           icon={IoMail}
         />
-        <CopyToClipboard
-          text={{ contact: '+1 (604) 374-4652', type: 'Phone number' }}
+        {/* <CopyToClipboard
+          text={{ contact: '+254 727 169139', type: 'Phone number' }}
           aria-label="Give me a call"
           icon={IoCall}
-        />
+        /> */}
       </div>
     </div>
   )

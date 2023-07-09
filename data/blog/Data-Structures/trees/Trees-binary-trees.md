@@ -2,7 +2,7 @@
 title: Trees and Binary Search Trees
 date: '2022-04-26'
 tags: ['Data Structures', 'Trees', 'Binary Search Trees']
-draft: false
+draft: true
 summary: Terminology, implementation and common methods of trees and binary search trees.
 ---
 

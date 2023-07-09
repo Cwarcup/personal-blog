@@ -2,7 +2,7 @@
 title: Stacks - JavaScript Data Structures
 date: '2022-04-25'
 tags: ['Data Structures', 'JavaScript', 'Stack']
-draft: false
+draft: true
 summary: Overview of a stack, including creating, pushing, popping, and peeking.
 ---
 

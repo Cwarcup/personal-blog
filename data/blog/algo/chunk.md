@@ -2,7 +2,7 @@
 title: Chunked Arrays - JavaScript Algorithms
 date: '2022-05-03'
 tags: ['Chunk', 'algorithms']
-draft: false
+draft: true
 summary: Returning a chunk of data with a given size
 ---
 

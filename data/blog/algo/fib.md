@@ -2,7 +2,7 @@
 title: Fibonacci Sequence - JavaScript Algorithms
 date: '2022-04-25'
 tags: ['Fibonacci', 'JavaScript', 'algorithms']
-draft: false
+draft: true
 summary: Generating and printing the 'n-th' entry in the Fibonacci sequence.
 ---
 

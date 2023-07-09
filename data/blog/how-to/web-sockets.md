@@ -3,7 +3,7 @@ title: Web Sockets
 date: '2022-08-30'
 tags: ['Web Sockets']
 images: 'https://blog.logrocket.com/wp-content/uploads/2018/05/websockets-two-way-communication-react-app-nocdn.jpg'
-draft: false
+draft: true
 summary: Web sockets are a way to communicate between a client and a server. They are used in real-time applications like chat apps, multiplayer games, and more.
 ---
 

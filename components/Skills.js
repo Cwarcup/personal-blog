@@ -1,17 +1,20 @@
 /* eslint-disable prettier/prettier */
 import {
-  SiReact,
-  SiHtml5,
-  SiCss3,
-  SiJavascript,
-  SiTypescript,
-  SiNextdotjs,
-  SiNodedotjs,
-  SiPostgresql,
-  SiTailwindcss,
-  SiRedux,
+  SiGithub,
+  SiGithubactions,
+  SiJunit5,
   SiFirebase,
   SiGit,
+  SiJava,
+  SiKotlin,
+  SiAndroid,
+  SiTestinglibrary,
+  SiWritedotas,
+  SiFigma,
+  SiGradle,
+  SiAndroidstudio,
+  SiGoogleadsense,
+  SiGoogleanalytics,
 } from 'react-icons/si'
 
 import { motion } from 'framer-motion'
@@ -20,46 +23,26 @@ import { FadeContainer, popUp } from '../lib/FramerMotionVariants'
 
 const skills = [
   {
-    name: 'TypeScript',
-    logo: SiTypescript,
+    name: 'Android',
+    logo: SiAndroid,
   },
   {
-    name: 'HTML',
-    logo: SiHtml5,
+    name: 'Kotlin',
+    logo: SiKotlin,
   },
   {
-    name: 'CSS',
-    logo: SiCss3,
-  },
-  {
-    name: 'JavaScript',
-    logo: SiJavascript,
-  },
-  {
-    name: 'React',
-    logo: SiReact,
-  },
-  {
-    name: 'Tailwind CSS',
-    logo: SiTailwindcss,
-  },
-  {
-    name: 'Nextjs',
-    logo: SiNextdotjs,
-  },
-  {
-    name: 'Node.js',
-    logo: SiNodedotjs,
-  },
-  {
-    name: 'PostgreSQL',
-    logo: SiPostgresql,
-  },
-  {
-    name: 'Redux',
-    logo: SiRedux,
+    name: 'Java',
+    logo: SiJava,
   },
 
+  {
+    name: 'Gradle',
+    logo: SiGradle,
+  },
+  {
+    name: 'JUnit',
+    logo: SiJunit5,
+  },
   {
     name: 'Firebase',
     logo: SiFirebase,
@@ -68,12 +51,35 @@ const skills = [
     name: 'Git',
     logo: SiGit,
   },
+  {
+    name: 'GitHub',
+    logo: SiGithub,
+  },
+  {
+    name: 'GitHub Actions',
+    logo: SiGithubactions,
+  },
+
+  {
+    name: 'Android Studio',
+    logo: SiAndroidstudio,
+  },
+
+  {
+    name: 'Figma',
+    logo: SiFigma,
+  },
+
+  {
+    name: 'Google Analytics',
+    logo: SiGoogleanalytics,
+  },
 ]
 
 const Skills = () => {
   return (
     <>
-      <span className="font-poppins title-font text-3xl font-bold">My Top Skills</span>
+      <span className="font-poppins title-font text-3xl font-bold">Skills</span>
       <motion.div
         initial="hidden"
         whileInView="visible"

@@ -3,7 +3,7 @@ title: Classic Redux Setup
 date: '2022-11-01'
 tags: ['Redux', 'State']
 images: '/static/images/individualBlogPostImages/classic-redux.jpg'
-draft: false
+draft: true
 summary: Cover the basics required to setup Redux in a React application. Covers reducers, actions, action types, and the store.
 ---
 

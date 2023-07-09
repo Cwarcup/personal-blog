@@ -2,7 +2,7 @@
 title: Singly Linked List
 date: '2022-04-28'
 tags: ['Data Structures', 'Singly Linked List']
-draft: false
+draft: true
 summary: Singly Linked List is a popular interview topic. This is a simple implementation of a singly linked list will show you the ropes of how to implement a singly linked list.
 ---
 

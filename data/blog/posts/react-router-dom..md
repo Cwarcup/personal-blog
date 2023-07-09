@@ -3,7 +3,7 @@ title: Nest Routes with React Router DOM
 date: '2022-10-28'
 tags: ['Routes']
 images: '/static/images/individualBlogPostImages/react-router.jpg'
-draft: false
+draft: true
 summary: I recently started a new project and wanted to share how I set up my routes. I used React Router DOM to nest my routes and create a dynamic navigation bar. This post is about my journey in setting up my routes and the steps I took to get started.
 ---
 
