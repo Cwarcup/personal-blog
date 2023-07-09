@@ -3,7 +3,7 @@ title: Intro to TypeScript
 date: '2022-08-31'
 images: 'https://i0.wp.com/css-tricks.com/wp-content/uploads/2022/01/typescript-logo.png?fit=1200%2C600&ssl=1'
 tags: ['Typescript']
-draft: false
+draft: true
 summary: A quick introduction to TypeScript.
 ---
 

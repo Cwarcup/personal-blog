@@ -3,7 +3,7 @@ title: Where do I start?
 date: '2022-10-04'
 tags: ['Project', 'Journey']
 images: '/static/images/individualBlogPostImages/new-project.jpg'
-draft: false
+draft: true
 summary: After finishing a project, it was time to start a new one. But where do I begin? What do I build? These are the questions I asked myself. This post is about my journey in creating a new project and the steps I took to get started.
 ---
 

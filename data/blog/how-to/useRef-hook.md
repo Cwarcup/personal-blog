@@ -3,7 +3,7 @@ title: 'React Hooks: useRef & forwardRef'
 date: '2022-11-27'
 tags: ['Hooks']
 images: '/static/images/individualBlogPostImages/useRef.jpg'
-draft: false
+draft: true
 summary: 'I never truly understood when I should use Reacts useRef hook. It felt similar to useState, but I never really understood the difference. I also never understood when I should use forwardRef. I will explain both of these hooks and when you should use them.'
 ---
 

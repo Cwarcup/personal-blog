@@ -3,7 +3,7 @@ title: Database Migrations
 date: '2022-08-25'
 tags: ['Migrations', 'Rails']
 images: 'https://miro.medium.com/max/1162/1*XtnQecMR5LsS8iWrN_tMWw.jpeg'
-draft: false
+draft: true
 summary: Understanding database migrations in a Rails application.
 ---
 

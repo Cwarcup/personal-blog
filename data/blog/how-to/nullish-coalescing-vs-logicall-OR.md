@@ -3,7 +3,7 @@ title: 'Nullish Coalescing Operator in JavaScript'
 date: '2022-11-25'
 tags: ['javascript']
 images: '/static/images/individualBlogPostImages/nullish-coal.jpg'
-draft: false
+draft: true
 summary: 'I was reading some code and saw this nullish coalescing operator (??) which I had never seen these before, so I decided to look them up and write a blog post about them. I have always used the logical OR (||) operator to check for null or undefined values, but I learned that there is a better way to do it.'
 ---
 

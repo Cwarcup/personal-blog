@@ -3,7 +3,7 @@ title: Converting to TypeScript from React JS
 date: '2022-11-04'
 tags: ['typescript']
 images: '/static/images/individualBlogPostImages/ts-conversion.jpg'
-draft: False
+draft: true
 summary: I recently started to convert my React JS project to TypeScript. I wanted to share my journey in converting my project and the steps I took to get started. Here I cover a few key concepts when you convert a React JS project to TypeScript.
 ---
 

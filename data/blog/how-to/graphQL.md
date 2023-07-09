@@ -3,7 +3,7 @@ title: 'GraphQL Basics'
 date: '2022-11-22'
 tags: ['GraphQL']
 images: '/static/images/individualBlogPostImages/graphql-basics.jpg'
-draft: false
+draft: true
 summary: 'This article will help you get started making GraphQL queries and mutations. It covers the basics of creating a schema, queries, and mutations.'
 ---
 

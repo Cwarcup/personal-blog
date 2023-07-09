@@ -3,7 +3,7 @@ title: Basics of Go
 date: '2022-11-7'
 tags: ['Go']
 images: '/static/images/individualBlogPostImages/learning-go.jpg'
-draft: false
+draft: true
 summary: 'Go is a programming language that is gaining popularity. It is a statically typed language that is compiled and has a garbage collector. It is a language that is easy to learn and has a lot of resources available for learning. In this article, we will learn the basics of Go.'
 ---
 
