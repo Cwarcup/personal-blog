@@ -41,11 +41,12 @@ export default function Hero() {
         Hi, I'm Curtis
       </h1>
       <p className="mt-6 text-base text-gray-600 dark:text-gray-400">
-        As a Vancouver BC-based web developer, I'm currently enriching the tech team at 14 Oranges.
-        My journey to web development started at Apple, where I held a Lead position. There, I
-        orchestrated product releases, managed repair initiatives, and facilitated new store
-        inaugurations. My driving force? A dynamic team and engaging challenges that ignite my
-        passion every day. I'm always looking for new opportunities to learn and grow.
+        As a passionate web developer based in Vancouver, BC, I am currently contributing to the
+        dynamic tech team at 14 Oranges. My journey into web development was sparked by my time at
+        Apple, where I served as an Associate Manager. During my tenure, I led product launches,
+        oversaw technical repair projects, and facilitated training for new store openings. My drive
+        comes from a love for continuous learning, tackling new challenges, and collaborating with
+        talented teams. I'm always eager to expand my knowledge and grow within the tech industry.
       </p>
       <div className="mt-6 flex gap-6">
         <SocialLink

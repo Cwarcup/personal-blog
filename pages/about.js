@@ -51,27 +51,34 @@ export default function About() {
             </h1>
             <div className="mt-6 space-y-7 text-base text-zinc-600 dark:text-zinc-400">
               <p>
-                I've always loved taking apart things, figuring out how they work, and putting them
-                back together (or not, sorry Mom & Dad). I've been a lifelong learner, and I'm
-                passionate about building great websites and sharing what I learn along the way.
+                I’ve always loved taking things apart, figuring out how they work, and putting them
+                back together (or not—sorry Mom & Dad). This curiosity led me to become a lifelong
+                learner, and I’m passionate about building great websites and sharing what I learn
+                along the way.
               </p>
               <p>
-                During my time at the University of British Columbia, I studied Kinesiology (the
-                study of human movement) while I worked towards applying to medical school. After an
-                unsuccessful application cycle, I decided to take a year off and work at Apple as an
-                iPhone repair technician. This was an exciting time since Apple was offering their
-                iPhone battery replacement program for $29, and I was able to help hundreds of
-                customers save hundreds of dollars. I also got to work with some of the most
-                talented people I've ever met, and I learned a lot about customer service and how to
-                work with a team.
+                I began my professional journey at Apple, where I rose from a part-time sales
+                position to an Associate Manager. In this role, I oversaw product launches,
+                conducted training, and led a team of over 100 employees. I thrived in this
+                fast-paced environment, handling complex technical issues as a Genius and managing
+                store operations as a Lead.
               </p>
               <p>
-                I fell in love with the fast-paced environment of Apple and moved into a role as a
-                Genius where I learnt how to handle complex technical issues and navigate difficult
-                customer interactions. I quickly moved into a middle management role as a Lead and
-                was responsible for all the daily operations of the store. I was able to learn a lot
-                about how to manage a team, manage a budget, prioritize effectively and deal with
-                ambiguity.
+                My transition to web development was inspired by my wife, who suggested I learn
+                something new. After self-studying for eight months, I enrolled in a 12-week
+                bootcamp at Lighthouse Labs. This intensive program honed my skills in full-stack
+                development.
+              </p>
+              <p>
+                Currently, I work as a web developer at 14 Oranges, where I contribute to a wide
+                variety of projects, including municipal websites, lawyer platforms, large online
+                stores, and financial platforms. I specialize in PHP, JavaScript, and CSS, and
+                frequently use WordPress, Laravel, Vue, Next.js, React, and Tailwind CSS in my work.
+              </p>
+              <p>
+                My journey in web development is driven by a desire to continuously learn, tackle
+                new challenges, and collaborate with talented teams. I’m always looking for
+                opportunities to grow and expand my knowledge in the tech industry.
               </p>
             </div>
           </div>
