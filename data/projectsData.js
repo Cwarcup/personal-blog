@@ -1,5 +1,12 @@
 const projectsData = [
   {
+    title: 'Portfolio Website',
+    description: "Designed and developed a personal website to showcase projects and notes, emphasizing efficient and responsive design with Tailwind CSS and Next.js. Achieved near-perfect Lighthouse score, ensuring high performance and accessibility. 42 stars and 9 forks on GitHub ⭐️",
+    imgSrc: '/static/images/projectCards/personal-site-img.png',
+    href: 'https://github.com/Cwarcup/personal-blog',
+    tools: ['React', 'Next.js', 'Tailwind CSS', 'Framer Motion'],
+  },
+  {
     title: 'Netflix Clone',
     description:
       'This project is a Netflix clone that was built using cutting-edge technologies such as TypeScript, Next.js, React, Hasura, Supabase, GraphQL, Magic, and more.',
