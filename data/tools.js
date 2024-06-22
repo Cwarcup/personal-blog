@@ -111,5 +111,13 @@ const Tools = [
     name: `Stack Overflow`,
     description: `C'mon, we all have questions.`,
   },
+  {
+    id: `raycast`,
+    category: [`mac`],
+    link: `https://raycast.com/`,
+    labels: [`Productivity`],
+    name: `Raycast`,
+    description: `Command palette for developers.`,
+  }
 ]
 export default Tools
