@@ -2,6 +2,7 @@ import Link from 'next/link'
 import { useState } from 'react'
 import { IoLogoGithub, IoLogoLinkedin, IoMail, IoCall } from 'react-icons/io5'
 import Notification from './Notification'
+import Button from './Button'
 
 function SocialLink({ icon: Icon, ...props }) {
   return (
@@ -40,14 +41,17 @@ export default function Hero() {
       <h1 className="text-4xl font-bold tracking-tight text-gray-800 dark:text-zinc-100 sm:text-5xl">
         Hi, I'm Curtis
       </h1>
-      <p className="mt-6 text-base text-gray-600 dark:text-gray-400">
+      <p className="mt-6 mb-4 text-base text-gray-600 dark:text-gray-400">
         As a passionate web developer based in Vancouver, BC, I am currently contributing to the
         dynamic tech team at 14 Oranges. My journey into web development was sparked by my time at
         Apple, where I served as an Associate Manager. During my tenure, I led product launches,
-        oversaw technical repair projects, and facilitated training for new store openings. My drive
-        comes from a love for continuous learning, tackling new challenges, and collaborating with
-        talented teams. I'm always eager to expand my knowledge and grow within the tech industry.
+        conducted training, and led a team of over 100 employees. My drive comes from a love for
+        continuous learning, tackling new challenges, and collaborating with talented teams. I'm
+        always eager to expand my knowledge and grow within the tech industry.
       </p>
+      <Button href="/static/Curtis_Warcup_Resume.pdf">
+        Download My Resume
+      </Button>
       <div className="mt-6 flex gap-6">
         <SocialLink
           href="https://github.com/Cwarcup"

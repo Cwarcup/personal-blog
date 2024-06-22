@@ -32,6 +32,9 @@ module.exports = {
       spacing: {
         '9/16': '56.25%',
       },
+      maxWidth: {
+        '330': '330px',
+      },
       lineHeight: {
         11: '2.75rem',
         12: '3rem',
