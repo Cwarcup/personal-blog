@@ -45,13 +45,11 @@ export default function Hero() {
         As a passionate web developer based in Vancouver, BC, I am currently contributing to the
         dynamic tech team at 14 Oranges. My journey into web development was sparked by my time at
         Apple, where I served as an Associate Manager. During my tenure, I led product launches,
-        conducted training, and led a team of over 100 employees. My drive comes from a love for
+        conducted training, and managed a team of over 100 employees. My drive comes from a love for
         continuous learning, tackling new challenges, and collaborating with talented teams. I'm
         always eager to expand my knowledge and grow within the tech industry.
       </p>
-      <Button href="/static/Curtis_Warcup_Resume.pdf">
-        Download My Resume
-      </Button>
+      <Button href="/static/Curtis_Warcup_Resume.pdf">Download My Resume</Button>
       <div className="mt-6 flex gap-6">
         <SocialLink
           href="https://github.com/Cwarcup"

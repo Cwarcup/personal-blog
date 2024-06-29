@@ -8,6 +8,18 @@ import { Container } from '@/components/Container'
 import { GitHubIcon, LinkedInIcon, MailIcon } from '@/components/social-icons'
 import portraitImage from '../public/static/images/avatar.jpg'
 
+import {
+  FaCommentDots,
+  FaUsers,
+  FaBrain,
+  FaHandshake,
+  FaClock,
+  FaAdjust,
+  FaChalkboardTeacher,
+  FaLightbulb,
+  FaHeart,
+} from 'react-icons/fa'
+
 function SocialLink({ className, href, children, icon: Icon }) {
   return (
     <li className="flex">
@@ -19,6 +31,28 @@ function SocialLink({ className, href, children, icon: Icon }) {
         <span className="ml-4">{children}</span>
       </Link>
     </li>
+  )
+}
+
+const softSkills = [
+  { name: 'Communication', icon: FaCommentDots },
+  { name: 'Team Collaboration', icon: FaUsers },
+  { name: 'Problem-Solving', icon: FaBrain },
+  { name: 'Client Relations', icon: FaHandshake },
+  { name: 'Time Management', icon: FaClock },
+  { name: 'Adaptability', icon: FaAdjust },
+  { name: 'Leadership', icon: FaChalkboardTeacher },
+  { name: 'Critical Thinking', icon: FaLightbulb },
+  { name: 'Empathy', icon: FaHeart },
+]
+
+function SoftSkill({ skill }) {
+  const { name, icon: Icon } = skill
+  return (
+    <div className="flex items-center space-x-4">
+      <Icon className="h-6 w-6 text-primary-500" />
+      <span className="text-sm font-medium text-zinc-800 dark:text-zinc-200">{name}</span>
+    </div>
   )
 }
 
@@ -51,35 +85,34 @@ export default function About() {
             </h1>
             <div className="mt-6 space-y-7 text-base text-zinc-600 dark:text-zinc-400">
               <p>
-                I’ve always loved taking things apart, figuring out how they work, and putting them
-                back together (or not—sorry Mom & Dad). This curiosity led me to become a lifelong
-                learner, and I’m passionate about building great websites and sharing what I learn
-                along the way.
+                At 14 Oranges, I specialize in building responsive and accessible web applications,
+                collaborating directly with clients from diverse industries, including healthcare. I
+                pride myself on breaking down complex technical concepts into easily understandable
+                terms, ensuring client satisfaction and fostering strong working relationships. I
+                lead projects from inception to deployment, ensuring robust performance and
+                reliability.
               </p>
               <p>
-                I began my professional journey at Apple, where I rose from a part-time sales
-                position to an Associate Manager. In this role, I oversaw product launches,
-                conducted training, and led a team of over 100 employees. I thrived in this
-                fast-paced environment, handling complex technical issues as a Genius and managing
-                store operations as a Lead.
+                My experience at Apple taught me how to handle ambiguity and make quick, innovative
+                decisions in the face of unclear solutions. I balanced customer satisfaction with
+                business goals, often leading to creative problem-solving and effective conflict
+                resolution.
               </p>
               <p>
-                My transition to web development was inspired by my wife, who suggested I learn
-                something new. After self-studying for eight months, I enrolled in a 12-week
-                bootcamp at Lighthouse Labs. This intensive program honed my skills in full-stack
-                development.
+                Outside of work, I'm passionate about health and wellness, stemming from my
+                background in Kinesiology. This interest drives my enthusiasm for creating impactful
+                solutions in the healthcare sector. I'm excited about the future of digital health
+                and look forward to contributing to projects that make a real difference in people's
+                lives.
               </p>
-              <p>
-                Currently, I work as a web developer at 14 Oranges, where I contribute to a wide
-                variety of projects, including municipal websites, lawyer platforms, large online
-                stores, and financial platforms. I specialize in PHP, JavaScript, and CSS, and
-                frequently use WordPress, Laravel, Vue, Next.js, React, and Tailwind CSS in my work.
-              </p>
-              <p>
-                My journey in web development is driven by a desire to continuously learn, tackle
-                new challenges, and collaborate with talented teams. I’m always looking for
-                opportunities to grow and expand my knowledge in the tech industry.
-              </p>
+            </div>
+            <h2 className="mt-8 text-3xl font-bold tracking-tight text-zinc-800 dark:text-zinc-100 sm:text-4xl">
+              My Soft Skills
+            </h2>
+            <div className="mt-6 space-y-4">
+              {softSkills.map((skill) => (
+                <SoftSkill key={skill.name} skill={skill} />
+              ))}
             </div>
           </div>
           <div className="lg:pl-20">
