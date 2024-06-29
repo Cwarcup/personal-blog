@@ -1,7 +1,8 @@
 const projectsData = [
   {
-    title: 'Portfolio Website',
-    description: "Designed and developed a personal website to showcase projects and notes, emphasizing efficient and responsive design with Tailwind CSS and Next.js. Achieved near-perfect Lighthouse score, ensuring high performance and accessibility. 42 stars and 9 forks on GitHub ⭐️",
+    title: 'Personal Website',
+    description:
+      'Designed and developed a personal website to showcase projects and notes, emphasizing efficient and responsive design with Tailwind CSS and Next.js. Achieved near-perfect Lighthouse score, ensuring high performance and accessibility. 42 stars and 9 forks on GitHub ⭐️',
     imgSrc: '/static/images/projectCards/personal-site-img.png',
     href: 'https://github.com/Cwarcup/personal-blog',
     tools: ['React', 'Next.js', 'Tailwind CSS', 'Framer Motion'],
@@ -9,7 +10,7 @@ const projectsData = [
   {
     title: 'Netflix Clone',
     description:
-      'This project is a Netflix clone that was built using cutting-edge technologies such as TypeScript, Next.js, React, Hasura, Supabase, GraphQL, Magic, and more.',
+      'Note: This project got a copyright violation due to the use of the Netflix logo. Will need to change this in the future.This project is a Netflix clone that was built using cutting-edge technologies such as TypeScript, Next.js, React, Hasura, Supabase, GraphQL, Magic, and more.',
     imgSrc: '/static/images/projectCards/netflix-clone.png',
     href: 'https://github.com/Cwarcup/netflix-clone',
     deployed: 'https://netflixclonedemo.vercel.app/login',
