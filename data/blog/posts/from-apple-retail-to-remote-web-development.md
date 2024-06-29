@@ -1,8 +1,8 @@
 ---
 title: 'From Apple Retail to Remote Web Development: My Journey'
 date: '2024-06-28'
-images: '/static/images/individualBlogPostImages/ts-conversion.jpg'
 draft: False
+tags: ['web development']
 summary: "After seven years at Apple, where I progressed from a part-time sales person to an associate manager, I transitioned to a remote web developer role at 14 Oranges. My journey began with self-taught web development and a bootcamp at Lighthouse Labs. While I initially missed the daily interactions of retail, I now thrive on managing large projects and solving complex problems in a remote setting. My background in Kinesiology fuels my passion for creating impactful digital health solutions. This career change has been challenging yet rewarding, and I’m excited about the future of digital health and continuous learning in web development."
 ---
 
