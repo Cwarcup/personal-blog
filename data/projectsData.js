@@ -8,12 +8,12 @@ const projectsData = [
     tools: ['React', 'Next.js', 'Tailwind CSS', 'Framer Motion'],
   },
   {
-    title: 'Netflix Clone',
+    title: 'Notflix Clone',
     description:
-      'Note: This project got a copyright violation due to the use of the Netflix logo. Will need to change this in the future.This project is a Netflix clone that was built using cutting-edge technologies such as TypeScript, Next.js, React, Hasura, Supabase, GraphQL, Magic, and more.',
-    imgSrc: '/static/images/projectCards/netflix-clone.png',
+      'This project is a Netflix clone that was built using technologies such as TypeScript, Next.js, React, Hasura, Supabase, GraphQL, Magic, and more. Please note: This is a learning project and is not intended for commercial use. All content used is for demonstration purposes only.',
+    imgSrc: '/static/images/projectCards/notflix-clone-preview.png',
     href: 'https://github.com/Cwarcup/netflix-clone',
-    deployed: 'https://netflixclonedemo.vercel.app/login',
+    deployed: 'https://cwarcup-nflx-clone.vercel.app/login',
     tools: ['TypeScript', 'Next.js', 'GraphQL', 'Supabase', 'Magic', 'Hasura'],
   },
   {
