@@ -26,27 +26,27 @@ const ProjectCard = ({ title, description, imgSrc, href, tools, deployed }) => (
       <p className="truncate-2 text-sm text-neutral-400">{description}</p>
 
       <div className="flex flex-wrap items-center gap-1">
-        {tools.map((tool, index) => {
-          return (
-            <span key={`${tool}-${index}`} className="bg-gray-900 px-2 py-1 text-xs text-gray-500">
-              {tool}
-            </span>
-          )
-        })}
+        {tools.map((tool, index) => (
+          <span key={`${tool}-${index}`} className="bg-gray-900 px-2 py-1 text-xs text-gray-500">
+            {tool}
+          </span>
+        ))}
       </div>
 
       <div className="mt-auto flex w-fit items-center gap-4 p-2">
-        <Link href={href}>
-          <a
-            title="Source Code on GitHub"
-            target="_blank"
-            rel="noopener noreferrer"
-            href={href}
-            className="text-gray-500 hover:text-white"
-          >
-            <BsGithub className="h-6 w-6 transition-all hover:scale-110 active:scale-90" />
-          </a>
-        </Link>
+        {href && (
+          <Link href={href}>
+            <a
+              title="Source Code on GitHub"
+              target="_blank"
+              rel="noopener noreferrer"
+              href={href}
+              className="text-gray-500 hover:text-white"
+            >
+              <BsGithub className="h-6 w-6 transition-all hover:scale-110 active:scale-90" />
+            </a>
+          </Link>
+        )}
 
         {deployed && (
           <Link href={deployed}>
