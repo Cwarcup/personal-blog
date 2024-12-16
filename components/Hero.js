@@ -42,12 +42,14 @@ export default function Hero() {
         Hi, I'm Curtis
       </h1>
       <p className="mt-6 mb-4 text-base text-gray-600 dark:text-gray-400">
-        As a passionate web developer based in Vancouver, BC, I am currently contributing to the
-        dynamic tech team at 14 Oranges. My journey into web development was sparked by my time at
-        Apple, where I served as an Associate Manager. During my tenure, I led product launches,
-        conducted training, and managed a team of over 100 employees. My drive comes from a love for
-        continuous learning, tackling new challenges, and collaborating with talented teams. I'm
-        always eager to expand my knowledge and grow within the tech industry.
+        As a Full Stack Developer based in Vancouver, BC, I specialize in PHP development and server
+        infrastructure at 14 Oranges. I excel in building and maintaining WordPress solutions while
+        managing Ubuntu server deployments and configurations. My background includes leading
+        product launches and managing large teams during my tenure as an Associate Manager at Apple.
+        While my day-to-day work focuses on PHP and MySQL, I'm passionate about modern web
+        development with TypeScript and Next.js, often deploying personal projects on Vercel. With a
+        strong foundation in both development and leadership, I bring a unique blend of technical
+        expertise and collaborative skills to every project.
       </p>
       <Button href="/static/Curtis_Warcup_Resume.pdf">Download My Resume</Button>
       <div className="mt-6 flex gap-6">
