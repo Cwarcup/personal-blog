@@ -1,5 +1,13 @@
 const projectsData = [
   {
+    title: 'Straight Flush Plumbing',
+    description:
+      'Designed and developed a website for a local plumbing company to showcase services and contact information. The website is built with Next.js and Tailwind CSS, ensuring high performance and accessibility. 100% Lighthouse score 🚀',
+    imgSrc: '/static/images/projectCards/straight-flush.png',
+    deployed: 'https://straightflush.ca/',
+    tools: ['Next.js', 'Tailwind CSS'],
+  },
+  {
     title: 'Personal Website',
     description:
       'Designed and developed a personal website to showcase projects and notes, emphasizing efficient and responsive design with Tailwind CSS and Next.js. Achieved near-perfect Lighthouse score, ensuring high performance and accessibility. 42 stars and 9 forks on GitHub ⭐️',
@@ -13,7 +21,6 @@ const projectsData = [
       'This project is a Netflix clone that was built using technologies such as TypeScript, Next.js, React, Hasura, Supabase, GraphQL, Magic, and more. Please note: This is a learning project and is not intended for commercial use. All content used is for demonstration purposes only.',
     imgSrc: '/static/images/projectCards/notflix-clone-preview.png',
     href: 'https://github.com/Cwarcup/netflix-clone',
-    deployed: 'https://cwarcup-nflx-clone.vercel.app/login',
     tools: ['TypeScript', 'Next.js', 'GraphQL', 'Supabase', 'Magic', 'Hasura'],
   },
   {
