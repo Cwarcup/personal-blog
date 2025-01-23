@@ -68,11 +68,6 @@ export default function Hero() {
           aria-label="Send me an email"
           icon={IoMail}
         />
-        <CopyToClipboard
-          text={{ contact: '+1 (604) 374-4652', type: 'Phone number' }}
-          aria-label="Give me a call"
-          icon={IoCall}
-        />
       </div>
     </div>
   )
